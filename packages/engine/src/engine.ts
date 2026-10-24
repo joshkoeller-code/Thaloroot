@@ -1080,6 +1080,21 @@ function finishRoll(state: GameState, p: PlayerState): void {
   (t as any).ok = ok;
   (t as any).mishap = mishap;
   (t as any).spark = ok && sparkTriggered(state, dice, card, o.sparkNeeds);
+  state.lastRoll = {
+    seq: (state.lastRoll?.seq ?? 0) + 1,
+    player: p.id,
+    card: card.id,
+    option: o.name,
+    stat: t.stat!,
+    dice: [...dice],
+    trouble: [...(t.troubleDice ?? [])],
+    need: t.need ?? 0,
+    successes: t.successes ?? 0,
+    ok,
+    pushed: !!t.pushed,
+    spark: (t as any).spark,
+    mishap,
+  };
   if (mishap) {
     bump(p, "mishaps");
     gstat(state, "mishaps");

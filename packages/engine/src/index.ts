@@ -9,3 +9,6 @@ export { pAtLeast } from "./rng.js";
 export { viewFor } from "./view.js";
 export type { Viewer } from "./view.js";
 export { PLAYTEST_MISSIONS } from "./sim.js";
+export { hasLight, treasures, isTreasure, worldMods, companionLimit } from "./player.js";
+export { itemVp, itemCoin, itemValue } from "./effects.js";
+export { FINALE } from "./world.js";

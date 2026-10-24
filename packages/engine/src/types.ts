@@ -467,8 +467,26 @@ export interface GameState {
   stats: Record<string, number>;
   winner: number[] | null;
   scores: ScoreLine[] | null;
+  /** The most recent explore roll, for showing dice. */
+  lastRoll?: LastRoll | null;
   /** Queued die results (tests, scripted tutorials). Consumed before the RNG. */
   scriptedDice?: number[];
+}
+
+export interface LastRoll {
+  seq: number;
+  player: number;
+  card: string;
+  option: string;
+  stat: Stat;
+  dice: number[];
+  trouble: number[];
+  need: number;
+  successes: number;
+  ok: boolean;
+  pushed: boolean;
+  spark: boolean;
+  mishap: boolean;
 }
 
 export interface TradeOffer {
