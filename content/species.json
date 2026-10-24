@@ -1,0 +1,224 @@
+[
+  {
+    "id": "mossfolk",
+    "name": "Mossfolk",
+    "trait": "Rest options restore 1 extra stamina",
+    "hooks": [
+      {
+        "kind": "restStamina",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "burrowkin",
+    "name": "Burrowkin",
+    "trait": "Once per game, dig out of a trap you spring and ignore it",
+    "hooks": [
+      {
+        "kind": "ignoreTrapOnce"
+      }
+    ]
+  },
+  {
+    "id": "toadlings",
+    "name": "Toadlings",
+    "trait": "Can't be turned into frogs",
+    "hooks": [
+      {
+        "kind": "frogImmune"
+      }
+    ]
+  },
+  {
+    "id": "owlkin",
+    "name": "Owlkin",
+    "trait": "+1 die on Wits rolls during Night cards",
+    "hooks": [
+      {
+        "kind": "dice",
+        "stat": "wits",
+        "amount": 1,
+        "when": "night"
+      }
+    ]
+  },
+  {
+    "id": "stonebacks",
+    "name": "Stonebacks",
+    "trait": "+1 max health",
+    "hooks": [
+      {
+        "kind": "maxHealth",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "sproutlings",
+    "name": "Sproutlings",
+    "trait": "Resting at a Forest or Meadow location also grants 1 Lesson",
+    "hooks": [
+      {
+        "kind": "restLesson",
+        "tags": [
+          "forest",
+          "meadow"
+        ],
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "thistlefae",
+    "name": "Thistlefae",
+    "trait": "+1 die on Luck rolls at Meadow locations",
+    "hooks": [
+      {
+        "kind": "dice",
+        "stat": "luck",
+        "tags": [
+          "meadow"
+        ],
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "humans",
+    "name": "Humans",
+    "trait": "Once per game, roll an option with a different stat than the one listed",
+    "hooks": [
+      {
+        "kind": "flowOnce"
+      }
+    ]
+  },
+  {
+    "id": "foxfolk",
+    "name": "Foxfolk",
+    "trait": "Once per game, swap your chosen card for your other teaser after the reveal",
+    "hooks": []
+  },
+  {
+    "id": "beetlebacks",
+    "name": "Beetlebacks",
+    "trait": "Losing a Brawl costs you no health",
+    "hooks": [
+      {
+        "kind": "noBrawlDamage"
+      }
+    ]
+  },
+  {
+    "id": "mothkin",
+    "name": "Mothkin",
+    "trait": "Start each game with a Firefly Jar",
+    "hooks": [
+      {
+        "kind": "startItem",
+        "item": "firefly-jar"
+      }
+    ]
+  },
+  {
+    "id": "capfolk",
+    "name": "Capfolk",
+    "trait": "Once per game, ignore a Mishap",
+    "hooks": [
+      {
+        "kind": "ignoreMishapOnce"
+      }
+    ]
+  },
+  {
+    "id": "otterkin",
+    "name": "Otterkin",
+    "trait": "Swamp options cost 1 less stamina",
+    "hooks": [
+      {
+        "kind": "stamina",
+        "tags": [
+          "swamp"
+        ],
+        "amount": -1
+      }
+    ]
+  },
+  {
+    "id": "goatlings",
+    "name": "Goatlings",
+    "trait": "Mountain options cost 1 less stamina",
+    "hooks": [
+      {
+        "kind": "stamina",
+        "tags": [
+          "mountain"
+        ],
+        "amount": -1
+      }
+    ]
+  },
+  {
+    "id": "crowkin",
+    "name": "Crowkin",
+    "trait": "Cash treasures for 1 extra coin",
+    "hooks": [
+      {
+        "kind": "cashBonus",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "badgerfolk",
+    "name": "Badgerfolk",
+    "trait": "Don't drop an item when Downed",
+    "hooks": [
+      {
+        "kind": "keepItemWhenDowned"
+      }
+    ]
+  },
+  {
+    "id": "lanternwisps",
+    "name": "Lanternwisps",
+    "trait": "Always count as holding a light source",
+    "hooks": [
+      {
+        "kind": "lightSource"
+      }
+    ]
+  },
+  {
+    "id": "barkbound",
+    "name": "Barkbound",
+    "trait": "+1 max stamina",
+    "hooks": [
+      {
+        "kind": "maxStamina",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": "hollowkin",
+    "name": "Hollowkin",
+    "trait": "Once per game, ignore a monster's hunt",
+    "hooks": [
+      {
+        "kind": "ignoreHuntOnce"
+      }
+    ]
+  },
+  {
+    "id": "squirrelfolk",
+    "name": "Squirrelfolk",
+    "trait": "Choose one item in your pack that can never be stolen",
+    "hooks": [
+      {
+        "kind": "protectOneItem"
+      }
+    ]
+  }
+]

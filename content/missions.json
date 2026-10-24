@@ -1,0 +1,3262 @@
+[
+  {
+    "id": "moth-queens-lullaby",
+    "name": "Moth Queen's Lullaby",
+    "tier": 1,
+    "path": [
+      "meadow",
+      "creature"
+    ],
+    "anyPath": false,
+    "playsLike": "Gentle and friendly; avoids fights",
+    "lore": "The Moth Queen can't sleep, and when she can't sleep, nobody in the Meadow can.",
+    "milestones": [
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Choose a rest or no-roll option twice",
+        "vp": 3,
+        "condition": {
+          "event": "rest",
+          "count": 2
+        }
+      },
+      {
+        "text": "Befriend a creature",
+        "vp": 4,
+        "condition": {
+          "event": "befriend"
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a companion, succeed on a Charm option at a Meadow location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "meadow"
+        ],
+        "stats": [
+          "charm"
+        ],
+        "requires": {
+          "minCompanions": 1
+        }
+      }
+    },
+    "flourish": {
+      "text": "never choose Brawl at a Meeting",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "meetingChoice",
+          "choice": "brawl"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-rootkeepers-errand",
+    "name": "The Rootkeeper's Errand",
+    "tier": 1,
+    "path": [
+      "forest",
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Cooperative; rewards helping rivals",
+    "lore": "The Rootkeepers need something returned to the old stones, and they don't trust Graftwrights to do it.",
+    "milestones": [
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Choose Ally at a Meeting",
+        "vp": 3,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "ally"
+        }
+      },
+      {
+        "text": "Find a treasure at a Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "ruins"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a treasure found at Ruins, succeed at a two-skull Forest location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "holdTreasureFrom": [
+            "ruins"
+          ]
+        }
+      }
+    },
+    "flourish": {
+      "text": "lend Assist dice to a rival at least once",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "lendAssist"
+        }
+      }
+    }
+  },
+  {
+    "id": "blue-ribbon-at-the-bloom-fair",
+    "name": "Blue Ribbon at the Bloom Fair",
+    "tier": 1,
+    "path": [
+      "meadow",
+      "forest"
+    ],
+    "anyPath": false,
+    "playsLike": "Hoards treasure while others try to steal it",
+    "lore": "The judges only care about one thing: who brought the most marvelous haul.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a Meadow location",
+        "vp": 3,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Forest location",
+        "vp": 3,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Buy an item from a Merchant",
+        "vp": 4,
+        "condition": {
+          "event": "buy"
+        }
+      }
+    ],
+    "finale": {
+      "text": "start your turn holding treasures with a total coin value of 12 or more",
+      "vp": 9,
+      "condition": {
+        "event": "turnStart",
+        "requires": {
+          "treasureCoinValue": 12
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding 4 or more treasures",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "minTreasures": 4
+        }
+      }
+    }
+  },
+  {
+    "id": "the-frog-princes-pond",
+    "name": "The Frog Prince's Pond",
+    "tier": 1,
+    "path": [
+      "swamp",
+      "creature"
+    ],
+    "anyPath": false,
+    "playsLike": "Wants to become a frog",
+    "lore": "A frog in the bog claims he's royalty. The only way to know for sure is to become one.",
+    "milestones": [
+      {
+        "text": "Succeed at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Be turned into a frog by any means",
+        "vp": 3,
+        "condition": {
+          "event": "frog"
+        }
+      },
+      {
+        "text": "Befriend a creature at a Swamp location",
+        "vp": 4,
+        "condition": {
+          "event": "befriend",
+          "tags": [
+            "swamp"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a Charm option at a two-skull Swamp location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "swamp"
+        ],
+        "minSkull": 2,
+        "stats": [
+          "charm"
+        ]
+      }
+    },
+    "flourish": {
+      "text": "be a frog when the game ends",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "frog": true
+        }
+      }
+    }
+  },
+  {
+    "id": "mushroom-census",
+    "name": "Mushroom Census",
+    "tier": 1,
+    "path": [
+      "forest",
+      "swamp"
+    ],
+    "anyPath": false,
+    "playsLike": "Careful and clever; no gambling",
+    "lore": "The Rootkeepers count every mushroom each Bloom. This year, someone has to count the ones that bite.",
+    "milestones": [
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Wits option",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "stats": [
+            "wits"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a Wits option at a two-skull Forest or Swamp location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "forest",
+          "swamp"
+        ],
+        "minSkull": 2,
+        "stats": [
+          "wits"
+        ]
+      }
+    },
+    "flourish": {
+      "text": "claim every milestone without pushing your luck",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "push"
+        },
+        "until": "milestones"
+      }
+    }
+  },
+  {
+    "id": "the-shepherds-lost-flock",
+    "name": "The Shepherd's Lost Flock",
+    "tier": 1,
+    "path": [
+      "meadow",
+      "creature"
+    ],
+    "anyPath": false,
+    "playsLike": "Gathers companions",
+    "lore": "Three woolly thal-sheep wandered off during the Bloom. One of them can now fly.",
+    "milestones": [
+      {
+        "text": "Befriend a creature",
+        "vp": 3,
+        "condition": {
+          "event": "befriend"
+        }
+      },
+      {
+        "text": "Befriend a second creature",
+        "vp": 3,
+        "condition": {
+          "event": "befriend",
+          "count": 2
+        }
+      },
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding 2 companions, succeed at a two-skull Meadow location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "meadow"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "minCompanions": 2
+        }
+      }
+    },
+    "flourish": {
+      "text": "no companion flees all game",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "companionFled"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-merchants-debt",
+    "name": "The Merchant's Debt",
+    "tier": 1,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Builds a pile of coin",
+    "lore": "You owe Mrs. Pennywhistle money. She has a very good memory and a very fast cart.",
+    "milestones": [
+      {
+        "text": "Cash in a treasure for coin",
+        "vp": 3,
+        "condition": {
+          "event": "cashIn"
+        }
+      },
+      {
+        "text": "Buy an item from a Merchant",
+        "vp": 3,
+        "condition": {
+          "event": "buy"
+        }
+      },
+      {
+        "text": "Complete a trade with a rival",
+        "vp": 4,
+        "condition": {
+          "event": "trade"
+        }
+      }
+    ],
+    "finale": {
+      "text": "start your turn holding 10 or more coin",
+      "vp": 9,
+      "condition": {
+        "event": "turnStart",
+        "requires": {
+          "minCoin": 10
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding 15 or more coin",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "minCoin": 15
+        }
+      }
+    }
+  },
+  {
+    "id": "picnic-on-the-hill",
+    "name": "Picnic on the Hill",
+    "tier": 1,
+    "path": [
+      "meadow",
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "Friendly; stays healthy",
+    "lore": "The best view in Thaloroot is from the hill where the wildflowers meet the stone.",
+    "milestones": [
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      },
+      {
+        "text": "Choose a rest option at a Meadow or Mountain location",
+        "vp": 4,
+        "condition": {
+          "event": "rest",
+          "tags": [
+            "meadow",
+            "mountain"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while at full health, succeed at a two-skull Mountain location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "mountain"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "healthAtTurnStart": "full"
+        }
+      }
+    },
+    "flourish": {
+      "text": "split a team-up reward with an ally",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "shareReward"
+        }
+      }
+    }
+  },
+  {
+    "id": "mudlarks-fortune",
+    "name": "Mudlark's Fortune",
+    "tier": 1,
+    "path": [
+      "swamp"
+    ],
+    "anyPath": false,
+    "playsLike": "Digs for bog treasure",
+    "lore": "Everything lost in Thaloroot eventually sinks into a bog. Somebody might as well dig it up.",
+    "milestones": [
+      {
+        "text": "Succeed at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Brawn option at a Swamp location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ],
+          "stats": [
+            "brawn"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding 2 treasures found at Swamp locations, succeed at a two-skull Swamp location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "swamp"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "holdTreasureFrom": [
+            "swamp",
+            "swamp"
+          ]
+        }
+      }
+    },
+    "flourish": {
+      "text": "never be turned into a frog",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "frog"
+        }
+      }
+    }
+  },
+  {
+    "id": "apprentices-first-spell",
+    "name": "Apprentice's First Spell",
+    "tier": 1,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Focuses on Spark",
+    "lore": "Every spellcaster remembers their first real spell. Most of them remember their eyebrows growing back.",
+    "milestones": [
+      {
+        "text": "Trigger a Spark result",
+        "vp": 3,
+        "condition": {
+          "event": "spark"
+        }
+      },
+      {
+        "text": "Succeed on a Spark option",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "stats": [
+            "spark"
+          ]
+        }
+      },
+      {
+        "text": "Take a Lesson in Spark instead of a reward",
+        "vp": 4,
+        "condition": {
+          "event": "lessonInstead",
+          "stat": "spark"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a Spark option at a two-skull location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "minSkull": 2,
+        "stats": [
+          "spark"
+        ]
+      }
+    },
+    "flourish": {
+      "text": "gain a permanent Spark point this game",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "statGrowth",
+          "stat": "spark"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-couriers-parcel",
+    "name": "The Courier's Parcel",
+    "tier": 1,
+    "path": [
+      "forest",
+      "meadow",
+      "swamp",
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Travels light across the realm",
+    "lore": "A sealed parcel, an address in the old stones, and strict instructions not to peek.",
+    "milestones": [
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Swamp location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while carrying 2 or fewer items, succeed at a two-skull Ruins location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "maxItems": 2
+        }
+      }
+    },
+    "flourish": {
+      "text": "never be stolen from",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "stolenFrom"
+        }
+      }
+    }
+  },
+  {
+    "id": "trapwise-scout",
+    "name": "Trapwise Scout",
+    "tier": 1,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Walks into traps on purpose",
+    "lore": "The best way to learn about traps is to step in a few.",
+    "milestones": [
+      {
+        "text": "Spring a rival's trap",
+        "vp": 3,
+        "condition": {
+          "event": "springTrap"
+        }
+      },
+      {
+        "text": "Set a trap",
+        "vp": 3,
+        "condition": {
+          "event": "setTrap"
+        }
+      },
+      {
+        "text": "Succeed at a location where a trap was sprung earlier this game",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "atTrappedLocation": true
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a two-skull location on the same turn you spring a trap",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "minSkull": 2,
+        "sprangTrapThisTurn": true
+      }
+    },
+    "flourish": {
+      "text": "spring 2 traps without ever being Downed",
+      "vp": 2,
+      "condition": {
+        "all": [
+          {
+            "ever": {
+              "event": "springTrap",
+              "count": 2
+            }
+          },
+          {
+            "never": {
+              "event": "downed"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "the-wandering-minstrels-ballad",
+    "name": "The Wandering Minstrel's Ballad",
+    "tier": 1,
+    "path": [
+      "meadow"
+    ],
+    "anyPath": true,
+    "playsLike": "Tries every Meeting choice",
+    "lore": "A good ballad needs a friend, a fight, and a moment of walking away.",
+    "milestones": [
+      {
+        "text": "Choose Ally at a Meeting",
+        "vp": 3,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "ally"
+        }
+      },
+      {
+        "text": "Choose Brawl at a Meeting",
+        "vp": 3,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "brawl"
+        }
+      },
+      {
+        "text": "Choose Pass at a Meeting",
+        "vp": 4,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "pass"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a two-skull Meadow location during a Meeting",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "meadow"
+        ],
+        "minSkull": 2,
+        "duringMeeting": true
+      }
+    },
+    "flourish": {
+      "text": "both lend and receive Assist dice this game",
+      "vp": 2,
+      "condition": {
+        "all": [
+          {
+            "ever": {
+              "event": "lendAssist"
+            }
+          },
+          {
+            "ever": {
+              "event": "receiveAssist"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "rootkeeper-initiate",
+    "name": "Rootkeeper Initiate",
+    "tier": 1,
+    "path": [
+      "forest"
+    ],
+    "anyPath": false,
+    "playsLike": "Patient; grows rather than grabs",
+    "lore": "Initiates spend their first Bloom learning to take only what the forest offers.",
+    "milestones": [
+      {
+        "text": "Choose a rest option at a Forest location",
+        "vp": 3,
+        "condition": {
+          "event": "rest",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Take a Lesson instead of a reward",
+        "vp": 3,
+        "condition": {
+          "event": "lessonInstead"
+        }
+      },
+      {
+        "text": "Succeed on a Wits option at a Forest location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ],
+          "stats": [
+            "wits"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a two-skull Forest location without pushing your luck or using an item",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ],
+        "minSkull": 2,
+        "noPush": true,
+        "noItem": true
+      }
+    },
+    "flourish": {
+      "text": "never burn, hex, or haunt a location",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "curseLocation"
+        }
+      }
+    }
+  },
+  {
+    "id": "little-lost-wisp",
+    "name": "Little Lost Wisp",
+    "tier": 1,
+    "path": [
+      "swamp",
+      "meadow"
+    ],
+    "anyPath": false,
+    "playsLike": "Collects Spark tokens and light",
+    "lore": "A tiny will-o'-wisp has drifted far from home and keeps following you. It's very sad about it.",
+    "milestones": [
+      {
+        "text": "Succeed at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Gain a Spark token from any source",
+        "vp": 4,
+        "condition": {
+          "event": "gainSparkToken"
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a light-source item, succeed at a two-skull Meadow location",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "meadow"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "lightSource": true
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding 3 or more Spark tokens",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "minSparkTokens": 3
+        }
+      }
+    }
+  },
+  {
+    "id": "grumbleworts-birthday",
+    "name": "Grumblewort's Birthday",
+    "tier": 1,
+    "path": [
+      "swamp",
+      "creature"
+    ],
+    "anyPath": false,
+    "playsLike": "Shops, then gives a gift away",
+    "lore": "The troll from the Giggling Bog is turning 300. Nobody has ever gotten him a present.",
+    "milestones": [
+      {
+        "text": "Befriend a creature",
+        "vp": 3,
+        "condition": {
+          "event": "befriend"
+        }
+      },
+      {
+        "text": "Buy an item from a Merchant",
+        "vp": 3,
+        "condition": {
+          "event": "buy"
+        }
+      },
+      {
+        "text": "Find a treasure at a Swamp location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "swamp"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "give a treasure to a rival, then succeed at a two-skull Swamp location on the same turn",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "swamp"
+        ],
+        "minSkull": 2,
+        "cost": {
+          "giveTreasure": 1
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding a companion",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "minCompanions": 1
+        }
+      }
+    }
+  },
+  {
+    "id": "hilltop-beacon",
+    "name": "Hilltop Beacon",
+    "tier": 1,
+    "path": [
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "Spends big on one moment",
+    "lore": "When the Bloom peaks, someone lights the old beacon on the hill. It's never the same person twice.",
+    "milestones": [
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Brawn option",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "stats": [
+            "brawn"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Spark option",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "stats": [
+            "spark"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "spend 3 or more stamina on a single option at a two-skull Mountain location and succeed",
+      "vp": 9,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "mountain"
+        ],
+        "minSkull": 2,
+        "minStaminaSpent": 3
+      }
+    },
+    "flourish": {
+      "text": "never be Downed",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "downed"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-drowned-kings-crown",
+    "name": "The Drowned King's Crown",
+    "tier": 2,
+    "path": [
+      "swamp",
+      "creature",
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Protects one specific treasure",
+    "lore": "A king sank his crown in a bog rather than lose it in battle. His ghost still wants it back.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Befriend a creature",
+        "vp": 4,
+        "condition": {
+          "event": "befriend"
+        }
+      },
+      {
+        "text": "Succeed at a Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding the Sunken Crown or any treasure found at a Swamp location, succeed at a two-skull or harder Ruins location. Spending the crown breaks the mission",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "holdAny": [
+            {
+              "item": "the-sunken-crown"
+            },
+            {
+              "treasureFrom": "swamp"
+            }
+          ]
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding 3 or more treasures",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "minTreasures": 3
+        }
+      }
+    }
+  },
+  {
+    "id": "graftwrights-folly",
+    "name": "Graftwright's Folly",
+    "tier": 2,
+    "path": [
+      "ruins",
+      "forest"
+    ],
+    "anyPath": false,
+    "playsLike": "Combines finds; rewards growth",
+    "lore": "The Graftwrights swear they can join two finds into something new. Carefully, this time.",
+    "milestones": [
+      {
+        "text": "Succeed at a Ruins location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Take a Lesson instead of a reward",
+        "vp": 4,
+        "condition": {
+          "event": "lessonInstead"
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding one treasure from Ruins and one from Forest, succeed at a two-skull location with either tag",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins",
+          "forest"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "holdTreasureFrom": [
+            "ruins",
+            "forest"
+          ]
+        }
+      }
+    },
+    "flourish": {
+      "text": "gain a permanent stat point this game",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "statGrowth"
+        }
+      }
+    }
+  },
+  {
+    "id": "wyrm-hunter",
+    "name": "Wyrm Hunter",
+    "tier": 2,
+    "path": [
+      "peril",
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "Fights monsters and rivals",
+    "lore": "Every Bloom wakes something with teeth. Somebody has to deal with it.",
+    "milestones": [
+      {
+        "text": "Succeed at a Peril location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "peril"
+          ]
+        }
+      },
+      {
+        "text": "Win a Brawl",
+        "vp": 4,
+        "condition": {
+          "event": "winBrawl"
+        }
+      },
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "defeat any Monster World card",
+      "vp": 12,
+      "condition": {
+        "event": "defeatMonster"
+      }
+    },
+    "flourish": {
+      "text": "never be Downed",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "downed"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-shadow-broker",
+    "name": "The Shadow Broker",
+    "tier": 2,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Traps, theft, and deduction",
+    "lore": "Secrets are the only treasure that never loses value.",
+    "milestones": [
+      {
+        "text": "Have one of your traps sprung by a rival",
+        "vp": 3,
+        "condition": {
+          "event": "trapSprungByRival"
+        }
+      },
+      {
+        "text": "Steal from a rival by any means",
+        "vp": 4,
+        "condition": {
+          "event": "steal"
+        }
+      },
+      {
+        "text": "Learn a tag from a rival's mission by any means",
+        "vp": 4,
+        "condition": {
+          "event": "learnTag"
+        }
+      }
+    ],
+    "finale": {
+      "text": "at the final guess, correctly name at least 2 rivals' missions",
+      "vp": 12,
+      "condition": {
+        "event": "finalGuess",
+        "minCorrect": 2
+      }
+    },
+    "flourish": {
+      "text": "have 2 of your traps sprung",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "trapSprungByRival",
+          "count": 2
+        }
+      }
+    }
+  },
+  {
+    "id": "ghost-of-the-gardeners-daughter",
+    "name": "Ghost of the Gardener's Daughter",
+    "tier": 2,
+    "path": [
+      "ruins",
+      "meadow"
+    ],
+    "anyPath": false,
+    "playsLike": "Gentle; never steals",
+    "lore": "She has waited in the ruins since the Wilting. She only wants flowers.",
+    "milestones": [
+      {
+        "text": "Succeed at a Ruins location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Meadow location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Choose a rest option at a Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "rest",
+          "tags": [
+            "ruins"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a treasure found at a Meadow location, succeed on a Charm option at a two-skull Ruins location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 2,
+        "stats": [
+          "charm"
+        ],
+        "requires": {
+          "holdTreasureFrom": [
+            "meadow"
+          ]
+        }
+      }
+    },
+    "flourish": {
+      "text": "never steal from a rival",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "steal"
+        }
+      }
+    }
+  },
+  {
+    "id": "moonlit-heist",
+    "name": "Moonlit Heist",
+    "tier": 2,
+    "path": [
+      "ruins"
+    ],
+    "anyPath": true,
+    "playsLike": "Steals, then keeps the loot",
+    "lore": "The Graftwrights locked something away in the old stones. You're unlocking it.",
+    "milestones": [
+      {
+        "text": "Steal from a rival by any means",
+        "vp": 3,
+        "condition": {
+          "event": "steal"
+        }
+      },
+      {
+        "text": "Set a Pickpocket trap",
+        "vp": 4,
+        "condition": {
+          "event": "setTrap",
+          "trapType": "pickpocket"
+        }
+      },
+      {
+        "text": "Succeed on a Wits option at a Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ],
+          "stats": [
+            "wits"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding an item stolen this game, succeed at a two-skull Ruins location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "minStolenItems": 1
+        }
+      }
+    },
+    "flourish": {
+      "text": "never be stolen from",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "stolenFrom"
+        }
+      }
+    }
+  },
+  {
+    "id": "seed-of-the-first-bloom",
+    "name": "Seed of the First Bloom",
+    "tier": 2,
+    "path": [
+      "meadow",
+      "forest",
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "Gives up a reward for growth",
+    "lore": "Legend says the first Bloom began with a single seed planted on purpose.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a Meadow location",
+        "vp": 3,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a two-skull Meadow location and take a Lesson instead of the reward. You plant the seed rather than keep it",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "meadow"
+        ],
+        "minSkull": 2,
+        "lessonInstead": true
+      }
+    },
+    "flourish": {
+      "text": "never cash a treasure for coin",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "cashIn"
+        }
+      }
+    }
+  },
+  {
+    "id": "duel-at-dawn",
+    "name": "Duel at Dawn",
+    "tier": 2,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Seeks out Brawls",
+    "lore": "An old-fashioned challenge, settled the old-fashioned way.",
+    "milestones": [
+      {
+        "text": "Choose Brawl at a Meeting",
+        "vp": 3,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "brawl"
+        }
+      },
+      {
+        "text": "Win a Brawl",
+        "vp": 4,
+        "condition": {
+          "event": "winBrawl"
+        }
+      },
+      {
+        "text": "Survive an ambush: choose Ally while a rival chooses Brawl, and don't be Downed that turn",
+        "vp": 4,
+        "condition": {
+          "event": "surviveAmbush"
+        }
+      }
+    ],
+    "finale": {
+      "text": "win a Brawl at a two-skull or harder location",
+      "vp": 12,
+      "condition": {
+        "event": "winBrawl",
+        "minSkull": 2
+      }
+    },
+    "flourish": {
+      "text": "never set a trap",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "setTrap"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-cloud-kite-race",
+    "name": "The Cloud-Kite Race",
+    "tier": 2,
+    "path": [
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "Fast and lucky; never rests",
+    "lore": "Every Bloom, the bravest fools in Thaloroot race kites off the highest cliffs.",
+    "milestones": [
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Luck option",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "stats": [
+            "luck"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at locations on two turns in a row",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "previousTurn": {
+            "event": "success"
+          }
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a Luck option at a three-skull Mountain location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "mountain"
+        ],
+        "minSkull": 3,
+        "stats": [
+          "luck"
+        ]
+      }
+    },
+    "flourish": {
+      "text": "never choose a rest option",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "rest"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-witchs-shopping-list",
+    "name": "The Witch's Shopping List",
+    "tier": 2,
+    "path": [
+      "swamp",
+      "forest",
+      "meadow"
+    ],
+    "anyPath": false,
+    "playsLike": "Gathers treasure, then spends it",
+    "lore": "One bog find, one forest find, one meadow find, and absolutely no questions.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Forest location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Meadow location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "meadow"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "discard 2 treasures at a two-skull Swamp location and succeed. The brew needs real ingredients",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "swamp"
+        ],
+        "minSkull": 2,
+        "cost": {
+          "discardTreasures": 2
+        }
+      }
+    },
+    "flourish": {
+      "text": "be turned into a frog at any point",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "frog"
+        }
+      }
+    }
+  },
+  {
+    "id": "echoes-in-the-old-stones",
+    "name": "Echoes in the Old Stones",
+    "tier": 2,
+    "path": [
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Uses every stat in the Ruins",
+    "lore": "The ruins answer whoever knocks, but they answer each kind of knock differently.",
+    "milestones": [
+      {
+        "text": "Succeed on a Wits option at a Ruins location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ],
+          "stats": [
+            "wits"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Spark or Brawn option at a Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ],
+          "stats": [
+            "spark",
+            "brawn"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a two-skull or harder Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ],
+          "minSkull": 2
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a Luck option at a two-skull or harder Ruins location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 2,
+        "stats": [
+          "luck"
+        ]
+      }
+    },
+    "flourish": {
+      "text": "never push your luck at a Ruins location",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "push",
+          "tags": [
+            "ruins"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "the-rival-expedition",
+    "name": "The Rival Expedition",
+    "tier": 2,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Partners with rivals",
+    "lore": "Two expeditions, one goal, and a very thin line between partner and competitor.",
+    "milestones": [
+      {
+        "text": "Choose Ally at a Meeting",
+        "vp": 3,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "ally"
+        }
+      },
+      {
+        "text": "Lend Assist dice to a rival",
+        "vp": 4,
+        "condition": {
+          "event": "lendAssist"
+        }
+      },
+      {
+        "text": "Learn a tag from a rival's mission by any means",
+        "vp": 4,
+        "condition": {
+          "event": "learnTag"
+        }
+      }
+    ],
+    "finale": {
+      "text": "team up with a rival (Ally + Ally) and succeed together at a two-skull or harder location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "minSkull": 2,
+        "teamUp": true
+      }
+    },
+    "flourish": {
+      "text": "correctly guess the mission of a rival you teamed up with",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "finalGuess",
+          "teamedUp": true
+        }
+      }
+    }
+  },
+  {
+    "id": "the-thistle-knights-oath",
+    "name": "The Thistle Knight's Oath",
+    "tier": 2,
+    "path": [
+      "meadow",
+      "peril"
+    ],
+    "anyPath": false,
+    "playsLike": "Fights best when hurt",
+    "lore": "The Thistle Knights swear to protect the meadows, especially when it's a bad idea.",
+    "milestones": [
+      {
+        "text": "Succeed at a Peril location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "peril"
+          ]
+        }
+      },
+      {
+        "text": "Restore health by any means",
+        "vp": 4,
+        "condition": {
+          "event": "heal"
+        }
+      },
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while at half health or less, succeed at a two-skull Peril location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "peril"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "healthAtTurnStart": "halfOrLess"
+        }
+      }
+    },
+    "flourish": {
+      "text": "never steal from a rival",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "steal"
+        }
+      }
+    }
+  },
+  {
+    "id": "collector-of-curiosities",
+    "name": "Collector of Curiosities",
+    "tier": 2,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Fills a big inventory",
+    "lore": "Your cabinet of wonders has an empty shelf. Several, actually.",
+    "milestones": [
+      {
+        "text": "Buy an item from a Merchant",
+        "vp": 3,
+        "condition": {
+          "event": "buy"
+        }
+      },
+      {
+        "text": "Befriend a creature",
+        "vp": 4,
+        "condition": {
+          "event": "befriend"
+        }
+      },
+      {
+        "text": "Find a treasure at a two-skull location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "minSkull": 2
+        }
+      }
+    ],
+    "finale": {
+      "text": "start your turn holding 5 or more items",
+      "vp": 12,
+      "condition": {
+        "event": "turnStart",
+        "requires": {
+          "minItems": 5
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding a Taproot Fragment",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "holdFragment": true
+        }
+      }
+    }
+  },
+  {
+    "id": "the-lost-graftwright",
+    "name": "The Lost Graftwright",
+    "tier": 2,
+    "path": [
+      "swamp",
+      "forest",
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Searches with a companion",
+    "lore": "A Graftwright went into the ruins three Blooms ago. Her notes keep turning up in strange places.",
+    "milestones": [
+      {
+        "text": "Succeed at a Swamp location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "See a hidden card by any means",
+        "vp": 4,
+        "condition": {
+          "event": "seeHidden"
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a companion, succeed at a two-skull Ruins location. Your companion sniffs her out",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "minCompanions": 1
+        }
+      }
+    },
+    "flourish": {
+      "text": "lend Assist dice to a rival",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "lendAssist"
+        }
+      }
+    }
+  },
+  {
+    "id": "stormchaser",
+    "name": "Stormchaser",
+    "tier": 2,
+    "path": [
+      "mountain",
+      "peril"
+    ],
+    "anyPath": false,
+    "playsLike": "Risky; even being Downed helps",
+    "lore": "Thal storms only happen during a Bloom. You've waited your whole life for one.",
+    "milestones": [
+      {
+        "text": "Succeed at a Peril location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "peril"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Spark option at a Mountain location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ],
+          "stats": [
+            "spark"
+          ]
+        }
+      },
+      {
+        "text": "Be Downed and come back",
+        "vp": 4,
+        "condition": {
+          "event": "downedReturn"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a three-skull Peril location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "peril"
+        ],
+        "minSkull": 3
+      }
+    },
+    "flourish": {
+      "text": "trigger 2 Spark results in one roll",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "success",
+          "minSixes": 2
+        }
+      }
+    }
+  },
+  {
+    "id": "the-bramble-maze",
+    "name": "The Bramble Maze",
+    "tier": 2,
+    "path": [
+      "forest",
+      "creature"
+    ],
+    "anyPath": false,
+    "playsLike": "Companion-driven exploring",
+    "lore": "The brambles move when no one's looking. The creatures inside know the way out.",
+    "milestones": [
+      {
+        "text": "Succeed at a Forest location",
+        "vp": 3,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Befriend a creature at a Forest location",
+        "vp": 4,
+        "condition": {
+          "event": "befriend",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Spring a rival's trap",
+        "vp": 4,
+        "condition": {
+          "event": "springTrap"
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a companion, succeed at a three-skull Forest location",
+      "vp": 12,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ],
+        "minSkull": 3,
+        "requires": {
+          "minCompanions": 1
+        }
+      }
+    },
+    "flourish": {
+      "text": "never be Downed",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "downed"
+        }
+      }
+    }
+  },
+  {
+    "id": "steal-the-dragons-hiccup",
+    "name": "Steal the Dragon's Hiccup",
+    "tier": 3,
+    "path": [
+      "mountain",
+      "peril"
+    ],
+    "anyPath": false,
+    "playsLike": "High risk, no help allowed at the end",
+    "lore": "A dragon's hiccup is pure, unfiltered thal. Getting one means getting close.",
+    "milestones": [
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Peril location using Spark",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "peril"
+          ],
+          "stats": [
+            "spark"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at any three-skull location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "minSkull": 3
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a three-skull Mountain or Peril location without Assist dice or pushing your luck. The dragon hears everything",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "mountain",
+          "peril"
+        ],
+        "minSkull": 3,
+        "noPush": true,
+        "noAssist": true
+      }
+    },
+    "flourish": {
+      "text": "never be Downed",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "downed"
+        }
+      }
+    }
+  },
+  {
+    "id": "climb-the-great-thalowood",
+    "name": "Climb the Great Thalowood",
+    "tier": 3,
+    "path": [
+      "forest",
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "Long journey to the heart of the realm",
+    "lore": "No one has climbed to the top of the Great Thalowood Tree. Or no one has climbed back down.",
+    "milestones": [
+      {
+        "text": "Succeed at two different Forest locations",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ],
+          "count": 2,
+          "distinct": "location"
+        }
+      },
+      {
+        "text": "Find a treasure at a Mountain location",
+        "vp": 5,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "mountain"
+          ]
+        }
+      },
+      {
+        "text": "Succeed on a Brawn option at a two-skull or harder location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "minSkull": 2,
+          "stats": [
+            "brawn"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding a treasure found at a Mountain location, succeed at a three-skull Forest location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ],
+        "minSkull": 3,
+        "requires": {
+          "holdTreasureFrom": [
+            "mountain"
+          ]
+        }
+      }
+    },
+    "flourish": {
+      "text": "never set a trap",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "setTrap"
+        }
+      }
+    }
+  },
+  {
+    "id": "taproot-whispers",
+    "name": "Taproot Whispers",
+    "tier": 3,
+    "path": [
+      "ruins",
+      "meadow"
+    ],
+    "anyPath": true,
+    "playsLike": "Explores everywhere",
+    "lore": "The old stones remember where the last fragment fell. The flowers dream about it.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "ruins"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Meadow location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "See a hidden card, such as a World card or a full explore card, by any means",
+        "vp": 5,
+        "condition": {
+          "event": "seeHidden"
+        }
+      }
+    ],
+    "finale": {
+      "text": "after succeeding at locations with 5 different tags this game, succeed at a three-skull Ruins location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 3,
+        "requires": {
+          "distinctSuccessTags": 5
+        }
+      }
+    },
+    "flourish": {
+      "text": "succeed at all 7 location tags",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "success",
+          "count": 7,
+          "distinct": "tag"
+        }
+      }
+    }
+  },
+  {
+    "id": "heir-of-the-gardener-kings",
+    "name": "Heir of the Gardener-Kings",
+    "tier": 3,
+    "path": [
+      "swamp"
+    ],
+    "anyPath": true,
+    "playsLike": "Reckless thal use; courts Mishaps",
+    "lore": "You've found the old grafting notes. They say to go slowly. You won't.",
+    "milestones": [
+      {
+        "text": "Trigger a Mishap",
+        "vp": 4,
+        "condition": {
+          "event": "mishap"
+        }
+      },
+      {
+        "text": "Push your luck and succeed",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "pushed": true
+        }
+      },
+      {
+        "text": "Succeed at a two-skull Swamp location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ],
+          "minSkull": 2
+        }
+      }
+    ],
+    "finale": {
+      "text": "push your luck and succeed at any three-skull location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "minSkull": 3,
+        "pushed": true
+      }
+    },
+    "flourish": {
+      "text": "gain a permanent quirk this game",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "quirk"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-sleeping-giants-dream",
+    "name": "The Sleeping Giant's Dream",
+    "tier": 3,
+    "path": [
+      "mountain",
+      "meadow"
+    ],
+    "anyPath": false,
+    "playsLike": "Rests, then strikes",
+    "lore": "The mountain is not a mountain. It's dreaming, and you've been invited in.",
+    "milestones": [
+      {
+        "text": "Choose a rest option twice",
+        "vp": 4,
+        "condition": {
+          "event": "rest",
+          "count": 2
+        }
+      },
+      {
+        "text": "See a hidden card by any means",
+        "vp": 5,
+        "condition": {
+          "event": "seeHidden"
+        }
+      },
+      {
+        "text": "Succeed on a Spark option at a Meadow location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "meadow"
+          ],
+          "stats": [
+            "spark"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "choose a rest option, then on your next turn succeed on a Spark option at a three-skull Mountain location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "mountain"
+        ],
+        "minSkull": 3,
+        "stats": [
+          "spark"
+        ],
+        "previousTurn": {
+          "event": "rest"
+        }
+      }
+    },
+    "flourish": {
+      "text": "gain a permanent quirk this game",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "quirk"
+        }
+      }
+    }
+  },
+  {
+    "id": "heart-of-the-hollow-oak",
+    "name": "Heart of the Hollow Oak",
+    "tier": 3,
+    "path": [
+      "forest",
+      "creature"
+    ],
+    "anyPath": false,
+    "playsLike": "Two companions and patience",
+    "lore": "The oldest oak in the forest is hollow, and something inside it is singing.",
+    "milestones": [
+      {
+        "text": "Succeed at two different two-skull Forest locations",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ],
+          "minSkull": 2,
+          "count": 2,
+          "distinct": "location"
+        }
+      },
+      {
+        "text": "Befriend a creature at a Forest location",
+        "vp": 5,
+        "condition": {
+          "event": "befriend",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Take a Lesson instead of a reward",
+        "vp": 5,
+        "condition": {
+          "event": "lessonInstead"
+        }
+      }
+    ],
+    "finale": {
+      "text": "while holding 2 companions, succeed at a three-skull Forest location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ],
+        "minSkull": 3,
+        "requires": {
+          "minCompanions": 2
+        }
+      }
+    },
+    "flourish": {
+      "text": "no companion flees all game",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "companionFled"
+        }
+      }
+    }
+  },
+  {
+    "id": "king-of-thieves",
+    "name": "King of Thieves",
+    "tier": 3,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Steals everything",
+    "lore": "Every Bloom, the thieves of Thaloroot crown a king. Nobody is ever crowned twice.",
+    "milestones": [
+      {
+        "text": "Steal from rivals twice by any means",
+        "vp": 4,
+        "condition": {
+          "event": "steal",
+          "count": 2
+        }
+      },
+      {
+        "text": "Have a Pickpocket trap sprung by a rival",
+        "vp": 5,
+        "condition": {
+          "event": "trapSprungByRival",
+          "trapType": "pickpocket"
+        }
+      },
+      {
+        "text": "Win a Brawl as the ambusher",
+        "vp": 5,
+        "condition": {
+          "event": "winBrawl",
+          "asAmbusher": true
+        }
+      }
+    ],
+    "finale": {
+      "text": "start your turn holding 3 items stolen this game",
+      "vp": 16,
+      "condition": {
+        "event": "turnStart",
+        "requires": {
+          "minStolenItems": 3
+        }
+      }
+    },
+    "flourish": {
+      "text": "never be stolen from",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "stolenFrom"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-great-wyrms-lair",
+    "name": "The Great Wyrm's Lair",
+    "tier": 3,
+    "path": [
+      "peril",
+      "mountain",
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Raw strength, no help",
+    "lore": "The Pickle Wyrm is only a hatchling. Its mother lives somewhere up the mountain.",
+    "milestones": [
+      {
+        "text": "Succeed at a Peril location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "peril"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a Ruins location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a three-skull Mountain location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ],
+          "minSkull": 3
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a 3-success Brawn option at a three-skull Peril location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "peril"
+        ],
+        "minSkull": 3,
+        "stats": [
+          "brawn"
+        ],
+        "minNeed": 3
+      }
+    },
+    "flourish": {
+      "text": "never receive Assist dice",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "receiveAssist"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-last-gardener-kings-vault",
+    "name": "The Last Gardener-King's Vault",
+    "tier": 3,
+    "path": [
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Saves coin for one huge payment",
+    "lore": "The vault opens for a king's ransom. Literally. The door counts.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a two-skull Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "ruins"
+          ],
+          "minSkull": 2
+        }
+      },
+      {
+        "text": "See a hidden card by any means",
+        "vp": 5,
+        "condition": {
+          "event": "seeHidden"
+        }
+      },
+      {
+        "text": "Start your turn holding 10 or more coin",
+        "vp": 5,
+        "condition": {
+          "event": "turnStart",
+          "requires": {
+            "minCoin": 10
+          }
+        }
+      }
+    ],
+    "finale": {
+      "text": "pay 10 coin to the vault and succeed at a three-skull Ruins location on the same turn",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ],
+        "minSkull": 3,
+        "cost": {
+          "coin": 10
+        }
+      }
+    },
+    "flourish": {
+      "text": "end the game holding 3 or more treasures",
+      "vp": 2,
+      "condition": {
+        "end": {
+          "minTreasures": 3
+        }
+      }
+    }
+  },
+  {
+    "id": "champion-of-the-bloom",
+    "name": "Champion of the Bloom",
+    "tier": 3,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Races to finish first",
+    "lore": "Every Bloom has a champion. The trick is being first.",
+    "milestones": [
+      {
+        "text": "Win a Brawl",
+        "vp": 4,
+        "condition": {
+          "event": "winBrawl"
+        }
+      },
+      {
+        "text": "Succeed at a three-skull location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "minSkull": 3
+        }
+      },
+      {
+        "text": "Succeed at locations with 4 different tags",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "count": 4,
+          "distinct": "tag"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a three-skull location before any rival completes their mission",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "minSkull": 3,
+        "requires": {
+          "noRivalFinished": true
+        }
+      }
+    },
+    "flourish": {
+      "text": "never be Downed",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "downed"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-mirror-bog",
+    "name": "The Mirror Bog",
+    "tier": 3,
+    "path": [
+      "swamp"
+    ],
+    "anyPath": false,
+    "playsLike": "Thrives on chaos and Mishaps",
+    "lore": "In the Mirror Bog, your reflection takes its own turn.",
+    "milestones": [
+      {
+        "text": "Be turned into a frog",
+        "vp": 4,
+        "condition": {
+          "event": "frog"
+        }
+      },
+      {
+        "text": "Spring a rival's trap",
+        "vp": 5,
+        "condition": {
+          "event": "springTrap"
+        }
+      },
+      {
+        "text": "Succeed on a Wits option at a two-skull Swamp location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "swamp"
+          ],
+          "minSkull": 2,
+          "stats": [
+            "wits"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a three-skull Swamp location on a roll that also triggers a Mishap",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "swamp"
+        ],
+        "minSkull": 3,
+        "withMishap": true
+      }
+    },
+    "flourish": {
+      "text": "gain a permanent quirk this game",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "quirk"
+        }
+      }
+    }
+  },
+  {
+    "id": "thal-diviner",
+    "name": "Thal Diviner",
+    "tier": 3,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Spark streaks and growth",
+    "lore": "You can feel thal moving under your feet. Now you have to prove it.",
+    "milestones": [
+      {
+        "text": "Trigger 3 Spark results over the game",
+        "vp": 4,
+        "condition": {
+          "event": "spark",
+          "count": 3
+        }
+      },
+      {
+        "text": "Take Lessons in 2 different stats",
+        "vp": 5,
+        "condition": {
+          "event": "lesson",
+          "count": 2,
+          "distinct": "stat"
+        }
+      },
+      {
+        "text": "See a hidden card by any means",
+        "vp": 5,
+        "condition": {
+          "event": "seeHidden"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at three-skull locations on two turns in a row",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "minSkull": 3,
+        "previousTurn": {
+          "event": "success",
+          "minSkull": 3
+        }
+      }
+    },
+    "flourish": {
+      "text": "gain a permanent stat point this game",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "statGrowth"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-rootkeepers-last-stand",
+    "name": "The Rootkeepers' Last Stand",
+    "tier": 3,
+    "path": [
+      "forest",
+      "ruins"
+    ],
+    "anyPath": false,
+    "playsLike": "Builds alliances",
+    "lore": "The Graftwrights are coming for the old grove. The Rootkeepers need every friend they can find.",
+    "milestones": [
+      {
+        "text": "Choose Ally at a Meeting",
+        "vp": 4,
+        "condition": {
+          "event": "meetingChoice",
+          "choice": "ally"
+        }
+      },
+      {
+        "text": "Lend Assist dice twice",
+        "vp": 5,
+        "condition": {
+          "event": "lendAssist",
+          "count": 2
+        }
+      },
+      {
+        "text": "Succeed at a three-skull Forest location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "forest"
+          ],
+          "minSkull": 3
+        }
+      }
+    ],
+    "finale": {
+      "text": "team up with a rival (Ally + Ally) and succeed together at a three-skull location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "minSkull": 3,
+        "teamUp": true
+      }
+    },
+    "flourish": {
+      "text": "never steal from a rival",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "steal"
+        }
+      }
+    }
+  },
+  {
+    "id": "frostroot-peak",
+    "name": "Frostroot Peak",
+    "tier": 3,
+    "path": [
+      "mountain"
+    ],
+    "anyPath": false,
+    "playsLike": "A steady climb that ends exhausted",
+    "lore": "The highest peak in Thaloroot, where the roots freeze into crystal.",
+    "milestones": [
+      {
+        "text": "Succeed at a Mountain location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ]
+        }
+      },
+      {
+        "text": "Succeed at a two-skull or harder Mountain location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ],
+          "minSkull": 2
+        }
+      },
+      {
+        "text": "Succeed on a Brawn option at a Mountain location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "mountain"
+          ],
+          "stats": [
+            "brawn"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "start your turn with 3 or less stamina, then succeed at a two-skull or harder Mountain location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "tags": [
+          "mountain"
+        ],
+        "minSkull": 2,
+        "requires": {
+          "maxStaminaAtTurnStart": 3
+        }
+      }
+    },
+    "flourish": {
+      "text": "never choose a rest option",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "rest"
+        }
+      }
+    }
+  },
+  {
+    "id": "the-thalowood-keepers-riddle",
+    "name": "The Thalowood Keeper's Riddle",
+    "tier": 3,
+    "path": [],
+    "anyPath": true,
+    "playsLike": "Wits and deduction",
+    "lore": "The keeper of the Great Thalowood Tree asks one riddle per Bloom. Nobody has answered it in a century.",
+    "milestones": [
+      {
+        "text": "Succeed on Wits options at locations with 3 different tags",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "stats": [
+            "wits"
+          ],
+          "count": 3,
+          "distinct": "tag"
+        }
+      },
+      {
+        "text": "See a hidden card by any means",
+        "vp": 5,
+        "condition": {
+          "event": "seeHidden"
+        }
+      },
+      {
+        "text": "Learn a tag from a rival's mission by any means",
+        "vp": 5,
+        "condition": {
+          "event": "learnTag"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed on a 3-success Wits option at a three-skull location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "minSkull": 3,
+        "stats": [
+          "wits"
+        ],
+        "minNeed": 3
+      }
+    },
+    "flourish": {
+      "text": "correctly guess 3 rivals' missions",
+      "vp": 2,
+      "condition": {
+        "ever": {
+          "event": "finalGuess",
+          "minCorrect": 3
+        }
+      }
+    }
+  },
+  {
+    "id": "feast-of-the-bloom",
+    "name": "Feast of the Bloom",
+    "tier": 3,
+    "path": [
+      "meadow",
+      "forest",
+      "swamp"
+    ],
+    "anyPath": false,
+    "playsLike": "Gathers, then gives to everyone",
+    "lore": "Host the great feast at the end of the Bloom, and all of Thaloroot will owe you a favor.",
+    "milestones": [
+      {
+        "text": "Find a treasure at a Meadow location",
+        "vp": 4,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "meadow"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Forest location",
+        "vp": 5,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "forest"
+          ]
+        }
+      },
+      {
+        "text": "Find a treasure at a Swamp location",
+        "vp": 5,
+        "condition": {
+          "event": "treasure",
+          "tags": [
+            "swamp"
+          ]
+        }
+      }
+    ],
+    "finale": {
+      "text": "give a treasure to every rival, then succeed at a three-skull location",
+      "vp": 16,
+      "condition": {
+        "event": "success",
+        "minSkull": 3,
+        "cost": {
+          "giveTreasureEachRival": true
+        }
+      }
+    },
+    "flourish": {
+      "text": "never steal from a rival",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "steal"
+        }
+      }
+    }
+  },
+  {
+    "id": "seal-the-grafted-gate",
+    "name": "Seal the Grafted Gate",
+    "tier": 3,
+    "path": [
+      "ruins",
+      "peril"
+    ],
+    "anyPath": false,
+    "playsLike": "Back-to-back hard successes",
+    "lore": "Deep in the ruins is a gate the Gardener-Kings grafted shut. It's starting to open.",
+    "milestones": [
+      {
+        "text": "Succeed at a three-skull Ruins location",
+        "vp": 4,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "ruins"
+          ],
+          "minSkull": 3
+        }
+      },
+      {
+        "text": "Succeed on a Spark option at a Peril location",
+        "vp": 5,
+        "condition": {
+          "event": "success",
+          "tags": [
+            "peril"
+          ],
+          "stats": [
+            "spark"
+          ]
+        }
+      },
+      {
+        "text": "Take a Lesson instead of a reward",
+        "vp": 5,
+        "condition": {
+          "event": "lessonInstead"
+        }
+      }
+    ],
+    "finale": {
+      "text": "succeed at a three-skull Ruins location and a three-skull Peril location on consecutive turns",
+      "vp": 16,
+      "condition": {
+        "any": [
+          {
+            "event": "success",
+            "tags": [
+              "ruins"
+            ],
+            "minSkull": 3,
+            "previousTurn": {
+              "event": "success",
+              "tags": [
+                "peril"
+              ],
+              "minSkull": 3
+            }
+          },
+          {
+            "event": "success",
+            "tags": [
+              "peril"
+            ],
+            "minSkull": 3,
+            "previousTurn": {
+              "event": "success",
+              "tags": [
+                "ruins"
+              ],
+              "minSkull": 3
+            }
+          }
+        ]
+      }
+    },
+    "flourish": {
+      "text": "never push your luck",
+      "vp": 2,
+      "condition": {
+        "never": {
+          "event": "push"
+        }
+      }
+    }
+  }
+]

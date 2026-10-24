@@ -1,0 +1,1251 @@
+[
+  {
+    "name": "Thal Acorn",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 2,
+    "vp": 1,
+    "power": "none",
+    "text": "",
+    "id": "thal-acorn"
+  },
+  {
+    "name": "Dreaming Bouquet",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 2,
+    "vp": 1,
+    "power": "none",
+    "text": "",
+    "id": "dreaming-bouquet"
+  },
+  {
+    "name": "Old Gardener Coin",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 2,
+    "vp": 1,
+    "power": "none",
+    "text": "",
+    "id": "old-gardener-coin"
+  },
+  {
+    "name": "Firefly Jar",
+    "rarity": "common",
+    "type": "light",
+    "coin": 2,
+    "vp": 1,
+    "power": "none",
+    "text": "",
+    "id": "firefly-jar"
+  },
+  {
+    "name": "Bog Pearl",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "bog-pearl"
+  },
+  {
+    "name": "Mushroom Pearl",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "mushroom-pearl"
+  },
+  {
+    "name": "Ancient Moss",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "ancient-moss"
+  },
+  {
+    "name": "Glowing Honeycomb",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "glowing-honeycomb"
+  },
+  {
+    "name": "Mountain Garnet",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "mountain-garnet"
+  },
+  {
+    "name": "Echo Crystal",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "echo-crystal"
+  },
+  {
+    "name": "Well-Bottom Relic",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "well-bottom-relic"
+  },
+  {
+    "name": "Thorn-Heart Berry",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "oneUse",
+    "text": "Restore 3 health",
+    "use": [
+      {
+        "type": "heal",
+        "amount": 3
+      }
+    ],
+    "id": "thorn-heart-berry"
+  },
+  {
+    "name": "Honeycomb",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "oneUse",
+    "text": "Restore 2 stamina",
+    "use": [
+      {
+        "type": "stamina",
+        "amount": 2
+      }
+    ],
+    "id": "honeycomb"
+  },
+  {
+    "name": "Golden Pollen Pouch",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "oneUse",
+    "text": "Gain 2 Spark tokens",
+    "use": [
+      {
+        "type": "sparkTokens",
+        "amount": 2
+      }
+    ],
+    "id": "golden-pollen-pouch"
+  },
+  {
+    "name": "Grafter's Notebook",
+    "rarity": "common",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "oneUse",
+    "text": "Gain 2 Lessons in any one stat",
+    "use": [
+      {
+        "type": "lessons",
+        "amount": 2,
+        "stat": "any"
+      }
+    ],
+    "id": "grafters-notebook"
+  },
+  {
+    "name": "Honey Cake",
+    "rarity": "common",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Restore 3 stamina",
+    "use": [
+      {
+        "type": "stamina",
+        "amount": 3
+      }
+    ],
+    "id": "honey-cake"
+  },
+  {
+    "name": "Fizzcap",
+    "rarity": "common",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "+2 dice on your next roll, then lose 1 health",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 2
+      },
+      {
+        "type": "damage",
+        "amount": 1
+      }
+    ],
+    "id": "fizzcap"
+  },
+  {
+    "name": "Grafted Pearfruit",
+    "rarity": "common",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Restore 3 health",
+    "use": [
+      {
+        "type": "heal",
+        "amount": 3
+      }
+    ],
+    "id": "grafted-pearfruit"
+  },
+  {
+    "name": "Glowcap Lantern",
+    "rarity": "uncommon",
+    "type": "light",
+    "coin": 2,
+    "vp": 1,
+    "power": "reusable",
+    "text": "Once per game, see the full card behind one teaser before choosing",
+    "id": "glowcap-lantern"
+  },
+  {
+    "name": "Moonpetal",
+    "rarity": "uncommon",
+    "type": "light",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "moonpetal"
+  },
+  {
+    "name": "Witchlight Lantern",
+    "rarity": "uncommon",
+    "type": "light",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "witchlight-lantern"
+  },
+  {
+    "name": "Glowing Frostroot",
+    "rarity": "uncommon",
+    "type": "light",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "glowing-frostroot"
+  },
+  {
+    "name": "Starlit Lantern",
+    "rarity": "uncommon",
+    "type": "light",
+    "coin": 6,
+    "vp": 3,
+    "power": "reusable",
+    "text": "Once per game, see the next World card",
+    "id": "starlit-lantern"
+  },
+  {
+    "name": "Jarred Wisp",
+    "rarity": "uncommon",
+    "type": "light",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "Release it to see the full card behind both teasers this turn",
+    "id": "jarred-wisp"
+  },
+  {
+    "name": "Royal Signet",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "none",
+    "text": "",
+    "id": "royal-signet"
+  },
+  {
+    "name": "Golden Goose Egg",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "golden-goose-egg"
+  },
+  {
+    "name": "Tiny Crown",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "tiny-crown"
+  },
+  {
+    "name": "Drowned Reliquary",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "drowned-reliquary"
+  },
+  {
+    "name": "Gator's Gold Tooth",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "gators-gold-tooth"
+  },
+  {
+    "name": "Fermented Pearl",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "fermented-pearl"
+  },
+  {
+    "name": "Frostroot Crystal",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "frostroot-crystal"
+  },
+  {
+    "name": "Giant's Gallstone",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "giants-gallstone"
+  },
+  {
+    "name": "King's Hidden Cache",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "kings-hidden-cache"
+  },
+  {
+    "name": "Firefly Queen's Wing",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 4,
+    "vp": 2,
+    "power": "oneUse",
+    "text": "See the next World card",
+    "use": [
+      {
+        "type": "peekWorld",
+        "count": 1
+      }
+    ],
+    "id": "firefly-queens-wing"
+  },
+  {
+    "name": "Stump-Song Amber",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "Restore all stamina",
+    "use": [
+      {
+        "type": "stamina",
+        "amount": "all"
+      }
+    ],
+    "id": "stump-song-amber"
+  },
+  {
+    "name": "Silver Owl Feather",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "Learn one tag from a rival's mission",
+    "use": [
+      {
+        "type": "learnRivalTag"
+      }
+    ],
+    "id": "silver-owl-feather"
+  },
+  {
+    "name": "Hot-Spring Opal",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "Restore all health",
+    "use": [
+      {
+        "type": "heal",
+        "amount": "all"
+      }
+    ],
+    "id": "hot-spring-opal"
+  },
+  {
+    "name": "Golden Grafted Apple",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "Restore all health and stamina",
+    "use": [
+      {
+        "type": "heal",
+        "amount": "all"
+      },
+      {
+        "type": "stamina",
+        "amount": "all"
+      }
+    ],
+    "id": "golden-grafted-apple"
+  },
+  {
+    "name": "Statue's Eye Gem",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "See the next 2 World cards",
+    "use": [
+      {
+        "type": "peekWorld",
+        "count": 2
+      }
+    ],
+    "id": "statues-eye-gem"
+  },
+  {
+    "name": "Storm-Glass",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "Add 2 Trouble dice to a rival's next roll",
+    "use": [
+      {
+        "type": "troubleRival",
+        "amount": 2
+      }
+    ],
+    "id": "storm-glass"
+  },
+  {
+    "name": "Racer's Ribbon",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "reusable",
+    "text": "Once per game, draw 3 teasers and pick 1",
+    "id": "racers-ribbon"
+  },
+  {
+    "name": "Wyrm Scale",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "reusable",
+    "text": "Once per game, ignore all damage from one source",
+    "passive": [
+      {
+        "kind": "ignoreDamageOnce"
+      }
+    ],
+    "id": "wyrm-scale"
+  },
+  {
+    "name": "Gardener's Signet",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "reusable",
+    "text": "Each Merchant card, pay 2 coin less on one purchase",
+    "passive": [
+      {
+        "kind": "merchantDiscount",
+        "coin": 2
+      }
+    ],
+    "id": "gardeners-signet"
+  },
+  {
+    "name": "Ghostly Locket",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "reusable",
+    "text": "Once per game, learn who set a trap you sprang",
+    "id": "ghostly-locket"
+  },
+  {
+    "name": "Garden Key",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "reusable",
+    "text": "Once per game, draw 1 extra teaser",
+    "id": "garden-key"
+  },
+  {
+    "name": "Sturdy Axe",
+    "rarity": "uncommon",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 die on Brawn rolls at Forest locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "brawn",
+        "tags": [
+          "forest"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "sturdy-axe"
+  },
+  {
+    "name": "Bramble Cloak",
+    "rarity": "uncommon",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "Traps catch you only on a roll of 1 to 3",
+    "passive": [
+      {
+        "kind": "trapResist",
+        "catchOn": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "id": "bramble-cloak"
+  },
+  {
+    "name": "Goose-Down Pillow",
+    "rarity": "uncommon",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "Rest options restore 1 extra stamina",
+    "passive": [
+      {
+        "kind": "restStamina",
+        "amount": 1
+      }
+    ],
+    "id": "goose-down-pillow"
+  },
+  {
+    "name": "Grafting Shears",
+    "rarity": "uncommon",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 die on Wits rolls at Ruins locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "wits",
+        "tags": [
+          "ruins"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "grafting-shears"
+  },
+  {
+    "name": "Lucky Button",
+    "rarity": "uncommon",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "Once per game, reroll 1 die",
+    "passive": [
+      {
+        "kind": "reroll",
+        "dice": 1
+      }
+    ],
+    "id": "lucky-button"
+  },
+  {
+    "name": "Mud Map",
+    "rarity": "uncommon",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "See the full card behind both teasers next turn",
+    "use": [
+      {
+        "type": "peekNextTurn"
+      }
+    ],
+    "id": "mud-map"
+  },
+  {
+    "name": "Lightning in a Bottle",
+    "rarity": "uncommon",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "+3 dice on one Spark roll",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 3,
+        "stat": "spark"
+      }
+    ],
+    "id": "lightning-in-a-bottle"
+  },
+  {
+    "name": "Summit Stone",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "none",
+    "text": "",
+    "id": "summit-stone"
+  },
+  {
+    "name": "Graftwright's Strongbox",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "none",
+    "text": "",
+    "id": "graftwrights-strongbox"
+  },
+  {
+    "name": "Heartwood Sap",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "Restore all health",
+    "use": [
+      {
+        "type": "heal",
+        "amount": "all"
+      }
+    ],
+    "id": "heartwood-sap"
+  },
+  {
+    "name": "Thornback Claw",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "+3 dice in a Brawl",
+    "use": [
+      {
+        "type": "brawlDice",
+        "amount": 3
+      }
+    ],
+    "id": "thornback-claw"
+  },
+  {
+    "name": "Maw Tooth",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "+3 dice on a Brawn roll",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 3,
+        "stat": "brawn"
+      }
+    ],
+    "id": "maw-tooth"
+  },
+  {
+    "name": "Dream-Glass Orb",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "See the full card behind every teaser for your next 2 turns",
+    "use": [
+      {
+        "type": "peekNextTurn",
+        "turns": 2
+      }
+    ],
+    "id": "dream-glass-orb"
+  },
+  {
+    "name": "Queen's Silver Dust",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "Rivals can't target you this round",
+    "use": [
+      {
+        "type": "untargetable"
+      }
+    ],
+    "id": "queens-silver-dust"
+  },
+  {
+    "name": "Spectral Jewels",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "A rival rolls 2 fewer dice on their next roll",
+    "use": [
+      {
+        "type": "troubleRival",
+        "amount": 2,
+        "mode": "fewerDice"
+      }
+    ],
+    "id": "spectral-jewels"
+  },
+  {
+    "name": "Living Seal-Vine",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "+3 dice on one Spark roll",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 3,
+        "stat": "spark"
+      }
+    ],
+    "id": "living-seal-vine"
+  },
+  {
+    "name": "Dragon's Hiccup",
+    "rarity": "rare",
+    "type": "light",
+    "coin": 8,
+    "vp": 4,
+    "power": "oneUse",
+    "text": "One rival at your location loses 2 health",
+    "use": [
+      {
+        "type": "damageRivalHere",
+        "amount": 2
+      }
+    ],
+    "id": "dragons-hiccup"
+  },
+  {
+    "name": "Champion's Thistle Crown",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "reusable",
+    "text": "Once per game, +2 dice in a Brawl",
+    "passive": [
+      {
+        "kind": "brawlDiceOnce",
+        "amount": 2
+      }
+    ],
+    "id": "champions-thistle-crown"
+  },
+  {
+    "name": "Gatekeeper's Seal",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "reusable",
+    "text": "Once per game, seal a location name for one round so no one else can pick it",
+    "id": "gatekeepers-seal"
+  },
+  {
+    "name": "Taproot Star-Chart",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "reusable",
+    "text": "Once per game, see the full card behind both teasers",
+    "id": "taproot-star-chart"
+  },
+  {
+    "name": "Maw Pearl",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "none",
+    "text": "",
+    "id": "maw-pearl"
+  },
+  {
+    "name": "Fizzy Thal Crystal",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "none",
+    "text": "",
+    "id": "fizzy-thal-crystal"
+  },
+  {
+    "name": "Dragon's Gold",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "none",
+    "text": "",
+    "id": "dragons-gold"
+  },
+  {
+    "name": "Brass Astrolabe",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "none",
+    "text": "",
+    "id": "brass-astrolabe"
+  },
+  {
+    "name": "Root Crystal",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "oneUse",
+    "text": "+3 dice on one roll",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 3
+      }
+    ],
+    "id": "root-crystal"
+  },
+  {
+    "name": "Wyrm Egg",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "oneUse",
+    "text": "Hatch it to gain a Wyrmling companion",
+    "use": [
+      {
+        "type": "companion",
+        "id": "wyrmling"
+      }
+    ],
+    "id": "wyrm-egg"
+  },
+  {
+    "name": "Lucky Thimble",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "Once per game, reroll up to 2 dice",
+    "passive": [
+      {
+        "kind": "reroll",
+        "dice": 2
+      }
+    ],
+    "id": "lucky-thimble"
+  },
+  {
+    "name": "Sapling of the Eldest",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 max stamina",
+    "passive": [
+      {
+        "kind": "maxStamina",
+        "amount": 1
+      }
+    ],
+    "id": "sapling-of-the-eldest"
+  },
+  {
+    "name": "Thistle Banner",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 die on Charm rolls",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "charm",
+        "amount": 1
+      }
+    ],
+    "id": "thistle-banner"
+  },
+  {
+    "name": "Rootkeeper's Blessing",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 max health",
+    "passive": [
+      {
+        "kind": "maxHealth",
+        "amount": 1
+      }
+    ],
+    "id": "rootkeepers-blessing"
+  },
+  {
+    "name": "Royal Grafting Knife",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 die on any roll at Ruins locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "tags": [
+          "ruins"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "royal-grafting-knife"
+  },
+  {
+    "name": "Fairy Charm",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Redraw both explore teasers",
+    "use": [
+      {
+        "type": "redrawTeasers"
+      }
+    ],
+    "id": "fairy-charm"
+  },
+  {
+    "name": "Wishbone",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Redraw both explore teasers",
+    "use": [
+      {
+        "type": "redrawTeasers"
+      }
+    ],
+    "id": "wishbone"
+  },
+  {
+    "name": "Frog King's Favor",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Turn a rival into a frog until their next turn",
+    "use": [
+      {
+        "type": "frogRival"
+      }
+    ],
+    "id": "frog-kings-favor"
+  },
+  {
+    "name": "Fortune-Teller's Deck",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Redraw your class options at setup",
+    "carryover": true,
+    "id": "fortune-tellers-deck"
+  },
+  {
+    "name": "Two-Headed Coin",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Redraw your mission options at setup",
+    "carryover": true,
+    "id": "two-headed-coin"
+  },
+  {
+    "name": "Bottled Thal Brew",
+    "rarity": "rare",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "+3 dice on your next roll; if that roll Mishaps, lose 2 health",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 3,
+        "mishapDamage": 2
+      }
+    ],
+    "id": "bottled-thal-brew"
+  },
+  {
+    "name": "The Sunken Crown",
+    "rarity": "legendary",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "reusable",
+    "text": "Once per game, +2 dice on any Charm roll",
+    "unique": true,
+    "id": "the-sunken-crown"
+  },
+  {
+    "name": "Crown of the Gardener-King",
+    "rarity": "legendary",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "reusable",
+    "text": "Once per game, force a rival at a Meeting to choose Pass",
+    "unique": true,
+    "id": "crown-of-the-gardener-king"
+  },
+  {
+    "name": "The Moth Queen's Lantern",
+    "rarity": "legendary",
+    "type": "light",
+    "coin": 10,
+    "vp": 5,
+    "power": "reusable",
+    "text": "Once per game, see a rival's chosen card before the reveal",
+    "unique": true,
+    "id": "the-moth-queens-lantern"
+  },
+  {
+    "name": "Taproot Fragment",
+    "rarity": "legendary",
+    "type": "relic",
+    "coin": 0,
+    "vp": 5,
+    "power": "hidden",
+    "text": "Hidden until used; see Taproot Fragments",
+    "unique": false,
+    "cannotTrade": true,
+    "cannotSteal": true,
+    "cannotCash": true,
+    "id": "taproot-fragment"
+  },
+  {
+    "name": "Moonfang",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "moonfang"
+  },
+  {
+    "name": "Star Shard",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "none",
+    "text": "",
+    "id": "star-shard"
+  },
+  {
+    "name": "Stormcrow Feather",
+    "rarity": "uncommon",
+    "type": "treasure",
+    "coin": 6,
+    "vp": 3,
+    "power": "oneUse",
+    "text": "See the next World card",
+    "use": [
+      {
+        "type": "peekWorld",
+        "count": 1
+      }
+    ],
+    "id": "stormcrow-feather"
+  },
+  {
+    "name": "Troll King's Club",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 die on Brawn rolls",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "brawn",
+        "amount": 1
+      }
+    ],
+    "id": "troll-kings-club"
+  },
+  {
+    "name": "Hollow Helm",
+    "rarity": "rare",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 max health",
+    "passive": [
+      {
+        "kind": "maxHealth",
+        "amount": 1
+      }
+    ],
+    "id": "hollow-helm"
+  },
+  {
+    "name": "Matriarch's Claw",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "none",
+    "text": "",
+    "id": "matriarchs-claw"
+  },
+  {
+    "name": "Mist Pearl",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 8,
+    "vp": 4,
+    "power": "none",
+    "text": "",
+    "id": "mist-pearl"
+  },
+  {
+    "name": "Fallen Star",
+    "rarity": "rare",
+    "type": "treasure",
+    "coin": 10,
+    "vp": 5,
+    "power": "none",
+    "text": "Only from The Sky Falls finale",
+    "id": "fallen-star"
+  }
+]

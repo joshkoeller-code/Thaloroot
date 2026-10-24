@@ -1,0 +1,283 @@
+[
+  {
+    "name": "Old Mossback",
+    "foundAt": "Mossback Tortoise Crossing",
+    "region": "forest",
+    "text": "Once per game, ignore all damage from one source",
+    "passive": [
+      {
+        "kind": "ignoreDamageOnce"
+      }
+    ],
+    "id": "old-mossback"
+  },
+  {
+    "name": "Bramble Hare",
+    "foundAt": "The Bramblewood",
+    "region": "forest",
+    "text": "+1 die on Luck rolls at Forest locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "luck",
+        "tags": [
+          "forest"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "bramble-hare"
+  },
+  {
+    "name": "Judge Owlbeard",
+    "foundAt": "Owlbeard's Parliament",
+    "region": "forest",
+    "text": "Once per game, see a rival's chosen card before the reveal",
+    "passive": [],
+    "id": "judge-owlbeard"
+  },
+  {
+    "name": "Thornback Bear",
+    "foundAt": "Wyrmwood Thicket",
+    "region": "forest",
+    "text": "+2 dice on Brawn rolls; flees if you take 2 or more damage in one turn",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "brawn",
+        "amount": 2
+      },
+      {
+        "kind": "fleesOnDamage",
+        "amount": 2
+      }
+    ],
+    "id": "thornback-bear"
+  },
+  {
+    "name": "Buzzbelle",
+    "foundAt": "The Beehive Orchard",
+    "region": "meadow",
+    "text": "+1 die on Charm rolls at Meadow locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "charm",
+        "tags": [
+          "meadow"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "buzzbelle"
+  },
+  {
+    "name": "Gilly",
+    "foundAt": "Gilly the Giant Goose",
+    "region": "meadow",
+    "text": "+2 dice when a rival Brawls you",
+    "passive": [
+      {
+        "kind": "brawlDefense",
+        "amount": 2
+      }
+    ],
+    "id": "gilly"
+  },
+  {
+    "name": "Moon Moth",
+    "foundAt": "The Moth Queen's Court",
+    "region": "meadow",
+    "text": "+1 die on Spark rolls; counts as a light source",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "spark",
+        "amount": 1
+      },
+      {
+        "kind": "lightSource"
+      }
+    ],
+    "id": "moon-moth"
+  },
+  {
+    "name": "Grumblewort",
+    "foundAt": "The Giggling Bog",
+    "region": "swamp",
+    "text": "+1 die on Brawn rolls for 3 turns, then he wanders home",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "brawn",
+        "amount": 1
+      }
+    ],
+    "turns": 3,
+    "id": "grumblewort"
+  },
+  {
+    "name": "Wisp",
+    "foundAt": "The Giggling Bog and Witchlight Marsh",
+    "region": "swamp",
+    "text": "+1 die on Wits rolls; counts as a light source",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "wits",
+        "amount": 1
+      },
+      {
+        "kind": "lightSource"
+      }
+    ],
+    "id": "wisp"
+  },
+  {
+    "name": "Sir Croaksworth",
+    "foundAt": "Lily Pad Crossing",
+    "region": "swamp",
+    "text": "You can't be turned into a frog",
+    "passive": [
+      {
+        "kind": "frogImmune"
+      }
+    ],
+    "id": "sir-croaksworth"
+  },
+  {
+    "name": "Prince Ribbon",
+    "foundAt": "The Frog King's Court",
+    "region": "swamp",
+    "text": "+1 die on Charm rolls at Swamp locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "charm",
+        "tags": [
+          "swamp"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "prince-ribbon"
+  },
+  {
+    "name": "Captain Snapjaw",
+    "foundAt": "Gator Ferry",
+    "region": "swamp",
+    "text": "+1 die on Brawn rolls at Swamp locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "brawn",
+        "tags": [
+          "swamp"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "captain-snapjaw"
+  },
+  {
+    "name": "Gulp",
+    "foundAt": "The Great Bog Maw",
+    "region": "swamp",
+    "text": "Once per game, ignore a trap you spring",
+    "passive": [
+      {
+        "kind": "ignoreTrapOnce"
+      }
+    ],
+    "id": "gulp"
+  },
+  {
+    "name": "Biscuit the Goat",
+    "foundAt": "Goatpath Switchbacks",
+    "region": "mountain",
+    "text": "+1 die on rolls at Mountain locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "tags": [
+          "mountain"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "biscuit-the-goat"
+  },
+  {
+    "name": "Marmot",
+    "foundAt": "Alpine Hot Springs",
+    "region": "mountain",
+    "text": "+1 die on Luck rolls at Mountain locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "luck",
+        "tags": [
+          "mountain"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "marmot"
+  },
+  {
+    "name": "Pebble",
+    "foundAt": "The Stone Giant's Toes",
+    "region": "mountain",
+    "text": "Once per game, ignore all damage from a Brawl",
+    "passive": [
+      {
+        "kind": "ignoreBrawlDamageOnce"
+      }
+    ],
+    "id": "pebble"
+  },
+  {
+    "name": "Wyrmling",
+    "foundAt": "Wyrmmother's Nest, or by hatching a Wyrm Egg",
+    "region": "mountain",
+    "text": "+2 dice on rolls against Monster World cards",
+    "passive": [
+      {
+        "kind": "monsterDice",
+        "amount": 2
+      }
+    ],
+    "id": "wyrmling"
+  },
+  {
+    "name": "Hedge Hound",
+    "foundAt": "The Grafted Garden",
+    "region": "ruins",
+    "text": "+1 die on Brawn rolls at Ruins locations",
+    "passive": [
+      {
+        "kind": "dice",
+        "stat": "brawn",
+        "tags": [
+          "ruins"
+        ],
+        "amount": 1
+      }
+    ],
+    "id": "hedge-hound"
+  },
+  {
+    "name": "Gloomhound",
+    "foundAt": "Tamed from the Gloomhound monster (World card)",
+    "region": null,
+    "text": "+1 die on all rolls during Night cards",
+    "passive": [
+      {
+        "kind": "dice",
+        "amount": 1,
+        "when": "night"
+      }
+    ],
+    "id": "gloomhound"
+  }
+]

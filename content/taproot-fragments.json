@@ -1,0 +1,77 @@
+[
+  {
+    "id": "fragment-of-becoming",
+    "name": "Fragment of Becoming",
+    "whisper": "It remembers what you're meant to be.",
+    "text": "Instantly claim one unclaimed milestone of your mission",
+    "effect": {
+      "type": "claimMilestone"
+    }
+  },
+  {
+    "id": "fragment-of-root-sight",
+    "name": "Fragment of Root Sight",
+    "whisper": "It sees through every secret.",
+    "text": "Secretly see every rival's mission",
+    "effect": {
+      "type": "revealAllMissions"
+    }
+  },
+  {
+    "id": "fragment-of-the-turning-season",
+    "name": "Fragment of the Turning Season",
+    "whisper": "It hums of things to come.",
+    "text": "Look through the entire World deck and rearrange it; you may move the Finale up or down by up to 3 cards",
+    "effect": {
+      "type": "rearrangeWorld"
+    }
+  },
+  {
+    "id": "fragment-of-exchange",
+    "name": "Fragment of Exchange",
+    "whisper": "It wants what others carry.",
+    "text": "Swap your entire pack with any rival's pack; companions stay put",
+    "effect": {
+      "type": "swapPacks"
+    }
+  },
+  {
+    "id": "fragment-of-the-surge",
+    "name": "Fragment of the Surge",
+    "whisper": "It's warm, and getting warmer.",
+    "text": "For your next 3 turns, every 5 or 6 counts as two successes",
+    "effect": {
+      "type": "surge",
+      "turns": 3
+    }
+  },
+  {
+    "id": "fragment-of-deep-growth",
+    "name": "Fragment of Deep Growth",
+    "whisper": "It's still growing.",
+    "text": "Permanently gain +1 to any stat, ignoring the per-game growth limit",
+    "effect": {
+      "type": "permanentStat",
+      "amount": 1
+    }
+  },
+  {
+    "id": "fragment-of-the-rewilding",
+    "name": "Fragment of the Rewilding",
+    "whisper": "It longs for the wild.",
+    "text": "Clear every trap, haunt, hex, and seal in the game, then set 2 traps for free",
+    "effect": {
+      "type": "rewild"
+    }
+  },
+  {
+    "id": "fragment-of-the-gardener-kings",
+    "name": "Fragment of the Gardener-Kings",
+    "whisper": "It remembers a crown.",
+    "text": "Choose any explore card from the deck or discards and play it this turn with +3 dice",
+    "effect": {
+      "type": "chooseAnyCard",
+      "dice": 3
+    }
+  }
+]
