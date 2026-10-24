@@ -1,0 +1,1420 @@
+{
+  "deckCounts": {
+    "quick": {
+      "worldCards": 15,
+      "weather": 3,
+      "monster": 2,
+      "merchant": 2,
+      "rumor": 2,
+      "chaos": 3,
+      "escalation": 2,
+      "finaleCountdown": 3
+    },
+    "standard": {
+      "worldCards": 20,
+      "weather": 4,
+      "monster": 3,
+      "merchant": 3,
+      "rumor": 3,
+      "chaos": 4,
+      "escalation": 2,
+      "finaleCountdown": 5
+    },
+    "long": {
+      "worldCards": 25,
+      "weather": 5,
+      "monster": 4,
+      "merchant": 3,
+      "rumor": 4,
+      "chaos": 5,
+      "escalation": 3,
+      "finaleCountdown": 7
+    }
+  },
+  "weather": [
+    {
+      "id": "moonrise",
+      "name": "Moonrise",
+      "category": "weather",
+      "night": true,
+      "duration": "untilNext",
+      "flavor": "The moon comes up too big and too close.",
+      "text": "Spark rolls get +1 die. One-skull teasers hide their mystery line.",
+      "mods": [
+        {
+          "kind": "dice",
+          "stat": "spark",
+          "amount": 1
+        },
+        {
+          "kind": "hideOneSkullMystery"
+        }
+      ]
+    },
+    {
+      "id": "the-long-night",
+      "name": "The Long Night",
+      "category": "weather",
+      "night": true,
+      "duration": "untilNext",
+      "flavor": "Dawn is running late.",
+      "text": "Monsters deal 1 extra damage. Anyone holding a light source gets +1 die on all rolls.",
+      "mods": [
+        {
+          "kind": "monsterDamage",
+          "amount": 1
+        },
+        {
+          "kind": "dice",
+          "amount": 1,
+          "requiresLight": true
+        }
+      ]
+    },
+    {
+      "id": "the-eclipse",
+      "name": "The Eclipse",
+      "category": "weather",
+      "night": true,
+      "duration": "round",
+      "flavor": "The sun blinks.",
+      "text": "Spark tokens count double when spent. The Moonlight Wizard may trigger moonrise for free.",
+      "mods": [
+        {
+          "kind": "sparkTokenDouble"
+        }
+      ]
+    },
+    {
+      "id": "thal-fog",
+      "name": "Thal Fog",
+      "category": "weather",
+      "night": false,
+      "duration": "untilNext",
+      "flavor": "You can't see your own boots.",
+      "text": "Teasers show only the location name. Anyone holding a light source still sees the full teaser.",
+      "mods": [
+        {
+          "kind": "teaserNameOnly"
+        }
+      ]
+    },
+    {
+      "id": "gentle-rain",
+      "name": "Gentle Rain",
+      "category": "weather",
+      "night": false,
+      "duration": "round",
+      "flavor": "Soft rain, the good kind.",
+      "text": "Rest options restore 2 extra stamina. Swamp options get +1 die; Mountain options get -1 die.",
+      "mods": [
+        {
+          "kind": "restStamina",
+          "amount": 2
+        },
+        {
+          "kind": "dice",
+          "tags": [
+            "swamp"
+          ],
+          "amount": 1
+        },
+        {
+          "kind": "dice",
+          "tags": [
+            "mountain"
+          ],
+          "amount": -1
+        }
+      ]
+    },
+    {
+      "id": "heat-shimmer",
+      "name": "Heat Shimmer",
+      "category": "weather",
+      "night": false,
+      "duration": "untilNext",
+      "flavor": "The air wobbles.",
+      "text": "Brawn options cost 1 extra stamina. The Cinder-Heart Pyromancer gains 1 Heat at the start of each turn.",
+      "mods": [
+        {
+          "kind": "stamina",
+          "stat": "brawn",
+          "amount": 1
+        },
+        {
+          "kind": "classHeat",
+          "cls": "cinder-heart-pyromancer",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "thunderstorm",
+      "name": "Thunderstorm",
+      "category": "weather",
+      "night": false,
+      "duration": "untilNext",
+      "flavor": "The sky is arguing with itself.",
+      "text": "Mountain and Peril options need 1 more success. The Tidecaller and Windcaller get +1 die on all rolls.",
+      "mods": [
+        {
+          "kind": "need",
+          "tags": [
+            "mountain",
+            "peril"
+          ],
+          "amount": 1
+        },
+        {
+          "kind": "dice",
+          "amount": 1,
+          "classes": [
+            "rain-barrel-tidecaller",
+            "kite-riding-windcaller"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "golden-dawn",
+      "name": "Golden Dawn",
+      "category": "weather",
+      "night": false,
+      "duration": "instant",
+      "flavor": "Everything looks possible this morning.",
+      "text": "Every player restores 2 stamina and 1 health.",
+      "instant": [
+        {
+          "type": "stamina",
+          "amount": 2
+        },
+        {
+          "type": "heal",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "pollen-breeze",
+      "name": "Pollen Breeze",
+      "category": "weather",
+      "night": false,
+      "duration": "round",
+      "flavor": "Sneezes all around.",
+      "text": "At Meadow locations, Spark results trigger on a 5 or 6. The Dreamweaver gains 1 Dream token.",
+      "mods": [
+        {
+          "kind": "sparkOnFive",
+          "tags": [
+            "meadow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-frost",
+      "name": "First Frost",
+      "category": "weather",
+      "night": false,
+      "duration": "untilNext",
+      "flavor": "The bog has a crust on it.",
+      "text": "Swamp options cost 1 less stamina. Mountain options cost 1 more.",
+      "mods": [
+        {
+          "kind": "stamina",
+          "tags": [
+            "swamp"
+          ],
+          "amount": -1
+        },
+        {
+          "kind": "stamina",
+          "tags": [
+            "mountain"
+          ],
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "windy-day",
+      "name": "Windy Day",
+      "category": "weather",
+      "night": false,
+      "duration": "round",
+      "flavor": "Hold onto your hat. Seriously.",
+      "text": "Every player draws 3 teasers this round and picks 1. The Windcaller gets +2 dice.",
+      "mods": [
+        {
+          "kind": "teasers",
+          "count": 3
+        },
+        {
+          "kind": "dice",
+          "amount": 2,
+          "classes": [
+            "kite-riding-windcaller"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thal-tide",
+      "name": "Thal Tide",
+      "category": "weather",
+      "night": false,
+      "duration": "round",
+      "flavor": "The roots are generous today.",
+      "text": "Every treasure found this round is worth +2 coin and +1 VP.",
+      "mods": [
+        {
+          "kind": "treasureBonus",
+          "coin": 2,
+          "vp": 1
+        }
+      ]
+    }
+  ],
+  "monster": [
+    {
+      "id": "the-pickle-wyrm",
+      "name": "The Pickle Wyrm",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "It smells coin. It always smells coin.",
+      "huntsText": "The player with the most coin",
+      "optionsText": "Fight (Brawn, 3 successes), Bribe (pay 3 coin), or Flee (lose 2 stamina)",
+      "rewardText": "Wyrm Scale (6 / 3)",
+      "hunts": "mostCoin",
+      "options": [
+        {
+          "name": "Fight",
+          "stat": "brawn",
+          "need": 3,
+          "defeats": true
+        },
+        {
+          "name": "Bribe",
+          "pay": {
+            "coin": 3
+          }
+        },
+        {
+          "name": "Flee",
+          "effects": [
+            {
+              "type": "loseStamina",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "wyrm-scale"
+        }
+      ]
+    },
+    {
+      "id": "the-gloomhound",
+      "name": "The Gloomhound",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "Its eyes glow like lanterns. It wants yours.",
+      "huntsText": "The player holding the most items",
+      "optionsText": "Fight (Brawn, 2 successes), Tame (Charm, 2 successes; befriends it as a companion), or Flee (lose a random item)",
+      "rewardText": "Moonfang (6 / 3), or the Gloomhound itself if tamed",
+      "hunts": "mostItems",
+      "options": [
+        {
+          "name": "Fight",
+          "stat": "brawn",
+          "need": 2,
+          "defeats": true
+        },
+        {
+          "name": "Tame",
+          "stat": "charm",
+          "need": 2,
+          "defeats": true,
+          "reward": [
+            {
+              "type": "companion",
+              "companion": "gloomhound"
+            }
+          ]
+        },
+        {
+          "name": "Flee",
+          "effects": [
+            {
+              "type": "loseRandomItem"
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "moonfang"
+        }
+      ]
+    },
+    {
+      "id": "the-bog-troll-king",
+      "name": "The Bog Troll King",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "He owns the bog. Ask him.",
+      "huntsText": "Every player who picks a Swamp location",
+      "optionsText": "Fight (Brawn, 3 successes), Pay the Toll (2 coin), or Answer His Riddle (Wits, 2 successes)",
+      "rewardText": "Troll King's Club (gear: +1 die on Brawn rolls)",
+      "hunts": "pickedSwamp",
+      "options": [
+        {
+          "name": "Fight",
+          "stat": "brawn",
+          "need": 3,
+          "defeats": true
+        },
+        {
+          "name": "Pay the Toll",
+          "pay": {
+            "coin": 2
+          }
+        },
+        {
+          "name": "Answer His Riddle",
+          "stat": "wits",
+          "need": 2,
+          "onFail": [
+            {
+              "type": "loseStamina",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "troll-kings-club"
+        }
+      ]
+    },
+    {
+      "id": "the-mimic-chest",
+      "name": "The Mimic Chest",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "That treasure has teeth.",
+      "huntsText": "The next player who finds a treasure",
+      "optionsText": "Fight (Brawn, 2 successes) or lose that treasure",
+      "rewardText": "8 coin",
+      "hunts": "nextTreasure",
+      "options": [
+        {
+          "name": "Fight",
+          "stat": "brawn",
+          "need": 2,
+          "defeats": true,
+          "onFail": [
+            {
+              "type": "loseFoundTreasure"
+            }
+          ]
+        },
+        {
+          "name": "Give It Up",
+          "effects": [
+            {
+              "type": "loseFoundTreasure"
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "coin",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "id": "a-swarm-of-sprites",
+      "name": "A Swarm of Sprites",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 2,
+      "flavor": "Tiny, giggling, and very grabby.",
+      "huntsText": "The player holding the most items; leaves after 2 rounds",
+      "optionsText": "Swat (Luck, 2 successes), pay 1 Spark token, or lose a random item. Anyone may scatter them as their explore (Spark, 2 successes)",
+      "rewardText": "2 Spark tokens",
+      "hunts": "mostItems",
+      "scatter": {
+        "stat": "spark",
+        "need": 2
+      },
+      "options": [
+        {
+          "name": "Swat",
+          "stat": "luck",
+          "need": 2,
+          "defeats": true
+        },
+        {
+          "name": "Pay a Spark token",
+          "pay": {
+            "sparkTokens": 1
+          }
+        },
+        {
+          "name": "Lose an item",
+          "effects": [
+            {
+              "type": "loseRandomItem"
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "sparkTokens",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "the-hollow-knight",
+      "name": "The Hollow Knight",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "Empty armor, still loyal to a dead king.",
+      "huntsText": "Every player who picks a Ruins location",
+      "optionsText": "Duel (Brawn, 3 successes) or Find Its Weak Point (Wits, 2 successes); losing costs 2 health",
+      "rewardText": "Hollow Helm (rare gear: +1 max health)",
+      "hunts": "pickedRuins",
+      "options": [
+        {
+          "name": "Duel",
+          "stat": "brawn",
+          "need": 3,
+          "defeats": true,
+          "onFail": [
+            {
+              "type": "damage",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "name": "Find Its Weak Point",
+          "stat": "wits",
+          "need": 2,
+          "defeats": true,
+          "onFail": [
+            {
+              "type": "damage",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "hollow-helm"
+        }
+      ]
+    },
+    {
+      "id": "the-thornback-matriarch",
+      "name": "The Thornback Matriarch",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "Someone befriended her cub.",
+      "huntsText": "The player with the most companions",
+      "optionsText": "Fight (Brawn, 3 successes), Calm (Charm, 3 successes), or Flee (one companion flees)",
+      "rewardText": "Matriarch's Claw (8 / 4)",
+      "hunts": "mostCompanions",
+      "options": [
+        {
+          "name": "Fight",
+          "stat": "brawn",
+          "need": 3,
+          "defeats": true
+        },
+        {
+          "name": "Calm",
+          "stat": "charm",
+          "need": 3,
+          "defeats": true
+        },
+        {
+          "name": "Flee",
+          "effects": [
+            {
+              "type": "companionFlees"
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "matriarchs-claw"
+        }
+      ]
+    },
+    {
+      "id": "the-stormcrow-flock",
+      "name": "The Stormcrow Flock",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 2,
+      "flavor": "They know where the storm is going.",
+      "huntsText": "Every player at a Mountain or Peril location; leaves after 2 rounds",
+      "optionsText": "Lose 1 stamina, or Read Their Flight (Wits, 2 successes) to see the next World card instead. Anyone may drive them off (Spark, 2 successes)",
+      "rewardText": "Stormcrow Feather (6 / 3; one use: see the next World card)",
+      "hunts": "pickedMountainOrPeril",
+      "scatter": {
+        "stat": "spark",
+        "need": 2
+      },
+      "options": [
+        {
+          "name": "Lose 1 stamina",
+          "effects": [
+            {
+              "type": "loseStamina",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "name": "Read Their Flight",
+          "stat": "wits",
+          "need": 2,
+          "onSuccess": [
+            {
+              "type": "peekWorld",
+              "count": 1
+            }
+          ],
+          "onFail": [
+            {
+              "type": "loseStamina",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "stormcrow-feather"
+        }
+      ]
+    },
+    {
+      "id": "the-hungry-mist",
+      "name": "The Hungry Mist",
+      "category": "monster",
+      "duration": "rounds",
+      "rounds": 3,
+      "flavor": "It eats sound first. Then everything else.",
+      "huntsText": "The player who picked the highest-skull location this round",
+      "optionsText": "Fight (Spark, 3 successes) or Flee (lose 2 health)",
+      "rewardText": "Mist Pearl (8 / 4)",
+      "hunts": "highestSkull",
+      "options": [
+        {
+          "name": "Fight",
+          "stat": "spark",
+          "need": 3,
+          "defeats": true
+        },
+        {
+          "name": "Flee",
+          "effects": [
+            {
+              "type": "damage",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "reward": [
+        {
+          "type": "item",
+          "item": "mist-pearl"
+        }
+      ]
+    }
+  ],
+  "merchant": [
+    {
+      "id": "mrs-pennywhistles-rolling-shop",
+      "name": "Mrs. Pennywhistle's Rolling Shop",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "\"Everything's for sale. Including the cart, for the right price.\"",
+      "text": "3 random items, one always rare at a steep price",
+      "stock": {
+        "random": 3,
+        "rare": 1
+      }
+    },
+    {
+      "id": "the-mudlark-barge",
+      "name": "The Mudlark Barge",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "It smells like the bottom of a pond, because it was.",
+      "text": "Common items only, cheap. Also buys any treasure for 2 coin more than its value",
+      "stock": {
+        "common": 3
+      },
+      "buysTreasureBonus": 2
+    },
+    {
+      "id": "the-graftwright-tinker",
+      "name": "The Graftwright Tinker",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "\"I can improve that. Probably.\"",
+      "text": "Trade any 2 treasures for 1 random rare item",
+      "trade": {
+        "give": {
+          "treasures": 2
+        },
+        "get": {
+          "randomRare": 1
+        }
+      }
+    },
+    {
+      "id": "the-rootkeeper-exchange",
+      "name": "The Rootkeeper Exchange",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "They don't want your coin. They want you to grow.",
+      "text": "Trade 1 treasure for 2 Lessons in any stat",
+      "trade": {
+        "give": {
+          "treasures": 1
+        },
+        "get": {
+          "lessons": 2
+        }
+      }
+    },
+    {
+      "id": "old-nans-pie-cart",
+      "name": "Old Nan's Pie Cart",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "Every pie is delicious. One is also sleepy.",
+      "text": "Food at 2 coin each. Roll 1 die per pie: on a 1, it's a Sleepy Scone and you skip your next action",
+      "stock": {
+        "food": 3
+      },
+      "price": 2,
+      "sleepyOn": [
+        1
+      ]
+    },
+    {
+      "id": "the-shadow-market",
+      "name": "The Shadow Market",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "Whispers cost extra.",
+      "text": "One rival mission tag for 3 coin; who set a trap for 5 coin; a trap that can't be cleared for 6 coin",
+      "services": [
+        {
+          "buy": "learnRivalTag",
+          "coin": 3
+        },
+        {
+          "buy": "learnTrapSetter",
+          "coin": 5
+        },
+        {
+          "buy": "permanentTrap",
+          "coin": 6
+        }
+      ]
+    },
+    {
+      "id": "the-traveling-auction",
+      "name": "The Traveling Auction",
+      "category": "merchant",
+      "duration": "round",
+      "flavor": "Going once...",
+      "text": "One random rare item, sold by secret bid in coin; the highest bid wins",
+      "auction": {
+        "randomRare": 1
+      }
+    }
+  ],
+  "rumor": [
+    {
+      "id": "whispers-of-gold",
+      "name": "Whispers of Gold",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Something glittering in the old stones.",
+      "text": "The next player to succeed at a Ruins location: A bonus treasure",
+      "claim": {
+        "event": "success",
+        "tags": [
+          "ruins"
+        ]
+      },
+      "reward": [
+        {
+          "type": "randomTreasure"
+        }
+      ]
+    },
+    {
+      "id": "the-bog-is-burping",
+      "name": "The Bog Is Burping",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Bubbles mean pearls.",
+      "text": "The next player to succeed at a Swamp location: 2 Bog Pearls",
+      "claim": {
+        "event": "success",
+        "tags": [
+          "swamp"
+        ]
+      },
+      "reward": [
+        {
+          "type": "item",
+          "item": "bog-pearl"
+        },
+        {
+          "type": "item",
+          "item": "bog-pearl"
+        }
+      ]
+    },
+    {
+      "id": "stars-on-the-mountain",
+      "name": "Stars on the Mountain",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Something fell on the peak last night.",
+      "text": "The next player to succeed at a Mountain location: Star Shard (6 / 3)",
+      "claim": {
+        "event": "success",
+        "tags": [
+          "mountain"
+        ]
+      },
+      "reward": [
+        {
+          "type": "item",
+          "item": "star-shard"
+        }
+      ]
+    },
+    {
+      "id": "a-map-fragment",
+      "name": "A Map Fragment",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Half a map, pointing somewhere dangerous.",
+      "text": "The first player to succeed at a three-skull location: A random rare item",
+      "claim": {
+        "event": "success",
+        "minSkull": 3
+      },
+      "reward": [
+        {
+          "type": "randomRare"
+        }
+      ]
+    },
+    {
+      "id": "the-lost-lamb",
+      "name": "The Lost Lamb",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "A thal-sheep is loose and very fluffy.",
+      "text": "The first player to befriend a creature: 6 coin",
+      "claim": {
+        "event": "befriend"
+      },
+      "reward": [
+        {
+          "type": "coin",
+          "amount": 6
+        }
+      ]
+    },
+    {
+      "id": "a-hermit-is-recruiting",
+      "name": "A Hermit Is Recruiting",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Wisdom for anyone patient enough.",
+      "text": "The first player to take a Lesson instead of a reward: 2 more Lessons",
+      "claim": {
+        "event": "lessonInstead"
+      },
+      "reward": [
+        {
+          "type": "lessons",
+          "amount": 2,
+          "stat": "any"
+        }
+      ]
+    },
+    {
+      "id": "a-purse-for-a-brawler",
+      "name": "A Purse for a Brawler",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "The tavern wants a champion.",
+      "text": "The first player to win a Brawl: 5 coin",
+      "claim": {
+        "event": "winBrawl"
+      },
+      "reward": [
+        {
+          "type": "coin",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "the-fairies-are-dancing",
+      "name": "The Fairies Are Dancing",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Lucky rolls are in the air.",
+      "text": "The first player to roll two or more 6s at once: A Fairy Charm",
+      "claim": {
+        "event": "roll",
+        "minSixes": 2
+      },
+      "reward": [
+        {
+          "type": "item",
+          "item": "fairy-charm"
+        }
+      ]
+    },
+    {
+      "id": "a-ghost-wants-company",
+      "name": "A Ghost Wants Company",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "Someone in the ruins is lonely.",
+      "text": "The first player to choose a rest option at a Ruins location: A Ghostly Locket",
+      "claim": {
+        "event": "rest",
+        "tags": [
+          "ruins"
+        ]
+      },
+      "reward": [
+        {
+          "type": "item",
+          "item": "ghostly-locket"
+        }
+      ]
+    },
+    {
+      "id": "taproot-tremors",
+      "name": "Taproot Tremors",
+      "category": "rumor",
+      "duration": "untilClaimed",
+      "flavor": "The ground near the Great Thalowood shivered.",
+      "text": "The next player to succeed at a three-skull Forest location: Roll 1 die: on a 6, a Taproot Fragment",
+      "claim": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ],
+        "minSkull": 3
+      },
+      "reward": [
+        {
+          "type": "chance",
+          "faces": [
+            6
+          ],
+          "then": [
+            {
+              "type": "fragment"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "chaos": [
+    {
+      "id": "frog-rain",
+      "name": "Frog Rain",
+      "category": "chaos",
+      "duration": "instant",
+      "flavor": "It's raining frogs. Not metaphorically.",
+      "text": "Every player rolls 1 die; on a 1, they're a frog until their next turn. The Toadstool Witch is immune and gains a Lesson.",
+      "instant": [
+        {
+          "type": "chanceEach",
+          "faces": [
+            1
+          ],
+          "then": [
+            {
+              "type": "frog"
+            }
+          ]
+        }
+      ],
+      "classImmune": {
+        "toadstool-witch": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "any"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pass-it-on",
+      "name": "Pass It On",
+      "category": "chaos",
+      "duration": "round",
+      "flavor": "The cards have a mind of their own.",
+      "text": "After the reveal, every player passes their chosen explore card to the player on their left.",
+      "mods": [
+        {
+          "kind": "passCardsLeft"
+        }
+      ]
+    },
+    {
+      "id": "gravity-hiccup",
+      "name": "Gravity Hiccup",
+      "category": "chaos",
+      "duration": "round",
+      "flavor": "Everything is slightly floaty.",
+      "text": "Brawn rolls get -1 die; Spark rolls get +1 die.",
+      "mods": [
+        {
+          "kind": "dice",
+          "stat": "brawn",
+          "amount": -1
+        },
+        {
+          "kind": "dice",
+          "stat": "spark",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "the-giggles",
+      "name": "The Giggles",
+      "category": "chaos",
+      "duration": "round",
+      "flavor": "It's contagious.",
+      "text": "Every player rolls 1 die; on a 1 or 2, they must choose Pass at any Meeting this round.",
+      "instant": [
+        {
+          "type": "chanceEach",
+          "faces": [
+            1,
+            2
+          ],
+          "then": [
+            {
+              "type": "forcePassThisRound"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "squirrel-heist",
+      "name": "Squirrel Heist",
+      "category": "chaos",
+      "duration": "untilClaimed",
+      "flavor": "A blur of tails, and your pockets are lighter.",
+      "text": "Every player loses a random item to the squirrels' stash. The next player to succeed at a Forest location takes the whole stash.",
+      "instant": [
+        {
+          "type": "squirrelStash"
+        }
+      ],
+      "claim": {
+        "event": "success",
+        "tags": [
+          "forest"
+        ]
+      },
+      "reward": [
+        {
+          "type": "takeStash"
+        }
+      ]
+    },
+    {
+      "id": "shoe-swap",
+      "name": "Shoe Swap",
+      "category": "chaos",
+      "duration": "instant",
+      "flavor": "Nobody knows how it happened.",
+      "text": "Every player passes one random item to the player on their left.",
+      "instant": [
+        {
+          "type": "passRandomItemLeft"
+        }
+      ]
+    },
+    {
+      "id": "bloom-burst",
+      "name": "Bloom Burst",
+      "category": "chaos",
+      "duration": "instant",
+      "flavor": "The roots sigh, and everything sparkles.",
+      "text": "Every player gains 1 Spark token and 2 coin.",
+      "instant": [
+        {
+          "type": "sparkTokens",
+          "amount": 1
+        },
+        {
+          "type": "coin",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "talking-animals",
+      "name": "Talking Animals",
+      "category": "chaos",
+      "duration": "instant",
+      "flavor": "Your companion has opinions.",
+      "text": "Each player with a companion learns one tag from a rival's mission.",
+      "instant": [
+        {
+          "type": "ifCompanion",
+          "then": [
+            {
+              "type": "learnRivalTag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-wandering-door",
+      "name": "The Wandering Door",
+      "category": "chaos",
+      "duration": "round",
+      "flavor": "A door, standing alone in a field.",
+      "text": "Any player may open it as their explore (Luck, 2 successes): success earns a random rare item; failure skips their next explore.",
+      "altExplore": {
+        "stat": "luck",
+        "need": 2,
+        "success": [
+          {
+            "type": "randomRare"
+          }
+        ],
+        "fail": [
+          {
+            "type": "skipExplore"
+          }
+        ]
+      }
+    },
+    {
+      "id": "backwards-day",
+      "name": "Backwards Day",
+      "category": "chaos",
+      "duration": "round",
+      "flavor": "Everyone woke up on the wrong side of the Bloom.",
+      "text": "Turn order is reversed.",
+      "mods": [
+        {
+          "kind": "reverseOrder"
+        }
+      ]
+    },
+    {
+      "id": "thal-hiccup",
+      "name": "Thal Hiccup",
+      "category": "chaos",
+      "duration": "round",
+      "flavor": "The magic skips a beat.",
+      "text": "All gear bonuses are switched off.",
+      "mods": [
+        {
+          "kind": "gearOff"
+        }
+      ]
+    },
+    {
+      "id": "festival-of-lanterns",
+      "name": "Festival of Lanterns",
+      "category": "chaos",
+      "duration": "instant",
+      "flavor": "Lanterns float up from every village.",
+      "text": "Every player holding a light source gains 3 coin; everyone else gains 1.",
+      "instant": [
+        {
+          "type": "festival",
+          "withLight": 3,
+          "without": 1
+        }
+      ]
+    }
+  ],
+  "escalation": [
+    {
+      "id": "the-sky-cracks",
+      "name": "The Sky Cracks",
+      "category": "escalation",
+      "duration": "restOfGame",
+      "text": "all rewards are worth +1 VP, but every option costs +1 stamina",
+      "finale": "The Sky Falls",
+      "mods": [
+        {
+          "kind": "treasureBonus",
+          "vp": 1
+        },
+        {
+          "kind": "stamina",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "the-dragon-stirs",
+      "name": "The Dragon Stirs",
+      "category": "escalation",
+      "duration": "restOfGame",
+      "text": "Monster cards need 1 more success to defeat",
+      "finale": "The Dragon Wakes",
+      "mods": [
+        {
+          "kind": "monsterNeed",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": "masks-appear",
+      "name": "Masks Appear",
+      "category": "escalation",
+      "duration": "restOfGame",
+      "text": "players at a Meeting don't learn who they're meeting until it resolves",
+      "finale": "The Midnight Masquerade",
+      "mods": [
+        {
+          "kind": "hiddenMeetings"
+        }
+      ]
+    },
+    {
+      "id": "the-roots-tremble",
+      "name": "The Roots Tremble",
+      "category": "escalation",
+      "duration": "restOfGame",
+      "text": "treasures found at three-skull locations are worth +1 VP",
+      "finale": "The Taproot Wakes",
+      "mods": [
+        {
+          "kind": "treasureBonus",
+          "vp": 1,
+          "minSkull": 3
+        }
+      ]
+    },
+    {
+      "id": "the-gardener-kings-stir",
+      "name": "The Gardener-Kings Stir",
+      "category": "escalation",
+      "duration": "restOfGame",
+      "text": "Ruins options need 1 more success, but Ruins treasures are worth +2 VP",
+      "finale": "The Last Court",
+      "mods": [
+        {
+          "kind": "need",
+          "tags": [
+            "ruins"
+          ],
+          "amount": 1
+        },
+        {
+          "kind": "treasureBonus",
+          "vp": 2,
+          "tags": [
+            "ruins"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-bloom-peaks",
+      "name": "The Bloom Peaks",
+      "category": "escalation",
+      "duration": "restOfGame",
+      "text": "every success also grants 1 coin",
+      "finale": "The Great Harvest",
+      "mods": [
+        {
+          "kind": "successCoin",
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "finale": [
+    {
+      "id": "the-sky-falls",
+      "name": "The Sky Falls",
+      "category": "finale",
+      "text": "each player picks one last location; any success also earns a Fallen Star (10 / 5)",
+      "matches": "The Sky Cracks",
+      "final": [
+        {
+          "kind": "successItem",
+          "item": "fallen-star"
+        }
+      ]
+    },
+    {
+      "id": "the-dragon-wakes",
+      "name": "The Dragon Wakes",
+      "category": "finale",
+      "text": "a final boss anyone can attack with Brawn or Spark; each success earns 1 VP, and the killing blow earns 5 more",
+      "matches": "The Dragon Stirs",
+      "final": [
+        {
+          "kind": "boss",
+          "stats": [
+            "brawn",
+            "spark"
+          ],
+          "vpPerSuccess": 1,
+          "killBonus": 5
+        }
+      ]
+    },
+    {
+      "id": "the-midnight-masquerade",
+      "name": "The Midnight Masquerade",
+      "category": "finale",
+      "text": "all mission guesses are worth double",
+      "matches": "Masks Appear",
+      "final": [
+        {
+          "kind": "guessMultiplier",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "the-taproot-wakes",
+      "name": "The Taproot Wakes",
+      "category": "finale",
+      "text": "on the final turn, any player may reach for the Taproot instead of exploring (Spark, 4 successes, all stamina); success earns 8 VP",
+      "matches": "The Roots Tremble",
+      "final": [
+        {
+          "kind": "taprootReach",
+          "stat": "spark",
+          "need": 4,
+          "stamina": "all",
+          "vp": 8
+        }
+      ]
+    },
+    {
+      "id": "the-last-court",
+      "name": "The Last Court",
+      "category": "finale",
+      "text": "the ghostly Gardener-Kings judge the realm; the player holding the most valuable single treasure gains 6 VP, and everyone else holding a treasure gains 2",
+      "matches": "The Gardener-Kings Stir",
+      "final": [
+        {
+          "kind": "lastCourt",
+          "top": 6,
+          "others": 2
+        }
+      ]
+    },
+    {
+      "id": "the-great-harvest",
+      "name": "The Great Harvest",
+      "category": "finale",
+      "text": "on the final turn, every success gives double rewards",
+      "matches": "The Bloom Peaks",
+      "final": [
+        {
+          "kind": "doubleRewards"
+        }
+      ]
+    },
+    {
+      "id": "the-bloom-fades",
+      "name": "The Bloom Fades",
+      "category": "finale",
+      "text": "Every player restores all stamina before the final turn",
+      "general": true,
+      "final": [
+        {
+          "kind": "restoreAllStamina"
+        }
+      ]
+    },
+    {
+      "id": "last-light",
+      "name": "Last Light",
+      "category": "finale",
+      "text": "At scoring, each light source held is worth +2 VP",
+      "general": true,
+      "final": [
+        {
+          "kind": "lightVp",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "id": "the-grand-bazaar",
+      "name": "The Grand Bazaar",
+      "category": "finale",
+      "text": "Before the final turn, the market opens to everyone with a merchant stocking 2 rare items",
+      "general": true,
+      "final": [
+        {
+          "kind": "market",
+          "stock": {
+            "rare": 2
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,510 @@
+[
+  {
+    "name": "Bramblebeast Tamer",
+    "group": "Nature",
+    "status": "built",
+    "quote": "Why fight it when you could keep it?",
+    "statMods": {
+      "charm": 1,
+      "brawn": 1,
+      "spark": -1
+    },
+    "passive": "Beast Bond: +2 dice on any Creature-tagged option. Keep up to 3 companions instead of the usual 2.",
+    "active": "Sic 'Em (2 stamina): a companion guards a location; the next rival who picks it faces the creature first.",
+    "signature": "Stampede: all companions act at once, +1 die each on a single roll.",
+    "weakness": "Taking 2+ damage in one turn makes a companion flee.",
+    "extra": [],
+    "playsLike": "Builds a menagerie, controls locations, wins brawls with backup.",
+    "hooks": [
+      {
+        "kind": "dice",
+        "tags": [
+          "creature"
+        ],
+        "amount": 2
+      },
+      {
+        "kind": "companionLimit",
+        "amount": 3
+      },
+      {
+        "kind": "fleesOnDamage",
+        "amount": 2
+      }
+    ],
+    "id": "bramblebeast-tamer"
+  },
+  {
+    "name": "Lantern-Hour Thief",
+    "group": "Sneak",
+    "status": "built",
+    "quote": "Finders keepers. Also, takers keepers.",
+    "statMods": {
+      "wits": 1,
+      "luck": 1,
+      "brawn": -1
+    },
+    "passive": "Light Fingers: when you steal, you choose the item. +1 die at night, fog, and dark locations.",
+    "active": "Sneaky Traps (0 stamina): set traps for free; up to 2 active.",
+    "signature": "The Swap: secretly trade one item with any player; they learn it was you at round's end.",
+    "weakness": "Merchants know your face, so everything costs +1 coin.",
+    "extra": [],
+    "playsLike": "Sabotage, deduction, and grabbing the exact item a rival's mission needs.",
+    "hooks": [
+      {
+        "kind": "chooseStolenItem"
+      },
+      {
+        "kind": "freeTraps",
+        "max": 2
+      },
+      {
+        "kind": "merchantSurcharge",
+        "coin": 1
+      },
+      {
+        "kind": "dice",
+        "amount": 1,
+        "when": "night"
+      }
+    ],
+    "id": "lantern-hour-thief"
+  },
+  {
+    "name": "Toadstool Witch",
+    "group": "Nature",
+    "status": "built",
+    "quote": "Every mistake is just an ingredient.",
+    "statMods": {
+      "spark": 1,
+      "wits": 1,
+      "charm": -1
+    },
+    "passive": "Mishap Mastery: your Mishaps don't trigger; gain 1 Lesson instead.",
+    "active": "Brew (1 stamina): turn one treasure into a potion: Swiftness (+2 dice), Mending (heal 3), or Ribbit (a rival becomes a frog for a round).",
+    "signature": "Hex the Path: curse a location name; whoever picks it next rolls 2 Trouble dice.",
+    "weakness": "Potions eat treasure, so hoarding for VP hurts.",
+    "extra": [],
+    "playsLike": "Turns bad luck into growth and loot into tricks.",
+    "hooks": [
+      {
+        "kind": "mishapToLesson"
+      },
+      {
+        "kind": "frogRainImmune"
+      }
+    ],
+    "id": "toadstool-witch"
+  },
+  {
+    "name": "Fox-Masked Trickster",
+    "group": "Oddball",
+    "status": "built",
+    "quote": "It's only funny if you don't see it coming.",
+    "statMods": {
+      "wits": 1,
+      "charm": 1,
+      "luck": -1
+    },
+    "passive": "Bluff: when you claim a milestone, you may also drop a fake one.",
+    "active": "Switcheroo (1 stamina): after everyone picks, swap your explore card with another player's.",
+    "signature": "Mistaken Identity: for one round, your actions show on the TV under another player's name.",
+    "weakness": "You can't receive Assist dice, and your Mishaps hit twice.",
+    "extra": [
+      "Alternate names: Rubber-Chicken Jester, Mirror-Coat Trickster."
+    ],
+    "playsLike": "Misdirection that makes the deduction game miserable for everyone else.",
+    "hooks": [
+      {
+        "kind": "noAssistReceive"
+      },
+      {
+        "kind": "mishapDouble"
+      }
+    ],
+    "id": "fox-masked-trickster"
+  },
+  {
+    "name": "Lantern-Bound Ghost",
+    "group": "Oddball",
+    "status": "built",
+    "quote": "I'm not lost. I'm just not done yet.",
+    "statMods": {
+      "spark": 1,
+      "luck": 1
+    },
+    "passive": "Incorporeal: can't be stolen from in brawls; traps catch you only on a roll of 1 to 3.",
+    "active": "Haunt (1 stamina): haunt a location name; whoever picks it rolls -1 die and you gain 1 coin.",
+    "signature": "Possession: when a rival draws 2 explore cards, you choose which one they get.",
+    "weakness": "Carry only 3 items.",
+    "extra": [
+      "Alternate names: Unfinished-Business Spirit, Teacup Ghost, Echo Specter."
+    ],
+    "playsLike": "Slippery, indirect pressure; every hoard-or-spend choice is tense.",
+    "hooks": [
+      {
+        "kind": "setStat",
+        "stat": "brawn",
+        "value": 1
+      },
+      {
+        "kind": "brawlTheftImmune"
+      },
+      {
+        "kind": "trapResist",
+        "catchOn": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "kind": "itemCap",
+        "amount": 3
+      }
+    ],
+    "id": "lantern-bound-ghost"
+  },
+  {
+    "name": "Pillow-Prophet Dreamweaver",
+    "group": "Caster",
+    "status": "built",
+    "quote": "I saw this in a dream. You lose.",
+    "statMods": {
+      "spark": 1,
+      "luck": 1,
+      "wits": -1
+    },
+    "passive": "Lucid Rest: a rest or no-roll option grants 1 Dream token, and rivals can't target you that round.",
+    "active": "Dream Peek (1 Dream): see a full card behind its teaser before choosing. Dream Walk (1 stamina + 1 Dream): learn one tag of a rival's mission, or add a Trouble die to their next roll.",
+    "signature": "The Shared Dream: for one round, 1s count as successes and 6s become Mishaps for everyone.",
+    "weakness": "At 0 stamina you fall asleep and skip a turn, waking with 2 Dream tokens.",
+    "extra": [
+      "Resource, Dream tokens: earned by resting, spent on dream powers.",
+      "Alternate names: Sleepwalking Oracle, Moth-Winged Dreamer, Yawning Seer."
+    ],
+    "playsLike": "A patient information master who strikes at the right moment.",
+    "hooks": [
+      {
+        "kind": "dreamTokensOnRest",
+        "amount": 1
+      },
+      {
+        "kind": "sleepAtZeroStamina"
+      }
+    ],
+    "id": "pillow-prophet-dreamweaver"
+  },
+  {
+    "name": "Gargoyle-Carver Stonemason",
+    "group": "Trade",
+    "status": "built",
+    "quote": "",
+    "statMods": {
+      "brawn": 1,
+      "wits": 1,
+      "luck": -1
+    },
+    "passive": "Old Stones: +2 dice at Ruins locations.",
+    "active": "Build a Wall (2 stamina): seal a location name for one round; no one else can pick it.",
+    "signature": "Living Gargoyle: a stone guardian attacks the next rival who lands where you place it.",
+    "weakness": "Heavy tools, so max stamina is 1 lower.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [
+      {
+        "kind": "dice",
+        "tags": [
+          "ruins"
+        ],
+        "amount": 2
+      },
+      {
+        "kind": "maxStamina",
+        "amount": -1
+      }
+    ],
+    "id": "gargoyle-carver-stonemason"
+  },
+  {
+    "name": "Treehouse Carpenter",
+    "group": "Trade",
+    "status": "built",
+    "quote": "",
+    "statMods": {
+      "brawn": 1,
+      "charm": 1,
+      "spark": -1
+    },
+    "passive": "Woodwise: +2 dice at Forest locations.",
+    "active": "Build a Bridge (2 stamina): revisit any location you've already explored.",
+    "signature": "The Walking Cottage: rest anywhere for full stamina and stash items where no one can steal them.",
+    "weakness": "Every build costs 1 coin.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [
+      {
+        "kind": "dice",
+        "tags": [
+          "forest"
+        ],
+        "amount": 2
+      }
+    ],
+    "id": "treehouse-carpenter"
+  },
+  {
+    "name": "Ember-Hearted Blacksmith",
+    "group": "Trade",
+    "status": "built",
+    "quote": "",
+    "statMods": {
+      "brawn": 1,
+      "spark": 1,
+      "charm": -1
+    },
+    "passive": "Reforge: turn treasure into gear (+1 die to a stat for the rest of the game); gear has no coin or VP value.",
+    "active": "Smithing for Hire: rivals can pay you coin to reforge their items.",
+    "signature": "Masterwork: one item becomes an Heirloom that carries into future games.",
+    "weakness": "Every reforge trades points later for power now.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [],
+    "id": "ember-hearted-blacksmith"
+  },
+  {
+    "name": "Honeycake Cook",
+    "group": "Trade",
+    "status": "built",
+    "quote": "",
+    "statMods": {
+      "charm": 1,
+      "luck": 1,
+      "brawn": -1
+    },
+    "passive": "Forager: successes at Meadow, Forest, or Creature locations also yield ingredients.",
+    "active": "Cook (1 stamina): Hearty Stew (+3 stamina), Courage Pie (+1 die on all rolls next turn), or Sleepy Scones (a rival skips their next action).",
+    "signature": "The Feast: all guests restore stamina; you gain 1 VP per player who accepts.",
+    "weakness": "Your Mishaps eat one ingredient.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [],
+    "id": "honeycake-cook"
+  },
+  {
+    "name": "Rain-Barrel Tidecaller",
+    "group": "Elemental",
+    "status": "built",
+    "quote": "Water always finds a way. Usually into your boots.",
+    "statMods": {
+      "spark": 1,
+      "charm": 1,
+      "brawn": -1
+    },
+    "passive": "Flow: once per turn, roll any option with a different stat than the one listed.",
+    "active": "Cleanse (1 stamina): remove a trap, haunt, hex, or curse; if a rival set it, you secretly learn who.",
+    "signature": "The Great Flood: every trap washes away, and each rival's least valuable item drifts to you.",
+    "weakness": "-1 die at Mountain and Peril locations.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [
+      {
+        "kind": "flow"
+      },
+      {
+        "kind": "dice",
+        "tags": [
+          "mountain",
+          "peril"
+        ],
+        "amount": -1
+      }
+    ],
+    "id": "rain-barrel-tidecaller"
+  },
+  {
+    "name": "Moss-Footed Geomancer",
+    "group": "Elemental",
+    "status": "built",
+    "quote": "I don't move. The world moves around me.",
+    "statMods": {
+      "brawn": 2
+    },
+    "passive": "Rooted: ignore the first damage each turn; Dig options get +2 dice.",
+    "active": "Tremor (2 stamina): rivals at a shared location lose 1 stamina and drop an item; you pick one up.",
+    "signature": "Mountain Heart: +1 Brawn and +1 max stamina for the rest of the game.",
+    "weakness": "Can't push your luck.",
+    "extra": [
+      "The -1 Charm penalty was removed after Playtest 3."
+    ],
+    "playsLike": "",
+    "hooks": [
+      {
+        "kind": "ignoreFirstDamageEachTurn"
+      },
+      {
+        "kind": "dice",
+        "optionKind": "dig",
+        "amount": 2
+      },
+      {
+        "kind": "noPush"
+      }
+    ],
+    "id": "moss-footed-geomancer"
+  },
+  {
+    "name": "Cinder-Heart Pyromancer",
+    "group": "Elemental",
+    "status": "built",
+    "quote": "Everything's flammable if you believe in yourself.",
+    "statMods": {
+      "spark": 2,
+      "luck": -1
+    },
+    "passive": "Kindling: each 6 adds a Heat token; at 3 Heat, your next roll gets +3 dice.",
+    "active": "Burn the Path (2 stamina): remove a location name from the deck for the whole game.",
+    "signature": "Phoenix: the first time you'd drop to 0 health, rise with full health and stamina.",
+    "weakness": "Your Mishaps burn one of your items.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [
+      {
+        "kind": "heat",
+        "threshold": 3,
+        "dice": 3
+      },
+      {
+        "kind": "mishapBurnsItem"
+      }
+    ],
+    "id": "cinder-heart-pyromancer"
+  },
+  {
+    "name": "Kite-Riding Windcaller",
+    "group": "Elemental",
+    "status": "built",
+    "quote": "Catch me if you can. You can't.",
+    "statMods": {
+      "wits": 1,
+      "luck": 1,
+      "brawn": -1
+    },
+    "passive": "Whispers on the Wind: each round, learn one rival's chosen location before it resolves.",
+    "active": "Gust (1 stamina): a rival must take their other teaser card instead.",
+    "signature": "Cyclone: collect every chosen explore card, shuffle, and redeal at random.",
+    "weakness": "You lose ties in brawls.",
+    "extra": [],
+    "playsLike": "",
+    "hooks": [
+      {
+        "kind": "loseBrawlTies"
+      }
+    ],
+    "id": "kite-riding-windcaller"
+  },
+  {
+    "id": "thunder-oath-knight",
+    "name": "Thunder-Oath Knight",
+    "group": "Fighter",
+    "status": "concept",
+    "idea": "Hits harder after taking damage",
+    "openQuestion": "How much bonus per damage taken, and does it reset each turn?"
+  },
+  {
+    "id": "mushroom-fed-berserker",
+    "name": "Mushroom-Fed Berserker",
+    "group": "Fighter",
+    "status": "concept",
+    "idea": "Eats loot for power",
+    "openQuestion": "Does eating loot give dice, stamina, or both, and which mushrooms backfire?"
+  },
+  {
+    "id": "teacup-duelist",
+    "name": "Teacup Duelist",
+    "group": "Fighter",
+    "status": "concept",
+    "idea": "Disarms and steals in combat",
+    "openQuestion": "Does disarming steal the item or just disable it for a round?"
+  },
+  {
+    "id": "whisper-debt-assassin",
+    "name": "Whisper-Debt Assassin",
+    "group": "Sneak",
+    "status": "concept",
+    "idea": "Trades in secrets; reveals mission tags",
+    "openQuestion": "How are secrets earned, and can they be traded to other players?"
+  },
+  {
+    "id": "mapless-wanderer",
+    "name": "Mapless Wanderer",
+    "group": "Sneak",
+    "status": "concept",
+    "idea": "Draws 3 explore cards instead of 2",
+    "openQuestion": "Is drawing 3 cards too strong without a matching weakness?"
+  },
+  {
+    "id": "moonlight-wizard",
+    "name": "Moonlight Wizard",
+    "group": "Caster",
+    "status": "concept",
+    "idea": "Stronger at night; can trigger moonrise",
+    "openQuestion": "How often should World cards bring night so the class isn't idle?"
+  },
+  {
+    "id": "ink-bound-scribe",
+    "name": "Ink-Bound Scribe",
+    "group": "Caster",
+    "status": "concept",
+    "idea": "Turns Lessons into one-shot scrolls",
+    "openQuestion": "Does turning Lessons into scrolls slow permanent growth, and is that the trade-off?"
+  },
+  {
+    "id": "starfall-sorcerer",
+    "name": "Starfall Sorcerer",
+    "group": "Caster",
+    "status": "concept",
+    "idea": "Extra Sparks and extra Mishaps",
+    "openQuestion": "How far can Spark and Mishap rates rise before the class feels random?"
+  },
+  {
+    "id": "candlewax-warlock",
+    "name": "Candlewax Warlock",
+    "group": "Caster",
+    "status": "concept",
+    "idea": "Power now, pact cost later",
+    "openQuestion": "What is the pact cost: VP, health, or a debt a rival can collect?"
+  },
+  {
+    "id": "rain-bell-cleric",
+    "name": "Rain-Bell Cleric",
+    "group": "Faith",
+    "status": "concept",
+    "idea": "Heals, including rivals for a price",
+    "openQuestion": "What price can a Cleric charge to heal a rival?"
+  },
+  {
+    "id": "root-sung-druid",
+    "name": "Root-Sung Druid",
+    "group": "Nature",
+    "status": "concept",
+    "idea": "Shapeshifts by location tag",
+    "openQuestion": "Which tag unlocks which form, and how many forms at launch?"
+  },
+  {
+    "id": "off-key-bard",
+    "name": "Off-Key Bard",
+    "group": "Oddball",
+    "status": "concept",
+    "idea": "Turns 1s into effects",
+    "openQuestion": "Which effects do 1s trigger without overlapping the Witch's Mishap Mastery?"
+  },
+  {
+    "id": "clockwork-tinkerer",
+    "name": "Clockwork Tinkerer",
+    "group": "Oddball",
+    "status": "concept",
+    "idea": "Builds gadgets from junk treasure",
+    "openQuestion": "How is it different enough from the Blacksmith?"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "name": "@thaloroot/content",
+  "version": "0.1.0",
+  "description": "Thaloroot game content as JSON, generated from the design doc by tools/build_content.py.",
+  "type": "module",
+  "files": ["*.json", "source"],
+  "exports": { "./*.json": "./*.json" }
+}

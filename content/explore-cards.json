@@ -1,0 +1,6697 @@
+[
+  {
+    "id": "whispering-glade",
+    "name": "Whispering Glade",
+    "region": "forest",
+    "tags": [
+      "forest"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "The leaves are gossiping about you.",
+    "flavor": "Old trees here repeat everything they've ever heard.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Listen Closely",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "learn one tag from a rival's mission.",
+          "fail": "the trees laugh at you; lose 1 stamina.",
+          "spark": "also see the next World card."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "peekWorld",
+            "count": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Gather Fallen Acorns",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Thal Acorn (2 / 1).",
+          "fail": "nothing.",
+          "spark": "a second Thal Acorn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "thal-acorn"
+          }
+        ],
+        "fail": [],
+        "spark": [
+          {
+            "type": "item",
+            "item": "thal-acorn"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Nap Against an Old Oak",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina and 1 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "heal",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "glowcap-hollow",
+    "name": "Glowcap Hollow",
+    "region": "forest",
+    "tags": [
+      "forest"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Something down there is glowing.",
+    "flavor": "A dip in the forest floor carpeted with mushrooms that glow when you breathe on them.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Pick Glowcaps",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Glowcap Lantern (light source; 2 / 1).",
+          "fail": "wrong mushroom; you're a frog until your next turn.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "glowcap-lantern"
+          }
+        ],
+        "fail": [
+          {
+            "type": "frog"
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Follow the Glow",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Mushroom Pearl (4 / 2).",
+          "fail": "lose 1 health.",
+          "spark": "see the full card behind both teasers next turn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "mushroom-pearl"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "peekTeasers",
+            "turns": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Rest in the Soft Light",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-woodcutters-camp",
+    "name": "The Woodcutter's Camp",
+    "region": "forest",
+    "tags": [
+      "forest"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "Smoke, and the smell of stew.",
+    "flavor": "An abandoned camp, still warm. Someone left in a hurry.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Search the Packs",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 coin.",
+          "fail": "a raccoon bites you; lose 1 health.",
+          "spark": "also a Sturdy Axe (gear: +1 die on Brawn rolls at Forest locations)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "sturdy-axe"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Chop Firewood for Travelers",
+        "stats": [
+          "brawn"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 coin.",
+          "fail": "lose 1 stamina.",
+          "spark": "also gain 1 Lesson in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Share the Stew",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "mossback-tortoise-crossing",
+    "name": "Mossback Tortoise Crossing",
+    "region": "forest",
+    "tags": [
+      "forest",
+      "creature"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "A hill that blinks.",
+    "flavor": "A tortoise the size of a cottage is crossing the path. It has been crossing for three days.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Ride Along",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "befriend Old Mossback (companion: once per game, ignore all damage from one source).",
+          "fail": "he sneezes; lose 1 stamina.",
+          "spark": "he carries you; draw 3 teasers next turn instead of 2."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "old-mossback"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "teasersNextTurn",
+            "count": 3
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Scrape the Moss",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Ancient Moss (4 / 2).",
+          "fail": "he notices; lose 1 health.",
+          "spark": "also gain 3 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "ancient-moss"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Wait for Him to Pass",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina. Roll 1 die: on a 1, you waited all day and lose your quick action this turn.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "chance",
+            "faces": [
+              1
+            ],
+            "then": [
+              {
+                "type": "loseQuickAction"
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-bramblewood",
+    "name": "The Bramblewood",
+    "region": "forest",
+    "tags": [
+      "forest",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "The path closes behind you.",
+    "flavor": "Thorny vines shift whenever no one is looking, and small eyes watch from inside them.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Cut Through",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Thorn-Heart Berry (4 / 2).",
+          "fail": "lose 2 health.",
+          "spark": "also a Bramble Cloak (gear: traps catch you only on a roll of 1 to 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "thorn-heart-berry"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "bramble-cloak"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Befriend the Bramble Hare",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend the Bramble Hare (companion: +1 die on Luck rolls at Forest locations).",
+          "fail": "lose 1 stamina.",
+          "spark": "the hare has seen everyone pass; learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "bramble-hare"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Find the Hidden Path",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "see the full card behind both teasers next turn.",
+          "fail": "lost; see only 1 teaser next turn.",
+          "spark": "also gain 3 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekTeasers",
+            "turns": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "hermits-treehouse",
+    "name": "Hermit's Treehouse",
+    "region": "forest",
+    "tags": [
+      "forest"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "A rope ladder, and a sign that says KNOCK.",
+    "flavor": "A Rootkeeper hermit lives up here and teaches only visitors who earn it.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Climb Up",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Lessons in any one stat.",
+          "fail": "you fall; lose 2 health.",
+          "spark": "gain 3 Lessons instead."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "any"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 3,
+            "stat": "any",
+            "replaces": true
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Answer the Hermit's Question",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Lessons in Wits and see the next World card.",
+          "fail": "he slams the door; lose 1 stamina.",
+          "spark": "he also gives you a Lucky Thimble (reroll up to 2 dice once per game)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "wits"
+          },
+          {
+            "type": "peekWorld",
+            "count": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "lucky-thimble"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Leave an Offering",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": 2,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gain 1 Lesson in any stat.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "any"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-singing-stump",
+    "name": "The Singing Stump",
+    "region": "forest",
+    "tags": [
+      "forest"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Someone is humming inside a hollow log.",
+    "flavor": "A stump that sings old Gardener-King songs. Thal pools in its rings.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Sing Along",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Stump-Song Amber (6 / 3).",
+          "fail": "you're off-key; lose 1 stamina.",
+          "spark": "also gain 2 Spark tokens."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "stump-song-amber"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Drink from the Rings",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "restore all stamina and gain 1 Spark token.",
+          "fail": "thal pushes back; lose 2 health.",
+          "spark": "gain a permanent quirk, Stump-Voiced (+1 die on Charm at Forest locations, -1 die on Wits at Ruins locations)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": "all"
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "quirk",
+            "name": "Stump-Voiced",
+            "text": "+1 die on Charm at Forest locations, -1 die on Wits at Ruins locations",
+            "quirk": [
+              {
+                "kind": "dice",
+                "amount": 1,
+                "stat": "charm",
+                "tags": [
+                  "forest"
+                ]
+              },
+              {
+                "kind": "dice",
+                "amount": -1,
+                "stat": "wits",
+                "tags": [
+                  "ruins"
+                ]
+              }
+            ]
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Search the Roots",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 coin.",
+          "fail": "nothing.",
+          "spark": "also a Thal Acorn (2 / 1)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [],
+        "spark": [
+          {
+            "type": "item",
+            "item": "thal-acorn"
+          }
+        ],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "owlbeards-parliament",
+    "name": "Owlbeard's Parliament",
+    "region": "forest",
+    "tags": [
+      "forest",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Many eyes, all of them judging.",
+    "flavor": "The owls of the deep wood hold court at dusk and don't like interruptions.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Make Your Case",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "befriend Judge Owlbeard (companion: once per game, see a rival's chosen card before reveal).",
+          "fail": "banished; lose 1 stamina and see only 1 teaser next turn.",
+          "spark": "the owls also tell you one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "judge-owlbeard"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          },
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Steal a Feather",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Silver Owl Feather (6 / 3).",
+          "fail": "mobbed; lose 2 health.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "silver-owl-feather"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Bow and Back Away",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "heart-of-the-old-grove",
+    "name": "Heart of the Old Grove",
+    "region": "forest",
+    "tags": [
+      "forest",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "The trees here are older than kings.",
+    "flavor": "The trees closest to the Great Thalowood drink the most thal, and they guard it jealously.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Climb the Eldest Tree",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Heartwood Sap (8 / 4).",
+          "fail": "lose 3 health.",
+          "spark": "also a Sapling of the Eldest (gear: +1 max stamina for the rest of the game)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "heartwood-sap"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "sapling-of-the-eldest"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Commune with the Grove",
+        "stats": [
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 Lessons in one stat and 1 Spark token.",
+          "fail": "the grove pushes back; lose 2 health and 2 stamina.",
+          "spark": "also a Lucky Thimble."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 3,
+            "stat": "any"
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          },
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "lucky-thimble"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Leave Quietly",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 coin.",
+          "fail": "lose 1 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-thalowood-roots",
+    "name": "The Thalowood Roots",
+    "region": "forest",
+    "tags": [
+      "forest",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "The ground hums, and it's coming from below.",
+    "flavor": "Where the roots of the Great Thalowood Tree break the surface, the air shimmers with raw thal.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Dig Beside the Root",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Root Crystal (10 / 5).",
+          "fail": "thal surges; lose 3 health.",
+          "spark": "also a Taproot Fragment (legendary; effect hidden until used)."
+        },
+        "sparkNeeds": 2,
+        "success": [
+          {
+            "type": "item",
+            "item": "root-crystal"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "fragment"
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Listen to the Hum",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "see the next 2 World cards and learn one tag from a rival's mission.",
+          "fail": "overwhelmed; lose 2 stamina.",
+          "spark": "also gain 2 Lessons in Wits."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekWorld",
+            "count": 2
+          },
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "wits"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Step Back from the Edge",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "wyrmwood-thicket",
+    "name": "Wyrmwood Thicket",
+    "region": "forest",
+    "tags": [
+      "forest",
+      "creature",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Claw marks, very fresh.",
+    "flavor": "Something big sharpens its claws on these trees. This is its home.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Face the Thornback Bear",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Thornback Claw (8 / 4).",
+          "fail": "lose 3 health.",
+          "spark": "also gain 2 Lessons in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "thornback-claw"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Calm the Beast",
+        "stats": [
+          "charm"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend the Thornback Bear (companion: +2 dice on Brawn rolls; flees if you take 2 or more damage in one turn).",
+          "fail": "lose 2 health.",
+          "spark": "the bear brings you Honeycomb (4 / 2)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "thornback-bear"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "honeycomb"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Sneak Past",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 5 coin from the bear's hoard.",
+          "fail": "caught; lose 2 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 5
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "buttercup-hill",
+    "name": "Buttercup Hill",
+    "region": "meadow",
+    "tags": [
+      "meadow"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "Bright, open, and suspiciously cheerful.",
+    "flavor": "Wildflowers bob in a breeze that isn't there. The pollen makes everyone a little dreamy.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Pick a Bouquet",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Dreaming Bouquet (2 / 1).",
+          "fail": "hay fever; lose 1 stamina.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "dreaming-bouquet"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Roll Down the Hill",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "find 3 coin in the grass.",
+          "fail": "lose 1 health.",
+          "spark": "also gain 1 Lesson in Luck."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "luck"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Nap in the Flowers",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 3 stamina. Roll 1 die: on a 6, a pollen dream shows you the next World card.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 3
+          },
+          {
+            "type": "chance",
+            "faces": [
+              6
+            ],
+            "then": [
+              {
+                "type": "peekWorld",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "firefly-fields",
+    "name": "Firefly Fields",
+    "region": "meadow",
+    "tags": [
+      "meadow"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Little lights everywhere.",
+    "flavor": "At dusk, the fireflies here glow with drops of thal.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Catch Fireflies",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Firefly Jar (light source; 2 / 1).",
+          "fail": "they scatter; lose 1 stamina.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "firefly-jar"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Follow the Brightest",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Firefly Queen's Wing (4 / 2).",
+          "fail": "lost in the dark; see only 1 teaser next turn.",
+          "spark": "see the full card behind both teasers next turn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "firefly-queens-wing"
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "peekTeasers",
+            "turns": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Lie Back and Watch",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina and 1 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "heal",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-beehive-orchard",
+    "name": "The Beehive Orchard",
+    "region": "meadow",
+    "tags": [
+      "meadow",
+      "creature"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "Buzzing. So much buzzing.",
+    "flavor": "Thal-fed bees make honey that glows faintly and tastes like summer.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Smoke the Hive",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Glowing Honeycomb (4 / 2).",
+          "fail": "stung; lose 1 health.",
+          "spark": "also a Honey Cake (food: restore 3 stamina)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "glowing-honeycomb"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "honey-cake"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Charm the Queen Bee",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend Buzzbelle (companion: +1 die on Charm rolls at Meadow locations).",
+          "fail": "swarmed; lose 2 stamina.",
+          "spark": "Buzzbelle also brings royal jelly worth 3 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "buzzbelle"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Pick Apples",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 health and gain 1 coin.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 1
+          },
+          {
+            "type": "coin",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "scarecrow-crossing",
+    "name": "Scarecrow Crossing",
+    "region": "meadow",
+    "tags": [
+      "meadow"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "The scarecrow turned its head.",
+    "flavor": "An old scarecrow at the crossroads gives directions. They're usually right.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Ask for Directions",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "draw 3 teasers next turn and pick 1.",
+          "fail": "it lies; see only 1 teaser next turn.",
+          "spark": "it saw your rivals pass; learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "teasersNextTurn",
+            "count": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Check Its Pockets",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Lucky Button (gear: reroll 1 die once per game).",
+          "fail": "it swats you; lose 1 health.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "lucky-button"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Wave and Move On",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "moonpetal-meadow",
+    "name": "Moonpetal Meadow",
+    "region": "meadow",
+    "tags": [
+      "meadow"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "These flowers only open at night.",
+    "flavor": "Pale flowers that drink moonlight and glow until dawn.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Gather Moonpetals",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Moonpetal (light source; 4 / 2).",
+          "fail": "they close; lose 1 stamina.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "moonpetal"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Breathe the Night Pollen",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "see the next World card and gain 1 Spark token.",
+          "fail": "you sleepwalk and lose your quick action this turn.",
+          "spark": "you dream a rival's secret; learn one tag from their mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekWorld",
+            "count": 1
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseQuickAction"
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Sleep Under the Petals",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 3 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 3
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-pollen-storm",
+    "name": "The Pollen Storm",
+    "region": "meadow",
+    "tags": [
+      "meadow",
+      "peril"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "The air is gold and thick.",
+    "flavor": "When the meadow sneezes, everyone sees strange things.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Push Through",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Golden Pollen Pouch (4 / 2) and 1 Spark token.",
+          "fail": "lose 2 health.",
+          "spark": "gain a permanent quirk, Pollen-Touched (+1 die on Spark at Meadow locations, -1 die on Brawn at Mountain locations)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "golden-pollen-pouch"
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "quirk",
+            "name": "Pollen-Touched",
+            "text": "+1 die on Spark at Meadow locations, -1 die on Brawn at Mountain locations",
+            "quirk": [
+              {
+                "kind": "dice",
+                "amount": 1,
+                "stat": "spark",
+                "tags": [
+                  "meadow"
+                ]
+              },
+              {
+                "kind": "dice",
+                "amount": -1,
+                "stat": "brawn",
+                "tags": [
+                  "mountain"
+                ]
+              }
+            ]
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Read the Visions",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "see the next 2 World cards.",
+          "fail": "you hallucinate; see only 1 teaser next turn.",
+          "spark": "also learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekWorld",
+            "count": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Take Shelter",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "gilly-the-giant-goose",
+    "name": "Gilly the Giant Goose",
+    "region": "meadow",
+    "tags": [
+      "meadow",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "HONK.",
+    "flavor": "A goose as tall as a house guards a golden nest and fears nothing.",
+    "mishap": {
+      "text": "gain a permanent quirk, Goose-Shy (-1 die on any roll at a Creature location).",
+      "effects": [
+        {
+          "type": "quirk",
+          "name": "Goose-Shy",
+          "text": "-1 die on any roll at a Creature location",
+          "quirk": [
+            {
+              "kind": "dice",
+              "amount": -1,
+              "stat": null,
+              "tags": [
+                "creature"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "options": [
+      {
+        "name": "Steal an Egg",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Golden Goose Egg (6 / 3).",
+          "fail": "HONK; lose 2 health.",
+          "spark": "also gain 3 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "golden-goose-egg"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Win Her Over",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend Gilly (companion: +2 dice when a rival Brawls you).",
+          "fail": "chased; lose 2 stamina.",
+          "spark": "she lays you a Golden Goose Egg as a gift."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "gilly"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "golden-goose-egg"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Wrestle the Goose",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Goose-Down Pillow (gear: rest options restore 1 extra stamina) and 2 coin.",
+          "fail": "lose 2 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "goose-down-pillow"
+          },
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [],
+        "kind": "climb"
+      }
+    ]
+  },
+  {
+    "id": "the-fairy-ring",
+    "name": "The Fairy Ring",
+    "region": "meadow",
+    "tags": [
+      "meadow"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Mushrooms in a perfect circle.",
+    "flavor": "Step inside, and the Bloom feels very close.",
+    "mishap": {
+      "text": "you're a frog until your next turn.",
+      "effects": [
+        {
+          "type": "frog"
+        }
+      ]
+    },
+    "options": [
+      {
+        "name": "Dance in the Ring",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Spark tokens and 1 Lesson in Charm.",
+          "fail": "you dance all night; lose 2 stamina.",
+          "spark": "also a Fairy Charm (redraw both explore teasers once, then it's gone)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "charm"
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "fairy-charm"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Make a Wish",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 6 coin.",
+          "fail": "the fairies take a random item.",
+          "spark": "also gain 4 more coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 6
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseRandomItem"
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 4
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Step Out Quickly",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Nothing happens.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-thistle-knights-tourney",
+    "name": "The Thistle Knights' Tourney",
+    "region": "meadow",
+    "tags": [
+      "meadow",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Banners, trumpets, and a lot of shouting.",
+    "flavor": "The Thistle Knights hold a tourney every Bloom. Anyone may enter. Few walk away.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Joust",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Champion's Thistle Crown (8 / 4).",
+          "fail": "unhorsed; lose 3 health.",
+          "spark": "also gain 2 Lessons in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "champions-thistle-crown"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Win the Crowd",
+        "stats": [
+          "charm"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 8 coin in prizes.",
+          "fail": "booed; lose 2 stamina.",
+          "spark": "also a Thistle Banner (gear: +1 die on Charm rolls)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 8
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "thistle-banner"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Bet on a Rider",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": 2,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 6 coin.",
+          "fail": "you lose the bet.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 6
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-dreaming-field",
+    "name": "The Dreaming Field",
+    "region": "meadow",
+    "tags": [
+      "meadow",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Everyone who sleeps here dreams the same dream.",
+    "flavor": "Thal pollen hangs so thick that dreams spill into the waking world.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Walk Into the Dream",
+        "stats": [
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Dream-Glass Orb (8 / 4).",
+          "fail": "you can't wake; skip your next explore but keep your items.",
+          "spark": "also a Lucky Thimble."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "dream-glass-orb"
+          }
+        ],
+        "fail": [
+          {
+            "type": "skipExplore",
+            "keepItems": true
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "lucky-thimble"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Steal from a Sleeper",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "take a random item from the rival holding the most items.",
+          "fail": "they wake; lose 2 health.",
+          "spark": "also learn one tag from that rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stealFromMostItems"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Lie Down and Dream",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore all stamina, then roll 1 die: on a 1 or 2, a nightmare costs you 2 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": "all"
+          },
+          {
+            "type": "chance",
+            "faces": [
+              1,
+              2
+            ],
+            "then": [
+              {
+                "type": "damage",
+                "amount": 2
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-moth-queens-court",
+    "name": "The Moth Queen's Court",
+    "region": "meadow",
+    "tags": [
+      "meadow",
+      "creature",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Soft wings in the dark, thousands of them.",
+    "flavor": "The Moth Queen rules the night meadow, and she is very tired.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Sing Her to Sleep",
+        "stats": [
+          "charm"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "befriend a Moon Moth (companion and light source: +1 die on Spark rolls).",
+          "fail": "the swarm is annoyed; lose 2 health.",
+          "spark": "also Queen's Silver Dust (8 / 4)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "moon-moth"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "queens-silver-dust"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Take Her Lantern",
+        "stats": [
+          "luck"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "the Moth Queen's Lantern (light source; 10 / 5).",
+          "fail": "smothered in moths; lose 3 health.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "the-moth-queens-lantern"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Bow to the Queen",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gain 1 Lesson in Charm.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "charm"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-giggling-bog",
+    "name": "The Giggling Bog",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 2,
+    "teaser": "Something laughs beneath the mud.",
+    "flavor": "The mud here giggles when you step in it. A troll is stuck to his waist, glaring, and a tiny light bobs in the fog.",
+    "mishap": {
+      "text": "you're a frog until your next turn.",
+      "effects": [
+        {
+          "type": "frog"
+        }
+      ]
+    },
+    "options": [
+      {
+        "name": "Dig in the Muck",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Bog Pearl (4 / 2).",
+          "fail": "the mud swallows a random item.",
+          "spark": "also the Sunken Crown (8 / 4)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "bog-pearl"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseRandomItem"
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "the-sunken-crown",
+            "ifTaken": null
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Coax the Troll",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend Grumblewort (companion: +1 die on Brawn rolls for 3 turns).",
+          "fail": "he swats you; lose 1 health.",
+          "spark": "he whispers one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "grumblewort"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Follow the Giggles",
+        "stats": [
+          "wits",
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Starlit Lantern (light source; 6 / 3) and see the next World card.",
+          "fail": "lost in the fog; see only 1 teaser next turn.",
+          "spark": "the wisp stays (companion and light source: +1 die on Wits rolls)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "starlit-lantern"
+          },
+          {
+            "type": "peekWorld",
+            "count": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "companion",
+            "companion": "wisp"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Nap on a Lily Pad",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 3 stamina. Roll 1 die: on a 1, a frog steals a random item.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 3
+          },
+          {
+            "type": "chance",
+            "faces": [
+              1
+            ],
+            "then": [
+              {
+                "type": "loseRandomItem"
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "lily-pad-crossing",
+    "name": "Lily Pad Crossing",
+    "region": "swamp",
+    "tags": [
+      "swamp"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "Stepping stones that aren't stones.",
+    "flavor": "Giant lily pads float across the bog. Some of them are frogs.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Hop Across",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Bog Pearl (4 / 2).",
+          "fail": "splash; lose 1 stamina.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "bog-pearl"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Ask the Frogs",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "learn one tag from a rival's mission.",
+          "fail": "they ribbit at you; nothing happens.",
+          "spark": "befriend Sir Croaksworth (companion: you can't be turned into a frog)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "fail": [],
+        "spark": [
+          {
+            "type": "companion",
+            "companion": "sir-croaksworth"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Float and Drift",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina. Roll 1 die: on a 1, you're a frog until your next turn.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "chance",
+            "faces": [
+              1
+            ],
+            "then": [
+              {
+                "type": "frog"
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-mudlark-market",
+    "name": "The Mudlark Market",
+    "region": "swamp",
+    "tags": [
+      "swamp"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Someone's selling things out of the mud.",
+    "flavor": "Mudlarks sell whatever the bog gives up, no questions asked.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Haggle",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "sell them a good story for 3 coin.",
+          "fail": "cheated; lose 2 coin.",
+          "spark": "also a Mud Map (see the full card behind both teasers next turn)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "coin",
+            "amount": -2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "mud-map"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Dig Alongside Them",
+        "stats": [
+          "brawn"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Bog Pearl (4 / 2).",
+          "fail": "lose 1 health.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "bog-pearl"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Trade Gossip",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "learn one tag from a rival's mission.",
+          "fail": "they gossip about you; a random rival learns one tag from your mission.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "fail": [
+          {
+            "type": "revealOwnTag"
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "toadstool-thicket",
+    "name": "Toadstool Thicket",
+    "region": "swamp",
+    "tags": [
+      "swamp"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Spotted caps, taller than you.",
+    "flavor": "Giant mushrooms ferment thal into something fizzy and unpredictable.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Harvest Caps",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Fizzcap (food: +2 dice on your next roll, then lose 1 health).",
+          "fail": "wrong cap; you're a frog until your next turn.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "fizzcap"
+          }
+        ],
+        "fail": [
+          {
+            "type": "frog"
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Bounce on the Caps",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "find 3 coin in the gills.",
+          "fail": "lose 1 health.",
+          "spark": "also gain 1 Lesson in Luck."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "luck"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Sit in the Shade",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-frog-kings-court",
+    "name": "The Frog King's Court",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Tiny crowns. So many tiny crowns.",
+    "flavor": "A court of frogs ruled by a very small, very serious king.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Petition the King",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "the Frog King's Favor (once per game, turn a rival into a frog until their next turn).",
+          "fail": "you're a frog until your next turn.",
+          "spark": "also befriend Prince Ribbon (companion: +1 die on Charm rolls at Swamp locations)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "frog-kings-favor"
+          }
+        ],
+        "fail": [
+          {
+            "type": "frog"
+          }
+        ],
+        "spark": [
+          {
+            "type": "companion",
+            "companion": "prince-ribbon"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Steal a Tiny Crown",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Tiny Crown (6 / 3).",
+          "fail": "the court pelts you; lose 2 health.",
+          "spark": "a second Tiny Crown."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "tiny-crown"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "tiny-crown"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Join the Chorus",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "You're a frog until your next turn. Gain 1 Lesson in Charm.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "frog"
+          },
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "charm"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "witchlight-marsh",
+    "name": "Witchlight Marsh",
+    "region": "swamp",
+    "tags": [
+      "swamp"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Green lights bobbing over black water.",
+    "flavor": "Will-o'-wisps lead travelers astray, or somewhere wonderful.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Follow a Wisp",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Witchlight Lantern (light source; 4 / 2).",
+          "fail": "led astray; see only 1 teaser next turn.",
+          "spark": "also befriend a wisp (companion and light source: +1 die on Wits rolls)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "witchlight-lantern"
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "companion",
+            "companion": "wisp"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Catch a Wisp in a Jar",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Jarred Wisp (light source; 6 / 3).",
+          "fail": "it burns; lose 2 health.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "jarred-wisp"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Stay on the Path",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-sunken-chapel",
+    "name": "The Sunken Chapel",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "ruins"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "A bell tolls underwater.",
+    "flavor": "A Gardener-King chapel, half sunk in the bog. Something still rings the bell.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Dive for Relics",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "the Sunken Crown (8 / 4), or a Drowned Reliquary (6 / 3) if the crown has already been found.",
+          "fail": "you nearly drown; lose 2 health.",
+          "spark": "also a Drowned Reliquary (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "the-sunken-crown",
+            "ifTaken": "drowned-reliquary"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "drowned-reliquary"
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Ring the Bell Back",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "see the next World card and gain 1 Spark token.",
+          "fail": "something answers; lose 2 stamina.",
+          "spark": "also learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekWorld",
+            "count": 1
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Pray in the Pews",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "gator-ferry",
+    "name": "Gator Ferry",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "The ferryman has a lot of teeth.",
+    "flavor": "An enormous gator ferries travelers across the deep bog. He sets the fee.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Pay the Fare",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": 3,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina, and draw 3 teasers next turn and pick 1.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "teasersNextTurn",
+            "count": 3
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      },
+      {
+        "name": "Haggle with the Gator",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "a free ride, plus 3 coin he found in the river.",
+          "fail": "he eats a random item.",
+          "spark": "also befriend Captain Snapjaw (companion: +1 die on Brawn rolls at Swamp locations)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseRandomItem"
+          }
+        ],
+        "spark": [
+          {
+            "type": "companion",
+            "companion": "captain-snapjaw"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Ride Without Paying",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gator's Gold Tooth (6 / 3).",
+          "fail": "thrown overboard; lose 2 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "gators-gold-tooth"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-drowned-throne",
+    "name": "The Drowned Throne",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "A throne, rising from the water.",
+    "flavor": "The Drowned King's throne still sits in the deepest pool, and his ghost still sits on it.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Dive for the Crown",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "the Sunken Crown (8 / 4).",
+          "fail": "the ghost drags you down; lose 3 health.",
+          "spark": "also a Royal Signet (4 / 2)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "the-sunken-crown",
+            "ifTaken": null
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "royal-signet"
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Bargain with the Ghost",
+        "stats": [
+          "charm"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "he trades you the Sunken Crown for a promise.",
+          "fail": "cursed; add 1 Trouble die to your next roll.",
+          "spark": "also learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "the-sunken-crown",
+            "ifTaken": null
+          }
+        ],
+        "fail": [
+          {
+            "type": "trouble",
+            "amount": 1,
+            "rolls": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Pay Respects",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gain 1 Lesson in Charm.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "charm"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-great-bog-maw",
+    "name": "The Great Bog Maw",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "creature",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "The ground is breathing.",
+    "flavor": "The bog itself has a mouth here, and it's hungry.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Feed the Maw",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": true,
+        "classBonus": null,
+        "text": {
+          "success": "it spits out a Maw Pearl (10 / 5).",
+          "fail": "it keeps your treasure; lose 1 health.",
+          "spark": "also befriend Gulp, a bog spirit (companion: once per game, ignore a trap you spring)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "maw-pearl"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "companion",
+            "companion": "gulp"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Fight Your Way Out",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Maw Tooth (8 / 4).",
+          "fail": "swallowed; lose 3 health.",
+          "spark": "also gain 2 Lessons in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "maw-tooth"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Back Away Slowly",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "nothing happens.",
+          "fail": "lose a random item.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [],
+        "fail": [
+          {
+            "type": "loseRandomItem"
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-fermenting-deep",
+    "name": "The Fermenting Deep",
+    "region": "swamp",
+    "tags": [
+      "swamp",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Bubbles. Big ones.",
+    "flavor": "The deepest part of the bog, where thal ferments into something wild and dangerous.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Bottle the Brew",
+        "stats": [
+          "wits"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Bottled Thal Brew (food: +3 dice on your next roll; if that roll Mishaps, lose 2 health).",
+          "fail": "it explodes; lose 2 health and you're a frog until your next turn.",
+          "spark": "also a Fizzy Thal Crystal (10 / 5)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "bottled-thal-brew"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          },
+          {
+            "type": "frog"
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "fizzy-thal-crystal"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Drink Deep",
+        "stats": [
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 Lessons in Spark and restore all stamina.",
+          "fail": "lose 3 health and gain a permanent quirk, Bubbly (+1 die on Spark at Swamp locations, -1 die on Wits rolls).",
+          "spark": "also gain 2 Spark tokens."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 3,
+            "stat": "spark"
+          },
+          {
+            "type": "stamina",
+            "amount": "all"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          },
+          {
+            "type": "quirk",
+            "name": "Bubbly",
+            "text": "+1 die on Spark at Swamp locations, -1 die on Wits rolls",
+            "quirk": [
+              {
+                "kind": "dice",
+                "amount": 1,
+                "stat": "spark",
+                "tags": [
+                  "swamp"
+                ]
+              },
+              {
+                "kind": "dice",
+                "amount": -1,
+                "stat": "wits",
+                "tags": null
+              }
+            ]
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Skim the Surface",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Fermented Pearl (6 / 3).",
+          "fail": "lose 1 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "fermented-pearl"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "goatpath-switchbacks",
+    "name": "Goatpath Switchbacks",
+    "region": "mountain",
+    "tags": [
+      "mountain"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "A narrow path, and a goat that refuses to move.",
+    "flavor": "Mountain goats know every path, and they charge a toll.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Push Past the Goat",
+        "stats": [
+          "brawn"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "find 3 coin on the path.",
+          "fail": "headbutted; lose 1 health.",
+          "spark": "also gain 1 Lesson in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Make Friends with the Goat",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend Biscuit the goat (companion: +1 die on rolls at Mountain locations).",
+          "fail": "it eats 2 of your coin.",
+          "spark": "Biscuit finds a Mountain Garnet (4 / 2)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "biscuit-the-goat"
+          }
+        ],
+        "fail": [
+          {
+            "type": "coin",
+            "amount": -2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "mountain-garnet"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Rest at the Cairn",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "echo-gorge",
+    "name": "Echo Gorge",
+    "region": "mountain",
+    "tags": [
+      "mountain"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Say something. It'll say something back.",
+    "flavor": "The gorge repeats your words, sometimes with useful additions.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Shout a Question",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "learn one tag from a rival's mission.",
+          "fail": "the echo mocks you; lose 1 stamina.",
+          "spark": "also see the next World card."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "peekWorld",
+            "count": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Climb for Crystals",
+        "stats": [
+          "brawn"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Echo Crystal (4 / 2).",
+          "fail": "lose 1 health.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "echo-crystal"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Sing to the Echo",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gain 1 Lesson in Charm.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "charm"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "alpine-hot-springs",
+    "name": "Alpine Hot Springs",
+    "region": "mountain",
+    "tags": [
+      "mountain"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Steam rising from the snow.",
+    "flavor": "Thal-warmed springs that heal tired adventurers. The marmots got here first.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Soak",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore all health and 2 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": "all"
+          },
+          {
+            "type": "stamina",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      },
+      {
+        "name": "Pan for Gold",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 4 coin.",
+          "fail": "lose 1 stamina.",
+          "spark": "also a Hot-Spring Opal (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 4
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "hot-spring-opal"
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Shoo the Marmots",
+        "stats": [
+          "charm"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "befriend a marmot (companion: +1 die on Luck rolls at Mountain locations).",
+          "fail": "they bite; lose 1 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "marmot"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [],
+        "kind": "befriend"
+      }
+    ]
+  },
+  {
+    "id": "the-kite-cliffs",
+    "name": "The Kite Cliffs",
+    "region": "mountain",
+    "tags": [
+      "mountain"
+    ],
+    "skull": 2,
+    "copies": 2,
+    "teaser": "Wind, and a very long drop.",
+    "flavor": "Cloud-kite racers launch from here every Bloom.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Launch a Kite",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 4 coin, and draw 3 teasers next turn and pick 1.",
+          "fail": "crash; lose 2 health.",
+          "spark": "also a Racer's Ribbon (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 4
+          },
+          {
+            "type": "teasersNextTurn",
+            "count": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "racers-ribbon"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Repair Kites for Racers",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 5 coin.",
+          "fail": "lose 1 stamina.",
+          "spark": "also gain 2 Lessons in Wits."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 5
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "wits"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Watch the Race",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 stamina. You may bet 2 coin and roll 1 die: on a 5 or 6, gain 6 coin.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 1
+          },
+          {
+            "type": "bet",
+            "cost": 2,
+            "faces": [
+              5,
+              6
+            ],
+            "then": [
+              {
+                "type": "coin",
+                "amount": 6
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "frostroot-caves",
+    "name": "Frostroot Caves",
+    "region": "mountain",
+    "tags": [
+      "mountain"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Roots frozen into crystal.",
+    "flavor": "Deep inside these caves, mountain roots freeze into glittering crystal.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Mine the Crystal Roots",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Frostroot Crystal (6 / 3).",
+          "fail": "cave-in; lose 2 health.",
+          "spark": "also a Glowing Frostroot (light source; 4 / 2)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "frostroot-crystal"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "glowing-frostroot"
+          }
+        ],
+        "kind": "dig"
+      },
+      {
+        "name": "Map the Caves",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 coin and see the full card behind both teasers next turn.",
+          "fail": "lost; see only 1 teaser next turn.",
+          "spark": "also gain 1 Lesson in Wits."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 2
+          },
+          {
+            "type": "peekTeasers",
+            "turns": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "wits"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Shelter from the Cold",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-stone-giants-toes",
+    "name": "The Stone Giant's Toes",
+    "region": "mountain",
+    "tags": [
+      "mountain",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "These boulders have toenails.",
+    "flavor": "A sleeping stone giant lies half buried in the mountain. Don't tickle it.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Tickle a Toe",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "the giant laughs and coughs up a Giant's Gallstone (6 / 3).",
+          "fail": "it kicks; lose 2 health.",
+          "spark": "also gain 1 Lesson in Luck."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "giants-gallstone"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "luck"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Wake It Politely",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend Pebble, the giant's rock-hound (companion: once per game, ignore all damage from a Brawl).",
+          "fail": "lose 2 stamina.",
+          "spark": "the giant tells you a secret; learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "pebble"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Climb onto the Knee",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 coin and see the next 2 World cards.",
+          "fail": "lose 2 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 2
+          },
+          {
+            "type": "peekWorld",
+            "count": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [],
+        "kind": "climb"
+      }
+    ]
+  },
+  {
+    "id": "thunderhead-pass",
+    "name": "Thunderhead Pass",
+    "region": "mountain",
+    "tags": [
+      "mountain",
+      "peril"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "The clouds are low and angry.",
+    "flavor": "A mountain pass where thal storms gather.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Rush the Pass",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Storm-Glass (6 / 3).",
+          "fail": "struck by lightning; lose 2 health.",
+          "spark": "also Lightning in a Bottle (food: +3 dice on one Spark roll)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "storm-glass"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "lightning-in-a-bottle"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Catch the Lightning",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Spark tokens and 3 coin.",
+          "fail": "lose 2 health.",
+          "spark": "gain a permanent quirk, Static-Haired (+1 die on Spark rolls, -1 die on Charm rolls)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 3
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "quirk",
+            "name": "Static-Haired",
+            "text": "+1 die on Spark rolls, -1 die on Charm rolls",
+            "quirk": [
+              {
+                "kind": "dice",
+                "amount": 1,
+                "stat": "spark",
+                "tags": null
+              },
+              {
+                "kind": "dice",
+                "amount": -1,
+                "stat": "charm",
+                "tags": null
+              }
+            ]
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Wait Out the Storm",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 health. See only 1 teaser next turn.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 1
+          },
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-dragons-doorstep",
+    "name": "The Dragon's Doorstep",
+    "region": "mountain",
+    "tags": [
+      "mountain",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Something is snoring. Loudly.",
+    "flavor": "The mouth of a dragon's cave. The dragon has hiccups.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Sneak in for Gold",
+        "stats": [
+          "luck"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Dragon's Gold (10 / 5).",
+          "fail": "it hiccups fire; lose 3 health.",
+          "spark": "also a Dragon's Hiccup (light source; 8 / 4)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "dragons-gold"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "dragons-hiccup"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Bottle a Hiccup",
+        "stats": [
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "a Dragon's Hiccup (light source; 8 / 4).",
+          "fail": "lose 3 health.",
+          "spark": "also gain 2 Lessons in Spark."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "dragons-hiccup"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "spark"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Leave Before It Wakes",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 1 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-summit-shrine",
+    "name": "The Summit Shrine",
+    "region": "mountain",
+    "tags": [
+      "mountain"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "The air is thin, and the view is endless.",
+    "flavor": "A Rootkeeper shrine at the top of the world. You can see the Great Thalowood Tree from here.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Make the Final Climb",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Summit Stone (8 / 4) and 1 Lesson in Brawn.",
+          "fail": "lose 3 health.",
+          "spark": "also a Rootkeeper's Blessing (gear: +1 max health for the rest of the game)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "summit-stone"
+          },
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "brawn"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "rootkeepers-blessing"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Meditate at the Shrine",
+        "stats": [
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 Lessons in any one stat.",
+          "fail": "altitude sickness; lose 2 stamina.",
+          "spark": "see the full card behind every teaser you draw for your next 3 turns."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 3,
+            "stat": "any"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "peekTeasers",
+            "turns": 3
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Admire the View",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "See the next World card.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekWorld",
+            "count": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "wyrmmothers-nest",
+    "name": "Wyrmmother's Nest",
+    "region": "mountain",
+    "tags": [
+      "mountain",
+      "creature",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Eggshells the size of wagons.",
+    "flavor": "The Pickle Wyrm's mother nests here. She is not little.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Raid the Nest",
+        "stats": [
+          "luck"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Wyrm Egg (10 / 5).",
+          "fail": "she returns; lose 3 health and a random item.",
+          "spark": "also a Wyrm Scale (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "wyrm-egg"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          },
+          {
+            "type": "loseRandomItem"
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "wyrm-scale"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Soothe the Wyrmmother",
+        "stats": [
+          "charm"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend a Wyrmling (companion: +2 dice on rolls against Monster World cards).",
+          "fail": "lose 3 health.",
+          "spark": "she also gifts you a Wyrm Scale (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "wyrmling"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "wyrm-scale"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Fight Her Off",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Wyrm Scale (6 / 3) and 2 Lessons in Brawn.",
+          "fail": "lose 3 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "wyrm-scale"
+          },
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "brawn"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [],
+        "kind": "climb"
+      }
+    ]
+  },
+  {
+    "id": "the-toppled-archway",
+    "name": "The Toppled Archway",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 1,
+    "copies": 2,
+    "teaser": "Old stones with old words on them.",
+    "flavor": "A Gardener-King archway, carved with grafting instructions nobody can read anymore.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Read the Carvings",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 1 Lesson in Wits and see the next World card.",
+          "fail": "lose 1 stamina.",
+          "spark": "someone scratched their plans here; learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "wits"
+          },
+          {
+            "type": "peekWorld",
+            "count": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Search the Rubble",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Old Gardener Coin (2 / 1) and 2 coin.",
+          "fail": "lose 1 health.",
+          "spark": "also a Gardener's Signet (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "old-gardener-coin"
+          },
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "gardeners-signet"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Rest in the Shade",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-overgrown-library",
+    "name": "The Overgrown Library",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Books, vines, and the smell of old paper.",
+    "flavor": "Living vines have grown through every shelf. The books still whisper.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Study",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Lessons in any one stat.",
+          "fail": "lose 1 stamina.",
+          "spark": "also see the full card behind both teasers next turn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "any"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "peekTeasers",
+            "turns": 1
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Take a Rare Book",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Grafter's Notebook (4 / 2).",
+          "fail": "the vines grab you; lose 1 health.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "grafters-notebook"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Read Aloud to the Vines",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "restore 2 stamina and 1 health.",
+          "fail": "nothing happens.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "heal",
+            "amount": 1
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-collapsed-greenhouse",
+    "name": "The Collapsed Greenhouse",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Glass everywhere, and something still growing.",
+    "flavor": "A Graftwright greenhouse where grafted plants still grow strange fruit.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Pick Grafted Fruit",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Grafted Pearfruit (food: restore 3 health).",
+          "fail": "it bites back; lose 1 health.",
+          "spark": "also a Golden Grafted Apple (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "grafted-pearfruit"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "golden-grafted-apple"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Salvage Tools",
+        "stats": [
+          "wits"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Grafting Shears (gear: +1 die on Wits rolls at Ruins locations).",
+          "fail": "lose 1 stamina.",
+          "spark": "also gain 3 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "grafting-shears"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Sit Among the Plants",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gain 1 Lesson in Spark.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "spark"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-old-well",
+    "name": "The Old Well",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 1,
+    "copies": 1,
+    "teaser": "Make a wish. Something might hear it.",
+    "flavor": "A dry well from the Grafted Age. Thal still trickles at the bottom.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Toss a Coin",
+        "stats": [
+          "spark"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": 1,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 5 coin.",
+          "fail": "nothing happens.",
+          "spark": "also a Wishbone (redraw both explore teasers once, then it snaps)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 5
+          }
+        ],
+        "fail": [],
+        "spark": [
+          {
+            "type": "item",
+            "item": "wishbone"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Climb Down",
+        "stats": [
+          "brawn"
+        ],
+        "need": 1,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Well-Bottom Relic (4 / 2).",
+          "fail": "stuck; lose 1 stamina and see only 1 teaser next turn.",
+          "spark": "also gain 1 Spark token."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "well-bottom-relic"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          },
+          {
+            "type": "teasersNextTurn",
+            "count": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Drink the Trickle",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 health. Roll 1 die: on a 1, you're a frog until your next turn.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 2
+          },
+          {
+            "type": "chance",
+            "faces": [
+              1
+            ],
+            "then": [
+              {
+                "type": "frog"
+              }
+            ]
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-hall-of-statues",
+    "name": "The Hall of Statues",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "They're all looking at the same spot.",
+    "flavor": "Statues of the Gardener-Kings, all staring at one stone in the floor.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Lift the Stone",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "the King's Hidden Cache (6 / 3).",
+          "fail": "lose 2 health.",
+          "spark": "also gain 3 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "kings-hidden-cache"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 3
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Solve the Statues' Puzzle",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Lessons in Wits, and see the full card behind both teasers for your next 2 turns.",
+          "fail": "lose 2 stamina.",
+          "spark": "also a Statue's Eye Gem (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "wits"
+          },
+          {
+            "type": "peekTeasers",
+            "turns": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "statues-eye-gem"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Pose Like a Statue",
+        "stats": [
+          "luck"
+        ],
+        "need": 1,
+        "stamina": 0,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "restore 2 stamina, and rivals can't target you this round.",
+          "fail": "lose 1 stamina.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "stamina",
+            "amount": 2
+          },
+          {
+            "type": "untargetable"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 1
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-grafted-garden",
+    "name": "The Grafted Garden",
+    "region": "ruins",
+    "tags": [
+      "ruins",
+      "creature"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "The topiaries are moving.",
+    "flavor": "Hedge animals grafted by a Gardener-King still guard his garden.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Befriend a Topiary",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": {
+          "cls": "bramblebeast-tamer",
+          "dice": 2
+        },
+        "text": {
+          "success": "befriend a Hedge Hound (companion: +1 die on Brawn rolls at Ruins locations).",
+          "fail": "it prickles you; lose 2 health.",
+          "spark": "also gain 1 Lesson in Charm."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "companion",
+            "companion": "hedge-hound"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "charm"
+          }
+        ],
+        "kind": "befriend"
+      },
+      {
+        "name": "Raid the Fountain",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 6 coin.",
+          "fail": "the hedges chase you; lose 2 stamina.",
+          "spark": "also a Garden Key (6 / 3)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 6
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "garden-key"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Prune the Hedges",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 2 Lessons in Spark.",
+          "fail": "you prune the wrong one; lose 1 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "spark"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 1
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-vine-choked-vault",
+    "name": "The Vine-Choked Vault",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "A door, a lock, and a lot of vines.",
+    "flavor": "A Graftwright vault, locked tight and grown over.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Pick the Lock",
+        "stats": [
+          "wits"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Graftwright's Strongbox (8 / 4).",
+          "fail": "a hidden trap; lose 2 health.",
+          "spark": "also a Lucky Thimble."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "graftwrights-strongbox"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "lucky-thimble"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Rip Out the Vines",
+        "stats": [
+          "brawn"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 6 coin.",
+          "fail": "lose 2 health.",
+          "spark": "also gain 1 Lesson in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "coin",
+            "amount": 6
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 1,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Booby-Trap the Door",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Set a trap on any location name for 0 stamina.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "freeTrap"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-ghostly-ballroom",
+    "name": "The Ghostly Ballroom",
+    "region": "ruins",
+    "tags": [
+      "ruins"
+    ],
+    "skull": 2,
+    "copies": 1,
+    "teaser": "Music, but no musicians.",
+    "flavor": "The ghosts of a Gardener-King's court still dance every Bloom.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Join the Dance",
+        "stats": [
+          "charm"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Ghostly Locket (6 / 3).",
+          "fail": "you can't stop dancing; lose 2 stamina.",
+          "spark": "a ghost whispers one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "ghostly-locket"
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Steal from the Ghosts",
+        "stats": [
+          "luck"
+        ],
+        "need": 2,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Spectral Jewels (8 / 4).",
+          "fail": "haunted; add 1 Trouble die to your next roll.",
+          "spark": "also gain 2 coin."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "spectral-jewels"
+          }
+        ],
+        "fail": [
+          {
+            "type": "trouble",
+            "amount": 1,
+            "rolls": 1
+          }
+        ],
+        "spark": [
+          {
+            "type": "coin",
+            "amount": 2
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Sit Out the Dance",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Restore 2 health.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "heal",
+            "amount": 2
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-gardener-kings-tomb",
+    "name": "The Gardener-King's Tomb",
+    "region": "ruins",
+    "tags": [
+      "ruins",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "DO NOT DISTURB, carved in six languages.",
+    "flavor": "The tomb of the last Gardener-King. The vines here move like snakes.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Open the Sarcophagus",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Crown of the Gardener-King (10 / 5).",
+          "fail": "lose 3 health.",
+          "spark": "also a Royal Grafting Knife (gear: +1 die on any roll at Ruins locations)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "crown-of-the-gardener-king"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "royal-grafting-knife"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Read the Royal Inscriptions",
+        "stats": [
+          "wits"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "gain 3 Lessons in Wits and see the next 2 World cards.",
+          "fail": "cursed; add 1 Trouble die to your next 2 rolls.",
+          "spark": "also learn one tag from a rival's mission."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 3,
+            "stat": "wits"
+          },
+          {
+            "type": "peekWorld",
+            "count": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "trouble",
+            "amount": 1,
+            "rolls": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "learnRivalTag"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Leave an Offering",
+        "stats": [],
+        "need": 0,
+        "stamina": 0,
+        "rest": true,
+        "pay": null,
+        "discardTreasure": true,
+        "classBonus": null,
+        "text": {
+          "success": "Gain 2 Lessons in any one stat.",
+          "fail": null,
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "any"
+          }
+        ],
+        "fail": [],
+        "spark": [],
+        "kind": "rest"
+      }
+    ]
+  },
+  {
+    "id": "the-grafted-gate",
+    "name": "The Grafted Gate",
+    "region": "ruins",
+    "tags": [
+      "ruins",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "Something is pushing from the other side.",
+    "flavor": "A gate the Gardener-Kings grafted shut. It's starting to open.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Hold It Shut",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Gatekeeper's Seal (8 / 4).",
+          "fail": "lose 3 health.",
+          "spark": "also gain 2 Lessons in Brawn."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "gatekeepers-seal"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [
+          {
+            "type": "lessons",
+            "amount": 2,
+            "stat": "brawn"
+          }
+        ],
+        "kind": "climb"
+      },
+      {
+        "name": "Re-Graft the Seal",
+        "stats": [
+          "spark"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Living Seal-Vine (8 / 4) and 1 Spark token.",
+          "fail": "thal pushes back; lose 2 health and 2 stamina.",
+          "spark": "gain a permanent quirk, Graft-Marked (+1 die on Spark at Ruins locations, -1 die on Charm rolls)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "living-seal-vine"
+          },
+          {
+            "type": "sparkTokens",
+            "amount": 1
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          },
+          {
+            "type": "loseStamina",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "quirk",
+            "name": "Graft-Marked",
+            "text": "+1 die on Spark at Ruins locations, -1 die on Charm rolls",
+            "quirk": [
+              {
+                "kind": "dice",
+                "amount": 1,
+                "stat": "spark",
+                "tags": [
+                  "ruins"
+                ]
+              },
+              {
+                "kind": "dice",
+                "amount": -1,
+                "stat": "charm",
+                "tags": null
+              }
+            ]
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Peek Through",
+        "stats": [
+          "spark"
+        ],
+        "need": 2,
+        "stamina": 1,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "see the next 2 World cards.",
+          "fail": "something grabs a random item.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "peekWorld",
+            "count": 2
+          }
+        ],
+        "fail": [
+          {
+            "type": "loseRandomItem"
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      }
+    ]
+  },
+  {
+    "id": "the-sunken-observatory",
+    "name": "The Sunken Observatory",
+    "region": "ruins",
+    "tags": [
+      "ruins",
+      "peril"
+    ],
+    "skull": 3,
+    "copies": 1,
+    "teaser": "A telescope pointed straight down.",
+    "flavor": "Gardener-King astronomers searched underground for the Taproot. Something found them first.",
+    "mishap": null,
+    "options": [
+      {
+        "name": "Look Through the Telescope",
+        "stats": [
+          "wits"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "learn one tag from a rival's mission, and see the full card behind every teaser you draw for your next 3 turns.",
+          "fail": "you see something awful; lose 2 health.",
+          "spark": "also a Taproot Star-Chart (8 / 4)."
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "learnRivalTag"
+          },
+          {
+            "type": "peekTeasers",
+            "turns": 3
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "item",
+            "item": "taproot-star-chart"
+          }
+        ],
+        "kind": "explore"
+      },
+      {
+        "name": "Salvage the Brass",
+        "stats": [
+          "brawn"
+        ],
+        "need": 3,
+        "stamina": 3,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Brass Astrolabe (10 / 5).",
+          "fail": "lose 3 health.",
+          "spark": null
+        },
+        "sparkNeeds": 1,
+        "success": [
+          {
+            "type": "item",
+            "item": "brass-astrolabe"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 3
+          }
+        ],
+        "spark": [],
+        "kind": "explore"
+      },
+      {
+        "name": "Dig Where It Points",
+        "stats": [
+          "luck"
+        ],
+        "need": 3,
+        "stamina": 2,
+        "rest": false,
+        "pay": null,
+        "discardTreasure": false,
+        "classBonus": null,
+        "text": {
+          "success": "Root Crystal (10 / 5).",
+          "fail": "lose 2 health.",
+          "spark": "also a Taproot Fragment (legendary; effect hidden until used)."
+        },
+        "sparkNeeds": 2,
+        "success": [
+          {
+            "type": "item",
+            "item": "root-crystal"
+          }
+        ],
+        "fail": [
+          {
+            "type": "damage",
+            "amount": 2
+          }
+        ],
+        "spark": [
+          {
+            "type": "fragment"
+          }
+        ],
+        "kind": "dig"
+      }
+    ]
+  }
+]

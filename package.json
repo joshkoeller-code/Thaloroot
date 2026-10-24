@@ -1,0 +1,21 @@
+{
+  "name": "thaloroot",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Thaloroot: a whimsical, competitive, GM-less tabletop RPG, and its digital version.",
+  "type": "module",
+  "workspaces": [
+    "content",
+    "packages/*"
+  ],
+  "scripts": {
+    "content": "python3 tools/build_content.py",
+    "build": "npm run build -w @thaloroot/engine",
+    "typecheck": "npm run typecheck -w @thaloroot/engine",
+    "test": "npm test -w @thaloroot/engine",
+    "sim": "npm run sim -w @thaloroot/engine --"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
