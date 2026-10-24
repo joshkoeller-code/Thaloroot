@@ -1,0 +1,268 @@
+/* Layout: a cross-section of the ground. The World runs along the top like sky,
+   the players' plots sit at the surface, and the current choice opens below them
+   like a root chamber, with the chronicle beside it. The dice tray is the one loud thing. */
+:root {
+  /* light: lichen and bark */
+  --loam: #eeebf1;      /* page */
+  --bark: #fbfaf8;      /* panels */
+  --root: #d9d1e0;      /* lines, raised fills */
+  --petal: #2a2231;     /* text */
+  --dust: #675e70;      /* quiet text */
+  --thal: #9b6a07;      /* thal gold: successes, the main action */
+  --thal-ink: #fffaf0;  /* text on thal */
+  --thal-glow: #f6d27a;
+  --bloom: #a8426a;     /* sparks, fragments */
+  --peril: #b4402f;
+  --forest: #3f7a3b;
+  --meadow: #7d8a14;
+  --swamp: #23807c;
+  --mountain: #4b6a94;
+  --ruins: #7a5c99;
+  --creature: #a35d1f;
+  --die: #ffffff;
+  --die-pip: #2a2231;
+  --shade: rgba(42, 34, 49, 0.12);
+
+  --display: "Gluten", "Comic Neue", "Trebuchet MS", cursive;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.2rem;
+  --step-4: 3.4rem;
+  --gap: 1rem;
+  --radius-card: 14px;
+  --radius-chip: 999px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --loam: #1d1923; --bark: #29232f; --root: #3c3346; --petal: #f2e9df; --dust: #b5abbd;
+    --thal: #f2c14e; --thal-ink: #241b10; --thal-glow: #f7d98a; --bloom: #e98aab; --peril: #ec7b67;
+    --forest: #7cb874; --meadow: #c7d36a; --swamp: #5fbcb6; --mountain: #93add4; --ruins: #bba0d6; --creature: #e2a16a;
+    --die: #f2e9df; --die-pip: #241b10; --shade: rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --loam: #1d1923; --bark: #29232f; --root: #3c3346; --petal: #f2e9df; --dust: #b5abbd;
+  --thal: #f2c14e; --thal-ink: #241b10; --thal-glow: #f7d98a; --bloom: #e98aab; --peril: #ec7b67;
+  --forest: #7cb874; --meadow: #c7d36a; --swamp: #5fbcb6; --mountain: #93add4; --ruins: #bba0d6; --creature: #e2a16a;
+  --die: #f2e9df; --die-pip: #241b10; --shade: rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--loam);
+  color: var(--petal);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.5;
+}
+#app { min-height: 100%; }
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-block: 1rem 3rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 1.25rem;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.1; margin: 0; text-wrap: balance; }
+h1 { font-size: var(--step-4); letter-spacing: -0.01em; }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+p { margin: 0; }
+.quiet { color: var(--dust); }
+.small { font-size: var(--step--1); }
+.num { font-variant-numeric: tabular-nums; }
+.stack { display: grid; gap: 0.75rem; }
+.row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.spread { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; }
+
+/* controls */
+button, select, input { font: inherit; color: inherit; }
+button {
+  cursor: pointer;
+  border: 1.5px solid var(--root);
+  background: var(--bark);
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  min-height: 2.5rem;
+}
+button:hover:not(:disabled) { border-color: var(--dust); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+button.primary { background: var(--thal); border-color: var(--thal); color: var(--thal-ink); font-weight: 700; }
+button.primary:hover:not(:disabled) { filter: brightness(1.06); border-color: var(--thal); }
+button.ghost { background: transparent; }
+button.pressed { border-color: var(--thal); box-shadow: inset 0 0 0 1.5px var(--thal); }
+:focus-visible { outline: 3px solid var(--thal); outline-offset: 2px; }
+select, input[type="text"], input[type="number"] {
+  background: var(--bark);
+  border: 1.5px solid var(--root);
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+  min-height: 2.5rem;
+  max-width: 100%;
+}
+label.check { display: inline-flex; gap: 0.45rem; align-items: center; cursor: pointer; }
+label.check input { width: 1.1rem; height: 1.1rem; accent-color: var(--thal); }
+
+/* chips */
+.chip {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  border-radius: var(--radius-chip);
+  padding: 0.05rem 0.6rem;
+  font-size: var(--step--1);
+  border: 1.5px solid currentColor;
+  white-space: nowrap;
+}
+.chip.forest { color: var(--forest); } .chip.meadow { color: var(--meadow); } .chip.swamp { color: var(--swamp); }
+.chip.mountain { color: var(--mountain); } .chip.ruins { color: var(--ruins); } .chip.creature { color: var(--creature); }
+.chip.peril { color: var(--peril); } .chip.any { color: var(--dust); }
+.chip.status { color: var(--bloom); }
+.chip.night { color: var(--mountain); }
+
+/* header: the World */
+.sky { display: grid; gap: 0.6rem; }
+.sky-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.25rem; }
+.wordmark { font-family: var(--display); font-size: var(--step-3); font-weight: 700; }
+.vine { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.seed { width: 12px; height: 12px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--root); }
+.seed.left { background: var(--thal); }
+.seed.finale { width: 18px; height: 18px; background: var(--bloom); }
+.effects { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* player plots */
+.plots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, calc(50% - 0.4rem)), 1fr)); gap: 0.75rem; }
+@media (max-width: 520px) { .plot { padding: 0.6rem 0.7rem; } .stat-line { grid-template-columns: 3.9rem 1fr auto; gap: 0.35rem; } .plot-sub { display: none; } }
+.plot {
+  background: var(--bark);
+  border-radius: var(--radius-card);
+  padding: 0.75rem 0.85rem;
+  display: grid; gap: 0.35rem;
+  border: 2px solid transparent;
+  min-width: 0;
+}
+.plot.active { border-color: var(--thal); }
+.plot-name { font-family: var(--display); font-size: var(--step-1); font-weight: 600; }
+.meter { display: flex; gap: 3px; }
+.meter i { flex: 1; height: 7px; border-radius: 3px; background: var(--root); max-width: 18px; }
+.meter.health i.on { background: var(--peril); }
+.meter.stamina i.on { background: var(--swamp); }
+.stat-line { display: grid; grid-template-columns: 4.6rem 1fr auto; gap: 0.5rem; align-items: center; font-size: var(--step--1); }
+
+/* main area */
+.ground { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 1.25rem; align-items: start; }
+@media (max-width: 900px) { .ground { grid-template-columns: minmax(0, 1fr); } }
+.chamber { background: var(--bark); border-radius: var(--radius-card); padding: 1.1rem 1.2rem 1.3rem; display: grid; gap: 1rem; min-width: 0; }
+.chamber-head { display: grid; gap: 0.25rem; }
+.who { font-size: var(--step--1); color: var(--dust); }
+
+.chronicle { display: grid; gap: 0.5rem; min-width: 0; }
+.chronicle ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; max-height: 70vh; overflow-y: auto; font-size: var(--step--1); }
+.chronicle li { padding-left: 0.7rem; border-left: 2px solid var(--root); }
+.chronicle li.mine { border-left-color: var(--bloom); }
+.chronicle .r { color: var(--dust); }
+
+/* choices laid out as a set of things to pick from */
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem; }
+.choice {
+  text-align: left;
+  display: grid; gap: 0.45rem; align-content: start;
+  background: var(--loam);
+  border: 2px solid var(--root);
+  border-radius: var(--radius-card);
+  padding: 0.9rem 1rem;
+  min-width: 0;
+}
+.choice:hover:not(:disabled) { border-color: var(--thal); }
+.choice.selected { border-color: var(--thal); box-shadow: 0 0 0 3px var(--shade); }
+.choice h3 { font-size: var(--step-1); }
+.choice ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.2rem; }
+
+/* a player's private sheet: dashed, so it never reads as something to click */
+.sheet { display: grid; gap: 0.45rem; border: 2px dashed var(--bloom); border-radius: var(--radius-card); padding: 0.9rem 1rem; min-width: 0; }
+.sheet ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.2rem; }
+
+/* explore card */
+.card-head { display: grid; gap: 0.35rem; }
+.skulls { display: inline-flex; gap: 2px; vertical-align: middle; color: var(--petal); }
+.teaser { font-style: italic; }
+.options { display: grid; gap: 0.6rem; }
+.option {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.4rem 1rem; align-items: center;
+  border: 2px solid var(--root); border-radius: 12px; padding: 0.75rem 0.9rem; background: var(--loam);
+}
+.option.selected { border-color: var(--thal); }
+.option .odds { text-align: right; font-variant-numeric: tabular-nums; }
+.option .results { grid-column: 1 / -1; display: grid; gap: 0.15rem; font-size: var(--step--1); }
+.option .results b { font-weight: 700; }
+@media (max-width: 520px) { .option { grid-template-columns: minmax(0, 1fr); } .option .odds { text-align: left; } }
+.toggles { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+
+/* the dice tray */
+.tray {
+  display: grid; gap: 0.6rem;
+  background: var(--loam);
+  border-radius: var(--radius-card);
+  padding: 0.9rem 1rem;
+}
+.dice { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.die { width: 52px; height: 52px; border-radius: 12px; background: var(--die); box-shadow: 0 3px 0 var(--root); display: block; }
+.die.hit { background: var(--thal); box-shadow: 0 3px 0 var(--thal-glow), 0 0 18px var(--thal-glow); }
+.die.spark { outline: 3px solid var(--bloom); outline-offset: 2px; }
+.die.one { background: var(--root); }
+.die.trouble { background: var(--bark); border: 2px dashed var(--peril); }
+.die circle { fill: var(--die-pip); }
+.die.one circle { fill: var(--peril); }
+.die.trouble circle { fill: var(--peril); }
+.tumble .die { animation: tumble 520ms cubic-bezier(.2, .9, .3, 1.2) both; }
+@keyframes tumble {
+  0% { transform: translateY(-26px) rotate(-200deg) scale(0.7); opacity: 0; }
+  70% { opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+.verdict { font-family: var(--display); font-size: var(--step-2); font-weight: 600; }
+.verdict.ok { color: var(--thal); }
+@media (prefers-reduced-motion: reduce) { .tumble .die { animation: none; } }
+
+/* full-screen hand-off */
+.curtain {
+  position: fixed; inset: 0; z-index: 20;
+  background: var(--loam);
+  display: grid; place-items: center;
+  padding: max(24px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.curtain-inner { display: grid; gap: 1.2rem; justify-items: center; text-align: center; max-width: 34rem; }
+.curtain h1 { font-size: clamp(2.4rem, 8vw, 4.5rem); }
+
+/* setup */
+.setup-hero { display: grid; gap: 0.6rem; padding-block: 1.5rem 0.5rem; }
+.setup-hero h1 { font-size: clamp(3rem, 11vw, 6.5rem); line-height: 0.95; }
+.seats { display: grid; gap: 0.75rem; }
+.seat { background: var(--bark); border-radius: var(--radius-card); padding: 0.9rem 1rem; display: grid; gap: 0.75rem; }
+.seat-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto auto; gap: 0.6rem; align-items: center; }
+@media (max-width: 720px) { .seat-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; }
+@media (max-width: 520px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.stepper { display: grid; gap: 0.2rem; justify-items: center; background: var(--loam); border-radius: 10px; padding: 0.4rem 0.3rem; }
+.stepper .v { font-family: var(--display); font-size: var(--step-2); line-height: 1; }
+.stepper .btns { display: flex; gap: 0.3rem; }
+.stepper button { min-height: 2rem; padding: 0 0.6rem; }
+.segmented { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* scores */
+.scores { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.scores th, .scores td { padding: 0.5rem 0.6rem; text-align: right; border-bottom: 1px solid var(--root); }
+.scores th:first-child, .scores td:first-child, .scores .text { text-align: left; }
+.scores tr.winner td { font-weight: 700; }
+.table-wrap { overflow-x: auto; }
+
+.error { color: var(--peril); }
+.hold { user-select: none; touch-action: none; }

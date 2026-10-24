@@ -15,6 +15,7 @@ content/            Game content as JSON, generated from the design doc
   items.json, companions.json, classes.json, species.json, taproot-fragments.json
   rules.json          The Playtest 4 numbers: dice, VP tables, Lessons, traps, merchants, game lengths
 packages/engine/    The rules engine (TypeScript): state machine, bots, simulator, tests
+apps/web/           The pass-and-play prototype: one shared screen in the browser (React + Vite)
 tools/              Python scripts that build content/*.json from the doc exports
 docs/               How mission conditions work, rules interpretations, and balance baselines
 ```
@@ -25,6 +26,7 @@ You need Node 20 or newer (and Python 3 only if you rebuild the content).
 
 ```sh
 npm install
+npm run dev         # the pass-and-play prototype at http://localhost:5173
 npm test            # 95 tests: content checks, every mission is completable, rules, balance guardrails
 npm run sim -- --games 500                      # bot games with the full content, Quick length
 npm run sim -- --games 500 --playtest           # the Playtest 1-4 setup, to compare with the playtest log
@@ -33,6 +35,12 @@ npm run sim -- --log --seed 7                   # one game, every event narrated
 ```
 
 A thousand bot games take about 7 seconds.
+
+## The pass-and-play prototype
+
+`apps/web` runs a whole game on one screen. Set up 2 to 8 adventurers (any mix of people and computer players), then pass the device around: before each secret choice (a mission, a teaser, Ally/Brawl/Pass, a trap, final guesses) the screen asks everyone else to look away and the right person to tap in. Public choices, like which option to try at a location, happen in front of everyone, with a press-and-hold button to peek at your mission. Computer players move on their own at a speed you pick, and a game in progress is saved in the browser so you can resume it.
+
+`npm run build -w @thaloroot/web` produces a single `apps/web/dist/index.html` you can open or host anywhere. `npm run build:artifact -w @thaloroot/web` produces the version published as a shareable page, with React loaded from a CDN.
 
 ## The rules engine
 
@@ -82,8 +90,8 @@ With the full content (51 missions, 14 classes, random characters), the engine's
 
 ## Roadmap
 
-1. **Rules engine** (this step): content as data, the engine, bots, simulator, tests.
-2. **Pass-and-play prototype**: one browser screen, players take turns on the same device.
+1. **Rules engine** (done): content as data, the engine, bots, simulator, tests.
+2. **Pass-and-play prototype** (this step): one browser screen, players take turns on the same device.
 3. **Multiplayer**: phones as private hands, a shared TV dashboard, a room code to join.
 4. **Accounts and carryover**: characters that keep their growth, quirks, and heirlooms between games.
 5. **Polish**: art, sound, animation, onboarding.
