@@ -316,6 +316,11 @@ export interface MarketState {
   pending: number[];
 }
 
+export interface MissionLineup {
+  rival: number;
+  missions: string[];
+}
+
 export interface Meeting {
   players: number[];
   key: string;
@@ -467,6 +472,8 @@ export interface GameState {
   stats: Record<string, number>;
   winner: number[] | null;
   scores: ScoreLine[] | null;
+  /** The story so far, in order. */
+  story: StoryBeat[];
   /** The most recent explore roll, for showing dice. */
   lastRoll?: LastRoll | null;
   /** Queued die results (tests, scripted tutorials). Consumed before the RNG. */
@@ -488,6 +495,12 @@ export interface LastRoll {
   spark: boolean;
   mishap: boolean;
 }
+
+/** Something that happened that the story should tell. Text lives in content/story.json. */
+export type StoryBeat =
+  | { seq: number; round: number; kind: "scene"; player: number; card: string; option: string; outcome: "success" | "fail" | "rest"; spark: boolean; mishap: boolean }
+  | { seq: number; round: number; kind: "mission"; player: number; mission: string; part: "opening" | "finale" | 0 | 1 | 2; private: number[] }
+  | { seq: number; round: number; kind: "world"; card: string };
 
 export interface TradeOffer {
   from: number;

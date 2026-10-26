@@ -1,6 +1,6 @@
 import React from "react";
-import { Content, FINALE, type GameState, type PlayerState } from "@thaloroot/engine";
-import { Meter, RollTray, className, plural, worldName } from "./bits";
+import { Content, FINALE, STATS, itemCoin, itemVp, type GameState, type PlayerState, type Stat } from "@thaloroot/engine";
+import { Meter, SceneTray, cap, className, itemName, plural, worldName } from "./bits";
 import { DecisionPanel, HEADINGS } from "./panels";
 import { SPEED_MS, type Controller, type Speed } from "./session";
 
@@ -58,6 +58,32 @@ function World({ game }: { game: GameState }) {
   );
 }
 
+const SHORT: Record<Stat, string> = { brawn: "Brawn", wits: "Wits", charm: "Charm", spark: "Spark", luck: "Luck" };
+const PER = Content.rules.lessons.perStat;
+
+/** Stats with this game's class changes, and Lessons toward the next permanent point. */
+function StatGrid({ p }: { p: PlayerState }) {
+  return (
+    <div className="statgrid" role="table" aria-label={`${p.name}'s stats`}>
+      {STATS.map((k) => {
+        const diff = p.stats[k] - p.baseStats[k];
+        return (
+          <div className="statcell" role="row" key={k} title={`${SHORT[k]} ${p.stats[k]}${diff ? ` (${p.baseStats[k]} ${diff > 0 ? "+" : "−"} ${Math.abs(diff)} from class)` : ""}. Lessons ${p.lessons[k]} of ${PER}.`}>
+            <span className="statname" role="rowheader">{SHORT[k]}</span>
+            <span className="statval num" role="cell">
+              {p.stats[k]}
+              {diff !== 0 && <sup className={diff > 0 ? "up" : "down"}>{diff > 0 ? `+${diff}` : diff}</sup>}
+            </span>
+            <span className="pips" role="cell" aria-label={`${p.lessons[k]} of ${PER} Lessons`}>
+              {Array.from({ length: PER }, (_, i) => <i key={i} className={i < p.lessons[k] ? "on" : ""} />)}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; active: boolean; human: boolean }) {
   const status = [
     p.frog && "Frog",
@@ -84,10 +110,11 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
         <Meter kind="stamina" value={p.stamina} max={p.maxStamina} />
         <span className="num">{p.stamina}/{p.maxStamina}</span>
       </div>
+      <StatGrid p={p} />
       <span className="small num">
-        {plural(p.coin, "coin", "coin")}, {plural(p.sparkTokens, "Spark token")}, {plural(p.items.length, "item")}
+        {plural(p.coin, "coin", "coin")}, {plural(p.sparkTokens, "Spark token")}
+        {p.grownThisGame ? `, grew ${p.growth.map(cap).join(" and ")}` : ""}
       </span>
-      {p.companions.length > 0 && <span className="small">With {p.companions.map((c) => Content.companion[c.id].name).join(" and ")}</span>}
       {status.length > 0 && (
         <span className="row">
           {status.map((s) => (
@@ -95,6 +122,36 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
           ))}
         </span>
       )}
+      <details className="pack">
+        <summary className="small">
+          Pack: {plural(p.items.length, "item")}
+          {p.companions.length ? `, ${plural(p.companions.length, "companion")}` : ""}
+          {p.quirks.length ? `, ${plural(p.quirks.length, "quirk")}` : ""}
+        </summary>
+        <ul className="small">
+          {p.items.map((it) => {
+            const def = Content.item[it.id];
+            return (
+              <li key={it.uid}>
+                {it.id === "taproot-fragment" ? "Taproot Fragment (hidden power)" : itemName(it.id)}
+                {itemVp(it) ? <span className="quiet num"> {itemCoin(it)} coin / {itemVp(it)} VP</span> : null}
+                {def.text && it.id !== "taproot-fragment" ? <span className="quiet">. {def.text}</span> : null}
+              </li>
+            );
+          })}
+          {p.companions.map((c) => (
+            <li key={c.id}>
+              {Content.companion[c.id].name} <span className="quiet">(companion). {Content.companion[c.id].text}</span>
+            </li>
+          ))}
+          {p.quirks.map((q) => (
+            <li key={q.name}>
+              {q.name} <span className="quiet">(quirk). {q.text}</span>
+            </li>
+          ))}
+          {!p.items.length && !p.companions.length && !p.quirks.length && <li className="quiet">Nothing yet.</li>}
+        </ul>
+      </details>
     </article>
   );
 }
@@ -128,7 +185,8 @@ export function Table({ c, onQuit }: { c: Controller; onQuit: () => void }) {
   const activePlayer = decision?.player ?? game.turn?.player ?? null;
   const human = decision ? session.humans[decision.player] : false;
   const name = decision ? game.players[decision.player].name : "";
-  const showRoll = game.lastRoll && game.lastRoll.seq > 0 && decision?.kind !== "push";
+  const scene = [...game.story].reverse().find((b) => b.kind === "scene") as Extract<GameState["story"][number], { kind: "scene" }> | undefined;
+  const showScene = scene && decision?.kind !== "push";
   return (
     <main className="page">
       <World game={game} />
@@ -139,14 +197,14 @@ export function Table({ c, onQuit }: { c: Controller; onQuit: () => void }) {
       </section>
       <div className="ground">
         <section className="chamber" aria-live="polite">
-          {showRoll && <RollTray game={game} roll={game.lastRoll!} />}
+          {showScene && <SceneTray game={game} beat={scene!} roll={game.lastRoll ?? null} />}
           {decision && (
             <div className="chamber-head">
               <h2>{HEADINGS[decision.kind](name)}</h2>
               {!human && <p className="who">A computer player is deciding.</p>}
             </div>
           )}
-          {decision && human && !c.needsHandoff && <DecisionPanel game={game} d={decision} submit={c.submit} />}
+          {decision && human && !c.needsHandoff && <DecisionPanel game={game} d={decision} submit={c.submit} seen={session.journalSeen?.[decision.player] ?? 0} />}
           {c.error && <p className="error" role="alert">That didn't work: {c.error}</p>}
           <div className="spread small">
             <span className="row">

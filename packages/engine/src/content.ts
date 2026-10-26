@@ -7,6 +7,7 @@ import classes from "@thaloroot/content/classes.json" with { type: "json" };
 import species from "@thaloroot/content/species.json" with { type: "json" };
 import fragments from "@thaloroot/content/taproot-fragments.json" with { type: "json" };
 import rules from "@thaloroot/content/rules.json" with { type: "json" };
+import story from "@thaloroot/content/story.json" with { type: "json" };
 
 import type {
   ClassDef,
@@ -50,7 +51,14 @@ export const Content = {
   speciesById: index(species as unknown as SpeciesDef[]),
   fragments: fragments as unknown as FragmentDef[],
   fragment: index(fragments as unknown as FragmentDef[]),
+  story: story as unknown as StoryText,
 };
+
+export interface StoryText {
+  locations: Record<string, { options: Record<string, { success?: string; fail?: string; spark?: string; scene?: string }>; mishap: string | null }>;
+  missions: Record<string, { opening: string; milestones: string[]; finale: string }>;
+  world: Record<string, string>;
+}
 
 export type ContentT = typeof Content;
 

@@ -50,3 +50,7 @@ On the same four characters and 12 missions, the engine's bots finish missions m
 6. **Kept treasure catches up with missions in Long games** (see above).
 
 These come from bots, which are cautious about risk and bad at deduction, so treat them as places to look in a human playtest rather than verdicts.
+
+## After the first digital playtest: guess lineups
+
+Final guesses now pick from a lineup of 6 per rival (the real mission, the two the rival turned down, and three random ones) instead of all 51. Bots now guess right about half the time, and guess VP rose from 1.1 to 5.0 per player in a Quick game, about a third of what missions are worth. Bigger lineups soften it: 8 missions gives 4.4 VP, and 10 gives 3.8. If guessing feels too strong at the table, the lineup size is one number in `content/rules.json` (`scoring.lineupSize`), or each correct guess could drop to 2 VP.

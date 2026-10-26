@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Content, createGame, exportCharacter, type GameState } from "@thaloroot/engine";
-import { className } from "./bits";
+import { className, missionBeatText, taleOf } from "./bits";
 import { Setup } from "./Setup";
 import { Table } from "./Table";
 import { clearSaved, loadSaved, useSession, type Controller, type Session } from "./session";
@@ -10,6 +10,36 @@ function Curtain({ children }: { children: React.ReactNode }) {
     <div className="curtain" role="dialog" aria-modal="true">
       <div className="curtain-inner">{children}</div>
     </div>
+  );
+}
+
+const KIND: Record<string, string> = {
+  weather: "The weather turns",
+  monster: "A monster appears",
+  merchant: "A merchant arrives",
+  rumor: "A rumor spreads",
+  chaos: "Chaos in Thaloroot",
+  escalation: "The Bloom grows stronger",
+  finale: "The Finale",
+};
+
+function WorldMoment({ id }: { id: string }) {
+  const def = Content.worldCard[id];
+  return (
+    <>
+      <p className="moment-kind">{KIND[def.category] ?? "The World turns"}</p>
+      <h1>{def.name}</h1>
+      <p className="moment-text">{Content.story.world[id]}</p>
+      <div className="moment-effect stack">
+        {def.flavor && <p className="small quiet"><i>{def.flavor}</i></p>}
+        {def.text && <p className="small">{def.text}</p>}
+        {def.category === "monster" && (
+          <p className="small">
+            Hunts {def.huntsText.charAt(0).toLowerCase() + def.huntsText.slice(1)}. {def.optionsText}. Defeat it for {def.rewardText}.
+          </p>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -61,6 +91,25 @@ function Scores({ game, onAgain, onNew }: { game: GameState; onAgain: () => void
         </table>
       </div>
       <p className="small quiet">Ties go to the player with the most coin.</p>
+      <section className="stack" aria-labelledby="tales-h">
+        <h2 id="tales-h">Tales of the Bloom</h2>
+        <div className="tales">
+          {lines.map((l) => {
+            const tale = taleOf(game, l.player);
+            const name = game.players[l.player].name;
+            const p = game.players[l.player];
+            return (
+              <article className="tale" key={l.player}>
+                <h3>{name} and {l.mission ? Content.mission[l.mission].name : "no mission"}</h3>
+                {tale.map((b) => (
+                  <p key={b.seq}>{missionBeatText(game, b)}</p>
+                ))}
+                {!p.finaleDone && <p className="quiet">The Bloom faded before {name} could finish the quest. There is always another Bloom.</p>}
+              </article>
+            );
+          })}
+        </div>
+      </section>
       <div className="row">
         <button className="primary" onClick={onAgain}>Play again with the same adventurers</button>
         <button onClick={onNew}>Back to setup</button>
@@ -79,14 +128,22 @@ function Game({ initial, onExit, onAgain }: { initial: Session; onExit: () => vo
   return (
     <>
       <Table c={c} onQuit={onExit} />
-      {session.covered && (
+      {c.moment && c.moment.kind === "world" && (
+        <Curtain>
+          <WorldMoment id={c.moment.card} />
+          <button className="primary" onClick={c.ackMoment} autoFocus>
+            Continue
+          </button>
+        </Curtain>
+      )}
+      {!c.moment && session.covered && (
         <Curtain>
           <h1>{session.covered.name} has chosen</h1>
           <p className="quiet">Turn the screen back to the table before continuing.</p>
           <button className="primary" onClick={c.uncover}>Continue</button>
         </Curtain>
       )}
-      {!session.covered && c.needsHandoff && decision && (
+      {!c.moment && !session.covered && c.needsHandoff && decision && (
         <Curtain>
           <h1>Pass to {game.players[decision.player].name}</h1>
           <p className="quiet">This choice is secret. Everyone else, look away.</p>

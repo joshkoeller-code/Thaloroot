@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { botAction } from "../src/bots.js";
+import { Content } from "../src/content.js";
 import { addLessons, damage, steal } from "../src/effects.js";
 import { act as actPure, createGame, IllegalAction, newCharacterStats, step } from "../src/engine.js";
 import { runGame } from "../src/sim.js";
@@ -284,5 +285,58 @@ describe("coming back", () => {
     damage(s, s.players[0], 6, "explore");
     botsUntil(s, (x) => x.players[0].history.some((e) => e.type === "downedReturn"));
     expect(s.players[0].history.some((e) => e.type === "downedReturn")).toBe(true);
+  });
+});
+
+describe("the story and the final guess", () => {
+  it("tells an opening for every mission, a scene for every explore, and a moment for every World card", () => {
+    const s = runGame({ seed: 21, players: 3 });
+    const openings = s.story.filter((b) => b.kind === "mission" && b.part === "opening");
+    expect(openings).toHaveLength(3);
+    const scenes = s.story.filter((b) => b.kind === "scene");
+    expect(scenes.length).toBeGreaterThan(10);
+    const worlds = s.story.filter((b) => b.kind === "world");
+    expect(worlds.length).toBeGreaterThan(3);
+    for (const p of s.players) {
+      const beats = s.story.filter((b) => b.kind === "mission" && b.player === p.id && typeof b.part === "number");
+      expect(beats).toHaveLength(p.claimed.length);
+    }
+    expect(s.story.map((b) => b.seq)).toEqual(s.story.map((_, i) => i + 1));
+  });
+
+  it("offers each rival as a lineup of 6 that includes their real mission and the two they turned down", () => {
+    const s = setup({ players: 3, seed: 5 });
+    botsUntil(s, (x) => x.phase === "finalGuess");
+    const d = s.pending.find((x) => x.kind === "finalGuess")!;
+    const lineups = d.data.lineups as { rival: number; missions: string[] }[];
+    expect(lineups).toHaveLength(2);
+    for (const l of lineups) {
+      const q = s.players[l.rival];
+      expect(l.missions).toHaveLength(6);
+      expect(new Set(l.missions).size).toBe(6);
+      expect(l.missions).toContain(q.mission);
+      for (const m of s.missionOptions[q.id]) expect(l.missions).toContain(m);
+    }
+  });
+
+  it("ignores a guess that isn't in the lineup", () => {
+    const s = setup({ players: 2, seed: 6 });
+    botsUntil(s, (x) => x.phase === "finalGuess");
+    const d = s.pending.find((x) => x.kind === "finalGuess")!;
+    const rival = d.data.rivals[0];
+    const outside = Content.missions.map((m) => m.id).find((m) => !d.data.lineups[0].missions.includes(m))!;
+    step(s, { player: d.player, kind: "finalGuess", guesses: { [rival]: outside } });
+    expect(s.players[d.player].guesses).toEqual({});
+  });
+
+  it("keeps a public record of what each player did", async () => {
+    const { publicRecord } = await import("../src/record.js");
+    const s = runGame({ seed: 8, players: 3 });
+    for (const p of s.players) {
+      const r = publicRecord(s, p.id);
+      const visits = Object.values(r.explored).reduce((a, b) => a + (b ?? 0), 0);
+      expect(visits).toBeGreaterThan(0);
+      expect(r.meetings.ally + r.meetings.brawl + r.meetings.pass).toBe(p.history.filter((e) => e.type === "meetingChoice").length);
+    }
   });
 });

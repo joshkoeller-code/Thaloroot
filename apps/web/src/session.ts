@@ -18,6 +18,16 @@ export interface Session {
   /** Shown after a private choice so the next person doesn't see it. */
   covered: { name: string } | null;
   started: number;
+  /** The last World card moment everyone has seen. */
+  seenWorld?: number;
+  /** Per player: the last of their own story beats they've read. */
+  journalSeen?: Record<number, number>;
+}
+
+/** The World card moment waiting to be shown, if any. */
+export function pendingMoment(s: Session) {
+  const seen = s.seenWorld ?? 0;
+  return s.game.story.find((b) => b.kind === "world" && b.seq > seen) ?? null;
 }
 
 /** Choices only the deciding player should see. */
@@ -57,6 +67,8 @@ function save(s: Session | null): void {
 }
 
 export interface Controller {
+  moment: ReturnType<typeof pendingMoment>;
+  ackMoment(): void;
   session: Session;
   decision: Decision | null;
   /** True while a person must take the device before seeing this decision. */
@@ -81,6 +93,12 @@ export function useSession(initial: Session, onChange?: (s: Session) => void): C
     const game = act(s.game, a);
     let holder = s.holder;
     let covered = s.covered;
+    let journalSeen = s.journalSeen ?? {};
+    if (s.humans[a.player] && PRIVATE.includes(a.kind as Decision["kind"])) {
+      // they just had the device: everything in their tale up to now counts as read
+      const mine = s.game.story.filter((b) => b.kind === "mission" && b.player === a.player);
+      if (mine.length) journalSeen = { ...journalSeen, [a.player]: mine[mine.length - 1].seq };
+    }
     if (s.humans[a.player] && PRIVATE.includes(a.kind as Decision["kind"])) {
       const next = currentDecision({ ...s, game, holder: a.player });
       const sameSecret = next && next.player === a.player && isPrivate(next) && s.humans[next.player];
@@ -89,7 +107,7 @@ export function useSession(initial: Session, onChange?: (s: Session) => void): C
         covered = { name: s.game.players[a.player].name };
       }
     }
-    return { ...s, game, holder, covered };
+    return { ...s, game, holder, covered, journalSeen };
   }, []);
 
   const update = useCallback(
@@ -110,9 +128,20 @@ export function useSession(initial: Session, onChange?: (s: Session) => void): C
     [onChange],
   );
 
+  const moment = pendingMoment(session);
+  const anyHuman = session.humans.some(Boolean);
+
+  // with nobody at the table, World moments dismiss themselves
+  useEffect(() => {
+    if (!moment || anyHuman) return;
+    const t = setTimeout(() => update((s) => ({ ...s, seenWorld: moment.seq })), skip.current ? 0 : SPEED_MS[session.speed] * 4);
+    return () => clearTimeout(t);
+  }, [moment, anyHuman, session.speed, update]);
+
   // computer players
   useEffect(() => {
     if (!decision || human || session.game.phase === "over") return;
+    if (moment && anyHuman) return; // wait until the table has seen the World card
     const delay = skip.current ? 0 : SPEED_MS[session.speed];
     const t = setTimeout(() => update((s) => {
       const d = currentDecision(s);
@@ -120,7 +149,7 @@ export function useSession(initial: Session, onChange?: (s: Session) => void): C
       return apply(s, botAction(s.game, d));
     }), delay);
     return () => clearTimeout(t);
-  }, [session, decision, human, update, apply]);
+  }, [session, decision, human, update, apply, moment, anyHuman]);
 
   // skipping stops at the next person's decision
   useEffect(() => {
@@ -128,6 +157,8 @@ export function useSession(initial: Session, onChange?: (s: Session) => void): C
   }, [human, session.game.phase]);
 
   return {
+    moment,
+    ackMoment: () => update((s) => ({ ...s, seenWorld: pendingMoment(s)?.seq ?? s.seenWorld })),
     session,
     decision,
     needsHandoff,

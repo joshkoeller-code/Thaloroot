@@ -29,6 +29,7 @@ export function viewFor(state: GameState, viewer: Viewer): GameState {
   v.traps = v.traps.filter((t) => viewer !== "tv" && t.owner === viewer);
   v.missionOptions = viewer === "tv" ? {} : { [viewer]: v.missionOptions[viewer] };
   v.log = v.log.filter((e) => !e.private || over || (viewer !== "tv" && e.private.includes(viewer)));
+  v.story = (v.story ?? []).filter((b) => b.kind !== "mission" || over || (viewer !== "tv" && b.private.includes(viewer)));
   for (const p of v.players) {
     if (over || me(p)) continue;
     p.mission = null;

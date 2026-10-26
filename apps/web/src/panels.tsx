@@ -6,6 +6,7 @@ import {
   itemVp,
   missionTags,
   pAtLeast,
+  publicRecord,
   treasures,
   type Action,
   type Decision,
@@ -14,12 +15,14 @@ import {
   type PlayerState,
   type Stat,
 } from "@thaloroot/engine";
-import { DiceRow, SKULL_WORD, Skulls, Tags, cap, itemName, plural } from "./bits";
+import { DiceRow, SKULL_WORD, Skulls, Tags, cap, itemName, missionBeatText, plural, taleOf } from "./bits";
 
 export interface PanelProps {
   game: GameState;
   d: Decision;
   submit: (a: Action) => void;
+  /** The last of this player's story beats they've already read. */
+  seen?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -55,13 +58,23 @@ function MissionCard({ m, claimed = [], finale = false }: { m: MissionDef; claim
   );
 }
 
-/** A player's own secrets: mission progress and what they've learned. */
-export function MissionSheet({ game, p }: { game: GameState; p: PlayerState }) {
+/** A player's own secrets: their tale so far, mission progress, and what they've learned. */
+export function MissionSheet({ game, p, seen = 0 }: { game: GameState; p: PlayerState; seen?: number }) {
   if (!p.mission) return null;
   const m = Content.mission[p.mission];
   const intel = Object.entries(p.intel).filter(([, t]) => t.length);
+  const tale = taleOf(game, p.id);
+  const fresh = tale.filter((b) => b.seq > seen);
   return (
     <section className="sheet" aria-label="Your mission">
+      {fresh.length > 0 && (
+        <div className="journal" aria-live="polite">
+          <h3>{fresh.length === 1 && fresh[0].part === "opening" ? "Your quest begins" : "New in your tale"}</h3>
+          {fresh.map((b) => (
+            <p key={b.seq} className="new">{missionBeatText(game, b)}</p>
+          ))}
+        </div>
+      )}
       <MissionCard m={m} claimed={p.claimed} finale={p.finaleDone} />
       {p.claimed.length === 3 && !p.finaleDone && (
         <p className="small">All milestones claimed: you draw 3 teasers, and your finale can be done one skull easier.</p>
@@ -71,6 +84,16 @@ export function MissionSheet({ game, p }: { game: GameState; p: PlayerState }) {
           What you've learned:{" "}
           {intel.map(([rid, tags]) => `${game.players[Number(rid)].name}'s mission involves ${tags.join(" and ")}`).join("; ")}.
         </p>
+      )}
+      {tale.length > fresh.length && (
+        <details className="small">
+          <summary>Your tale so far</summary>
+          <div className="journal">
+            {tale.filter((b) => b.seq <= seen).map((b) => (
+              <p key={b.seq}>{missionBeatText(game, b)}</p>
+            ))}
+          </div>
+        </details>
       )}
     </section>
   );
@@ -93,7 +116,7 @@ function HoldToPeek({ game, p }: { game: GameState; p: PlayerState }) {
       >
         Hold to peek at your mission, {p.name}
       </button>
-      {open && <MissionSheet game={game} p={p} />}
+      {open && <MissionSheet game={game} p={p} seen={Infinity} />}
     </div>
   );
 }
@@ -165,7 +188,7 @@ function ChooseMission({ game, d, submit }: PanelProps) {
 // Round decisions
 // ---------------------------------------------------------------------------
 
-function PickTeaser({ game, d, submit }: PanelProps) {
+function PickTeaser({ game, d, submit, seen }: PanelProps) {
   const p = game.players[d.player];
   const mods = game.mods.flatMap((m) => m.mods);
   const fog = mods.some((m) => m.kind === "teaserNameOnly") && !hasLight(game, p);
@@ -201,12 +224,12 @@ function PickTeaser({ game, d, submit }: PanelProps) {
           );
         })}
       </div>
-      <MissionSheet game={game} p={p} />
+      <MissionSheet game={game} p={p} seen={seen} />
     </div>
   );
 }
 
-function MeetingChoice({ game, d, submit }: PanelProps) {
+function MeetingChoice({ game, d, submit, seen }: PanelProps) {
   const p = game.players[d.player];
   const others = (d.data.with as number[]).map((id) => game.players[id].name);
   const pick = (choice: "ally" | "brawl" | "pass") => submit({ player: p.id, kind: "meetingChoice", choice });
@@ -229,7 +252,7 @@ function MeetingChoice({ game, d, submit }: PanelProps) {
           <span className="small">Go your own way. If they brawl anyway, it's a normal Brawl.</span>
         </button>
       </div>
-      <MissionSheet game={game} p={p} />
+      <MissionSheet game={game} p={p} seen={seen} />
     </div>
   );
 }
@@ -484,7 +507,7 @@ function Reward({ game, d, submit }: PanelProps) {
   );
 }
 
-function QuickAction({ game, d, submit }: PanelProps) {
+function QuickAction({ game, d, submit, seen }: PanelProps) {
   const p = game.players[d.player];
   const [trap, setTrap] = useState(false);
   const [loc, setLoc] = useState(Content.cards[0].id);
@@ -577,7 +600,7 @@ function QuickAction({ game, d, submit }: PanelProps) {
           {trap ? "Set the trap and end my turn" : "End my turn"}
         </button>
       </div>
-      <MissionSheet game={game} p={p} />
+      <MissionSheet game={game} p={p} seen={seen} />
     </div>
   );
 }
@@ -690,52 +713,85 @@ function RespondTrade({ game, d, submit }: PanelProps) {
   );
 }
 
-function FinalGuess({ game, d, submit }: PanelProps) {
+const TAG_ORDER = ["forest", "meadow", "swamp", "mountain", "ruins", "creature", "peril"] as const;
+
+/** One line of what the table saw a rival do. */
+function SeenAtTable({ game, id }: { game: GameState; id: number }) {
+  const r = publicRecord(game, id);
+  const where = TAG_ORDER.filter((t) => r.explored[t]).map((t) => `${cap(t)} ${r.explored[t]}`);
+  const meet = (["ally", "brawl", "pass"] as const).filter((k) => r.meetings[k]).map((k) => `${cap(k)} ${r.meetings[k]}`);
+  const extras = [
+    r.befriended.length ? `befriended ${r.befriended.map((c) => Content.companion[c]?.name ?? c).join(" and ")}` : "",
+    r.brawlsWon ? `won ${plural(r.brawlsWon, "Brawl")}` : "",
+    r.rests ? `rested ${plural(r.rests, "time")}` : "",
+    r.pushes ? `pushed their luck ${plural(r.pushes, "time")}` : "",
+    r.frogs ? `was a frog ${plural(r.frogs, "time")}` : "",
+    r.bought ? `bought ${plural(r.bought, "thing")}` : "",
+  ].filter(Boolean);
+  return (
+    <p className="seen">
+      Seen at the table: explored {where.join(", ") || "nowhere"}
+      {meet.length ? `. At Meetings: ${meet.join(", ")}` : ""}
+      {extras.length ? `. ${cap(extras.join(", "))}` : ""}.
+    </p>
+  );
+}
+
+function FinalGuess({ game, d, submit, seen }: PanelProps) {
   const p = game.players[d.player];
   const [g, setG] = useState<Record<number, string>>({});
-  const rivals = (d.data.rivals as number[]).map((id) => game.players[id]);
+  const lineups = (d.data.lineups ?? []) as { rival: number; missions: string[] }[];
   const chosen = Object.values(g).filter(Boolean).length;
-  const missions = [...Content.missions].sort((a, b) => a.name.localeCompare(b.name));
   return (
     <div className="stack">
       <p>
-        Guess the missions of up to {d.data.max} rivals. Each correct guess is worth {Content.rules.scoring.guessVp} VP.
+        For up to {d.data.max} rivals, pick their mission from a lineup of {lineups[0]?.missions.length ?? 6}. One of them is real. Each correct guess is worth {Content.rules.scoring.guessVp} VP. Missions crossed out don't fit what you've learned.
       </p>
-      {rivals.map((q) => {
+      {lineups.map(({ rival, missions }) => {
+        const q = game.players[rival];
         const tags = p.intel[q.id] ?? [];
         const known = p.knownMissions[q.id];
-        const fits = missions.filter((m) => m.id !== p.mission && tags.every((t) => missionTags(m.id).includes(t)));
+        const full = !g[q.id] && chosen >= d.data.max;
         return (
-          <label key={q.id} className="stack small">
-            <span>
-              {q.name} the {className(q.cls)}
-              {known ? " (a Taproot Fragment showed you their mission)" : tags.length ? `: you learned their mission involves ${tags.join(" and ")}` : ""}
-            </span>
-            <select
-              id={`guess-${q.id}`}
-              value={g[q.id] ?? ""}
-              onChange={(e) => setG({ ...g, [q.id]: e.target.value })}
-              disabled={!g[q.id] && chosen >= d.data.max}
-            >
-              <option value="">No guess</option>
-              {fits.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <fieldset key={q.id} className="rival" style={{ border: 0, margin: 0, padding: "0.8rem 0 0" }} disabled={full}>
+            <legend>
+              <b>{q.name}</b> <span className="small quiet">the {className(q.cls)}</span>
+            </legend>
+            {known ? (
+              <p className="small">A Taproot Fragment showed you {q.name}'s mission.</p>
+            ) : tags.length ? (
+              <p className="small">You learned their mission involves {tags.join(" and ")}.</p>
+            ) : null}
+            <SeenAtTable game={game} id={q.id} />
+            <div className="lineup" role="radiogroup" aria-label={`${q.name}'s mission`}>
+              {missions.map((id) => {
+                const m = Content.mission[id];
+                const ruled = tags.some((t) => !missionTags(id).includes(t));
+                return (
+                  <label key={id} className={ruled ? "ruled-out" : ""}>
+                    <input type="radio" name={`guess-${q.id}`} checked={g[q.id] === id} onChange={() => setG({ ...g, [q.id]: id })} />
+                    <span>
+                      {m.name}
+                      <span className="small quiet"> {m.anyPath && !m.path.length ? "Any path" : [...m.path.map(cap), ...(m.anyPath ? ["any"] : [])].join(", ")}</span>
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
+            {g[q.id] && (
+              <button className="ghost small" type="button" onClick={() => setG(Object.fromEntries(Object.entries(g).filter(([k]) => Number(k) !== q.id)))}>
+                Clear guess for {q.name}
+              </button>
+            )}
+          </fieldset>
         );
       })}
       <div className="row">
-        <button
-          className="primary"
-          onClick={() => submit({ player: p.id, kind: "finalGuess", guesses: Object.fromEntries(Object.entries(g).filter(([, v]) => v)) as any })}
-        >
+        <button className="primary" onClick={() => submit({ player: p.id, kind: "finalGuess", guesses: g })}>
           Lock in {chosen ? plural(chosen, "guess", "guesses") : "no guesses"}
         </button>
       </div>
-      <MissionSheet game={game} p={p} />
+      <MissionSheet game={game} p={p} seen={seen} />
     </div>
   );
 }

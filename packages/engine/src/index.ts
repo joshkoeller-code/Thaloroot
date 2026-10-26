@@ -12,3 +12,6 @@ export { PLAYTEST_MISSIONS } from "./sim.js";
 export { hasLight, treasures, isTreasure, worldMods, companionLimit } from "./player.js";
 export { itemVp, itemCoin, itemValue } from "./effects.js";
 export { FINALE } from "./world.js";
+export { publicRecord } from "./record.js";
+export type { PublicRecord } from "./record.js";
+export { lineupFor } from "./engine.js";

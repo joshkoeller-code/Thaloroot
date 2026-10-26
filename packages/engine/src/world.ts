@@ -6,6 +6,7 @@ import {
   itemCoin,
   learnRivalTag,
   log,
+  tell,
   loseRandomItem,
   makeFrog,
   newItem,
@@ -64,6 +65,7 @@ export function drawWorldCard(state: GameState): { finale: boolean; market: bool
     state.finale = fin;
     state.finalRound = true;
     log(state, `World card: the Finale, ${Content.worldCard[fin].name}. ${Content.worldCard[fin].text}`);
+    tell(state, { kind: "world", card: fin });
     setNight(state);
     return { finale: true, market: startFinale(state, fin) };
   }
@@ -71,6 +73,7 @@ export function drawWorldCard(state: GameState): { finale: boolean; market: bool
   for (const p of state.players) p.seenWorld = Math.max(0, p.seenWorld - 1);
   const def = Content.worldCard[id];
   log(state, `World card: ${def.name}. ${def.text ?? ""}`.trim());
+  tell(state, { kind: "world", card: id });
   gstat(state, `world:${def.category}`);
   let market = false;
   switch (def.category) {

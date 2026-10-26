@@ -266,3 +266,44 @@ label.check input { width: 1.1rem; height: 1.1rem; accent-color: var(--thal); }
 
 .error { color: var(--peril); }
 .hold { user-select: none; touch-action: none; }
+
+/* stats on each plot */
+.statgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.statcell { display: grid; justify-items: center; gap: 2px; background: var(--loam); border-radius: 8px; padding: 4px 2px 5px; }
+.statname { font-size: 0.68rem; color: var(--dust); }
+.statval { font-family: var(--display); font-size: var(--step-1); line-height: 1; font-weight: 600; }
+.statval sup { font-family: var(--body); font-size: 0.6rem; font-weight: 700; margin-left: 1px; }
+.statval sup.up { color: var(--forest); }
+.statval sup.down { color: var(--peril); }
+.pips { display: flex; gap: 2px; }
+.pips i { width: 5px; height: 5px; border-radius: 50%; background: var(--root); }
+.pips i.on { background: var(--thal); }
+.pack summary { cursor: pointer; color: var(--dust); }
+.pack ul { margin: 0.35rem 0 0; padding-left: 1rem; display: grid; gap: 0.2rem; }
+
+/* scenes */
+.scene { display: grid; gap: 0.4rem; max-width: 62ch; }
+.scene p { font-size: var(--step-1); line-height: 1.45; }
+.scene p + p { color: var(--dust); }
+.result { color: var(--dust); }
+.verdict-note { font-family: var(--body); font-weight: 400; }
+
+/* World moments */
+.moment-kind { color: var(--bloom); font-size: var(--step--1); }
+.moment-text { font-size: var(--step-1); line-height: 1.5; max-width: 36rem; text-wrap: pretty; }
+.moment-effect { border-top: 1.5px solid var(--root); padding-top: 0.8rem; max-width: 34rem; }
+
+/* tales */
+.tales { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); align-items: start; }
+.tale { display: grid; gap: 0.5rem; background: var(--bark); border-radius: var(--radius-card); padding: 1rem 1.1rem; }
+.tale p { max-width: 64ch; }
+.journal { display: grid; gap: 0.4rem; }
+.journal p { max-width: 64ch; }
+.journal .new { border-left: 3px solid var(--bloom); padding-left: 0.6rem; }
+.lineup { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.4rem; }
+.lineup label { display: flex; gap: 0.45rem; align-items: flex-start; border: 1.5px solid var(--root); border-radius: 10px; padding: 0.45rem 0.6rem; cursor: pointer; }
+.lineup label.ruled-out { opacity: 0.5; text-decoration: line-through; }
+.lineup label:has(input:checked) { border-color: var(--thal); }
+.seen { font-size: var(--step--1); color: var(--dust); }
+.rival { display: grid; gap: 0.5rem; border-top: 1.5px solid var(--root); padding-top: 0.8rem; }
+@media (max-width: 520px) { .statname { font-size: 0.6rem; } .statval { font-size: var(--step-0); } }

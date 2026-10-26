@@ -65,23 +65,43 @@ export function DiceRow({ dice, trouble = [], animate = true }: { dice: number[]
   );
 }
 
-/** The last explore roll, the one moment the screen gets loud. */
-export function RollTray({ game, roll }: { game: GameState; roll: LastRoll }) {
-  const p = game.players[roll.player];
-  const card = Content.card[roll.card];
-  const notes = [roll.pushed && "pushed their luck", roll.spark && "Spark!", roll.mishap && "Mishap"].filter(Boolean);
+/**
+ * The latest scene: what happened, told as story, with the dice that decided it.
+ * This is the one moment the screen gets loud.
+ */
+export function SceneTray({ game, beat, roll }: { game: GameState; beat: Extract<GameState["story"][number], { kind: "scene" }>; roll: LastRoll | null }) {
+  const p = game.players[beat.player];
+  const card = Content.card[beat.card];
+  const opt = card.options.find((o) => o.name === beat.option);
+  const lines = sceneText(game, beat);
+  const rolled = beat.outcome !== "rest" && roll && roll.card === beat.card && roll.option === beat.option && roll.player === beat.player;
+  const result = beat.outcome === "rest" ? opt?.text.success : beat.outcome === "success" ? opt?.text.success : opt?.text.fail;
+  const notes = rolled ? [roll!.pushed && "pushed their luck", roll!.spark && "Spark", roll!.mishap && "Mishap"].filter(Boolean) : [];
   return (
-    <section className="tray" aria-live="polite" aria-label="Last roll">
-      <div className="spread">
-        <p className="small quiet">
-          {p.name} rolled {cap(roll.stat)} for {roll.option} at {card.name}
-        </p>
-        <p className="small num">
-          {roll.successes} of {roll.need} needed{notes.length ? `, ${notes.join(", ")}` : ""}
-        </p>
+    <section className="tray" aria-live="polite" aria-label="What just happened">
+      <p className="small quiet">
+        {p.name} at {card.name}: {beat.option}
+      </p>
+      <div className="scene" key={beat.seq}>
+        {lines.map((l, i) => (
+          <p key={i}>{l}</p>
+        ))}
       </div>
-      <DiceRow key={roll.seq} dice={roll.dice} trouble={roll.trouble} />
-      <p className={`verdict ${roll.ok ? "ok" : ""}`}>{roll.ok ? "Success" : "Not this time"}</p>
+      {rolled && (
+        <div className="spread">
+          <DiceRow key={roll!.seq} dice={roll!.dice} trouble={roll!.trouble} />
+          <span className={`verdict ${roll!.ok ? "ok" : ""}`}>
+            {roll!.ok ? "Success" : "Not this time"}
+            <span className="small quiet num verdict-note">
+              {" "}
+              {roll!.successes} of {roll!.need} with {cap(roll!.stat)}
+              {notes.length ? `, ${notes.join(", ")}` : ""}
+            </span>
+          </span>
+        </div>
+      )}
+      {result && <p className="small result">{beat.outcome === "fail" ? "Fail: " : ""}{result}</p>}
+      {beat.spark && opt?.text.spark && <p className="small result">Spark: {opt.text.spark}</p>}
     </section>
   );
 }
@@ -96,4 +116,42 @@ export function className(id: string | null): string {
 
 export function worldName(id: string): string {
   return Content.worldCard[id]?.name ?? id;
+}
+
+// ---------------------------------------------------------------------------
+// Story
+// ---------------------------------------------------------------------------
+
+export function fill(text: string | null | undefined, name: string): string {
+  return (text ?? "").replaceAll("{name}", name);
+}
+
+type Beat = GameState["story"][number];
+
+/** The prose for a scene beat: the outcome line, plus the Spark or Mishap line when they happened. */
+export function sceneText(game: GameState, beat: Extract<Beat, { kind: "scene" }>): string[] {
+  const name = game.players[beat.player].name;
+  const loc = Content.story.locations[beat.card];
+  const t = loc?.options[beat.option];
+  if (!t) return [];
+  const out: string[] = [];
+  if (beat.outcome === "rest") out.push(fill(t.scene, name));
+  else out.push(fill(beat.outcome === "success" ? t.success : t.fail, name));
+  if (beat.spark && t.spark) out.push(fill(t.spark, name));
+  if (beat.mishap && loc.mishap) out.push(fill(loc.mishap, name));
+  return out.filter(Boolean);
+}
+
+export function missionBeatText(game: GameState, beat: Extract<Beat, { kind: "mission" }>): string {
+  const arc = Content.story.missions[beat.mission];
+  const name = game.players[beat.player].name;
+  if (!arc) return "";
+  if (beat.part === "opening") return fill(arc.opening, name);
+  if (beat.part === "finale") return fill(arc.finale, name);
+  return fill(arc.milestones[beat.part], name);
+}
+
+/** A player's mission story so far, in the order it happened. */
+export function taleOf(game: GameState, player: number) {
+  return game.story.filter((b): b is Extract<Beat, { kind: "mission" }> => b.kind === "mission" && b.player === player);
 }

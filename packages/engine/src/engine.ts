@@ -23,6 +23,7 @@ import {
   itemValue,
   itemVp,
   log,
+  tell,
   loseRandomItem,
   loseStamina,
   makeFrog,
@@ -138,6 +139,7 @@ export function createGame(config: GameConfig): GameState {
     stats: {},
     winner: null,
     scores: null,
+    story: [],
   };
   config.players.forEach((sheet, i) => {
     validateSheet(sheet);
@@ -326,6 +328,7 @@ export function step(state: GameState, action: Action): void {
       if (!d.data.options.includes(action.mission)) throw new IllegalAction(`mission ${action.mission} wasn't offered`);
       p.mission = action.mission;
       log(state, `${p.name} secretly keeps ${Content.mission[action.mission].name}.`, [p.id]);
+      tell(state, { kind: "mission", player: p.id, mission: p.mission, part: "opening", private: [p.id] });
       if (!state.pending.length) startRound(state);
       return;
     }
@@ -404,7 +407,13 @@ export function step(state: GameState, action: Action): void {
       return;
     }
     case "finalGuess": {
-      p.guesses = Object.fromEntries(Object.entries(action.guesses).slice(0, Content.rules.scoring.maxGuesses)) as any;
+      // only missions from that rival's lineup count
+      const lineups = (d.data.lineups ?? []) as { rival: number; missions: string[] }[];
+      const ok = Object.entries(action.guesses).filter(([rid, mid]) => {
+        const l = lineups.find((x) => x.rival === Number(rid));
+        return !l || l.missions.includes(mid);
+      });
+      p.guesses = Object.fromEntries(ok.slice(0, Content.rules.scoring.maxGuesses)) as any;
       if (!state.pending.some((x) => x.kind === "finalGuess")) score(state);
       return;
     }
@@ -996,6 +1005,7 @@ function resolveRest(state: GameState, p: PlayerState, card: ExploreCard, o: Exp
   }
   bump(p, "rests");
   log(state, `${p.name} takes it easy at ${card.name}: ${o.name}.`);
+  tell(state, { kind: "scene", player: p.id, card: card.id, option: o.name, outcome: "rest", spark: false, mishap: false });
   record(state, p, { type: "rest", tags: card.tags, skull: card.skull, location: card.id });
 }
 
@@ -1108,6 +1118,7 @@ function finishRoll(state: GameState, p: PlayerState): void {
       }
     }
   }
+  if (!o.alt) tell(state, { kind: "scene", player: p.id, card: card.id, option: o.name, outcome: ok ? "success" : "fail", spark: (t as any).spark, mishap });
   if (o.alt) {
     resolveAlt(state, p, o.alt, ok);
     if (ok) recordSuccess(state, p, card, o, false);
@@ -1310,7 +1321,11 @@ function endRound(state: GameState): void {
     state.pending = state.players.map((p) => ({
       player: p.id,
       kind: "finalGuess",
-      data: { rivals: rivals(state, p).map((q) => q.id), missions: Content.missions.map((m) => m.id), max: Content.rules.scoring.maxGuesses },
+      data: {
+        rivals: rivals(state, p).map((q) => q.id),
+        lineups: rivals(state, p).map((q) => ({ rival: q.id, missions: lineupFor(state, p, q) })),
+        max: Content.rules.scoring.maxGuesses,
+      },
     }));
     return;
   }
@@ -1367,6 +1382,19 @@ function executeTrade(state: GameState, o: GameState["tradeOffers"][number]): vo
   log(state, `${a.name} and ${b.name} make a trade.`);
   record(state, a, { type: "trade", with: b.id });
   record(state, b, { type: "trade", with: a.id });
+}
+
+/**
+ * The missions a player chooses between when guessing a rival's: the real one, the two the rival
+ * turned down in the draft, and random others, shuffled. Built per guesser so lineups differ.
+ */
+export function lineupFor(state: GameState, guesser: PlayerState, rival: PlayerState): string[] {
+  const size = Content.rules.scoring.lineupSize;
+  const real = rival.mission!;
+  const declined = (state.missionOptions[rival.id] ?? []).filter((m) => m !== real);
+  const pool = Content.missions.map((m) => m.id).filter((m) => m !== real && !declined.includes(m) && m !== guesser.mission);
+  const extra = sample(state, pool, Math.max(0, size - 1 - declined.length));
+  return shuffle(state, [real, ...declined, ...extra].slice(0, size));
 }
 
 function finalFinale(state: GameState): void {
