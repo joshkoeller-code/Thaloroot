@@ -1,0 +1,1526 @@
+{
+  "locations": {
+    "whispering-glade": {
+      "options": {
+        "Listen Closely": {
+          "success": "{name} presses an ear to the bark. The oaks are gossiping, and one of them is very sure it knows what a rival is after.",
+          "fail": "The trees fall silent the moment {name} leans in, then burst into rustling laughter that goes on far too long.",
+          "spark": "A voice deeper than the rest whispers about what the Bloom will do next."
+        },
+        "Gather Fallen Acorns": {
+          "success": "{name} finds an acorn that hums faintly in the palm, as warm as a held breath.",
+          "fail": "Every acorn {name} picks up is hollow. A squirrel watches from a branch, saying nothing.",
+          "spark": "Another acorn drops straight into {name}'s hand, as if the tree meant it."
+        },
+        "Nap Against an Old Oak": {
+          "scene": "{name} settles against a trunk that murmurs old lullabies, and wakes with leaves in their hair and the ache gone from their bones."
+        }
+      },
+      "mishap": null
+    },
+    "glowcap-hollow": {
+      "options": {
+        "Pick Glowcaps": {
+          "success": "{name} breathes on a glowcap until it shines like a lantern, then pinches it free.",
+          "fail": "That was not a glowcap. {name}'s skin goes green, then slick, then {name} is a frog.",
+          "spark": "The spores settle on {name}'s tongue and fizz like a tiny thunderstorm."
+        },
+        "Follow the Glow": {
+          "success": "The light leads down a hidden dip to a mushroom with a pearl where its gills should be.",
+          "fail": "The glow winks out mid-step, and {name} tumbles into a patch of very prickly caps.",
+          "spark": "For a moment the whole forest glows, and {name} can see the shape of every path ahead."
+        },
+        "Rest in the Soft Light": {
+          "scene": "{name} curls up in the hollow while the mushrooms pulse slowly, like the forest breathing."
+        }
+      },
+      "mishap": null
+    },
+    "the-woodcutters-camp": {
+      "options": {
+        "Search the Packs": {
+          "success": "Under a bedroll, {name} finds a purse the woodcutter forgot in their hurry.",
+          "fail": "The pack is already occupied. A raccoon objects, loudly and with teeth.",
+          "spark": "Leaning against the woodpile is a fine axe, its handle worn smooth by honest work."
+        },
+        "Chop Firewood for Travelers": {
+          "success": "{name} splits a neat stack of logs, and passing travelers pay well for a warm night.",
+          "fail": "The wood is stubborn, the axe is dull, and {name} has blisters to show for it.",
+          "spark": "Each swing lands truer than the last, and {name} feels their arms remember it."
+        },
+        "Share the Stew": {
+          "scene": "The pot is still warm. {name} eats slowly by the embers and feels the bruises fade."
+        }
+      },
+      "mishap": null
+    },
+    "mossback-tortoise-crossing": {
+      "options": {
+        "Ride Along": {
+          "success": "Old Mossback lowers his great head and lets {name} climb aboard. He has decided they are friends.",
+          "fail": "Mossback sneezes, a sound like a landslide, and {name} spends a while picking moss out of their ears.",
+          "spark": "Mossback picks up the pace, which for him is a stroll, and carries {name} somewhere with a better view."
+        },
+        "Scrape the Moss": {
+          "success": "{name} scrapes a strip of ancient moss from the shell. It smells like a thousand rainy afternoons.",
+          "fail": "Mossback notices. His slow, offended stare is somehow worse than a bite, and then he bites.",
+          "spark": "Tucked in the moss are coins dropped by some earlier, less careful rider."
+        },
+        "Wait for Him to Pass": {
+          "scene": "{name} sits by the path and waits for the tortoise to finish crossing. It is restful. It is also very, very long."
+        }
+      },
+      "mishap": null
+    },
+    "the-bramblewood": {
+      "options": {
+        "Cut Through": {
+          "success": "{name} hacks a path through the thorns and finds a berry that beats like a tiny heart.",
+          "fail": "The brambles close in, patient and sharp, and {name} comes out scratched from boots to brow.",
+          "spark": "The cut vines curl into a cloak that fits {name} perfectly and refuses to tear."
+        },
+        "Befriend the Bramble Hare": {
+          "success": "{name} holds still until a hare with thistle-burr ears hops close, sniffs, and decides to stay.",
+          "fail": "The hare is gone before {name} finishes crouching. Chasing it does not go well.",
+          "spark": "The hare thumps a foot and stares down a path. It has watched every traveler pass, and it remembers."
+        },
+        "Find the Hidden Path": {
+          "success": "Between two thorn walls, {name} spots the path the brambles forgot to hide.",
+          "fail": "Every way out looks the same. {name} walks in circles until the brambles seem amused.",
+          "spark": "The path ends at a little cache someone hid and never came back for."
+        }
+      },
+      "mishap": null
+    },
+    "hermits-treehouse": {
+      "options": {
+        "Climb Up": {
+          "success": "{name} reaches the treehouse, and the hermit, impressed despite himself, shares a lesson.",
+          "fail": "A rung snaps three branches up. The ground is waiting, and it is not soft.",
+          "spark": "The hermit talks until moonrise, and {name} remembers every word."
+        },
+        "Answer the Hermit's Question": {
+          "success": "The hermit asks what the roots want. {name} gives an answer, and he nods slowly, then points to the sky.",
+          "fail": "The answer is wrong. The door slams, and a bucket of something cold follows it.",
+          "spark": "The hermit laughs for the first time in years and presses a battered thimble into {name}'s hand."
+        },
+        "Leave an Offering": {
+          "scene": "{name} leaves a few coins in the basket at the foot of the tree. A note comes down on a string, full of advice."
+        }
+      },
+      "mishap": null
+    },
+    "the-singing-stump": {
+      "options": {
+        "Sing Along": {
+          "success": "{name} joins the stump's old song, and amber beads up in its rings like tears.",
+          "fail": "{name} hits a note so wrong that the stump stops singing to stare.",
+          "spark": "The harmony shakes loose motes of thal that settle on {name} like warm snow."
+        },
+        "Drink from the Rings": {
+          "success": "{name} sips the thal pooled in the rings. It tastes like sunlight and goes straight to the legs.",
+          "fail": "The thal pushes back hard, and {name} reels away with the stump's song ringing in their skull.",
+          "spark": "The song settles into {name}'s voice for good. It hums a little now, whenever they speak in the woods."
+        },
+        "Search the Roots": {
+          "success": "Between the roots are coins from every singer who ever stopped to listen.",
+          "fail": "Nothing but beetles, and the beetles are not sharing.",
+          "spark": "One root has grown around a thal acorn, and lets it go when asked politely."
+        }
+      },
+      "mishap": null
+    },
+    "owlbeards-parliament": {
+      "options": {
+        "Make Your Case": {
+          "success": "{name} argues so well that Judge Owlbeard himself flaps down to perch on their shoulder.",
+          "fail": "The parliament hoots {name} out of court. The owls will be talking about this for weeks.",
+          "spark": "Before {name} leaves, the owls lean in to share a secret about a rival."
+        },
+        "Steal a Feather": {
+          "success": "While the court debates, {name} plucks one silver feather from the gallery.",
+          "fail": "Forty owls turn their heads at once. Then they dive.",
+          "spark": "A few coins were tucked in the nest beside the feather. Owls collect shiny things."
+        },
+        "Bow and Back Away": {
+          "scene": "{name} bows deeply and backs out of the clearing. The owls approve of manners."
+        }
+      },
+      "mishap": null
+    },
+    "heart-of-the-old-grove": {
+      "options": {
+        "Climb the Eldest Tree": {
+          "success": "High in the eldest tree, {name} taps a vein of heartwood sap that glows like honey and lightning.",
+          "fail": "The eldest tree shrugs, and {name} learns how far it is to the ground the hard way.",
+          "spark": "A sapling sprouts where {name}'s hand touched the bark and asks, very quietly, to come along."
+        },
+        "Commune with the Grove": {
+          "success": "The grove speaks, slowly and in roots, and {name} understands more than they expected to.",
+          "fail": "The grove does not want to be spoken to. It says so with a sound like the whole forest groaning.",
+          "spark": "A thimble tumbles out of a knothole, left by some other listener long ago."
+        },
+        "Leave Quietly": {
+          "success": "{name} slips away the way they came, pocketing a few coins dropped by less careful visitors.",
+          "fail": "A branch falls exactly where {name} was about to step. Almost exactly."
+        }
+      },
+      "mishap": null
+    },
+    "the-thalowood-roots": {
+      "options": {
+        "Dig Beside the Root": {
+          "success": "{name} digs until the soil glows, and pulls out a crystal humming with raw thal.",
+          "fail": "The thal surges up through the dirt like a struck bell, and {name} is thrown flat.",
+          "spark": "Something deeper answers the digging. In {name}'s hand is a sliver of the Taproot itself, whispering."
+        },
+        "Listen to the Hum": {
+          "success": "{name} lies with an ear to the root and hears what's coming, and what a rival wants.",
+          "fail": "The hum gets louder, and louder, until {name} has to crawl away with their hands over their ears.",
+          "spark": "The rhythm of the hum makes a strange kind of sense, and {name} keeps it."
+        },
+        "Step Back from the Edge": {
+          "scene": "{name} looks down into the shimmering gap where the roots surface, and decides that today, looking is enough."
+        }
+      },
+      "mishap": null
+    },
+    "wyrmwood-thicket": {
+      "options": {
+        "Face the Thornback Bear": {
+          "success": "{name} stands their ground against the Thornback Bear, and comes away with one of its claws.",
+          "fail": "The bear swats once. It does not need to swat twice.",
+          "spark": "{name} walks away from that fight standing taller, and it shows in their shoulders."
+        },
+        "Calm the Beast": {
+          "success": "{name} hums, low and steady, until the great bear lowers its head and huffs. It's a friend now, mostly.",
+          "fail": "The bear is not in the mood to be calmed. Nobody is calm afterward.",
+          "spark": "The bear lumbers off and returns with a dripping honeycomb, set down like a gift."
+        },
+        "Sneak Past": {
+          "success": "{name} tiptoes past the dozing bear and helps themselves to its hoard of shiny things.",
+          "fail": "One twig snaps. One eye opens."
+        }
+      },
+      "mishap": null
+    },
+    "buttercup-hill": {
+      "options": {
+        "Pick a Bouquet": {
+          "success": "{name} gathers a bouquet that smells faintly of somebody else's dreams.",
+          "fail": "Hay fever arrives all at once. {name} sneezes until the hill is laughing.",
+          "spark": "One flower glitters with pollen that fizzes when it lands on {name}'s skin."
+        },
+        "Roll Down the Hill": {
+          "success": "{name} rolls all the way down, whooping, and lands in a patch of grass full of lost coins.",
+          "fail": "There was a rock. There is always a rock.",
+          "spark": "Halfway down, {name} learns exactly how to fall, which turns out to be a kind of luck."
+        },
+        "Nap in the Flowers": {
+          "scene": "{name} lies down among the buttercups, and the pollen brings dreams that feel almost like messages."
+        }
+      },
+      "mishap": null
+    },
+    "firefly-fields": {
+      "options": {
+        "Catch Fireflies": {
+          "success": "{name} cups a handful of fireflies in a jar, and they glow happily, as if this was their idea.",
+          "fail": "The fireflies scatter like sparks from a kicked fire, and {name} chases them until dusk.",
+          "spark": "One firefly lands on {name}'s nose and leaves behind a drop of pure thal."
+        },
+        "Follow the Brightest": {
+          "success": "{name} follows the brightest light to where the Firefly Queen shed a wing like stained glass.",
+          "fail": "The bright one goes dark, and so does the field, and so does {name}'s sense of direction.",
+          "spark": "From up here, the fireflies trace every path ahead in light."
+        },
+        "Lie Back and Watch": {
+          "scene": "{name} lies in the grass while the fireflies rise like slow embers. It's the best rest they've had all Bloom."
+        }
+      },
+      "mishap": null
+    },
+    "the-beehive-orchard": {
+      "options": {
+        "Smoke the Hive": {
+          "success": "{name} smokes the hive gently and lifts out a comb that glows like a little sun.",
+          "fail": "Not gently enough. The bees explain this in detail.",
+          "spark": "A grateful beekeeper's ghost leaves a honey cake on a stump nearby."
+        },
+        "Charm the Queen Bee": {
+          "success": "{name} bows to the queen, and Buzzbelle, her most curious daughter, decides to follow.",
+          "fail": "The swarm considers {name}'s bow an insult and chases them across two fields.",
+          "spark": "Buzzbelle returns with a dab of royal jelly that any merchant would pay for."
+        },
+        "Pick Apples": {
+          "scene": "{name} picks a few apples from the low branches. They taste like summer, and one has a coin stuck in it."
+        }
+      },
+      "mishap": null
+    },
+    "scarecrow-crossing": {
+      "options": {
+        "Ask for Directions": {
+          "success": "The scarecrow creaks and points down three roads at once. All of them, it insists, are good.",
+          "fail": "The scarecrow points confidently. The scarecrow is lying.",
+          "spark": "The scarecrow leans in. It saw a rival pass this way, and it heard them muttering about their quest."
+        },
+        "Check Its Pockets": {
+          "success": "In the scarecrow's pocket is a button that feels warm and lucky.",
+          "fail": "The scarecrow swats {name}'s hand with a surprising amount of straw.",
+          "spark": "A few coins come out with the button. The scarecrow pretends not to notice."
+        },
+        "Wave and Move On": {
+          "scene": "{name} waves to the scarecrow. It waves back, which is a little unsettling, but friendly."
+        }
+      },
+      "mishap": null
+    },
+    "moonpetal-meadow": {
+      "options": {
+        "Gather Moonpetals": {
+          "success": "{name} gathers moonpetals while they're still glowing, and they keep shining in the pack.",
+          "fail": "The petals close the instant {name}'s shadow falls on them.",
+          "spark": "A petal dissolves into a mote of light that settles in {name}'s pocket."
+        },
+        "Breathe the Night Pollen": {
+          "success": "The pollen brings visions of what the Bloom will do next, and leaves a spark behind.",
+          "fail": "{name} wakes up somewhere else entirely, barefoot, holding a daisy, with no idea how they got there.",
+          "spark": "In the dream, a rival talks in their sleep about their secret quest."
+        },
+        "Sleep Under the Petals": {
+          "scene": "{name} sleeps under the moonpetals, and the light soaks into them like warm water."
+        }
+      },
+      "mishap": null
+    },
+    "the-pollen-storm": {
+      "options": {
+        "Push Through": {
+          "success": "{name} pushes through the golden haze and fills a pouch with pollen that sparkles in the dark.",
+          "fail": "The storm spins {name} around and around and drops them somewhere painful.",
+          "spark": "The pollen sinks into {name}'s skin. They will glow faintly in meadows from now on."
+        },
+        "Read the Visions": {
+          "success": "In the swirling pollen, {name} sees what's coming: two World cards, clear as day.",
+          "fail": "{name} sees a giant teapot, a dancing tree, and nothing at all useful.",
+          "spark": "In one vision, a rival is doing something very telling."
+        },
+        "Take Shelter": {
+          "scene": "{name} waits out the storm under a mushroom cap, sneezing and patching up."
+        }
+      },
+      "mishap": null
+    },
+    "gilly-the-giant-goose": {
+      "options": {
+        "Steal an Egg": {
+          "success": "While Gilly preens, {name} rolls a golden egg out of the nest and keeps rolling.",
+          "fail": "HONK. The sound alone would be enough. The beak is worse.",
+          "spark": "There were coins under the egg too. Gilly collects shiny things, it turns out."
+        },
+        "Win Her Over": {
+          "success": "{name} offers Gilly some bread and a great deal of respect. She honks once, softly. They're friends.",
+          "fail": "Gilly chases {name} across the meadow, honking the whole way.",
+          "spark": "Gilly lays a golden egg at {name}'s feet as a gift. It's still warm."
+        },
+        "Wrestle the Goose": {
+          "success": "Against all sense, {name} wrestles the giant goose to a draw and walks away with a pillow's worth of down.",
+          "fail": "{name} wrestles the giant goose. The goose wins."
+        }
+      },
+      "mishap": "Gilly fixes {name} with one golden eye, and {name} will never fully trust a creature again."
+    },
+    "the-fairy-ring": {
+      "options": {
+        "Dance in the Ring": {
+          "success": "{name} dances with the fairies until the stars wheel, and comes back sparkling.",
+          "fail": "The music won't stop. {name} dances until dawn and staggers out exhausted.",
+          "spark": "A fairy presses a tiny charm into {name}'s hand before vanishing."
+        },
+        "Make a Wish": {
+          "success": "{name} whispers a wish, and coins rain down like dew.",
+          "fail": "The fairies grant a wish, just not {name}'s. Something is missing from the pack.",
+          "spark": "The coins keep falling. The fairies are in a generous mood."
+        },
+        "Step Out Quickly": {
+          "scene": "{name} steps back out of the ring before anything can happen. Nothing does. Probably."
+        }
+      },
+      "mishap": "The fairies giggle, the ring flashes, and {name} is suddenly much smaller and greener."
+    },
+    "the-thistle-knights-tourney": {
+      "options": {
+        "Joust": {
+          "success": "{name} unhorses the champion in a burst of thistledown and claims the Thistle Crown.",
+          "fail": "{name} is unhorsed, spectacularly, in front of everyone.",
+          "spark": "The crowd chants {name}'s name, and the knights teach them a trick or two."
+        },
+        "Win the Crowd": {
+          "success": "{name} juggles, sings, and bows, and the crowd showers them with prize money.",
+          "fail": "The crowd boos. Someone throws a thistle.",
+          "spark": "The knights present {name} with a banner that makes every speech a little more persuasive."
+        },
+        "Bet on a Rider": {
+          "success": "{name}'s rider wins by a nose, and the bookie pays up with a sour face.",
+          "fail": "{name}'s rider falls off before the joust even starts."
+        }
+      },
+      "mishap": null
+    },
+    "the-dreaming-field": {
+      "options": {
+        "Walk Into the Dream": {
+          "success": "{name} walks into the sleeping field's dream and comes back holding an orb of dream-glass.",
+          "fail": "{name} can't find the way out of the dream and sleeps through the next day.",
+          "spark": "The dream leaves a thimble in {name}'s pocket, just to prove it happened."
+        },
+        "Steal from a Sleeper": {
+          "success": "A rival dozes in the tall grass, and {name} lightens their pack by one interesting item.",
+          "fail": "The sleeper wakes up swinging.",
+          "spark": "The sleeper mumbles about their quest, and {name} listens carefully."
+        },
+        "Lie Down and Dream": {
+          "scene": "{name} lies down in the field and lets the dream take them, hoping it's a kind one."
+        }
+      },
+      "mishap": null
+    },
+    "the-moth-queens-court": {
+      "options": {
+        "Sing Her to Sleep": {
+          "success": "{name} sings the Moth Queen to sleep, and one of her moths decides to stay with them, glowing softly.",
+          "fail": "The queen is not sleepy. Her court is annoyed. Everyone is covered in moth dust.",
+          "spark": "A sprinkle of the queen's silver dust settles in {name}'s pack."
+        },
+        "Take Her Lantern": {
+          "success": "{name} slips the Moth Queen's own lantern from its hook. It's warm and light as a feather.",
+          "fail": "The whole court rises at once, a storm of wings, and {name} can't see, breathe, or run.",
+          "spark": "The lantern leaves a shimmer of thal on {name}'s fingers."
+        },
+        "Bow to the Queen": {
+          "scene": "{name} bows to the Moth Queen, who acknowledges them with the tiniest tilt of an antenna. It's an honor."
+        }
+      },
+      "mishap": null
+    },
+    "the-giggling-bog": {
+      "options": {
+        "Dig in the Muck": {
+          "success": "{name} digs elbow-deep into the giggling mud and comes up with a pearl the color of bog water.",
+          "fail": "The bog giggles and swallows something from {name}'s pack.",
+          "spark": "Under the pearl is something heavier and golden: a sunken crown, still dripping."
+        },
+        "Coax the Troll": {
+          "success": "{name} tells Grumblewort a joke. He laughs so hard the bog shakes, and he follows them for a while.",
+          "fail": "Grumblewort does not get the joke. He swats {name} with a very large hand.",
+          "spark": "Grumblewort leans in and whispers something about a rival. Trolls hear everything in the bog."
+        },
+        "Follow the Giggles": {
+          "success": "{name} follows the giggling lights to a lantern hanging over the water, and sees what's coming.",
+          "fail": "The giggles lead in circles, and {name} ends up exactly where they started, but wetter.",
+          "spark": "The little light that led the way doesn't leave. It bobs at {name}'s shoulder, pleased."
+        },
+        "Nap on a Lily Pad": {
+          "scene": "{name} naps on a lily pad the size of a bed, drifting in the warm bog, and wakes up refreshed and a little damp."
+        }
+      },
+      "mishap": "The bog giggles, {name} croaks, and the giggling gets louder."
+    },
+    "lily-pad-crossing": {
+      "options": {
+        "Hop Across": {
+          "success": "{name} hops from pad to pad and spots a pearl glinting in the shallows.",
+          "fail": "Splash.",
+          "spark": "A frog spits out a coin as {name} lands, like a toll in reverse."
+        },
+        "Ask the Frogs": {
+          "success": "The frogs croak among themselves and tell {name} what they've seen a rival doing.",
+          "fail": "The frogs ribbit at {name} and nothing else.",
+          "spark": "One very serious frog with a tiny monocle hops onto {name}'s shoulder and introduces himself as Sir Croaksworth."
+        },
+        "Float and Drift": {
+          "scene": "{name} floats on their back among the lily pads, watching the clouds and feeling very froggy."
+        }
+      },
+      "mishap": null
+    },
+    "the-mudlark-market": {
+      "options": {
+        "Haggle": {
+          "success": "{name} sells the mudlarks a story about a treasure that probably exists, and they pay for it.",
+          "fail": "The mudlarks are better at haggling than {name}. Much better.",
+          "spark": "One mudlark throws in a map drawn in mud, which is surprisingly accurate."
+        },
+        "Dig Alongside Them": {
+          "success": "{name} digs with the mudlarks and finds a pearl of their own.",
+          "fail": "A mudlark's shovel catches {name}'s shin. By accident, they say.",
+          "spark": "The mudlarks pay {name} a little extra for good company."
+        },
+        "Trade Gossip": {
+          "success": "The mudlarks know everything that's sunk in the swamp, and one thing about a rival's quest.",
+          "fail": "The mudlarks trade {name}'s secrets instead, and someone was listening.",
+          "spark": "The best gossip comes with a tip."
+        }
+      },
+      "mishap": null
+    },
+    "toadstool-thicket": {
+      "options": {
+        "Harvest Caps": {
+          "success": "{name} picks a fizzcap that pops on the tongue and makes everything feel possible.",
+          "fail": "Wrong cap. {name} croaks, which is the first sign.",
+          "spark": "The spores leave a tingle of thal behind."
+        },
+        "Bounce on the Caps": {
+          "success": "{name} bounces from cap to cap and shakes coins loose from the gills.",
+          "fail": "{name} bounces off the edge of the thicket and into a tree.",
+          "spark": "Somewhere in the bouncing, {name} learns how to land on their feet."
+        },
+        "Sit in the Shade": {
+          "scene": "{name} sits in the cool shade of a toadstool the size of an umbrella."
+        }
+      },
+      "mishap": null
+    },
+    "the-frog-kings-court": {
+      "options": {
+        "Petition the King": {
+          "success": "The Frog King hears {name}'s petition and grants a royal favor, sealed with a croak.",
+          "fail": "The Frog King decrees that {name} should see things from a frog's point of view. Literally.",
+          "spark": "Prince Ribbon, the king's youngest, hops along after {name} with royal permission."
+        },
+        "Steal a Tiny Crown": {
+          "success": "{name} snatches one of the tiny crowns from a sleeping courtier.",
+          "fail": "The court pelts {name} with lily pads and pebbles. Frogs have excellent aim.",
+          "spark": "A second tiny crown falls into {name}'s pocket on the way out."
+        },
+        "Join the Chorus": {
+          "scene": "{name} joins the frog chorus and learns the song so well that they become a frog for a while."
+        }
+      },
+      "mishap": null
+    },
+    "witchlight-marsh": {
+      "options": {
+        "Follow a Wisp": {
+          "success": "The wisp leads {name} to a lantern burning with witchlight, abandoned on a stump.",
+          "fail": "The wisp leads {name} into the deepest, muddiest part of the marsh and vanishes.",
+          "spark": "The wisp decides it likes {name}, and stays."
+        },
+        "Catch a Wisp in a Jar": {
+          "success": "{name} catches a wisp in a jar. It sulks, beautifully.",
+          "fail": "The wisp burns a little going in, and a lot going out.",
+          "spark": "The wisp leaves a spark of thal behind as a parting gift."
+        },
+        "Stay on the Path": {
+          "scene": "{name} stays on the path, ignores the lights, and arrives safe and dry."
+        }
+      },
+      "mishap": null
+    },
+    "the-sunken-chapel": {
+      "options": {
+        "Dive for Relics": {
+          "success": "{name} dives past the drowned pews and comes up clutching something precious from the altar.",
+          "fail": "The water is colder and deeper than it looked, and {name} barely makes it back up.",
+          "spark": "A second relic floats up behind them, as if the chapel wants it found."
+        },
+        "Ring the Bell Back": {
+          "success": "{name} rings the sunken bell, and its echo shows them what's coming.",
+          "fail": "Something in the deep answers the bell, and {name} doesn't wait to see what.",
+          "spark": "The echo carries a whisper about a rival's quest."
+        },
+        "Pray in the Pews": {
+          "scene": "{name} sits in a dry pew in the half-flooded chapel and feels a little better."
+        }
+      },
+      "mishap": null
+    },
+    "gator-ferry": {
+      "options": {
+        "Pay the Fare": {
+          "scene": "{name} pays Captain Snapjaw's fare and rides across in comfort, with a view of every path ahead."
+        },
+        "Haggle with the Gator": {
+          "success": "Captain Snapjaw likes {name}'s nerve and gives them a free ride, plus coins he found in the river.",
+          "fail": "Captain Snapjaw accepts payment in the form of something from {name}'s pack. He chose.",
+          "spark": "Snapjaw decides {name} is good company and offers to come along."
+        },
+        "Ride Without Paying": {
+          "success": "{name} rides across clinging to the gator's tail, and pries loose a golden tooth on the way.",
+          "fail": "Snapjaw notices. He flicks his tail, and {name} goes into the river."
+        }
+      },
+      "mishap": null
+    },
+    "the-drowned-throne": {
+      "options": {
+        "Dive for the Crown": {
+          "success": "Down past the drowned king's throne, {name} finds the Sunken Crown and swims for the light.",
+          "fail": "The ghost of the Drowned King grabs {name}'s ankle and pulls.",
+          "spark": "A royal signet ring comes up tangled in the crown's points."
+        },
+        "Bargain with the Ghost": {
+          "success": "The Drowned King agrees to trade his crown for a promise. {name} hopes it's one they can keep.",
+          "fail": "The Drowned King laughs, and the curse settles on {name} like cold water.",
+          "spark": "The ghost lets slip something about a rival who came here before."
+        },
+        "Pay Respects": {
+          "scene": "{name} bows to the empty throne. The water stirs, almost as if in thanks."
+        }
+      },
+      "mishap": null
+    },
+    "the-great-bog-maw": {
+      "options": {
+        "Feed the Maw": {
+          "success": "{name} drops a treasure into the Maw. It gulps, considers, and spits out a pearl.",
+          "fail": "The Maw keeps the treasure, burps, and nips {name} for good measure.",
+          "spark": "A small bog spirit climbs out of the Maw and decides to follow {name} home."
+        },
+        "Fight Your Way Out": {
+          "success": "The Maw swallows {name}, and {name} fights their way back out holding one of its teeth.",
+          "fail": "The Maw swallows {name}. Getting out takes a while.",
+          "spark": "{name} comes out of the Maw a lot tougher than they went in."
+        },
+        "Back Away Slowly": {
+          "success": "{name} backs away slowly. Nothing happens. That's the best outcome here.",
+          "fail": "The Maw lunges and gets a mouthful of {name}'s pack."
+        }
+      },
+      "mishap": null
+    },
+    "the-fermenting-deep": {
+      "options": {
+        "Bottle the Brew": {
+          "success": "{name} bottles a brew that fizzes, glows, and smells like trouble.",
+          "fail": "The bottle explodes, and {name} comes up croaking.",
+          "spark": "At the bottom of the vat, a crystal of pure fizzy thal has formed."
+        },
+        "Drink Deep": {
+          "success": "{name} drinks deep from the fermenting pool and feels thal roar through every vein.",
+          "fail": "The thal disagrees with {name}, violently, and leaves them bubbly for good.",
+          "spark": "The thal fizzes up into little sparks that dance around {name}'s fingers."
+        },
+        "Skim the Surface": {
+          "success": "{name} skims a fermented pearl from the bubbling surface.",
+          "fail": "The surface bubbles up and splashes {name} with something that stings."
+        }
+      },
+      "mishap": null
+    },
+    "goatpath-switchbacks": {
+      "options": {
+        "Push Past the Goat": {
+          "success": "{name} squeezes past the goat and finds coins dropped by less determined travelers.",
+          "fail": "The goat headbutts {name}. It's been waiting all day for this.",
+          "spark": "{name} feels their legs get stronger with every switchback."
+        },
+        "Make Friends with the Goat": {
+          "success": "{name} scratches the goat behind the ears. Biscuit, as he's called, decides to follow.",
+          "fail": "The goat eats {name}'s coins, and seems pleased about it.",
+          "spark": "Biscuit noses around a rock and turns up a glittering garnet."
+        },
+        "Rest at the Cairn": {
+          "scene": "{name} rests at the stone cairn and adds a stone of their own for luck."
+        }
+      },
+      "mishap": null
+    },
+    "echo-gorge": {
+      "options": {
+        "Shout a Question": {
+          "success": "{name} shouts a question, and the echo comes back with an answer about a rival.",
+          "fail": "The echo mocks {name}'s voice until they give up.",
+          "spark": "The last echo carries a whisper of what the Bloom will bring."
+        },
+        "Climb for Crystals": {
+          "success": "{name} pries a crystal from the gorge wall. It hums with every sound.",
+          "fail": "The handhold crumbles, and so does {name}'s dignity.",
+          "spark": "Coins left by an earlier climber glint in a crack."
+        },
+        "Sing to the Echo": {
+          "scene": "{name} sings to the gorge, and the echo sings back in harmony."
+        }
+      },
+      "mishap": null
+    },
+    "alpine-hot-springs": {
+      "options": {
+        "Soak": {
+          "scene": "{name} sinks into the steaming spring, and every ache in their body dissolves."
+        },
+        "Pan for Gold": {
+          "success": "{name} pans the warm runoff and finds flecks of real gold.",
+          "fail": "The water is hotter than it looked.",
+          "spark": "In the pan is a milky opal that glows like the spring itself."
+        },
+        "Shoo the Marmots": {
+          "success": "{name} tries to shoo the marmots, but one of them decides they're friends instead.",
+          "fail": "The marmots do not shoo. The marmots bite."
+        }
+      },
+      "mishap": null
+    },
+    "the-kite-cliffs": {
+      "options": {
+        "Launch a Kite": {
+          "success": "{name}'s kite catches the updraft and soars, winning a prize and a view of the paths ahead.",
+          "fail": "The kite catches the wind, and so does {name}, briefly.",
+          "spark": "The race organizers present {name} with a ribbon for the most daring launch."
+        },
+        "Repair Kites for Racers": {
+          "success": "{name} patches torn kites for the racers and earns a good handful of coin.",
+          "fail": "A kite {name} repaired falls apart mid-flight. The racer is not amused.",
+          "spark": "Working on the kites, {name} learns a thing or two about wind and wits."
+        },
+        "Watch the Race": {
+          "scene": "{name} watches the kites dance on the wind, maybe with a little wager on the side."
+        }
+      },
+      "mishap": null
+    },
+    "frostroot-caves": {
+      "options": {
+        "Mine the Crystal Roots": {
+          "success": "{name} chips at a root frozen into crystal until a shard breaks free, so cold it smokes in the glove.",
+          "fail": "The cave answers the pickaxe with a groan, and half the ceiling comes down to see what the noise was.",
+          "spark": "Deeper in the ice, a smaller root has frozen around a flicker of light, and it shines on in {name}'s pack."
+        },
+        "Map the Caves": {
+          "success": "{name} charts the tunnels by lantern and chalk, finds a few lost coins, and works out where the roads ahead will lead.",
+          "fail": "The tunnels fold back on themselves. {name}'s map ends up looking like a plate of noodles.",
+          "spark": "Halfway through the map, the whole cave system clicks into place in {name}'s head."
+        },
+        "Shelter from the Cold": {
+          "scene": "{name} builds a small fire in a cave mouth and watches the frost-roots glitter in its light."
+        }
+      },
+      "mishap": null
+    },
+    "the-stone-giants-toes": {
+      "options": {
+        "Tickle a Toe": {
+          "success": "{name} runs a feather along a toe the size of a cart. Deep in the mountain, the giant giggles and coughs up a gallstone as big as a melon.",
+          "fail": "The giant kicks in its sleep, and a boulder with a toenail sends {name} flying.",
+          "spark": "{name} now knows exactly where giants are ticklish. Few people alive can say that."
+        },
+        "Wake It Politely": {
+          "success": "{name} clears their throat, bows, and asks nicely. The giant opens one eye, and Pebble, its little rock-hound, trots over to sniff {name}'s hand and stays.",
+          "fail": "The giant rolls over. {name} spends a long while under a very heavy elbow.",
+          "spark": "Before drifting off again, the giant rumbles about a traveler who passed by earlier, and what they were looking for."
+        },
+        "Climb onto the Knee": {
+          "success": "From the giant's knee, {name} can see clear across the realm, and the coins wedged in the cracks of its stone skin.",
+          "fail": "The giant shifts in its sleep, and the knee {name} was standing on is suddenly a slope."
+        }
+      },
+      "mishap": null
+    },
+    "thunderhead-pass": {
+      "options": {
+        "Rush the Pass": {
+          "success": "{name} sprints between lightning strikes and snatches a pane of storm-glass from where a bolt fused the sand.",
+          "fail": "Lightning strikes close enough to make {name}'s hair stand on end. Then it strikes closer.",
+          "spark": "{name} uncorks a flask at just the right moment and catches a crackle of lightning inside it."
+        },
+        "Catch the Lightning": {
+          "success": "{name} reaches up into the storm, and a thread of thal-lightning coils around their fingers like a tame snake.",
+          "fail": "The lightning catches {name} instead, and for a moment they can see their own bones.",
+          "spark": "The storm leaves its mark. {name}'s hair will never lie flat again, and it crackles near spellwork."
+        },
+        "Wait Out the Storm": {
+          "scene": "{name} huddles in a rock shelter, counting the seconds between flash and thunder until the clouds drift on."
+        }
+      },
+      "mishap": null
+    },
+    "the-dragons-doorstep": {
+      "options": {
+        "Sneak in for Gold": {
+          "success": "{name} tiptoes past the snoring dragon, fills both pockets with gold, and does not breathe until they're outside.",
+          "fail": "The dragon hiccups in its sleep, and a gout of fire rolls across the cave floor.",
+          "spark": "On the way out, the dragon hiccups again, and a tiny bubble of fire bobs into {name}'s waiting jar."
+        },
+        "Bottle a Hiccup": {
+          "success": "{name} crouches by the dragon's snout with a stoppered bottle and catches the next hiccup, crackling, inside.",
+          "fail": "The hiccup is much bigger than the bottle. Also than {name}.",
+          "spark": "Being that close to a dragon's breath teaches {name} more about thal than a year of study."
+        },
+        "Leave Before It Wakes": {
+          "scene": "{name} takes one look at the scorch marks on the doorstep and backs away without a sound."
+        }
+      },
+      "mishap": null
+    },
+    "the-summit-shrine": {
+      "options": {
+        "Make the Final Climb": {
+          "success": "{name} hauls themselves onto the summit, and in the shrine's bowl rests a stone that holds the whole mountain's patience.",
+          "fail": "The last ledge is farther than it looked, and the way down is much faster than the way up.",
+          "spark": "The Rootkeepers' blessing settles over {name} like a warm cloak, and they feel sturdier than ever."
+        },
+        "Meditate at the Shrine": {
+          "success": "{name} sits until the wind stops mattering, and comes back down knowing something they can't quite put into words.",
+          "fail": "The thin air wins. {name}'s meditation becomes a long, dizzy nap.",
+          "spark": "When {name} opens their eyes, the paths of the coming days are laid out below like a map."
+        },
+        "Admire the View": {
+          "scene": "From the top of the world, {name} can see the Great Thalowood Tree, and a glimpse of what the Bloom will bring next."
+        }
+      },
+      "mishap": null
+    },
+    "wyrmmothers-nest": {
+      "options": {
+        "Raid the Nest": {
+          "success": "{name} rolls an egg the size of a barrel out of the nest and is halfway down the mountain before anything notices.",
+          "fail": "A shadow falls over the nest. The Wyrmmother is home, and she is not little.",
+          "spark": "A shed scale, bright as a new coin, comes away stuck to the egg."
+        },
+        "Soothe the Wyrmmother": {
+          "success": "{name} hums the oldest lullaby they know. The Wyrmmother's eyes slide shut, and one curious hatchling waddles after {name}.",
+          "fail": "The Wyrmmother does not care for lullabies, or for visitors, or for {name} in particular.",
+          "spark": "As {name} leaves, the Wyrmmother nudges one of her own scales toward them with her snout."
+        },
+        "Fight Her Off": {
+          "success": "{name} stands their ground against the Wyrmmother until she retreats, leaving a scale on the rocks as a grudging trophy.",
+          "fail": "The Wyrmmother has raised a Pickle Wyrm. She has had a great deal of practice at this."
+        }
+      },
+      "mishap": null
+    },
+    "the-toppled-archway": {
+      "options": {
+        "Read the Carvings": {
+          "success": "{name} traces the grafting instructions with a finger, and halfway through they stop being instructions and start being a prophecy.",
+          "fail": "The carvings swim in front of {name}'s eyes until they have a headache and no new knowledge whatsoever.",
+          "spark": "In the margin, in fresh chalk, someone has scribbled their plans. A rival was here, and careless."
+        },
+        "Search the Rubble": {
+          "success": "Under a toppled stone, {name} finds an old Gardener-King coin, a few newer ones, and a beetle who resents the intrusion.",
+          "fail": "The rubble shifts, and a stone settles comfortably on {name}'s foot.",
+          "spark": "Wedged deeper in the rubble is a signet ring bearing the sign of the grafted crown."
+        },
+        "Rest in the Shade": {
+          "scene": "{name} rests in the archway's shadow, imagining kings walking through it, and the old words seem to hum along."
+        }
+      },
+      "mishap": null
+    },
+    "the-overgrown-library": {
+      "options": {
+        "Study": {
+          "success": "{name} pulls a book free of the vines and reads until the light goes amber. The books whisper encouragement.",
+          "fail": "Every book {name} opens is a treatise on soil drainage. Every single one.",
+          "spark": "A pressed map slides out of the pages, marking where the next roads lead."
+        },
+        "Take a Rare Book": {
+          "success": "{name} slips a grafter's notebook into their pack. Its margins are crowded with notes on how things grow.",
+          "fail": "The vines notice the theft and tighten around {name}'s wrist until the book goes back on the shelf.",
+          "spark": "Pressed between two pages, like flowers, are a few forgotten coins."
+        },
+        "Read Aloud to the Vines": {
+          "success": "{name} reads a chapter aloud. The vines lean closer, and something in the air turns gentle and restful.",
+          "fail": "The vines are not interested in this book. They rustle until {name} stops."
+        }
+      },
+      "mishap": null
+    },
+    "the-collapsed-greenhouse": {
+      "options": {
+        "Pick Grafted Fruit": {
+          "success": "{name} picks a pearfruit from a vine that should have died a century ago. It's ripe, sweet, and faintly glowing.",
+          "fail": "The fruit has teeth. Grafted fruit sometimes does.",
+          "spark": "On the next branch hangs an apple of pure gold, grafted by someone who knew exactly what they were doing."
+        },
+        "Salvage Tools": {
+          "success": "Among the broken glass, {name} finds a pair of grafting shears that still cut clean.",
+          "fail": "Every tool is rusted solid, and one of them was home to a very angry wasp.",
+          "spark": "Under the potting bench, a forgotten cashbox rattles when {name} nudges it."
+        },
+        "Sit Among the Plants": {
+          "scene": "{name} sits among the strange grafted plants and feels the thal moving through them, slow and patient."
+        }
+      },
+      "mishap": null
+    },
+    "the-old-well": {
+      "options": {
+        "Toss a Coin": {
+          "success": "{name} tosses a coin down the well and makes a wish. A moment later, the well tosses back a handful.",
+          "fail": "The well keeps the coin. Wells usually do.",
+          "spark": "Bobbing up on a thread of thal comes a wishbone, dry and perfect."
+        },
+        "Climb Down": {
+          "success": "At the bottom of the well, among the thal-damp stones, {name} finds a relic from the Grafted Age.",
+          "fail": "{name} gets stuck halfway down and spends an undignified hour wriggling free.",
+          "spark": "The trickle at the bottom sparks against {name}'s fingers, and a little of it comes back up with them."
+        },
+        "Drink the Trickle": {
+          "scene": "{name} drinks from the thin stream of thal at the well's base. It's cool, sweet, and a little bit fizzy."
+        }
+      },
+      "mishap": null
+    },
+    "the-hall-of-statues": {
+      "options": {
+        "Lift the Stone": {
+          "success": "{name} heaves up the floor stone every statue is staring at. Underneath is a king's hidden cache.",
+          "fail": "The stone is heavier than three kings. {name}'s back reports this immediately.",
+          "spark": "Coins spill out around the cache, as if the kings had been saving them for exactly this."
+        },
+        "Solve the Statues' Puzzle": {
+          "success": "{name} works out what the kings were looking at and why, and the statues turn their heads, slowly, to point the way ahead.",
+          "fail": "{name} guesses wrong. The statues somehow look disappointed.",
+          "spark": "One of the stone kings blinks, and a gemstone eye drops into {name}'s palm."
+        },
+        "Pose Like a Statue": {
+          "success": "{name} strikes a regal pose and holds it so perfectly that rivals walk right past without a second glance.",
+          "fail": "{name} sneezes, and the illusion is over."
+        }
+      },
+      "mishap": null
+    },
+    "the-grafted-garden": {
+      "options": {
+        "Befriend a Topiary": {
+          "success": "{name} scratches a hedge hound behind its leafy ears. Its tail rustles, and it trots along at {name}'s heel.",
+          "fail": "The topiary bristles, and hedges are mostly thorns when they bristle.",
+          "spark": "The hound's patient affection teaches {name} something about winning over the stubborn."
+        },
+        "Raid the Fountain": {
+          "success": "{name} scoops the wishing coins from the dry fountain while the hedge lions are facing the other way.",
+          "fail": "The hedge lions turn around.",
+          "spark": "At the bottom of the fountain lies a key, green with age and still warm."
+        },
+        "Prune the Hedges": {
+          "success": "{name} trims the hedges carefully, and thal wells up in every cut like sap.",
+          "fail": "{name} prunes a hedge that was very attached to that branch, and it says so with thorns."
+        }
+      },
+      "mishap": null
+    },
+    "the-vine-choked-vault": {
+      "options": {
+        "Pick the Lock": {
+          "success": "{name} coaxes the old lock open and finds a Graftwright's strongbox inside.",
+          "fail": "The lock was a trap, and the trap still works.",
+          "spark": "Beside the strongbox sits a thimble, polished bright by some long-gone lucky thumb."
+        },
+        "Rip Out the Vines": {
+          "success": "{name} tears the vines away by the armful, and coins come loose from the roots like seeds.",
+          "fail": "The vines rip back. They're much better at it.",
+          "spark": "By the time the door is clear, {name}'s arms feel like they could lift the vault itself."
+        },
+        "Booby-Trap the Door": {
+          "scene": "{name} rigs the vault door with a surprise of their own, smiling at whoever comes looking next."
+        }
+      },
+      "mishap": null
+    },
+    "the-ghostly-ballroom": {
+      "options": {
+        "Join the Dance": {
+          "success": "{name} waltzes with a ghostly courtier, who presses a cold locket into their hand when the music ends.",
+          "fail": "The music never ends. {name} dances until their legs give out.",
+          "spark": "Mid-twirl, a ghost leans close and murmurs what a rival confessed here."
+        },
+        "Steal from the Ghosts": {
+          "success": "{name} lifts a string of spectral jewels from a dancing duchess. She doesn't miss a step.",
+          "fail": "Every ghost in the ballroom stops dancing and turns. Their chill follows {name} out.",
+          "spark": "A few real coins tumble from a ghost's purse as {name} brushes past."
+        },
+        "Sit Out the Dance": {
+          "scene": "{name} sits by the wall and watches a court that ended long ago dance on as if nothing happened."
+        }
+      },
+      "mishap": null
+    },
+    "the-gardener-kings-tomb": {
+      "options": {
+        "Open the Sarcophagus": {
+          "success": "{name} slides the lid aside. The last Gardener-King's crown rests on a pillow of roots, still gleaming.",
+          "fail": "The vines around the tomb move like snakes, and they're quicker than {name}.",
+          "spark": "Beside the crown lies the king's own grafting knife, its edge still bright."
+        },
+        "Read the Royal Inscriptions": {
+          "success": "{name} reads the inscriptions in all six languages and understands what they warn about: what's coming next.",
+          "fail": "The inscriptions were a curse. {name} read it out loud.",
+          "spark": "Among the old names is a newer scratch: a rival was here before, and left a clue."
+        },
+        "Leave an Offering": {
+          "scene": "{name} lays a treasure on the tomb's lid. The vines relax, and a quiet understanding settles in."
+        }
+      },
+      "mishap": null
+    },
+    "the-grafted-gate": {
+      "options": {
+        "Hold It Shut": {
+          "success": "{name} throws their weight against the gate until it stops shuddering, and the old seal comes away in their hand.",
+          "fail": "Whatever is on the other side pushes harder than {name} does.",
+          "spark": "Holding back the gate makes {name} stronger in ways that last."
+        },
+        "Re-Graft the Seal": {
+          "success": "{name} grafts living vine across the gap, and the seal knits shut, warm and green.",
+          "fail": "Thal surges through the half-finished graft and throws {name} across the courtyard.",
+          "spark": "The graft takes on {name} too. A green mark curls across their wrist and won't wash off."
+        },
+        "Peek Through": {
+          "success": "{name} presses an eye to the crack and glimpses what the Bloom has in store.",
+          "fail": "Something reaches through the crack, grabs a strap of {name}'s pack, and pulls."
+        }
+      },
+      "mishap": null
+    },
+    "the-sunken-observatory": {
+      "options": {
+        "Look Through the Telescope": {
+          "success": "{name} looks down the telescope into the earth, and sees a rival's path and the shape of the days ahead.",
+          "fail": "{name} sees what found the astronomers. It sees {name} back.",
+          "spark": "Rolled inside the telescope's tube is a star-chart of the underground sky."
+        },
+        "Salvage the Brass": {
+          "success": "{name} pries a brass astrolabe from the collapsed dome, its rings still turning on their own.",
+          "fail": "The dome was only staying up out of habit. It stops."
+        },
+        "Dig Where It Points": {
+          "success": "{name} digs where the telescope points and strikes a root crystal, humming.",
+          "fail": "The ground under the observatory gives way, and {name} drops into the dark.",
+          "spark": "Beneath the crystal, something whispers. It's a sliver of the Taproot."
+        }
+      },
+      "mishap": null
+    }
+  },
+  "missions": {
+    "moth-queens-lullaby": {
+      "opening": "The Moth Queen hasn't slept in nine nights, and the whole Meadow is yawning. A sleepy moth lands on {name}'s sleeve with a message: find a way to sing her down.",
+      "milestones": [
+        "The Meadow hums under {name}'s feet. The flowers here remember every lullaby ever sung, and they teach {name} the first verse.",
+        "Resting twice, {name} learns the secret of lullabies: you have to know how to be still before you can make anyone else be still.",
+        "A creature curls up beside {name} and falls asleep instantly. The lullaby is working, at least on small things."
+      ],
+      "finale": "With a friend at their side, {name} sings to the Moth Queen. Her wings fold, the meadow sighs, and for the first time in nine nights, everyone sleeps."
+    },
+    "the-rootkeepers-errand": {
+      "opening": "An old Rootkeeper presses a seed pod into {name}'s hands. \"Something was taken from the old stones,\" she says. \"Bring a piece of them home to the forest. Don't trust a Graftwright to do it.\"",
+      "milestones": [
+        "The forest lets {name} pass without a single snagged sleeve. The Rootkeepers' trust is a kind of path.",
+        "{name} offers a hand to a rival. The Rootkeepers believe the roots connect everyone, even competitors.",
+        "In the ruins, {name} finds a treasure that hums the same note as the seed pod. This belongs back in the forest."
+      ],
+      "finale": "{name} carries the ruin-treasure deep into the forest, and the old roots close around it like a hand. The Rootkeeper smiles. The errand is done."
+    },
+    "blue-ribbon-at-the-bloom-fair": {
+      "opening": "The Bloom Fair is coming, and the judges only care about one thing: who brings the most marvelous haul. {name} intends to win the blue ribbon.",
+      "milestones": [
+        "A treasure from the Meadow, still smelling of wildflowers. The judges love a local entry.",
+        "A treasure from the Forest, wrapped in moss for presentation. Every good haul needs some variety.",
+        "{name} buys something from a traveling merchant. A true collector knows when to pay full price."
+      ],
+      "finale": "{name} lays out a haul worth a small fortune. The judges gasp, confer, and pin the blue ribbon on with trembling hands."
+    },
+    "the-frog-princes-pond": {
+      "opening": "A frog in the bog insists he's a prince. \"There's only one way to be sure,\" he croaks. \"You'll have to see the pond the way I do.\" {name} has a terrible feeling about this.",
+      "milestones": [
+        "{name} learns the swamp's ways: where the water's deep, where the mud is soft, and where the frogs hold court.",
+        "{name} becomes a frog. It's undignified, it's damp, and the pond suddenly looks like a kingdom.",
+        "A swamp creature takes to {name}. The prince seems to think this is an important sign."
+      ],
+      "finale": "At a deep swamp pond, {name} charms the court with perfect manners. The frog prince bows, and his crown is real after all."
+    },
+    "mushroom-census": {
+      "opening": "The Rootkeepers count every mushroom each Bloom. This year, {name} has the clipboard, and some of the mushrooms bite.",
+      "milestones": [
+        "The forest mushrooms are counted: four hundred and twelve, not including the one that ran away.",
+        "The swamp mushrooms are counted, mostly. Some of them were frogs.",
+        "{name} works out a clever system for counting by spore print. The Rootkeepers will be impressed."
+      ],
+      "finale": "At the deepest mushroom patch, {name} finishes the census with a perfect tally. The Rootkeepers frame the clipboard."
+    },
+    "the-shepherds-lost-flock": {
+      "opening": "Three woolly thal-sheep wandered off during the Bloom, and one of them can now fly. The shepherd is beside herself. {name} promises to bring them home.",
+      "milestones": [
+        "The first creature {name} befriends is not a sheep, but it knows where the sheep went.",
+        "A second creature joins. The little herd is starting to feel like a flock.",
+        "In the Meadow, {name} finds tufts of glowing wool caught on the thistles. The sheep are close."
+      ],
+      "finale": "With two companions herding from the flanks, {name} guides the lost flock home across the Meadow, the flying one bobbing overhead like a cloud."
+    },
+    "the-merchants-debt": {
+      "opening": "{name} owes Mrs. Pennywhistle money. She has a very good memory and a very fast cart. It's time to pay up, with interest.",
+      "milestones": [
+        "{name} cashes in a treasure. It hurts a little, but debts don't pay themselves.",
+        "{name} buys something from a merchant. Mrs. Pennywhistle hears about it and nods approvingly. Commerce is commerce.",
+        "{name} strikes a deal with a rival. Mrs. Pennywhistle always said the best trades leave both sides grumbling."
+      ],
+      "finale": "{name} starts their turn with a heavy purse and hands Mrs. Pennywhistle every coin she's owed. She counts it twice, then smiles for the first time in years."
+    },
+    "picnic-on-the-hill": {
+      "opening": "The best view in Thaloroot is from the hill where the wildflowers meet the stone. {name} has packed a basket. All that's left is getting there in one piece.",
+      "milestones": [
+        "The Meadow provides the picnic blanket: soft clover and nodding buttercups.",
+        "The Mountain provides the view, if {name} can climb high enough to see it.",
+        "{name} rests where the meadow meets the mountain, and the picnic spot is perfect."
+      ],
+      "finale": "Feeling fit and whole, {name} climbs to the high mountain picnic spot, spreads the blanket, and watches the whole Bloom unfold below."
+    },
+    "mudlarks-fortune": {
+      "opening": "Everything lost in Thaloroot eventually sinks into a bog. {name} figures somebody might as well dig it up.",
+      "milestones": [
+        "The swamp yields to {name}'s shovel. The mud has secrets, and it's willing to share.",
+        "A treasure comes up from the bog, slick with mud and gleaming underneath.",
+        "{name} digs deep with their own two arms. The bog respects strength."
+      ],
+      "finale": "With two bog treasures in their pack, {name} digs into the deepest swamp and strikes a fortune that's been waiting a century."
+    },
+    "apprentices-first-spell": {
+      "opening": "Every spellcaster remembers their first real spell. Most of them remember their eyebrows growing back. {name} is ready to cast theirs.",
+      "milestones": [
+        "A Spark leaps from {name}'s fingertips. It's tiny, and it's real.",
+        "{name} succeeds at something purely with thal. It feels like learning to whistle.",
+        "{name} skips a reward to study the spark instead. Real magic takes practice."
+      ],
+      "finale": "At a dangerous place, {name} casts their first true spell. It works. Their eyebrows survive. Mostly."
+    },
+    "the-couriers-parcel": {
+      "opening": "A sealed parcel, an address in the old stones, and strict instructions not to peek. {name} is the courier now.",
+      "milestones": [
+        "The parcel passes through the Forest safely. It ticks, occasionally.",
+        "Across the Meadow, the parcel hums a little tune. {name} doesn't peek.",
+        "Through the Swamp, the parcel stays dry. {name} is very proud of this."
+      ],
+      "finale": "Traveling light, {name} delivers the parcel to the ruins. Whatever's inside thanks them in a voice like rustling paper."
+    },
+    "trapwise-scout": {
+      "opening": "The best way to learn about traps is to step in a few. {name} intends to learn a great deal.",
+      "milestones": [
+        "{name} springs a rival's trap and studies how it works while picking themselves up.",
+        "{name} sets a trap of their own. It's a good one. They learned from the best mistakes.",
+        "Back where a trap once sprung, {name} succeeds where someone else stumbled."
+      ],
+      "finale": "{name} springs a trap and keeps right on going, succeeding anyway. The scout's training is complete."
+    },
+    "the-wandering-minstrels-ballad": {
+      "opening": "A good ballad needs a friend, a fight, and a moment of walking away. {name} is collecting verses.",
+      "milestones": [
+        "{name} offers friendship at a Meeting. That's verse one, the warm one.",
+        "{name} picks a fight at a Meeting. That's verse two, the loud one.",
+        "{name} walks away from a Meeting. That's verse three, the wise one."
+      ],
+      "finale": "In the Meadow, mid-Meeting, {name} succeeds and the ballad is finished. Somewhere, a minstrel starts humming it."
+    },
+    "rootkeeper-initiate": {
+      "opening": "Initiates spend their first Bloom learning to take only what the forest offers. {name} has been accepted, on probation.",
+      "milestones": [
+        "{name} rests in the forest without taking anything. The trees approve.",
+        "{name} takes a lesson instead of a reward. The Rootkeepers call this the first true test.",
+        "{name} solves a forest puzzle with wits alone. No shortcuts."
+      ],
+      "finale": "At a deep forest place, {name} succeeds without gambling or gadgets. The Rootkeepers welcome them as one of their own."
+    },
+    "little-lost-wisp": {
+      "opening": "A tiny will-o'-wisp has drifted far from home and keeps following {name}. It's very sad about it.",
+      "milestones": [
+        "In the swamp, the wisp perks up. This is close to home, but not quite.",
+        "In the meadow, the wisp brightens. It remembers flowers.",
+        "{name} catches a spark of thal, and the wisp glows with it. It's getting stronger."
+      ],
+      "finale": "With a light in hand to guide the way, {name} brings the wisp to the deep meadow where its family glows. It flickers goodbye."
+    },
+    "grumbleworts-birthday": {
+      "opening": "The troll from the Giggling Bog is turning 300. Nobody has ever gotten him a present. {name} decides that ends this Bloom.",
+      "milestones": [
+        "A creature joins {name}'s party plans. Every birthday needs guests.",
+        "{name} buys something from a merchant. The present is coming together.",
+        "In the swamp, {name} finds a treasure. It's perfect for a troll."
+      ],
+      "finale": "{name} gives away a treasure, then finds Grumblewort deep in the bog. He cries a little. It's his first birthday party ever."
+    },
+    "hilltop-beacon": {
+      "opening": "When the Bloom peaks, someone lights the old beacon on the hill. It's never the same person twice. This Bloom, {name} means to light it.",
+      "milestones": [
+        "The mountain path to the beacon is clear. {name} has climbed it.",
+        "{name} hauls firewood with their own two arms.",
+        "{name} sparks a flame with thal. The beacon will need it."
+      ],
+      "finale": "{name} pours everything into one great effort on the mountain, and the beacon roars to life. The whole realm sees it."
+    },
+    "the-drowned-kings-crown": {
+      "opening": "A king sank his crown in a bog rather than lose it in battle. His ghost still wants it back, and he's chosen {name} to fetch it.",
+      "milestones": [
+        "{name} finds a treasure in the swamp. It's not the crown, but the ghost says it's close.",
+        "A creature befriends {name}. The drowned king says even kings need friends.",
+        "In the ruins, {name} finds the old throne room. The crown's place is empty."
+      ],
+      "finale": "Holding the crown or a swamp relic in its place, {name} reaches the ruined throne. The ghost of the Drowned King bows his head, and finally rests."
+    },
+    "graftwrights-folly": {
+      "opening": "The Graftwrights swear they can join two finds into something new. {name} has volunteered to try. Carefully, this time.",
+      "milestones": [
+        "The ruins give up a secret of grafting. {name} takes notes.",
+        "The forest teaches {name} about roots: how they join, how they share.",
+        "{name} takes a lesson instead of a reward. The Graftwrights say understanding comes before making."
+      ],
+      "finale": "Holding one treasure from the ruins and one from the forest, {name} grafts them together. It works. It glows. It does not explode."
+    },
+    "wyrm-hunter": {
+      "opening": "Every Bloom wakes something with teeth, and somebody has to deal with it. {name} sharpens everything they own, twice, and sets out to find the biggest teeth in Thaloroot.",
+      "milestones": [
+        "{name} walks out of a perilous place with singed eyebrows and a grin. If that didn't stop them, a monster won't.",
+        "{name} wins a Brawl and shakes out their knuckles. Rivals are good practice. They punch back, but not as hard as wyrms.",
+        "High on the mountain, {name} finds claw marks gouged into solid rock, and fresh. Something big came this way."
+      ],
+      "finale": "{name} faces a monster of the Bloom and doesn't flinch. When the dust settles, the beast is beaten, and every village in Thaloroot will hear about it by nightfall."
+    },
+    "the-shadow-broker": {
+      "opening": "Secrets are the only treasure that never loses value. {name} opens a small black ledger, licks a pencil, and starts taking notes on everyone.",
+      "milestones": [
+        "One of {name}'s traps snaps shut on a rival. They'll never know who set it, but {name} knows exactly where they were standing.",
+        "{name} lifts something from a rival's pack. The item is nice. What it says about where they've been is nicer.",
+        "{name} learns a piece of a rival's secret quest and writes it down in very small handwriting."
+      ],
+      "finale": "At the final reckoning, {name} opens the ledger and names two rivals' secret quests, one after the other. The table goes very quiet. The Shadow Broker's books are balanced."
+    },
+    "ghost-of-the-gardeners-daughter": {
+      "opening": "She has waited in the ruins since the Wilting, a pale girl in a muddy apron who only wants flowers. {name} promised to bring her some, and ghosts remember promises.",
+      "milestones": [
+        "The ruins let {name} in. From a broken window, the Gardener's Daughter watches them pass, and almost waves.",
+        "In the meadow, {name} finds a treasure still bright with petals. It's exactly the color she described.",
+        "{name} rests among the old stones. The ghost sits down a little way off, and for a while neither of them is alone."
+      ],
+      "finale": "With meadow flowers in hand, {name} finds the words to reach her. She takes the bouquet, buries her face in it, and fades into the light, smiling."
+    },
+    "moonlit-heist": {
+      "opening": "The Graftwrights locked something away in the old stones, and the moon is full enough to work by. {name} pulls on dark gloves. This is going to be stylish.",
+      "milestones": [
+        "{name} relieves a rival of something shiny. Every heist needs a little seed money.",
+        "{name} sets a Pickpocket trap and steps back to admire it. Every good heist needs a distraction.",
+        "In the ruins, {name} studies the Graftwrights' lock until the first tumbler clicks. Wits, not crowbars."
+      ],
+      "finale": "Carrying stolen loot for luck, {name} slips into the old stones and cracks the Graftwrights' vault by moonlight. Nobody sees a thing."
+    },
+    "seed-of-the-first-bloom": {
+      "opening": "Legend says the first Bloom began with a single seed, planted on purpose. {name} has found one, wrinkled and warm, and it seems to be waiting.",
+      "milestones": [
+        "In the meadow, {name} finds a treasure soft with blossoms. The seed stirs in its pouch at the smell of good soil.",
+        "The forest shows {name} how its roots run deep and patient. The seed listens.",
+        "On the mountain, {name} watches stubborn little plants hold on in the wind. The seed learns how things endure."
+      ],
+      "finale": "In the meadow, {name} turns down a reward and plants the seed instead. A green shoot breaks the soil before they've finished patting it down. Something very old has begun again."
+    },
+    "duel-at-dawn": {
+      "opening": "An old-fashioned challenge, settled the old-fashioned way. {name} has slapped a rival with a glove, and now there's no backing out.",
+      "milestones": [
+        "{name} chooses to Brawl at a Meeting. Word gets around that they're serious.",
+        "{name} wins a Brawl, and somewhere a challenger starts sleeping badly.",
+        "A rival tries an ambush. {name} takes the hit, stays standing, and remembers it."
+      ],
+      "finale": "At a dangerous place, as the sun comes up, {name} wins the duel fair and square. The dawn breaks gold, and the glove goes back on."
+    },
+    "the-cloud-kite-race": {
+      "opening": "Every Bloom, the bravest fools in Thaloroot race kites off the highest cliffs. {name} has a kite, a ribbon, and very few doubts.",
+      "milestones": [
+        "{name} reaches the mountain launch site, where the wind smells like snow and adventure.",
+        "A lucky break goes {name}'s way. Kite racers live and die by luck, mostly live.",
+        "{name} succeeds twice in a row. In a race, momentum is everything."
+      ],
+      "finale": "{name} leaps from the highest cliff on nothing but luck and canvas, rides the wildest wind in Thaloroot, and crosses the finish line first."
+    },
+    "the-witchs-shopping-list": {
+      "opening": "One bog find, one forest find, one meadow find, and absolutely no questions. {name} took the witch's job before reading the list all the way through.",
+      "milestones": [
+        "The bog find is acquired. It's slimy and it smells. The list said that was fine.",
+        "The forest find is acquired. It may be moving slightly. {name} decides not to ask.",
+        "The meadow find is acquired. It smells lovely, which is the most suspicious thing on the list."
+      ],
+      "finale": "In the swamp, {name} tips two treasures into the witch's cauldron. It bubbles, belches green smoke, and the witch cackles with real delight."
+    },
+    "echoes-in-the-old-stones": {
+      "opening": "The ruins answer whoever knocks, but each kind of knock gets a different answer. {name} has a great many questions.",
+      "milestones": [
+        "{name} knocks with wits, and the stones answer with a riddle that takes all afternoon to solve.",
+        "{name} knocks with thal or a fist, and the old walls rumble back, deep and pleased.",
+        "In the deeper ruins, the echoes grow louder and stranger, and start saying {name}'s name."
+      ],
+      "finale": "Deep in the ruins, {name} trusts nothing but luck, and the old stones answer with a song nobody has heard since the Gardener-Kings."
+    },
+    "the-rival-expedition": {
+      "opening": "Two expeditions, one goal, and a very thin line between partner and competitor. {name} needs a partner, and is prepared to keep an eye on them.",
+      "milestones": [
+        "{name} offers an alliance at a Meeting. It's a start, and possibly a mistake.",
+        "{name} lends a rival their own dice. Trust gets built one die at a time.",
+        "{name} learns what a rival is really after. Good partners know each other. Great ones know a little more."
+      ],
+      "finale": "Teamed up with a rival, {name} conquers a dangerous place side by side with them. The expedition's map has two names on it now."
+    },
+    "the-thistle-knights-oath": {
+      "opening": "The Thistle Knights swear to protect the meadows, especially when it's a bad idea. {name} kneels, takes the oath, and receives a slightly prickly sword.",
+      "milestones": [
+        "{name} braves a perilous place without hesitating. The oath demands courage.",
+        "{name} binds their wounds and keeps going. The oath demands endurance.",
+        "{name} succeeds in the meadow, and the wildflowers seem to stand a little straighter."
+      ],
+      "finale": "Battered, bleeding, and well past sensible, {name} holds the line at a perilous place. Somewhere, the Thistle Knights raise their visors in salute."
+    },
+    "collector-of-curiosities": {
+      "opening": "{name}'s cabinet of wonders has an empty shelf. Several, actually. They take out a magnifying glass and a very large bag.",
+      "milestones": [
+        "{name} buys a curiosity from a merchant. The first shelf has its centerpiece.",
+        "A creature joins {name}. It insists it is not a curiosity, and is the best one yet.",
+        "{name} finds a treasure at a dangerous place. The rare ones are always hard to reach."
+      ],
+      "finale": "{name} starts their turn with a pack so full it clanks. Every shelf in the cabinet of wonders is spoken for."
+    },
+    "the-lost-graftwright": {
+      "opening": "A Graftwright went into the ruins three Blooms ago, and her notes keep turning up in strange places. {name} finds the first page tucked into their own boot.",
+      "milestones": [
+        "In the swamp, {name} fishes another page out of a lily pond. The ink has run, but the arrow is clear.",
+        "In the forest, a page is pinned to a tree with a grafting needle. She was here.",
+        "{name} glimpses something hidden, and it matches a sketch in her notes exactly."
+      ],
+      "finale": "With a companion sniffing out the trail, {name} finds the Lost Graftwright deep in the ruins. She's perfectly fine. She's just been very, very busy."
+    },
+    "stormchaser": {
+      "opening": "Thal storms only happen during a Bloom, and {name} has waited their whole life for one. They check the sky every few minutes, grinning.",
+      "milestones": [
+        "{name} braves a perilous place. Storms always gather where danger does.",
+        "On the mountain, {name} catches a crackle of thal in their hands, and it doesn't let go for an hour.",
+        "The world knocks {name} flat, and {name} gets back up laughing. Every stormchaser falls. The good ones get up."
+      ],
+      "finale": "At the most perilous place in the realm, {name} stands in the eye of the thal storm with their arms wide open. It's everything they dreamed."
+    },
+    "the-bramble-maze": {
+      "opening": "The brambles move when no one's looking, and the creatures inside know the way out. {name} takes a deep breath and steps in.",
+      "milestones": [
+        "The forest opens a path for {name}, and then quietly closes it behind them. The maze has begun.",
+        "A forest creature decides to trust {name}. It knows every turn of the maze.",
+        "{name} steps in a rival's trap. The maze is full of them, and now {name} knows what they look like."
+      ],
+      "finale": "Following their companion through the last twisting passage, {name} reaches the heart of the Bramble Maze. The brambles bow aside."
+    },
+    "steal-the-dragons-hiccup": {
+      "opening": "A dragon's hiccup is pure, unfiltered thal, and getting one means getting close. {name} has a jar, a cork, and a great deal of nerve.",
+      "milestones": [
+        "{name} climbs the mountain path toward the dragon's doorstep. The snoring is already audible.",
+        "At a perilous place, {name} bends thal to their will. Practice for catching something that wants to set them on fire.",
+        "{name} conquers one of the most dangerous places in the realm. The dragon's doorstep can't be worse. Probably."
+      ],
+      "finale": "Alone, without gambling, and without help, {name} creeps to the dragon's snout and catches a hiccup in the jar. The dragon never stirs. The cork holds."
+    },
+    "climb-the-great-thalowood": {
+      "opening": "No one has climbed to the top of the Great Thalowood Tree. Or rather, no one has climbed back down. {name} intends to find out which.",
+      "milestones": [
+        "{name} explores two different corners of the forest and learns how the great roots run.",
+        "From the mountain, {name} brings back a treasure light enough to carry up a very tall tree.",
+        "{name} hauls themselves up something hard with nothing but their arms. Good practice."
+      ],
+      "finale": "With the mountain treasure on their back, {name} climbs the Great Thalowood itself. At the top, the whole Bloom spreads out below like a quilt."
+    },
+    "taproot-whispers": {
+      "opening": "The old stones remember where the last Taproot fragment fell, and the flowers dream about it. {name} is going to listen to both.",
+      "milestones": [
+        "In the ruins, {name} finds a treasure that hums with old Taproot memories.",
+        "The meadow flowers whisper directions to {name} as the wind blows through them.",
+        "{name} glimpses something hidden, and it points straight down, toward the Taproot."
+      ],
+      "finale": "After traveling every corner of the realm, {name} reaches the deepest ruins and hears the Taproot whisper their name."
+    },
+    "heir-of-the-gardener-kings": {
+      "opening": "{name} has found the old grafting notes. They say, in three separate places, to go slowly. {name} skims those parts.",
+      "milestones": [
+        "{name} triggers a Mishap. The notes predicted this, in the margin, with a sad little drawing.",
+        "{name} pushes their luck and wins. The Gardener-Kings were reckless too.",
+        "Deep in the swamp, {name} finds a Gardener-King's lost grafting tool, still sharp."
+      ],
+      "finale": "At the most dangerous place, {name} pushes everything on one roll, and the thal answers. The Heir of the Gardener-Kings has claimed their inheritance."
+    },
+    "the-sleeping-giants-dream": {
+      "opening": "The mountain is not a mountain. It's a giant, dreaming, and {name} has been invited in.",
+      "milestones": [
+        "{name} rests twice, and each time the dream draws them a little deeper.",
+        "In the dream, {name} glimpses something hidden in the waking world.",
+        "In the meadow, {name} touches thal, and far away, the mountain sighs in its sleep."
+      ],
+      "finale": "After a long rest, {name} climbs into the giant's dream on the mountain top and works the magic to wake it gently. The mountain stretches, yawns, and smiles."
+    },
+    "heart-of-the-hollow-oak": {
+      "opening": "The oldest oak in the forest is hollow, and something inside it is singing. {name} wants to hear the song properly.",
+      "milestones": [
+        "{name} explores two deep forest places, and the song gets louder.",
+        "A forest creature befriends {name}. It hums the song under its breath.",
+        "{name} takes a lesson instead of a reward. The oak has always valued patience."
+      ],
+      "finale": "With two companions at their side, {name} climbs into the heart of the Hollow Oak. The song, it turns out, was always for them."
+    },
+    "king-of-thieves": {
+      "opening": "Every Bloom, the thieves of Thaloroot crown a king, and nobody is ever crowned twice. {name} has been measuring their head for a crown.",
+      "milestones": [
+        "{name} steals twice. A strong start for a royal resume.",
+        "A rival springs one of {name}'s Pickpocket traps. The thieves' guild sends a small, approving note.",
+        "{name} ambushes a rival in a Brawl and walks away with the spoils."
+      ],
+      "finale": "{name} starts their turn holding three stolen treasures. The thieves of Thaloroot emerge from the shadows and bow. Long live the King of Thieves."
+    },
+    "the-great-wyrms-lair": {
+      "opening": "The Pickle Wyrm is only a hatchling. Its mother lives somewhere up the mountain, and nobody who has gone looking for her has come back without a limp. {name} packs extra bandages.",
+      "milestones": [
+        "{name} walks out of a perilous place on their own two feet. If they can survive that, they can survive her.",
+        "In the ruins, {name} unrolls an old Gardener-King map of the mountain. One cave is circled in red, with teeth drawn around it.",
+        "{name} reaches the high, three-skull heights. The rocks are scorched, and the air smells faintly of vinegar."
+      ],
+      "finale": "At a three-skull peril, {name} meets the Great Wyrm with nothing but muscle and nerve, and drives her back into the dark. Her roar shakes snow off every peak in Thaloroot."
+    },
+    "the-last-gardener-kings-vault": {
+      "opening": "The Last Gardener-King's vault opens for a king's ransom. Literally. The door counts. {name} needs to save up.",
+      "milestones": [
+        "{name} finds a treasure in the deep ruins. The vault is close.",
+        "{name} glimpses something hidden: the vault's combination, scratched into a wall.",
+        "{name} starts their turn with a fat purse. Almost enough to impress a door."
+      ],
+      "finale": "{name} pays the vault's ransom, coin by coin, and the Last Gardener-King's Vault swings open. Inside is everything."
+    },
+    "champion-of-the-bloom": {
+      "opening": "Every Bloom has a champion, and the trick is being first. {name} intends to be first.",
+      "milestones": [
+        "{name} wins a Brawl. Champions fight, and win.",
+        "{name} conquers one of the most dangerous places in the realm. Champions take risks.",
+        "{name} succeeds in every corner of the realm. Champions go everywhere."
+      ],
+      "finale": "Before any rival finishes their quest, {name} conquers the most dangerous place in the realm. They are the Champion of the Bloom."
+    },
+    "the-mirror-bog": {
+      "opening": "In the Mirror Bog, every reflection takes its own turn. {name} glances down at the water, and their reflection is already halfway across the bog, waving.",
+      "milestones": [
+        "{name} becomes a frog. The reflection laughs, then becomes one too.",
+        "{name} springs a rival's trap. The reflection springs one at the same moment.",
+        "In the deep swamp, {name} outwits their reflection, just for a moment."
+      ],
+      "finale": "At the heart of the Mirror Bog, {name} succeeds even as everything goes wrong. The reflection bows and steps back into the water."
+    },
+    "thal-diviner": {
+      "opening": "{name} can feel thal moving under their feet like a second heartbeat. Now they have to prove it. They cut a forked hazel stick and hold it out, and it trembles.",
+      "milestones": [
+        "Three Sparks over the Bloom, and the divining rod twitches like a hound on a scent whenever {name} picks it up.",
+        "{name} has taken Lessons in two different stats. A diviner who only knows one thing only finds one thing.",
+        "{name} glimpses something no one else can see. The hazel rod bends toward it and won't straighten."
+      ],
+      "finale": "On two turns in a row, at the most dangerous places in the realm, {name} succeeds, and each time the rod points before they move. The thal has chosen its Diviner."
+    },
+    "the-rootkeepers-last-stand": {
+      "opening": "The Graftwrights are coming for the old grove with saws and grafting knives, and the Rootkeepers need every friend they can find. {name} ties a green ribbon around their arm and starts recruiting.",
+      "milestones": [
+        "{name} offers an alliance at a Meeting. One more friend who might stand in front of the old trees.",
+        "Twice now, {name} has spent their own strength to help a rival's roll. The Rootkeepers say that's what roots do: share.",
+        "{name} holds a three-skull place in the deep forest. The Graftwrights will have to come through there first."
+      ],
+      "finale": "Side by side with an ally, {name} makes the last stand at the most dangerous place in the realm, and the Graftwrights turn back. Behind them, the old grove rustles its thanks."
+    },
+    "frostroot-peak": {
+      "opening": "The highest peak in Thaloroot is where the roots freeze into crystal and the wind never stops. {name} pulls on their warmest socks, then another pair, and starts climbing.",
+      "milestones": [
+        "{name} sets foot on the mountain proper. Behind them, the meadow is already small.",
+        "Above the tree line, the air thins and the frozen roots begin to glitter in the rock like veins of glass.",
+        "{name} hauls themselves up a sheer stretch with nothing but their own arms. Below, a cloud drifts past."
+      ],
+      "finale": "With barely any strength left, {name} drags themselves onto the summit of Frostroot Peak. The frozen roots blaze in the sunrise, and the whole realm is theirs to look at."
+    },
+    "the-thalowood-keepers-riddle": {
+      "opening": "The keeper of the Great Thalowood Tree asks one riddle per Bloom, and nobody has answered it in a century. \"What grows down to grow up?\" she asks. {name} has no idea, and is delighted.",
+      "milestones": [
+        "{name} has put their wits to work at three very different kinds of places. Somewhere in all of it, the riddle starts to sound less like nonsense.",
+        "{name} glimpses something hidden, and it looks a great deal like an answer.",
+        "A rival's secret quest turns out to be part of the puzzle. The keeper never said the riddle was only about trees."
+      ],
+      "finale": "At a three-skull place, {name} works through the hardest problem of the Bloom, and the answer falls into place. The keeper of the Great Thalowood smiles for the first time in a hundred years."
+    },
+    "feast-of-the-bloom": {
+      "opening": "Whoever hosts the great feast at the end of the Bloom will have all of Thaloroot in their debt. {name} has a long table, a longer guest list, and an empty pantry.",
+      "milestones": [
+        "From the meadow, a treasure for the feast: honeycomb, flowers, and a jar that seems to hold sunshine.",
+        "From the forest, a treasure for the feast: mushrooms, berries, and something crunchy the Rootkeepers swear by.",
+        "From the swamp, a treasure for the feast. It's an acquired taste. The trolls will love it."
+      ],
+      "finale": "{name} sends a gift to every rival, then conquers a three-skull place to prove the host can still adventure. The Feast of the Bloom is legendary, and everyone owes {name} a favor."
+    },
+    "seal-the-grafted-gate": {
+      "opening": "Deep in the ruins is a gate the Gardener-Kings grafted shut, and it's starting to open. Something on the other side is pushing. {name} rolls up their sleeves.",
+      "milestones": [
+        "{name} reaches the deepest ruins. The gate's groaning carries through the stone, and the vines around it twitch.",
+        "At a perilous place, {name} learns to bend thal under pressure. The seal will need every bit of it.",
+        "{name} passes up a reward to study instead. Gardener-King grafts can't be forced, only understood."
+      ],
+      "finale": "On two turns in a row, {name} holds the deepest ruins and the most perilous ground, and grafts the gate shut for good. Whatever was pushing goes quiet."
+    }
+  },
+  "world": {
+    "moonrise": "The moon heaves itself over the hills, enormous and close enough to see its craters. Every shadow in Thaloroot grows long, and the thal in the roots starts to glow along with it.",
+    "the-long-night": "The sun sets and simply doesn't come back on schedule. Somewhere in the dark, things with teeth stretch and grin, and every lantern in the realm burns a little brighter in defiance.",
+    "the-eclipse": "The sun blinks. For one long, strange round, the sky is a black coin rimmed with fire, and every scrap of thal in Thaloroot hums twice as loud.",
+    "thal-fog": "A thick, glittering fog rolls up out of the roots and swallows the paths whole. Adventurers can barely read a signpost, unless they brought a light.",
+    "gentle-rain": "Soft rain falls across the realm, the good kind that smells like green things. The swamps swell and sing; the mountain paths turn to slick, muddy rock.",
+    "heat-shimmer": "The air wobbles like soup. Every step uphill feels like two, armor gets heavy, and somewhere a fire-mage is having the time of their life.",
+    "thunderstorm": "The sky splits with a crack that rattles teeth. Lightning walks across the mountain peaks, and anyone caught in the high places had better be quick or lucky.",
+    "golden-dawn": "The sun comes up gold and gentle, and for one moment everything in Thaloroot looks possible. Aches ease. Breath comes easier. Everyone stands a little straighter.",
+    "pollen-breeze": "A warm wind shakes the meadows, and clouds of glittering pollen drift across the realm. Everybody sneezes. Some of the sneezes sparkle.",
+    "first-frost": "Overnight, frost crusts the bogs and silvers the mountain trails. Swamp crossings get easier; the high passes turn treacherous.",
+    "windy-day": "A wild wind tears across Thaloroot, scattering maps, hats, and plans. Every adventurer catches a glimpse of more roads than they meant to.",
+    "thal-tide": "The roots surge. Thal rises like a tide under every field and forest, and every treasure pulled from the ground this round comes up shining brighter.",
+    "the-pickle-wyrm": "A smell of vinegar rolls across the realm, followed by a long, green, very hungry shape. The Pickle Wyrm has woken, and it can smell coin from three valleys away.",
+    "the-gloomhound": "Two lantern-bright eyes open in the dark between the trees. The Gloomhound pads out of the shadows, sniffing for whoever is carrying the most.",
+    "the-bog-troll-king": "The swamp heaves, and the Bog Troll King rises dripping from his throne of mud. Every bridge, ford, and lily pad is his now, and he charges a toll.",
+    "the-mimic-chest": "Somewhere in Thaloroot, a treasure chest yawns, stretches its little legs, and licks its lid. The next adventurer to find a treasure is going to have company.",
+    "a-swarm-of-sprites": "A giggling cloud of sprites spills out of a hollow log, each one the size of a thumb and twice as grabby. They're headed for whoever has the most stuff.",
+    "the-hollow-knight": "In the ruins, an empty suit of armor creaks to its feet, still loyal to a king long dead. It patrols the old stones, challenging anyone who enters.",
+    "the-thornback-matriarch": "The forest goes silent. Then a roar, and the crack of trees snapping. Someone befriended her cub, and the Thornback Matriarch wants to know who.",
+    "the-stormcrow-flock": "The sky darkens with crows, a whole flock of them, crackling with static. They circle the mountains and the perilous places, and they know where the storm is going.",
+    "the-hungry-mist": "A gray mist creeps out of the deep places, and the birds stop singing. It eats sound first. Then it eats everything else, and it hunts whoever dares go deepest.",
+    "mrs-pennywhistles-rolling-shop": "A bell jingles, wheels rattle, and Mrs. Pennywhistle's cart comes trundling over the hill, stacked to the sky with curiosities. \"Everything's for sale!\" she calls. \"Including the cart, for the right price.\"",
+    "the-mudlark-barge": "A flat barge slides out of the reeds, piled with dripping bargains. The mudlarks aboard wave cheerfully. It all smells like the bottom of a pond, because it was.",
+    "the-graftwright-tinker": "A Graftwright in goggles sets up a folding workbench at the crossroads, surrounded by humming, half-grafted gadgets. \"I can improve that,\" she says, eyeing your pack. \"Probably.\"",
+    "the-rootkeeper-exchange": "A circle of Rootkeepers sits down under an old oak and opens their books. They don't want your coin. They want to see you grow.",
+    "old-nans-pie-cart": "The smell arrives first: butter, berries, and cinnamon. Old Nan's cart creaks into view. Every pie is delicious. One of them is also very, very sleepy.",
+    "the-shadow-market": "Lanterns flicker in an alley that wasn't there yesterday. Hooded sellers murmur prices for secrets, and nobody uses their real name.",
+    "the-traveling-auction": "A striped tent goes up in a field overnight, and a fast-talking auctioneer bangs her gavel. One rare treasure, sold to the highest secret bidder. Going once...",
+    "whispers-of-gold": "Word travels from tavern to tavern: something glittering has turned up in the old stones. The first adventurer to make it pay in the ruins will find out what.",
+    "the-bog-is-burping": "The swamp is burping, loudly, and everyone knows what that means: pearls are coming up with the bubbles.",
+    "stars-on-the-mountain": "Last night a star fell on the mountain peaks. Shepherds saw it come down glowing. Whoever succeeds up there next might find where it landed.",
+    "a-map-fragment": "Half a map turns up in a bottle, pointing somewhere dangerous. The first adventurer bold enough to conquer a three-skull place will find the other half, and the prize.",
+    "the-lost-lamb": "A fluffy thal-sheep is loose and very lost. The shepherd is offering a reward to the first adventurer who makes friends with a creature and brings word.",
+    "a-hermit-is-recruiting": "A notice is nailed to a tree: a hermit seeks a patient student. The first adventurer to choose a lesson over a reward gets an extra helping of wisdom.",
+    "a-purse-for-a-brawler": "The tavern wants a champion, and it's put up a purse to prove it. The first adventurer to win a Brawl walks away richer.",
+    "the-fairies-are-dancing": "The fairies are dancing, and lucky rolls are in the air. The first adventurer to roll a pair of sixes catches a fairy's eye, and a fairy's charm.",
+    "a-ghost-wants-company": "Someone in the ruins is lonely. The first adventurer to sit down and rest among the old stones will have a ghostly friend, and a keepsake.",
+    "taproot-tremors": "The ground near the Great Thalowood shivered last night, and the roots are still humming. The next adventurer to conquer the deep forest might find something astonishing in the soil.",
+    "frog-rain": "It's raining frogs. Not metaphorically. They bounce off hats, plop into soup, and some adventurers get a little too close to the transformation.",
+    "pass-it-on": "A mischievous gust snatches every adventurer's map and shuffles them around. Nobody's going quite where they meant to this round.",
+    "gravity-hiccup": "Everything gets slightly floaty. Rocks drift. Swords wobble. Muscles are useless; magic soars.",
+    "the-giggles": "A giggling fit sweeps across Thaloroot and won't stop. Nobody can keep a straight face long enough to pick a fight.",
+    "squirrel-heist": "A blur of tails tears through every camp in Thaloroot at once. When the dust settles, everyone's pack is lighter, and a stash of stolen goods waits somewhere in the forest.",
+    "shoe-swap": "Everyone wakes up wearing someone else's shoes, and carrying something that isn't theirs. Nobody knows how it happened. Nobody ever does.",
+    "bloom-burst": "The roots sigh, and the whole realm sparkles. Thal drifts up from the ground like dandelion fluff, and coins turn up in every pocket.",
+    "talking-animals": "Every animal in Thaloroot can suddenly talk, and they have opinions. Companions lean in close to share what they've overheard about everyone else's quests.",
+    "the-wandering-door": "A door appears in the middle of a field, standing all by itself. It's slightly ajar. Light glows through the crack. Anyone could open it.",
+    "backwards-day": "Everyone wakes up on the wrong side of the Bloom. The sun rises in the west, the rivers run uphill, and everyone takes their turn in the opposite order.",
+    "thal-hiccup": "The magic skips a beat. Every enchanted tool, every grafted gadget, every lucky charm sputters and goes quiet for a round.",
+    "festival-of-lanterns": "Lanterns float up from every village in Thaloroot, filling the sky with warm light. Anyone carrying a light of their own is welcomed like a hero.",
+    "the-sky-cracks": "A crack splits the sky from horizon to horizon, and through it pours light the color of thal. Everything is worth more now. Everything costs more, too.",
+    "the-dragon-stirs": "Deep under the mountain, the Dragon rolls over in its sleep, and every monster in Thaloroot gets bolder. Something very large is waking up.",
+    "masks-appear": "Masks appear on every doorstep overnight: feathered, gilded, smiling. Nobody knows who left them. Nobody can tell who's wearing them.",
+    "the-roots-tremble": "The ground shudders, and the deepest roots of the realm begin to stir. Treasures pulled from the most dangerous places come up heavy with thal.",
+    "the-gardener-kings-stir": "In the ruins, the statues turn their heads. The ghosts of the Gardener-Kings are waking, and they guard their old treasures jealously, but generously reward the brave.",
+    "the-bloom-peaks": "The Bloom reaches its height. Every flower is open, every root is full, and every success in Thaloroot comes with a little extra gold.",
+    "the-sky-falls": "The crack in the sky splits wide, and stars begin to fall across Thaloroot like burning seeds. One last chance to catch one before the Bloom ends.",
+    "the-dragon-wakes": "The mountain splits open, and the Dragon rises into the sky, roaring fire. Every adventurer in the realm turns to face it. This is the last fight of the Bloom.",
+    "the-midnight-masquerade": "At midnight, the masks come off. Every adventurer gathers in the ruins for a grand masquerade, and every secret in the realm is about to be revealed.",
+    "the-taproot-wakes": "The ground splits, and the Taproot itself rises from the deep, glowing and enormous. Anyone brave enough might reach out and touch the heart of all thal.",
+    "the-last-court": "The ghosts of the Gardener-Kings take their thrones one last time and hold court over the realm. They judge every adventurer's haul, and they love a treasure.",
+    "the-great-harvest": "The Bloom bursts into a final, glorious harvest. For one last round, every reward in Thaloroot comes twice.",
+    "the-bloom-fades": "The thal sinks back into the roots, slow and gentle, like a long exhale. Every adventurer feels a last wave of strength for the final turn.",
+    "last-light": "The sun sets on the Bloom, and darkness falls over Thaloroot. Only the lights adventurers carry still shine, and they shine like treasures.",
+    "the-grand-bazaar": "Every merchant in Thaloroot arrives at once for one final, glorious market. The rarest treasures of the Bloom are for sale, one last time."
+  }
+}

@@ -1,38 +1,186 @@
 {
   "version": "playtest-4",
-  "players": { "min": 2, "max": 8, "best": [3, 6] },
-  "character": { "statBase": 1, "creationPoints": 7, "creationMax": 4, "statCap": 6 },
-  "startingKit": { "health": 6, "stamina": 5, "coin": 3 },
-  "draft": { "classOptions": 3, "classOptionsNewCharacter": 4, "newCharacterBonusMaxPlayers": 6, "missionOptions": 3 },
-  "gameLength": {
-    "quick": { "worldCards": 15, "finaleCountdown": 3, "minutes": 60 },
-    "standard": { "worldCards": 20, "finaleCountdown": 5, "minutes": 90 },
-    "long": { "worldCards": 25, "finaleCountdown": 7, "minutes": 120 }
+  "players": {
+    "min": 2,
+    "max": 8,
+    "best": [
+      3,
+      6
+    ]
   },
-  "teasers": { "perTurn": 2, "afterMilestones": 3 },
-  "dice": { "successOn": [5, 6], "sparkOn": [6], "mishapOnes": 2, "pushDice": 2, "sparkTokenDice": 1 },
-  "mishapDefault": [{ "type": "loseStamina", "amount": 1 }],
+  "character": {
+    "statBase": 1,
+    "creationPoints": 7,
+    "creationMax": 4,
+    "statCap": 6
+  },
+  "startingKit": {
+    "health": 6,
+    "stamina": 5,
+    "coin": 3
+  },
+  "draft": {
+    "classOptions": 3,
+    "classOptionsNewCharacter": 4,
+    "newCharacterBonusMaxPlayers": 6,
+    "missionOptions": 3
+  },
+  "gameLength": {
+    "quick": {
+      "worldCards": 15,
+      "finaleCountdown": 3,
+      "minutes": 60
+    },
+    "standard": {
+      "worldCards": 20,
+      "finaleCountdown": 5,
+      "minutes": 90
+    },
+    "long": {
+      "worldCards": 25,
+      "finaleCountdown": 7,
+      "minutes": 120
+    }
+  },
+  "teasers": {
+    "perTurn": 2,
+    "afterMilestones": 3
+  },
+  "dice": {
+    "successOn": [
+      5,
+      6
+    ],
+    "sparkOn": [
+      6
+    ],
+    "mishapOnes": 2,
+    "pushDice": 2,
+    "sparkTokenDice": 1
+  },
+  "mishapDefault": [
+    {
+      "type": "loseStamina",
+      "amount": 1
+    }
+  ],
   "staminaPerTurn": 1,
-  "rations": { "coin": 2, "stamina": 2, "perTurn": 1 },
-  "lessons": { "perSuccess": 1, "instead": 2, "perStat": 5, "maxGrowthPerGame": 2 },
-  "meetings": { "key": "regionAndSkull", "allyDice": 2, "ambushDice": 2, "brawlLoserDamage": 1, "tieStaminaLoss": 1 },
-  "traps": { "cost": 1, "maxActive": 1, "types": {
-    "snare": [{ "type": "loseStamina", "amount": 2 }],
-    "pickpocket": [{ "type": "stealBySetter" }],
-    "stinkbomb": [{ "type": "diceThisTurn", "amount": -2 }]
-  } },
-  "assist": { "maxDice": 2, "staminaPerDie": 1 },
-  "steal": { "order": ["randomItem", "d6Coin", "damage1"], "protected": ["companions", "milestones", "taprootFragment"] },
-  "downed": { "dropRandomItem": true, "skipExplore": true, "returnHealth": "half" },
-  "companions": { "limit": 2 },
-  "monsters": { "defaultRounds": 3 },
-  "merchant": { "markup": 2, "rareMarkup": 4, "noValuePrice": { "common": 3, "uncommon": 5, "rare": 9 }, "stock": { "common": 2, "uncommon": 1, "rareChance": 0.5 } },
+  "rations": {
+    "coin": 2,
+    "stamina": 2,
+    "perTurn": 1
+  },
+  "lessons": {
+    "perSuccess": 1,
+    "instead": 2,
+    "perStat": 5,
+    "maxGrowthPerGame": 2
+  },
+  "meetings": {
+    "key": "regionAndSkull",
+    "allyDice": 2,
+    "ambushDice": 2,
+    "brawlLoserDamage": 1,
+    "tieStaminaLoss": 1
+  },
+  "traps": {
+    "cost": 1,
+    "maxActive": 1,
+    "types": {
+      "snare": [
+        {
+          "type": "loseStamina",
+          "amount": 2
+        }
+      ],
+      "pickpocket": [
+        {
+          "type": "stealBySetter"
+        }
+      ],
+      "stinkbomb": [
+        {
+          "type": "diceThisTurn",
+          "amount": -2
+        }
+      ]
+    }
+  },
+  "assist": {
+    "maxDice": 2,
+    "staminaPerDie": 1
+  },
+  "steal": {
+    "order": [
+      "randomItem",
+      "d6Coin",
+      "damage1"
+    ],
+    "protected": [
+      "companions",
+      "milestones",
+      "taprootFragment"
+    ]
+  },
+  "downed": {
+    "dropRandomItem": true,
+    "skipExplore": true,
+    "returnHealth": "half"
+  },
+  "companions": {
+    "limit": 2
+  },
+  "monsters": {
+    "defaultRounds": 3
+  },
+  "merchant": {
+    "markup": 2,
+    "rareMarkup": 4,
+    "noValuePrice": {
+      "common": 3,
+      "uncommon": 5,
+      "rare": 9
+    },
+    "stock": {
+      "common": 2,
+      "uncommon": 1,
+      "rareChance": 0.5
+    }
+  },
   "missions": {
-    "vp": { "1": [3, 3, 4, 9], "2": [3, 4, 4, 12], "3": [4, 5, 5, 16] },
+    "vp": {
+      "1": [
+        3,
+        3,
+        4,
+        9
+      ],
+      "2": [
+        3,
+        4,
+        4,
+        12
+      ],
+      "3": [
+        4,
+        5,
+        5,
+        16
+      ]
+    },
     "flourishVp": 2,
     "finaleGrace": 1,
     "firstFinisherVp": 3
   },
-  "scoring": { "guessVp": 3, "maxGuesses": 3, "unusedFragmentVp": 5, "tieBreak": "coin" },
-  "fragments": { "noPushAfterUse": true, "carryOver": false }
+  "scoring": {
+    "guessVp": 3,
+    "maxGuesses": 3,
+    "unusedFragmentVp": 5,
+    "tieBreak": "coin",
+    "lineupSize": 6
+  },
+  "fragments": {
+    "noPushAfterUse": true,
+    "carryOver": false
+  }
 }

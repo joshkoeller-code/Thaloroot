@@ -6,14 +6,16 @@
   "type": "module",
   "workspaces": [
     "content",
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
     "content": "python3 tools/build_content.py",
-    "build": "npm run build -w @thaloroot/engine",
-    "typecheck": "npm run typecheck -w @thaloroot/engine",
+    "build": "npm run build -w @thaloroot/engine && npm run build -w @thaloroot/web",
+    "typecheck": "npm run typecheck -w @thaloroot/engine && npm run typecheck -w @thaloroot/web",
     "test": "npm test -w @thaloroot/engine",
-    "sim": "npm run sim -w @thaloroot/engine --"
+    "sim": "npm run sim -w @thaloroot/engine --",
+    "dev": "npm run dev -w @thaloroot/web"
   },
   "engines": {
     "node": ">=20"

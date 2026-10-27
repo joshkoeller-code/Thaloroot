@@ -9,6 +9,7 @@ import { itemValue, itemVp } from "./effects.js";
 import { turnOptions } from "./engine.js";
 import { missionGain, missionNever, missionTags, missionWants } from "./missions.js";
 import { has, hooks, isTreasure, treasures } from "./player.js";
+import { publicRecord } from "./record.js";
 import { pAtLeast } from "./rng.js";
 import type {
   Action,
@@ -65,7 +66,7 @@ export function botAction(state: GameState, d: Decision): Action {
     case "respondTrade":
       return { player: p.id, kind: "respondTrade", accept: respondTrade(state, p, d) };
     case "finalGuess":
-      return { player: p.id, kind: "finalGuess", guesses: guess(state, p) };
+      return { player: p.id, kind: "finalGuess", guesses: guess(state, p, d.data.lineups) };
   }
 }
 
@@ -499,7 +500,7 @@ function respondTrade(state: GameState, p: PlayerState, d: Decision): boolean {
   return gets >= gives;
 }
 
-function guess(state: GameState, p: PlayerState): Record<number, string> {
+function guess(state: GameState, p: PlayerState, lineups?: { rival: number; missions: string[] }[]): Record<number, string> {
   const picks: { rid: number; mission: string; conf: number }[] = [];
   for (const q of state.players) {
     if (q.id === p.id) continue;
@@ -508,19 +509,18 @@ function guess(state: GameState, p: PlayerState): Record<number, string> {
       continue;
     }
     const known = p.intel[q.id] ?? [];
-    // public behavior: where they went and what they did
-    const visits: Record<string, number> = {};
-    for (const e of q.history) if (e.type === "success" || e.type === "rest") for (const t of e.tags ?? []) visits[t] = (visits[t] ?? 0) + 1;
-    const total = Object.values(visits).reduce((s, x) => s + x, 0) || 1;
+    const rec = publicRecord(state, q.id);
+    const total = Object.values(rec.explored).reduce((s, x) => s + (x ?? 0), 0) || 1;
+    const pool = lineups?.find((l) => l.rival === q.id)?.missions ?? Content.missions.map((m) => m.id).filter((m) => m !== p.mission);
     let best = "";
     let bestScore = -Infinity;
-    for (const m of Content.missions) {
-      if (m.id === p.mission) continue;
-      const tags = missionTags(m.id);
+    for (const id of pool) {
+      const m = Content.mission[id];
+      const tags = missionTags(id);
       if (!known.every((t) => tags.includes(t))) continue;
-      const fit = m.path.length ? m.path.reduce((s, t) => s + (visits[t] ?? 0), 0) / total / Math.sqrt(m.path.length) : 0.15;
-      const s = fit + noise(state, p, 70 + m.id.length + q.id) * 0.05 + known.length * 0.1;
-      if (s > bestScore) [best, bestScore] = [m.id, s];
+      const fit = m.path.length ? m.path.reduce((s, t) => s + (rec.explored[t] ?? 0), 0) / total / Math.sqrt(m.path.length) : 0.15;
+      const s = fit + noise(state, p, 70 + id.length + q.id) * 0.05 + known.length * 0.1;
+      if (s > bestScore) [best, bestScore] = [id, s];
     }
     if (best) picks.push({ rid: q.id, mission: best, conf: bestScore });
   }

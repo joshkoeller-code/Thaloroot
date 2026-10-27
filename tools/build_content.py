@@ -571,6 +571,8 @@ def main():
     dump("companions.json", COMPANIONS)
     dump("classes.json", classes)
     dump("species.json", species)
+    import story
+    dump("story.json", story.build(cards, missions, world, warn))
 
     uniq = len(cards)
     total = sum(c["copies"] for c in cards)

@@ -46,6 +46,9 @@ Where the design doc leaves room for interpretation, the engine has to pick one.
 - Fragment of the Gardener-Kings gives 5 teasers and +3 dice next turn instead of a search through the whole deck.
 - Fragment of Exchange swaps with the rival carrying the most valuable pack.
 
+**Final guesses**
+- Each rival's lineup is built separately for each guesser, so two players guessing the same rival see different decoys. A guess outside the lineup doesn't count.
+
 **Finales**
 - The Dragon Wakes: after the final turn, everyone rolls their better of Brawn or Spark. A tie for the killing blow is broken at random.
 

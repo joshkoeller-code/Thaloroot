@@ -16,13 +16,19 @@ import {
   worldMods,
 } from "./player.js";
 import { d6, int, pick, shuffle } from "./rng.js";
-import type { Effect, GameEvent, GameState, ItemInstance, PlayerState, Stat, Tag } from "./types.js";
+import type { Effect, GameEvent, GameState, ItemInstance, PlayerState, Stat, StoryBeat, Tag } from "./types.js";
 import { STATS } from "./types.js";
 import { moveFinale } from "./world.js";
 
 // ---------------------------------------------------------------------------
 // Logging and events
 // ---------------------------------------------------------------------------
+
+export function tell(state: GameState, beat: DistributiveOmit<StoryBeat, "seq" | "round">): void {
+  (state.story ??= []).push({ ...beat, seq: (state.story.at(-1)?.seq ?? 0) + 1, round: state.round } as StoryBeat);
+}
+
+type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 export function log(state: GameState, text: string, privateTo?: number[]): void {
   state.log.push({ round: state.round, text, ...(privateTo ? { private: privateTo } : {}) });
@@ -35,10 +41,12 @@ export function record(state: GameState, p: PlayerState, ev: Omit<GameEvent, "ro
   const res = checkMission(state, p, full);
   for (const i of res.milestones) {
     log(state, `${p.name} claims a milestone: ${Content.mission[p.mission!].milestones[i].text}.`, [p.id]);
+    tell(state, { kind: "mission", player: p.id, mission: p.mission!, part: i as 0 | 1 | 2, private: [p.id] });
     bump(p, "milestones");
   }
   if (res.finale) {
     log(state, `${p.name} completes the finale of ${Content.mission[p.mission!].name}!`, [p.id]);
+    tell(state, { kind: "mission", player: p.id, mission: p.mission!, part: "finale", private: [p.id] });
     if (state.firstFinisher === null) {
       state.firstFinisher = p.id;
       p.firstFinisher = true;

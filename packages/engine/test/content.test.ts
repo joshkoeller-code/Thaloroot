@@ -133,3 +133,27 @@ describe("engine coverage", () => {
     expect(missing).toEqual([]);
   });
 });
+
+describe("story", () => {
+  it("has a scene for every option, an arc for every mission, and a moment for every World card", () => {
+    for (const c of Content.cards) {
+      const loc = Content.story.locations[c.id];
+      expect(loc, c.name).toBeTruthy();
+      for (const o of c.options) {
+        const t = loc.options[o.name];
+        expect(t, `${c.name} / ${o.name}`).toBeTruthy();
+        if (o.rest) expect(t.scene, `${c.name} / ${o.name}`).toBeTruthy();
+        else {
+          expect(t.success, `${c.name} / ${o.name}`).toBeTruthy();
+          expect(t.fail, `${c.name} / ${o.name}`).toBeTruthy();
+          if (o.spark.length) expect(t.spark, `${c.name} / ${o.name} spark`).toBeTruthy();
+        }
+      }
+    }
+    for (const m of Content.missions) {
+      const a = Content.story.missions[m.id];
+      expect(a.opening && a.finale && a.milestones.every(Boolean), m.name).toBeTruthy();
+    }
+    for (const w of Object.values(Content.worldCard)) expect(Content.story.world[w.id], w.name).toBeTruthy();
+  });
+});
