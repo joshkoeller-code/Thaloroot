@@ -32,7 +32,12 @@ export function publicRecord(state: GameState, player: number): PublicRecord {
     pushes: 0,
     bought: 0,
   };
-  for (const e of p.history) {
+  // Mistaken Identity: what a disguised player did is remembered under the name the table saw
+  const events = [
+    ...p.history.filter((e) => e.as === undefined),
+    ...state.players.filter((q) => q.id !== player).flatMap((q) => q.history.filter((e) => e.as === player)),
+  ];
+  for (const e of events) {
     if (!PUBLIC.has(e.type)) continue;
     if ((e.type === "roll" || e.type === "rest") && e.location && Content.card[e.location]) {
       for (const t of Content.card[e.location].tags) r.explored[t] = (r.explored[t] ?? 0) + 1;

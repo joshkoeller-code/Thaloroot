@@ -19,27 +19,44 @@ import { d6, int, pick, shuffle } from "./rng.js";
 import type { Effect, GameEvent, GameState, ItemInstance, PlayerState, Stat, StoryBeat, Tag } from "./types.js";
 import { STATS } from "./types.js";
 import { moveFinale } from "./world.js";
+import { phoenix, plantDecoy } from "./powers.js";
 
 // ---------------------------------------------------------------------------
 // Logging and events
 // ---------------------------------------------------------------------------
 
 export function tell(state: GameState, beat: DistributiveOmit<StoryBeat, "seq" | "round">): void {
-  (state.story ??= []).push({ ...beat, seq: (state.story.at(-1)?.seq ?? 0) + 1, round: state.round } as StoryBeat);
+  const as = beat.kind === "scene" ? disguisedAs(state, beat.player) : undefined;
+  (state.story ??= []).push({ ...beat, ...(as !== undefined ? { as } : {}), seq: (state.story.at(-1)?.seq ?? 0) + 1, round: state.round } as StoryBeat);
 }
+
+/** Mistaken Identity: who the table thinks this player is right now (undefined if nobody else). */
+export function disguisedAs(state: GameState, player: number): number | undefined {
+  const d = state.disguise;
+  return d && d.player === player && d.round === state.round ? d.as : undefined;
+}
+
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 export function log(state: GameState, text: string, privateTo?: number[]): void {
+  const d = state.disguise;
+  if (d && d.round === state.round && !privateTo) {
+    // Mistaken Identity: the table reads another player's name
+    text = text.replace(new RegExp(`\\b${escapeRe(state.players[d.player].name)}\\b`, "g"), state.players[d.as].name);
+  }
   state.log.push({ round: state.round, text, ...(privateTo ? { private: privateTo } : {}) });
 }
 
 /** Record a game event for a player, then check their mission and any open Rumors. */
 export function record(state: GameState, p: PlayerState, ev: Omit<GameEvent, "round" | "turn">): GameEvent {
-  const full: GameEvent = { ...ev, round: state.round, turn: p.turns } as GameEvent;
+  const as = disguisedAs(state, p.id);
+  const full: GameEvent = { ...ev, round: state.round, turn: p.turns, ...(as !== undefined ? { as } : {}) } as GameEvent;
   p.history.push(full);
   const res = checkMission(state, p, full);
   for (const i of res.milestones) {
+    plantDecoy(state, p, missionTags(p.mission!));
     log(state, `${p.name} claims a milestone: ${Content.mission[p.mission!].milestones[i].text}.`, [p.id]);
     tell(state, { kind: "mission", player: p.id, mission: p.mission!, part: i as 0 | 1 | 2, private: [p.id] });
     bump(p, "milestones");
@@ -93,6 +110,8 @@ export interface EffectCtx {
   mult?: number;
   /** Did the player choose to take the bet on this option? */
   bet?: boolean;
+  /** The rival a one-use item targets. */
+  target?: number;
 }
 
 export interface EffectResult {
@@ -244,7 +263,7 @@ export function damage(state: GameState, p: PlayerState, n: number, source: "exp
       else if (h.source.startsWith("companion:")) companionFlees(state, p, h.source.slice("companion:".length));
     }
   }
-  if (p.health <= 0) downed(state, p);
+  if (p.health <= 0 && !phoenix(state, p)) downed(state, p);
 }
 
 export function downed(state: GameState, p: PlayerState): void {
@@ -348,7 +367,8 @@ export function learnRivalTag(state: GameState, p: PlayerState, target?: PlayerS
   const tags = missionTags(q.mission!);
   const known = (p.intel[q.id] ??= []);
   const unknown = tags.filter((t) => !known.includes(t));
-  const t = unknown.length ? pick(state, unknown) : pick(state, tags);
+  // Bluff: a Trickster's planted fake tag is heard first
+  const t = q.decoys?.length ? q.decoys.shift()! : unknown.length ? pick(state, unknown) : pick(state, tags);
   if (!known.includes(t)) known.push(t);
   gstat(state, "intel");
   log(state, `${p.name} learns that ${q.name}'s mission involves ${t}.`, [p.id]);
@@ -368,7 +388,7 @@ export function makeFrog(state: GameState, p: PlayerState): void {
 
 export function randomItemOfRarity(state: GameState, rarity: string, filter: (id: string) => boolean = () => true): string | null {
   const pool = Content.items.filter(
-    (i) => i.rarity === rarity && !i.unique && i.id !== "taproot-fragment" && i.id !== "fallen-star" && !i.carryover && filter(i.id),
+    (i) => i.rarity === rarity && !i.unique && !i.crafted && i.id !== "taproot-fragment" && i.id !== "fallen-star" && !i.carryover && filter(i.id),
   );
   return pool.length ? pick(state, pool).id : null;
 }
@@ -512,12 +532,14 @@ export function apply(state: GameState, p: PlayerState, effects: Effect[], ctx: 
         p.brawlDice += e.amount;
         break;
       case "troubleRival": {
-        const q = e.target !== undefined ? state.players[e.target] : pick(state, rivals(state, p));
+        const t = e.target ?? ctx.target;
+        const q = t !== undefined && t !== p.id && state.players[t] ? state.players[t] : pick(state, rivals(state, p));
         q.trouble = { amount: q.trouble.amount + e.amount, rolls: Math.max(q.trouble.rolls, 1) };
         break;
       }
       case "frogRival": {
-        const q = e.target !== undefined ? state.players[e.target] : pick(state, rivals(state, p));
+        const t = e.target ?? ctx.target;
+        const q = t !== undefined && t !== p.id && state.players[t] ? state.players[t] : pick(state, rivals(state, p));
         makeFrog(state, q);
         break;
       }
@@ -617,6 +639,7 @@ export function useFragment(state: GameState, p: PlayerState, it: ItemInstance, 
       break;
     case "rewild":
       state.traps = [];
+      state.wards = [];
       state.sealed = [];
       p.log.freeTrap = (p.log.freeTrap ?? 0) + 2;
       break;

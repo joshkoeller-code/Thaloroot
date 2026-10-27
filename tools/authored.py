@@ -144,6 +144,14 @@ ITEMS = [
     I("Matriarch's Claw", "rare", "treasure", 8, 4, "none"),
     I("Mist Pearl", "rare", "treasure", 8, 4, "none"),
     I("Fallen Star", "rare", "treasure", 10, 5, "none", "Only from The Sky Falls finale"),
+    # Made by class powers, never found or sold
+    I("Potion of Swiftness", "common", "food", 0, 0, "oneUse", "+2 dice on your next roll",
+      use=[{"type": "nextRollDice", "amount": 2}], crafted=True),
+    I("Potion of Mending", "common", "food", 0, 0, "oneUse", "Restore 3 health",
+      use=[{"type": "heal", "amount": 3}], crafted=True),
+    I("Potion of Ribbit", "common", "food", 0, 0, "oneUse", "A rival becomes a frog for a round",
+      use=[{"type": "frogRival"}], crafted=True),
+    I("Reforged Gear", "common", "gear", 0, 0, "reusable", "+1 die to one stat for the rest of the game", crafted=True),
 ]
 
 TAPROOT_FRAGMENTS = [
@@ -373,3 +381,121 @@ CONCEPT_CLASSES = [
      "Which effects do 1s trigger without overlapping the Witch's Mishap Mastery?"),
     ("Clockwork Tinkerer", "Oddball", "Builds gadgets from junk treasure", "How is it different enough from the Blacksmith?"),
 ]
+
+
+# ---------------------------------------------------------------------------
+# Class powers: what the engine needs to run each active, signature, and
+# service. `text` is the Class Roster wording; everything else is machine data.
+#   slot:   active (usable each turn it's available), signature (once per game),
+#           service (rivals use it), passive (automatic)
+#   when:   quick (your quick action), pick (while choosing a teaser),
+#           scheme (after everyone picks, before the reveal), roll (when you
+#           choose an option), auto (the engine does it)
+#   target: location | rival | treasure | item | rivalItem | none
+#   cost:   stamina, dream, coin, ingredients
+#   params: numbers the rules leave to us; tune them here
+# ---------------------------------------------------------------------------
+
+def P(id, name, slot, when, text, target="none", cost=None, choices=None, **params):
+    d = dict(id=id, name=name, slot=slot, when=when, target=target, cost=cost or {}, text=text)
+    if choices:
+        d["choices"] = [dict(id=c[0], name=c[1], text=c[2]) for c in choices]
+    if params:
+        d["params"] = params
+    return d
+
+
+POWERS = {
+    "Bramblebeast Tamer": [
+        P("sic-em", "Sic 'Em", "active", "quick", "A companion guards a location; the next rival who picks it faces the creature first.",
+          target="location", cost={"stamina": 2}, stats=["brawn", "charm"], need=2, damage=2),
+        P("stampede", "Stampede", "signature", "roll", "All companions act at once, +1 die each on a single roll.", perCompanion=1),
+    ],
+    "Lantern-Hour Thief": [
+        P("sneaky-traps", "Sneaky Traps", "passive", "auto", "Set traps for free; up to 2 active."),
+        P("the-swap", "The Swap", "signature", "quick", "Secretly trade one item with any player; they learn it was you at round's end.",
+          target="rivalItem"),
+    ],
+    "Toadstool Witch": [
+        P("brew", "Brew", "active", "quick", "Turn one treasure into a potion.", target="treasure", cost={"stamina": 1},
+          choices=[("potion-of-swiftness", "Swiftness", "+2 dice on a later roll"),
+                   ("potion-of-mending", "Mending", "Heal 3 when you drink it"),
+                   ("potion-of-ribbit", "Ribbit", "Turn a rival into a frog for a round")]),
+        P("hex-the-path", "Hex the Path", "signature", "quick", "Curse a location name; whoever picks it next rolls 2 Trouble dice.",
+          target="location", trouble=2),
+    ],
+    "Fox-Masked Trickster": [
+        P("bluff", "Bluff", "passive", "auto",
+          "When you claim a milestone, a fake mission tag is planted; the next rival to learn one of your tags learns the fake."),
+        P("switcheroo", "Switcheroo", "active", "scheme", "After everyone picks, swap your explore card with another player's.",
+          target="rival", cost={"stamina": 1}),
+        P("mistaken-identity", "Mistaken Identity", "signature", "quick",
+          "For the next round, your actions show at the table under another player's name.", target="rival"),
+    ],
+    "Lantern-Bound Ghost": [
+        P("haunt", "Haunt", "active", "quick", "Haunt a location name; whoever picks it rolls 1 fewer die and you gain 1 coin.",
+          target="location", cost={"stamina": 1}, dice=-1, coin=1),
+        P("possession", "Possession", "signature", "quick", "The next time a rival draws their teasers, you choose which one they get.",
+          target="rival"),
+    ],
+    "Pillow-Prophet Dreamweaver": [
+        P("dream-peek", "Dream Peek", "active", "pick", "See the full cards behind your teasers before choosing.", cost={"dream": 1}),
+        P("dream-walk", "Dream Walk", "active", "quick", "Learn one tag of a rival's mission, or add a Trouble die to their next roll.",
+          target="rival", cost={"stamina": 1, "dream": 1},
+          choices=[("learn", "Learn a tag", "Learn one tag of their mission"),
+                   ("trouble", "Trouble", "Add a Trouble die to their next roll")]),
+        P("the-shared-dream", "The Shared Dream", "signature", "quick",
+          "For the next round, 1s count as successes and two 6s cause a Mishap, for everyone."),
+    ],
+    "Gargoyle-Carver Stonemason": [
+        P("build-a-wall", "Build a Wall", "active", "quick", "Seal a location name for the next round; no one else can pick it.",
+          target="location", cost={"stamina": 2}),
+        P("living-gargoyle", "Living Gargoyle", "signature", "quick",
+          "A stone guardian attacks the next rival who lands where you place it.", target="location", stats=["brawn"], need=2, damage=3),
+    ],
+    "Treehouse Carpenter": [
+        P("build-a-bridge", "Build a Bridge", "active", "pick", "Instead of a teaser, revisit any location you've already explored.",
+          cost={"stamina": 2, "coin": 1}),
+        P("the-walking-cottage", "The Walking Cottage", "signature", "roll",
+          "Rest anywhere for full stamina, and stash your items where no one can steal them.", cost={"coin": 1}),
+    ],
+    "Ember-Hearted Blacksmith": [
+        P("reforge", "Reforge", "active", "quick", "Turn a treasure into gear: +1 die to one stat for the rest of the game. Gear has no coin or VP value.",
+          target="treasure"),
+        P("smithing-for-hire", "Smithing for Hire", "service", "quick", "Rivals can pay you coin to reforge one of their treasures.",
+          target="treasure", price=2),
+        P("masterwork", "Masterwork", "signature", "quick", "One item becomes an Heirloom that carries into future games.", target="item"),
+    ],
+    "Honeycake Cook": [
+        P("forager", "Forager", "passive", "auto", "Successes at Meadow, Forest, or Creature locations also yield an ingredient.",
+          tags=["meadow", "forest", "creature"]),
+        P("cook", "Cook", "active", "quick", "Cook one dish from an ingredient.", cost={"stamina": 1, "ingredients": 1},
+          choices=[("stew", "Hearty Stew", "+3 stamina"),
+                   ("pie", "Courage Pie", "+1 die on your rolls next turn"),
+                   ("scones", "Sleepy Scones", "A rival skips their next quick action")]),
+        P("the-feast", "The Feast", "signature", "quick", "All guests restore their stamina; you gain 1 VP per player who accepts.", vpPerGuest=1),
+    ],
+    "Rain-Barrel Tidecaller": [
+        P("cleanse", "Cleanse", "active", "quick",
+          "Remove every trap, haunt, hex, guard, or burn from a location, or clear your own Trouble dice; if a rival set it, you secretly learn who.",
+          target="location", cost={"stamina": 1}),
+        P("the-great-flood", "The Great Flood", "signature", "quick",
+          "Every trap and curse washes away, and each rival's least valuable item drifts to you."),
+    ],
+    "Moss-Footed Geomancer": [
+        P("tremor", "Tremor", "active", "quick",
+          "Rivals at a shared location (the same region and skull rating as you this round) lose 1 stamina and drop an item; you pick up the best one.",
+          cost={"stamina": 2}),
+        P("mountain-heart", "Mountain Heart", "signature", "quick", "+1 Brawn and +1 max stamina for the rest of the game."),
+    ],
+    "Cinder-Heart Pyromancer": [
+        P("burn-the-path", "Burn the Path", "active", "quick", "Remove a location name from the deck for the whole game.",
+          target="location", cost={"stamina": 2}),
+        P("phoenix", "Phoenix", "signature", "auto", "The first time you'd drop to 0 health, rise with full health and stamina."),
+    ],
+    "Kite-Riding Windcaller": [
+        P("whispers", "Whispers on the Wind", "passive", "scheme", "Each round, learn one rival's chosen location before it's revealed."),
+        P("gust", "Gust", "active", "scheme", "A rival must take their other teaser card instead.", target="rival", cost={"stamina": 1}),
+        P("cyclone", "Cyclone", "signature", "scheme", "Collect every chosen explore card, shuffle, and redeal at random."),
+    ],
+}

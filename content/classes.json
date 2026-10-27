@@ -32,7 +32,40 @@
         "amount": 2
       }
     ],
-    "id": "bramblebeast-tamer"
+    "id": "bramblebeast-tamer",
+    "powers": [
+      {
+        "id": "sic-em",
+        "name": "Sic 'Em",
+        "slot": "active",
+        "when": "quick",
+        "target": "location",
+        "cost": {
+          "stamina": 2
+        },
+        "text": "A companion guards a location; the next rival who picks it faces the creature first.",
+        "params": {
+          "stats": [
+            "brawn",
+            "charm"
+          ],
+          "need": 2,
+          "damage": 2
+        }
+      },
+      {
+        "id": "stampede",
+        "name": "Stampede",
+        "slot": "signature",
+        "when": "roll",
+        "target": "none",
+        "cost": {},
+        "text": "All companions act at once, +1 die each on a single roll.",
+        "params": {
+          "perCompanion": 1
+        }
+      }
+    ]
   },
   {
     "name": "Lantern-Hour Thief",
@@ -68,7 +101,27 @@
         "when": "night"
       }
     ],
-    "id": "lantern-hour-thief"
+    "id": "lantern-hour-thief",
+    "powers": [
+      {
+        "id": "sneaky-traps",
+        "name": "Sneaky Traps",
+        "slot": "passive",
+        "when": "auto",
+        "target": "none",
+        "cost": {},
+        "text": "Set traps for free; up to 2 active."
+      },
+      {
+        "id": "the-swap",
+        "name": "The Swap",
+        "slot": "signature",
+        "when": "quick",
+        "target": "rivalItem",
+        "cost": {},
+        "text": "Secretly trade one item with any player; they learn it was you at round's end."
+      }
+    ]
   },
   {
     "name": "Toadstool Witch",
@@ -94,7 +147,49 @@
         "kind": "frogRainImmune"
       }
     ],
-    "id": "toadstool-witch"
+    "id": "toadstool-witch",
+    "powers": [
+      {
+        "id": "brew",
+        "name": "Brew",
+        "slot": "active",
+        "when": "quick",
+        "target": "treasure",
+        "cost": {
+          "stamina": 1
+        },
+        "text": "Turn one treasure into a potion.",
+        "choices": [
+          {
+            "id": "potion-of-swiftness",
+            "name": "Swiftness",
+            "text": "+2 dice on a later roll"
+          },
+          {
+            "id": "potion-of-mending",
+            "name": "Mending",
+            "text": "Heal 3 when you drink it"
+          },
+          {
+            "id": "potion-of-ribbit",
+            "name": "Ribbit",
+            "text": "Turn a rival into a frog for a round"
+          }
+        ]
+      },
+      {
+        "id": "hex-the-path",
+        "name": "Hex the Path",
+        "slot": "signature",
+        "when": "quick",
+        "target": "location",
+        "cost": {},
+        "text": "Curse a location name; whoever picks it next rolls 2 Trouble dice.",
+        "params": {
+          "trouble": 2
+        }
+      }
+    ]
   },
   {
     "name": "Fox-Masked Trickster",
@@ -122,7 +217,38 @@
         "kind": "mishapDouble"
       }
     ],
-    "id": "fox-masked-trickster"
+    "id": "fox-masked-trickster",
+    "powers": [
+      {
+        "id": "bluff",
+        "name": "Bluff",
+        "slot": "passive",
+        "when": "auto",
+        "target": "none",
+        "cost": {},
+        "text": "When you claim a milestone, a fake mission tag is planted; the next rival to learn one of your tags learns the fake."
+      },
+      {
+        "id": "switcheroo",
+        "name": "Switcheroo",
+        "slot": "active",
+        "when": "scheme",
+        "target": "rival",
+        "cost": {
+          "stamina": 1
+        },
+        "text": "After everyone picks, swap your explore card with another player's."
+      },
+      {
+        "id": "mistaken-identity",
+        "name": "Mistaken Identity",
+        "slot": "signature",
+        "when": "quick",
+        "target": "rival",
+        "cost": {},
+        "text": "For the next round, your actions show at the table under another player's name."
+      }
+    ]
   },
   {
     "name": "Lantern-Bound Ghost",
@@ -163,7 +289,33 @@
         "amount": 3
       }
     ],
-    "id": "lantern-bound-ghost"
+    "id": "lantern-bound-ghost",
+    "powers": [
+      {
+        "id": "haunt",
+        "name": "Haunt",
+        "slot": "active",
+        "when": "quick",
+        "target": "location",
+        "cost": {
+          "stamina": 1
+        },
+        "text": "Haunt a location name; whoever picks it rolls 1 fewer die and you gain 1 coin.",
+        "params": {
+          "dice": -1,
+          "coin": 1
+        }
+      },
+      {
+        "id": "possession",
+        "name": "Possession",
+        "slot": "signature",
+        "when": "quick",
+        "target": "rival",
+        "cost": {},
+        "text": "The next time a rival draws their teasers, you choose which one they get."
+      }
+    ]
   },
   {
     "name": "Pillow-Prophet Dreamweaver",
@@ -193,7 +345,53 @@
         "kind": "sleepAtZeroStamina"
       }
     ],
-    "id": "pillow-prophet-dreamweaver"
+    "id": "pillow-prophet-dreamweaver",
+    "powers": [
+      {
+        "id": "dream-peek",
+        "name": "Dream Peek",
+        "slot": "active",
+        "when": "pick",
+        "target": "none",
+        "cost": {
+          "dream": 1
+        },
+        "text": "See the full cards behind your teasers before choosing."
+      },
+      {
+        "id": "dream-walk",
+        "name": "Dream Walk",
+        "slot": "active",
+        "when": "quick",
+        "target": "rival",
+        "cost": {
+          "stamina": 1,
+          "dream": 1
+        },
+        "text": "Learn one tag of a rival's mission, or add a Trouble die to their next roll.",
+        "choices": [
+          {
+            "id": "learn",
+            "name": "Learn a tag",
+            "text": "Learn one tag of their mission"
+          },
+          {
+            "id": "trouble",
+            "name": "Trouble",
+            "text": "Add a Trouble die to their next roll"
+          }
+        ]
+      },
+      {
+        "id": "the-shared-dream",
+        "name": "The Shared Dream",
+        "slot": "signature",
+        "when": "quick",
+        "target": "none",
+        "cost": {},
+        "text": "For the next round, 1s count as successes and two 6s cause a Mishap, for everyone."
+      }
+    ]
   },
   {
     "name": "Gargoyle-Carver Stonemason",
@@ -224,7 +422,36 @@
         "amount": -1
       }
     ],
-    "id": "gargoyle-carver-stonemason"
+    "id": "gargoyle-carver-stonemason",
+    "powers": [
+      {
+        "id": "build-a-wall",
+        "name": "Build a Wall",
+        "slot": "active",
+        "when": "quick",
+        "target": "location",
+        "cost": {
+          "stamina": 2
+        },
+        "text": "Seal a location name for the next round; no one else can pick it."
+      },
+      {
+        "id": "living-gargoyle",
+        "name": "Living Gargoyle",
+        "slot": "signature",
+        "when": "quick",
+        "target": "location",
+        "cost": {},
+        "text": "A stone guardian attacks the next rival who lands where you place it.",
+        "params": {
+          "stats": [
+            "brawn"
+          ],
+          "need": 2,
+          "damage": 3
+        }
+      }
+    ]
   },
   {
     "name": "Treehouse Carpenter",
@@ -251,7 +478,32 @@
         "amount": 2
       }
     ],
-    "id": "treehouse-carpenter"
+    "id": "treehouse-carpenter",
+    "powers": [
+      {
+        "id": "build-a-bridge",
+        "name": "Build a Bridge",
+        "slot": "active",
+        "when": "pick",
+        "target": "none",
+        "cost": {
+          "stamina": 2,
+          "coin": 1
+        },
+        "text": "Instead of a teaser, revisit any location you've already explored."
+      },
+      {
+        "id": "the-walking-cottage",
+        "name": "The Walking Cottage",
+        "slot": "signature",
+        "when": "roll",
+        "target": "none",
+        "cost": {
+          "coin": 1
+        },
+        "text": "Rest anywhere for full stamina, and stash your items where no one can steal them."
+      }
+    ]
   },
   {
     "name": "Ember-Hearted Blacksmith",
@@ -270,7 +522,39 @@
     "extra": [],
     "playsLike": "",
     "hooks": [],
-    "id": "ember-hearted-blacksmith"
+    "id": "ember-hearted-blacksmith",
+    "powers": [
+      {
+        "id": "reforge",
+        "name": "Reforge",
+        "slot": "active",
+        "when": "quick",
+        "target": "treasure",
+        "cost": {},
+        "text": "Turn a treasure into gear: +1 die to one stat for the rest of the game. Gear has no coin or VP value."
+      },
+      {
+        "id": "smithing-for-hire",
+        "name": "Smithing for Hire",
+        "slot": "service",
+        "when": "quick",
+        "target": "treasure",
+        "cost": {},
+        "text": "Rivals can pay you coin to reforge one of their treasures.",
+        "params": {
+          "price": 2
+        }
+      },
+      {
+        "id": "masterwork",
+        "name": "Masterwork",
+        "slot": "signature",
+        "when": "quick",
+        "target": "item",
+        "cost": {},
+        "text": "One item becomes an Heirloom that carries into future games."
+      }
+    ]
   },
   {
     "name": "Honeycake Cook",
@@ -289,7 +573,66 @@
     "extra": [],
     "playsLike": "",
     "hooks": [],
-    "id": "honeycake-cook"
+    "id": "honeycake-cook",
+    "powers": [
+      {
+        "id": "forager",
+        "name": "Forager",
+        "slot": "passive",
+        "when": "auto",
+        "target": "none",
+        "cost": {},
+        "text": "Successes at Meadow, Forest, or Creature locations also yield an ingredient.",
+        "params": {
+          "tags": [
+            "meadow",
+            "forest",
+            "creature"
+          ]
+        }
+      },
+      {
+        "id": "cook",
+        "name": "Cook",
+        "slot": "active",
+        "when": "quick",
+        "target": "none",
+        "cost": {
+          "stamina": 1,
+          "ingredients": 1
+        },
+        "text": "Cook one dish from an ingredient.",
+        "choices": [
+          {
+            "id": "stew",
+            "name": "Hearty Stew",
+            "text": "+3 stamina"
+          },
+          {
+            "id": "pie",
+            "name": "Courage Pie",
+            "text": "+1 die on your rolls next turn"
+          },
+          {
+            "id": "scones",
+            "name": "Sleepy Scones",
+            "text": "A rival skips their next quick action"
+          }
+        ]
+      },
+      {
+        "id": "the-feast",
+        "name": "The Feast",
+        "slot": "signature",
+        "when": "quick",
+        "target": "none",
+        "cost": {},
+        "text": "All guests restore their stamina; you gain 1 VP per player who accepts.",
+        "params": {
+          "vpPerGuest": 1
+        }
+      }
+    ]
   },
   {
     "name": "Rain-Barrel Tidecaller",
@@ -320,7 +663,29 @@
         "amount": -1
       }
     ],
-    "id": "rain-barrel-tidecaller"
+    "id": "rain-barrel-tidecaller",
+    "powers": [
+      {
+        "id": "cleanse",
+        "name": "Cleanse",
+        "slot": "active",
+        "when": "quick",
+        "target": "location",
+        "cost": {
+          "stamina": 1
+        },
+        "text": "Remove every trap, haunt, hex, guard, or burn from a location, or clear your own Trouble dice; if a rival set it, you secretly learn who."
+      },
+      {
+        "id": "the-great-flood",
+        "name": "The Great Flood",
+        "slot": "signature",
+        "when": "quick",
+        "target": "none",
+        "cost": {},
+        "text": "Every trap and curse washes away, and each rival's least valuable item drifts to you."
+      }
+    ]
   },
   {
     "name": "Moss-Footed Geomancer",
@@ -351,7 +716,29 @@
         "kind": "noPush"
       }
     ],
-    "id": "moss-footed-geomancer"
+    "id": "moss-footed-geomancer",
+    "powers": [
+      {
+        "id": "tremor",
+        "name": "Tremor",
+        "slot": "active",
+        "when": "quick",
+        "target": "none",
+        "cost": {
+          "stamina": 2
+        },
+        "text": "Rivals at a shared location (the same region and skull rating as you this round) lose 1 stamina and drop an item; you pick up the best one."
+      },
+      {
+        "id": "mountain-heart",
+        "name": "Mountain Heart",
+        "slot": "signature",
+        "when": "quick",
+        "target": "none",
+        "cost": {},
+        "text": "+1 Brawn and +1 max stamina for the rest of the game."
+      }
+    ]
   },
   {
     "name": "Cinder-Heart Pyromancer",
@@ -378,7 +765,29 @@
         "kind": "mishapBurnsItem"
       }
     ],
-    "id": "cinder-heart-pyromancer"
+    "id": "cinder-heart-pyromancer",
+    "powers": [
+      {
+        "id": "burn-the-path",
+        "name": "Burn the Path",
+        "slot": "active",
+        "when": "quick",
+        "target": "location",
+        "cost": {
+          "stamina": 2
+        },
+        "text": "Remove a location name from the deck for the whole game."
+      },
+      {
+        "id": "phoenix",
+        "name": "Phoenix",
+        "slot": "signature",
+        "when": "auto",
+        "target": "none",
+        "cost": {},
+        "text": "The first time you'd drop to 0 health, rise with full health and stamina."
+      }
+    ]
   },
   {
     "name": "Kite-Riding Windcaller",
@@ -401,7 +810,38 @@
         "kind": "loseBrawlTies"
       }
     ],
-    "id": "kite-riding-windcaller"
+    "id": "kite-riding-windcaller",
+    "powers": [
+      {
+        "id": "whispers",
+        "name": "Whispers on the Wind",
+        "slot": "passive",
+        "when": "scheme",
+        "target": "none",
+        "cost": {},
+        "text": "Each round, learn one rival's chosen location before it's revealed."
+      },
+      {
+        "id": "gust",
+        "name": "Gust",
+        "slot": "active",
+        "when": "scheme",
+        "target": "rival",
+        "cost": {
+          "stamina": 1
+        },
+        "text": "A rival must take their other teaser card instead."
+      },
+      {
+        "id": "cyclone",
+        "name": "Cyclone",
+        "slot": "signature",
+        "when": "scheme",
+        "target": "none",
+        "cost": {},
+        "text": "Collect every chosen explore card, shuffle, and redeal at random."
+      }
+    ]
   },
   {
     "id": "thunder-oath-knight",

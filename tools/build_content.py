@@ -557,6 +557,7 @@ def main():
     for k in authored.CLASSES:
         d = dict(k)
         d["id"] = slug(d["name"])
+        d["powers"] = authored.POWERS.get(d["name"], [])
         classes.append(d)
     for name, group, idea, q in authored.CONCEPT_CLASSES:
         classes.append(dict(id=slug(name), name=name, group=group, status="concept", idea=idea, openQuestion=q))

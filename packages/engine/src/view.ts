@@ -27,6 +27,11 @@ export function viewFor(state: GameState, viewer: Viewer): GameState {
   }
   v.pending = v.pending.map((d) => (viewer !== "tv" && d.player === viewer ? d : { player: d.player, kind: d.kind, data: {} }));
   v.traps = v.traps.filter((t) => viewer !== "tv" && t.owner === viewer);
+  v.wards = (v.wards ?? []).filter((w) => viewer !== "tv" && w.owner === viewer);
+  v.possess = Object.fromEntries(Object.entries(v.possess ?? {}).filter(([, g]) => viewer !== "tv" && g === viewer));
+  v.swaps = (v.swaps ?? []).filter((x) => viewer !== "tv" && x.thief === viewer);
+  v.passed = Object.fromEntries(Object.entries(v.passed ?? {}).filter(([pid]) => viewer !== "tv" && Number(pid) === viewer));
+  if (v.disguise && (viewer === "tv" || v.disguise.player !== viewer)) v.disguise = null;
   v.missionOptions = viewer === "tv" ? {} : { [viewer]: v.missionOptions[viewer] };
   v.log = v.log.filter((e) => !e.private || over || (viewer !== "tv" && e.private.includes(viewer)));
   v.story = (v.story ?? []).filter((b) => b.kind !== "mission" || over || (viewer !== "tv" && b.private.includes(viewer)));
@@ -38,6 +43,7 @@ export function viewFor(state: GameState, viewer: Viewer): GameState {
     p.history = [];
     p.intel = {};
     p.knownMissions = {};
+    p.decoys = [];
     p.guesses = null;
     for (const it of p.items) if (it.fragment) it.fragment = "hidden";
     p.lessons = { brawn: 0, wits: 0, charm: 0, spark: 0, luck: 0 };
