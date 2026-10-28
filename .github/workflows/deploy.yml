@@ -42,4 +42,8 @@ jobs:
       - name: Deploy to Cloudflare
         if: steps.secrets.outputs.ready == 'true'
         working-directory: packages/server
-        run: npx wrangler deploy
+        run: |
+          npx wrangler deploy | tee deploy.log
+          url=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          echo "::notice title=Thaloroot is live::${url:-see the deploy log}"
+          echo "Thaloroot is live at ${url}" >> "$GITHUB_STEP_SUMMARY"
