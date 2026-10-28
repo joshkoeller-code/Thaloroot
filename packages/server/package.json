@@ -1,0 +1,26 @@
+{
+  "name": "@thaloroot/server",
+  "version": "0.1.0",
+  "description": "Thaloroot game rooms: the TV, the phones, and the computer players, kept in sync.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "node dist/node.js",
+    "dev": "tsx src/node.ts"
+  },
+  "dependencies": {
+    "@thaloroot/engine": "0.1.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7"
+  }
+}

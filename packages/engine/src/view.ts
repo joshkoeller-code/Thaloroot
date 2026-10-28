@@ -2,7 +2,8 @@
  * What one seat (or the shared TV) is allowed to see. The server keeps the full
  * GameState; clients only ever receive a view.
  */
-import type { GameState, PlayerState } from "./types.js";
+import { PUBLIC } from "./record.js";
+import type { GameEvent, GameState, PlayerState } from "./types.js";
 
 export type Viewer = number | "tv";
 
@@ -21,8 +22,8 @@ export function viewFor(state: GameState, viewer: Viewer): GameState {
   for (const [pid, hand] of Object.entries(v.hands)) {
     if (viewer === "tv" || Number(pid) !== viewer) v.hands[Number(pid)] = hand.map(() => ({ uid: 0, card: "" }));
   }
-  // picks are secret until everyone has picked
-  if (state.phase === "pick") {
+  // picks are secret until the reveal
+  if (state.phase === "pick" || state.phase === "scheme") {
     for (const pid of Object.keys(v.picks)) if (viewer === "tv" || Number(pid) !== viewer) v.picks[Number(pid)] = null;
   }
   v.pending = v.pending.map((d) => (viewer !== "tv" && d.player === viewer ? d : { player: d.player, kind: d.kind, data: {} }));
@@ -35,12 +36,30 @@ export function viewFor(state: GameState, viewer: Viewer): GameState {
   v.missionOptions = viewer === "tv" ? {} : { [viewer]: v.missionOptions[viewer] };
   v.log = v.log.filter((e) => !e.private || over || (viewer !== "tv" && e.private.includes(viewer)));
   v.story = (v.story ?? []).filter((b) => b.kind !== "mission" || over || (viewer !== "tv" && b.private.includes(viewer)));
+  // Mistaken Identity: everyone but the Trickster sees the other name
+  const d = state.disguise;
+  const fooled = d && d.round === state.round && viewer !== d.player;
+  if (fooled) {
+    for (const b of v.story) if (b.kind === "scene" && b.as !== undefined) (b as any).player = b.as;
+    if (v.lastRoll && v.lastRoll.player === d!.player) v.lastRoll.player = d!.as;
+  }
+  for (const b of v.story) if (b.kind === "scene" && viewer !== d?.player && !over) delete (b as any).as;
+  // rivals' histories: only what the table saw, under the name the table saw
+  const seen: Record<number, GameEvent[]> = {};
+  for (const p of state.players) {
+    for (const e of p.history) {
+      if (!PUBLIC.has(e.type)) continue;
+      const shown = e.as ?? p.id;
+      const { as: _as, ...rest } = e as any;
+      (seen[shown] ??= []).push(rest);
+    }
+  }
   for (const p of v.players) {
     if (over || me(p)) continue;
     p.mission = null;
     p.claimed = [];
     p.finaleDone = false;
-    p.history = [];
+    p.history = seen[p.id] ?? [];
     p.intel = {};
     p.knownMissions = {};
     p.decoys = [];
