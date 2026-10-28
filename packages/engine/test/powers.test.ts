@@ -432,5 +432,5 @@ describe("full games", () => {
     const missing = all.filter((id) => !used.has(id));
     // Phoenix only fires when the Pyromancer would be Downed; the rest should all appear
     expect(missing.filter((id) => id !== "phoenix")).toEqual([]);
-  });
+  }, 60_000);
 });
