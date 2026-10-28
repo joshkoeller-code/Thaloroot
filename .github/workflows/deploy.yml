@@ -43,6 +43,7 @@ jobs:
         if: steps.secrets.outputs.ready == 'true'
         working-directory: packages/server
         run: |
+          set -o pipefail
           npx wrangler deploy | tee deploy.log
           url=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' deploy.log | head -1)
           echo "::notice title=Thaloroot is live::${url:-see the deploy log}"
