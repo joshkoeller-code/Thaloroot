@@ -1,0 +1,19 @@
+// Cloudflare settings for Thaloroot. See docs/hosting.md.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "thaloroot",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "../../apps/web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/ws/*"]
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "ROOMS", "class_name": "GameRoom" }]
+  },
+  // SQLite-backed rooms: free plan, and up to 2 MB per saved game
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GameRoom"] }],
+  "observability": { "enabled": true }
+}

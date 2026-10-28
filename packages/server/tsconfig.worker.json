@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["@cloudflare/workers-types"],
+    "lib": ["ES2022"],
+    "paths": { "@thaloroot/engine": ["../engine/src/index.ts"] }
+  },
+  "include": ["src/worker.ts", "src/room.ts"]
+}
