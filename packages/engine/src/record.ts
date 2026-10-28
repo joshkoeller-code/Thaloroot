@@ -17,7 +17,7 @@ export interface PublicRecord {
 }
 
 /** Event types everyone at the table can see happen. */
-const PUBLIC = new Set(["success", "rest", "meetingChoice", "winBrawl", "befriend", "frog", "push", "buy", "roll"]);
+export const PUBLIC = new Set(["success", "rest", "meetingChoice", "winBrawl", "befriend", "frog", "push", "buy", "roll"]);
 
 export function publicRecord(state: GameState, player: number): PublicRecord {
   const p = state.players[player];

@@ -11,11 +11,12 @@
   ],
   "scripts": {
     "content": "python3 tools/build_content.py",
-    "build": "npm run build -w @thaloroot/engine && npm run build -w @thaloroot/web",
-    "typecheck": "npm run typecheck -w @thaloroot/engine && npm run typecheck -w @thaloroot/web",
-    "test": "npm test -w @thaloroot/engine",
+    "build": "npm run build -w @thaloroot/engine && npm run build -w @thaloroot/web && npm run build -w @thaloroot/server",
+    "typecheck": "npm run typecheck -w @thaloroot/engine && npm run typecheck -w @thaloroot/web && npm run typecheck -w @thaloroot/server",
+    "test": "npm test -w @thaloroot/engine && npm test -w @thaloroot/server",
     "sim": "npm run sim -w @thaloroot/engine --",
-    "dev": "npm run dev -w @thaloroot/web"
+    "dev": "npm run dev -w @thaloroot/web",
+    "serve": "npm run build && npm start -w @thaloroot/server"
   },
   "engines": {
     "node": ">=20"

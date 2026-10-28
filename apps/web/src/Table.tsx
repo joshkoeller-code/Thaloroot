@@ -5,7 +5,7 @@ import { DecisionPanel, HEADINGS } from "./panels";
 import { PowerList } from "./powers";
 import { SPEED_MS, type Controller, type Speed } from "./session";
 
-function World({ game }: { game: GameState }) {
+export function World({ game }: { game: GameState }) {
   const left = game.worldDeck.length;
   const beforeFinale = Math.max(0, game.worldDeck.indexOf(FINALE));
   const total = Content.deckCounts[game.config.length].worldCards;
@@ -70,7 +70,7 @@ const SHORT: Record<Stat, string> = { brawn: "Brawn", wits: "Wits", charm: "Char
 const PER = Content.rules.lessons.perStat;
 
 /** Stats with this game's class changes, and Lessons toward the next permanent point. */
-function StatGrid({ p }: { p: PlayerState }) {
+export function StatGrid({ p, lessons = true }: { p: PlayerState; lessons?: boolean }) {
   return (
     <div className="statgrid" role="table" aria-label={`${p.name}'s stats`}>
       {STATS.map((k) => {
@@ -82,9 +82,11 @@ function StatGrid({ p }: { p: PlayerState }) {
               {p.stats[k]}
               {diff !== 0 && <sup className={diff > 0 ? "up" : "down"}>{diff > 0 ? `+${diff}` : diff}</sup>}
             </span>
-            <span className="pips" role="cell" aria-label={`${p.lessons[k]} of ${PER} Lessons`}>
-              {Array.from({ length: PER }, (_, i) => <i key={i} className={i < p.lessons[k] ? "on" : ""} />)}
-            </span>
+            {lessons && (
+              <span className="pips" role="cell" aria-label={`${p.lessons[k]} of ${PER} Lessons`}>
+                {Array.from({ length: PER }, (_, i) => <i key={i} className={i < p.lessons[k] ? "on" : ""} />)}
+              </span>
+            )}
           </div>
         );
       })}
@@ -92,7 +94,7 @@ function StatGrid({ p }: { p: PlayerState }) {
   );
 }
 
-function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; active: boolean; human: boolean }) {
+export function Plot({ game, p, active, human, who, lessons = true }: { game: GameState; p: PlayerState; active: boolean; human: boolean; who?: string; lessons?: boolean }) {
   const status = [
     p.frog && "Frog",
     p.skipExplore && "Recovering",
@@ -103,7 +105,7 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
     <article className={`plot ${active ? "active" : ""}`} aria-current={active ? "true" : undefined}>
       <div className="spread">
         <span className="plot-name">{p.name}</span>
-        <span className="small quiet">{human ? "" : "Computer"}</span>
+        <span className="small quiet">{who ?? (human ? "" : "Computer")}</span>
       </div>
       <span className="small quiet plot-sub">
         {Content.speciesById[p.species].name} {className(p.cls)}
@@ -118,7 +120,7 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
         <Meter kind="stamina" value={p.stamina} max={p.maxStamina} />
         <span className="num">{p.stamina}/{p.maxStamina}</span>
       </div>
-      <StatGrid p={p} />
+      <StatGrid p={p} lessons={lessons} />
       <span className="small num">
         {plural(p.coin, "coin", "coin")}, {plural(p.sparkTokens, "Spark token")}
         {p.grownThisGame ? `, grew ${p.growth.map(cap).join(" and ")}` : ""}
@@ -165,7 +167,7 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
   );
 }
 
-function Chronicle({ game, viewer }: { game: GameState; viewer: number | null }) {
+export function Chronicle({ game, viewer }: { game: GameState; viewer: number | null }) {
   const lines = game.log
     .map((e, i) => ({ ...e, i }))
     .filter((e) => !e.private || game.phase === "over" || (viewer !== null && e.private.includes(viewer)))
