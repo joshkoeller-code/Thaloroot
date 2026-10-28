@@ -12,6 +12,8 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react({ jsxRuntime: "classic" }), viteSingleFile()],
     resolve: { alias: { "@thaloroot/engine": engine } },
+    // npm run dev: the game server runs separately (npm run dev -w @thaloroot/server)
+    server: { proxy: { "/api": "http://localhost:8080", "/ws": { target: "ws://localhost:8080", ws: true } } },
     build: {
       outDir: artifact ? "dist-artifact" : "dist",
       target: "es2022",

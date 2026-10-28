@@ -315,3 +315,30 @@ label.check input { width: 1.1rem; height: 1.1rem; accent-color: var(--thal); }
 .power-fields select { max-width: 100%; }
 fieldset { min-width: 0; }
 .power-fields select { min-width: 0; width: 100%; }
+
+/* playing with phones and a TV */
+.banner { position: sticky; top: 0; z-index: 30; margin: 0; padding: 0.5rem 1rem; background: var(--thal); color: var(--thal-ink); text-align: center; font-size: 0.9rem; }
+.home .choices { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.choice-card { background: var(--bark); border: 2px solid var(--root); border-radius: 14px; padding: 1.1rem; }
+.code-input { font-size: 1.4rem; letter-spacing: 0.3em; width: 8ch; text-transform: uppercase; text-align: center; }
+.lobby { display: grid; grid-template-columns: minmax(16rem, 22rem) 1fr; gap: 2rem; align-items: start; }
+@media (max-width: 760px) { .lobby { grid-template-columns: 1fr; } }
+.join-card { text-align: center; background: var(--bark); border: 2px solid var(--root); border-radius: 16px; padding: 1.2rem; }
+.qr { background: #fff; border-radius: 10px; padding: 0.5rem; width: min(100%, 16rem); margin: 0.5rem auto; }
+.qr svg { display: block; width: 100%; height: auto; }
+.code { font-family: var(--display, inherit); font-size: clamp(2.6rem, 7vw, 4.2rem); letter-spacing: 0.25em; margin: 0.2rem 0; }
+.seatlist { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+.seatline { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.seatline .grow { flex: 1 1 12rem; min-width: 0; }
+.block { display: block; }
+.dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; flex: none; background: var(--dust); }
+.dot.on { background: var(--forest); }
+.dot.off { background: var(--peril); }
+.dot.bot { background: transparent; border: 2px solid var(--dust); }
+.waiting { list-style: none; padding: 0; margin: 0.6rem 0; display: grid; gap: 0.3rem; font-size: 1.05rem; }
+.tv .scene p { font-size: clamp(1.05rem, 1.6vw, 1.45rem); }
+.phone .watch { font-family: var(--display, inherit); font-size: 1.6rem; margin: 0.2rem 0; }
+.table-peek { margin-top: 1rem; }
+.table-peek > summary { cursor: pointer; font-weight: 600; padding: 0.4rem 0; }
+.phone .plots { grid-template-columns: 1fr; }
+.phone .plot-sub { display: block; }

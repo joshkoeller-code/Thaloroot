@@ -15,7 +15,8 @@ content/            Game content as JSON, generated from the design doc
   items.json, companions.json, classes.json, species.json, taproot-fragments.json
   rules.json          The Playtest 4 numbers: dice, VP tables, Lessons, traps, merchants, game lengths
 packages/engine/    The rules engine (TypeScript): state machine, bots, simulator, tests
-apps/web/           The pass-and-play prototype: one shared screen in the browser (React + Vite)
+packages/server/    Game rooms: the TV, the phones, and computer players kept in sync, plus a local server
+apps/web/           The web app (React + Vite): TV board, phone hands, and pass-and-play on one screen
 tools/              Python scripts that build content/*.json from the doc exports
 docs/               How mission conditions work, rules interpretations, and balance baselines
 ```
@@ -26,8 +27,9 @@ You need Node 20 or newer (and Python 3 only if you rebuild the content).
 
 ```sh
 npm install
-npm run dev         # the pass-and-play prototype at http://localhost:5173
-npm test            # 95 tests: content checks, every mission is completable, rules, balance guardrails
+npm run serve       # the whole game at http://localhost:8080: open it on a TV, join from phones on the same Wi-Fi
+npm run dev         # the web app at http://localhost:5173 (run `npm run dev -w @thaloroot/server` too, for rooms)
+npm test            # engine and room tests: content, every mission, rules, powers, balance, rooms, the server
 npm run sim -- --games 500                      # bot games with the full content, Quick length
 npm run sim -- --games 500 --playtest           # the Playtest 1-4 setup, to compare with the playtest log
 npm run sim -- --games 200 --length long --players 6
@@ -35,6 +37,16 @@ npm run sim -- --log --seed 7                   # one game, every event narrated
 ```
 
 A thousand bot games take about 7 seconds.
+
+## Playing with phones and a TV
+
+`npm run serve` builds everything and starts a small server (set `PORT`, and `DATA_DIR` to keep rooms across restarts). Open it on the TV and choose **Open a table**: the TV shows a room code and a QR code. Each person scans it (or opens the same address on their phone and types the code), makes their adventurer, and sits down. The TV adds computer players, picks the game length, and starts the Bloom.
+
+From then on, every choice happens on the phone it belongs to: picks, Meetings, options, powers, quick actions, guesses. The TV is the shared table: everyone's character card, the World track, the latest scene with its dice, World card moments, who the table is waiting on, and the final scores and tales. Nothing secret ever reaches the TV; the room sends each screen only what its seat may see (`viewFor`).
+
+Phones keep a secret token, so a reload, a locked screen, or a dropped signal puts them back in their seat. If someone leaves for good, the TV can free their seat for another phone or hand it to a computer player. At the end, "Play again" keeps everyone's growth, and each phone remembers its adventurer for the next table.
+
+To reach the server from phones, they need to be on the same network as the computer running it, using its local address (like `http://192.168.1.20:8080`). Putting the game online is the next step.
 
 ## The pass-and-play prototype
 
@@ -82,7 +94,7 @@ The build parses card text into effects ("Success: Bog Pearl (4 / 2)" becomes `{
 
 ## What's automated
 
-All dice, stamina, Lessons and growth, Meetings and Brawls, traps, stealing, Downed, companions, items' passive bonuses and one-use effects, Taproot Fragments, every World card, monsters, merchants and the market, Rumors, finales, all 51 missions (milestones, finales with finale grace, and flourishes), mission guesses, and scoring. Class and species passives and weaknesses are automated; class actives and signature moves are still text only. [docs/rules-notes.md](docs/rules-notes.md) lists every interpretation the engine makes and every gap.
+All dice, stamina, Lessons and growth, Meetings and Brawls, traps, stealing, Downed, companions, items' passive bonuses and one-use effects, Taproot Fragments, every World card, monsters, merchants and the market, Rumors, finales, all 51 missions (milestones, finales with finale grace, and flourishes), mission guesses, and scoring. Class and species passives, weaknesses, actives, signature moves, and services are all automated. [docs/rules-notes.md](docs/rules-notes.md) lists every interpretation the engine makes and every gap.
 
 ## Balance baseline
 
@@ -91,7 +103,7 @@ With the full content (51 missions, 14 classes, random characters), the engine's
 ## Roadmap
 
 1. **Rules engine** (done): content as data, the engine, bots, simulator, tests.
-2. **Pass-and-play prototype** (this step): one browser screen, players take turns on the same device.
-3. **Multiplayer**: phones as private hands, a shared TV dashboard, a room code to join.
+2. **Pass-and-play prototype** (done): one browser screen, players take turns on the same device.
+3. **Multiplayer** (in progress): phones as private hands and a room code to join (done), the TV board and trades at Meetings, then putting it online.
 4. **Accounts and carryover**: characters that keep their growth, quirks, and heirlooms between games.
 5. **Polish**: art, sound, animation, onboarding.

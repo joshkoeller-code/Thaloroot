@@ -1,122 +1,12 @@
-import React, { useState } from "react";
-import { Content, createGame, exportCharacter, type GameState } from "@thaloroot/engine";
-import { className, missionBeatText, taleOf } from "./bits";
+import React, { useEffect, useState } from "react";
+import { createGame, exportCharacter } from "@thaloroot/engine";
+import { Curtain, Scores, WorldMoment } from "./shared";
 import { Setup } from "./Setup";
 import { Table } from "./Table";
+import { openRoom, serverAvailable } from "./net";
+import { PhoneScreen } from "./Phone";
+import { TvScreen } from "./Tv";
 import { clearSaved, loadSaved, useSession, type Controller, type Session } from "./session";
-
-function Curtain({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="curtain" role="dialog" aria-modal="true">
-      <div className="curtain-inner">{children}</div>
-    </div>
-  );
-}
-
-const KIND: Record<string, string> = {
-  weather: "The weather turns",
-  monster: "A monster appears",
-  merchant: "A merchant arrives",
-  rumor: "A rumor spreads",
-  chaos: "Chaos in Thaloroot",
-  escalation: "The Bloom grows stronger",
-  finale: "The Finale",
-};
-
-function WorldMoment({ id }: { id: string }) {
-  const def = Content.worldCard[id];
-  return (
-    <>
-      <p className="moment-kind">{KIND[def.category] ?? "The World turns"}</p>
-      <h1>{def.name}</h1>
-      <p className="moment-text">{Content.story.world[id]}</p>
-      <div className="moment-effect stack">
-        {def.flavor && <p className="small quiet"><i>{def.flavor}</i></p>}
-        {def.text && <p className="small">{def.text}</p>}
-        {def.category === "monster" && (
-          <p className="small">
-            Hunts {def.huntsText.charAt(0).toLowerCase() + def.huntsText.slice(1)}. {def.optionsText}. Defeat it for {def.rewardText}.
-          </p>
-        )}
-      </div>
-    </>
-  );
-}
-
-function Scores({ game, onAgain, onNew }: { game: GameState; onAgain: () => void; onNew: () => void }) {
-  const lines = [...game.scores!].sort((a, b) => b.total - a.total || b.coin - a.coin);
-  const winners = game.winner!.map((w) => game.players[w].name);
-  return (
-    <main className="page">
-      <header className="setup-hero">
-        <h1>{winners.join(" and ")} {winners.length > 1 ? "share" : "wins"} the Bloom</h1>
-        <p className="quiet">Every mission is revealed. Here is how the points came together.</p>
-      </header>
-      <div className="table-wrap">
-        <table className="scores">
-          <thead>
-            <tr>
-              <th scope="col">Adventurer</th>
-              <th scope="col" className="text">Mission</th>
-              <th scope="col">Milestones</th>
-              <th scope="col">Mission VP</th>
-              <th scope="col">Treasure</th>
-              <th scope="col">Guesses</th>
-              <th scope="col">Other</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lines.map((l) => (
-              <tr key={l.player} className={game.winner!.includes(l.player) ? "winner" : ""}>
-                <td>
-                  {l.name}
-                  <div className="small quiet">{className(l.cls)}</div>
-                </td>
-                <td className="text">
-                  {l.mission ? Content.mission[l.mission].name : ""}
-                  <div className="small quiet">
-                    {[l.finale && "finale done", l.flourish && "flourish", l.first && "finished first"].filter(Boolean).join(", ") || "finale not reached"}
-                  </div>
-                </td>
-                <td>{l.milestones}/3</td>
-                <td>{l.missionVp}</td>
-                <td>{l.treasureVp}</td>
-                <td>{l.guessVp}</td>
-                <td>{l.fragmentVp + l.bonusVp}</td>
-                <td>{l.total}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p className="small quiet">Ties go to the player with the most coin.</p>
-      <section className="stack" aria-labelledby="tales-h">
-        <h2 id="tales-h">Tales of the Bloom</h2>
-        <div className="tales">
-          {lines.map((l) => {
-            const tale = taleOf(game, l.player);
-            const name = game.players[l.player].name;
-            const p = game.players[l.player];
-            return (
-              <article className="tale" key={l.player}>
-                <h3>{name} and {l.mission ? Content.mission[l.mission].name : "no mission"}</h3>
-                {tale.map((b) => (
-                  <p key={b.seq}>{missionBeatText(game, b)}</p>
-                ))}
-                {!p.finaleDone && <p className="quiet">The Bloom faded before {name} could finish the quest. There is always another Bloom.</p>}
-              </article>
-            );
-          })}
-        </div>
-      </section>
-      <div className="row">
-        <button className="primary" onClick={onAgain}>Play again with the same adventurers</button>
-        <button onClick={onNew}>Back to setup</button>
-      </div>
-    </main>
-  );
-}
 
 function Game({ initial, onExit, onAgain }: { initial: Session; onExit: () => void; onAgain: (s: Session) => void }) {
   const c: Controller = useSession(initial);
@@ -156,7 +46,7 @@ function Game({ initial, onExit, onAgain }: { initial: Session; onExit: () => vo
   );
 }
 
-export function App() {
+function PassAndPlay() {
   const [saved] = useState(() => loadSaved());
   const [session, setSession] = useState<Session | null>(null);
   const [key, setKey] = useState(0);
@@ -184,4 +74,89 @@ export function App() {
       }}
     />
   );
+}
+
+type Route = { kind: "home" } | { kind: "local" } | { kind: "tv"; code: string } | { kind: "play"; code: string };
+
+function parse(hash: string): Route {
+  const m = hash.match(/^#\/(tv|play)\/([A-Za-z]{4})$/);
+  if (m) return { kind: m[1] as "tv" | "play", code: m[2].toUpperCase() };
+  if (hash === "#/local") return { kind: "local" };
+  return { kind: "home" };
+}
+
+function useRoute(): [Route, (hash: string) => void] {
+  const [route, setRoute] = useState(() => parse(window.location.hash));
+  useEffect(() => {
+    const on = () => setRoute(parse(window.location.hash));
+    window.addEventListener("hashchange", on);
+    return () => window.removeEventListener("hashchange", on);
+  }, []);
+  return [route, (hash) => (window.location.hash = hash)];
+}
+
+/** Choose how to play: a TV with phones (when a game server is behind this page), or one shared device. */
+function Home({ go }: { go: (hash: string) => void }) {
+  const [code, setCode] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const host = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      go(`#/tv/${await openRoom()}`);
+    } catch (e: any) {
+      setError(String(e?.message ?? e));
+      setBusy(false);
+    }
+  };
+  const ok = /^[A-Za-z]{4}$/.test(code.trim());
+  return (
+    <main className="page home">
+      <header className="setup-hero">
+        <h1>Thaloroot</h1>
+        <p className="quiet">The thal is surging and the Bloom has begun.</p>
+      </header>
+      <div className="choices">
+        <section className="choice-card stack">
+          <h2>Join a game</h2>
+          <p className="small quiet">On your phone: enter the code shown on the TV.</p>
+          <form
+            className="row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (ok) go(`#/play/${code.trim().toUpperCase()}`);
+            }}
+          >
+            <input id="room-code" className="code-input" aria-label="Room code" autoCapitalize="characters" autoComplete="off" maxLength={4} placeholder="CODE" value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} />
+            <button className="primary" disabled={!ok}>Join</button>
+          </form>
+        </section>
+        <section className="choice-card stack">
+          <h2>Host on this screen</h2>
+          <p className="small quiet">Put this on the TV. Everyone joins on their phone, and the TV becomes the table.</p>
+          <button className="primary" disabled={busy} onClick={host}>{busy ? "Opening a room..." : "Open a table"}</button>
+        </section>
+        <section className="choice-card stack">
+          <h2>Play on one device</h2>
+          <p className="small quiet">Everyone shares this screen and passes it for secret choices.</p>
+          <button onClick={() => go("#/local")}>Pass and play</button>
+        </section>
+      </div>
+      {error && <p className="error" role="alert">{error}</p>}
+    </main>
+  );
+}
+
+export function App() {
+  const [route, go] = useRoute();
+  const [online, setOnline] = useState<boolean | null>(null);
+  useEffect(() => {
+    serverAvailable().then(setOnline);
+  }, []);
+  if (route.kind === "tv") return <TvScreen key={route.code} code={route.code} onHome={() => go("#/")} />;
+  if (route.kind === "play") return <PhoneScreen key={route.code} code={route.code} onHome={() => go("#/")} />;
+  if (route.kind === "local" || online === false) return <PassAndPlay />;
+  if (online === null) return <main className="page" aria-busy="true" />;
+  return <Home go={go} />;
 }
