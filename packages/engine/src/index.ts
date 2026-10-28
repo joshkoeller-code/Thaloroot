@@ -15,3 +15,5 @@ export { FINALE } from "./world.js";
 export { publicRecord } from "./record.js";
 export type { PublicRecord } from "./record.js";
 export { lineupFor } from "./engine.js";
+export { availablePowers, powersOf, signatureUsed, itemLabel, exploredLocations, powerDef } from "./powers.js";
+export type { AvailablePower } from "./powers.js";

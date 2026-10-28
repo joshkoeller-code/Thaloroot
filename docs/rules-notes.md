@@ -46,6 +46,24 @@ Where the design doc leaves room for interpretation, the engine has to pick one.
 - Fragment of the Gardener-Kings gives 5 teasers and +3 dice next turn instead of a search through the whole deck.
 - Fragment of Exchange swaps with the rival carrying the most valuable pack.
 
+**Class powers** (the numbers live in `tools/authored.py`, under `POWERS`)
+- Using an active or signature power is your quick action, instead of a trap or trail rations. Powers with their own moment don't use it up: Dream Peek and Build a Bridge (while picking), Whispers, Switcheroo, Gust, and Cyclone (after everyone picks, before the reveal, in turn order), and Stampede and The Walking Cottage (when choosing an option).
+- Sic 'Em, Haunt, Hex the Path, and Living Gargoyle work like traps: secret, one use, sprung by the next rival to resolve there. The victim learns something was waiting, not who left it.
+- Sic 'Em: the rival rolls their better of Brawn or Charm and needs 2 successes, or takes 2 damage. Living Gargoyle: Brawn, 2 successes, or 3 damage.
+- Tremor's "shared location" means a Meeting's match: the same region and skull rating as you this round.
+- Build a Wall lasts for the next round: no one else is dealt that location. Burn the Path removes every copy for the rest of the game.
+- Build a Bridge costs 2 stamina plus 1 coin (the Carpenter's weakness) and replaces your teaser pick. The Walking Cottage costs 1 coin and protects everything you carry at that moment for the rest of the game.
+- Brew turns any treasure into a potion item you use later. Ribbit needs a target when you drink it.
+- Reforge is a free quick action. Smithing for Hire costs the rival 2 coin, paid to the Blacksmith. Gear can be stolen. A Masterwork heirloom keeps its stat in the next game.
+- Each Cook dish needs 1 ingredient. Sleepy Scones cost the rival their next quick action, not their explore. Courage Pie is +1 die on your next roll. The Feast is free; guests restore all stamina, and the Cook gains 1 VP per guest.
+- Bluff: each milestone the Trickster claims plants one fake mission tag. The next rival to learn a tag about the Trickster hears the fake one.
+- Mistaken Identity and The Shared Dream take effect in the round after you use them. During Mistaken Identity, the Chronicle, the scene, and "Seen at the table" all show the other player's name.
+- The Shared Dream: 1s count as successes, and a Mishap comes from two 6s instead of two 1s. 6s still succeed and still Spark.
+- Possession is used as a quick action and applies the next time that rival draws teasers.
+- Whispers on the Wind: you choose which rival to hear.
+- Cleanse removes everything at one location (traps and powers), or clears your own Trouble dice. Mountain Heart can lift Brawn above 6 for this game.
+- The elemental rivalries are rules: Cleanse brings back a burned location, Gust can't move the Rooted Geomancer, and the Pyromancer gains no Heat at Swamp locations.
+
 **Final guesses**
 - Each rival's lineup is built separately for each guesser, so two players guessing the same rival see different decoys. A guess outside the lineup doesn't count.
 
@@ -56,7 +74,6 @@ Where the design doc leaves room for interpretation, the engine has to pick one.
 
 These show as text only. (If a card or item effect the engine doesn't know ever comes up, it logs a "resolve by hand" note instead of failing.)
 
-- Class actives and signature moves for all 14 classes, including the Blacksmith's reforging, the Cook's ingredients, the Dreamweaver's Dream powers (Dream tokens are tracked), and the Thief's Swap.
 - Foxfolk's swap after the reveal.
 - Reusable once-per-game peeks and table powers: Judge Owlbeard, the Glowcap, Starlit, and Moth Queen's Lanterns, Racer's Ribbon, Garden Key, Taproot Star-Chart, Ghostly Locket, Gatekeeper's Seal, and the Crown of the Gardener-King.
 - Redraw items: Fairy Charm, Wishbone, and the setup redraws (Fortune-Teller's Deck, Two-Headed Coin).

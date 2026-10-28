@@ -31,7 +31,7 @@ export function pendingMoment(s: Session) {
 }
 
 /** Choices only the deciding player should see. */
-export const PRIVATE: Decision["kind"][] = ["chooseMission", "pickTeaser", "meetingChoice", "quickAction", "finalGuess", "respondTrade"];
+export const PRIVATE: Decision["kind"][] = ["chooseMission", "pickTeaser", "meetingChoice", "quickAction", "finalGuess", "respondTrade", "whisper", "scheme", "possess"];
 
 export function isPrivate(d: Decision): boolean {
   return PRIVATE.includes(d.kind);
