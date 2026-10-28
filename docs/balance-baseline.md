@@ -54,3 +54,32 @@ These come from bots, which are cautious about risk and bad at deduction, so tre
 ## After the first digital playtest: guess lineups
 
 Final guesses now pick from a lineup of 6 per rival (the real mission, the two the rival turned down, and three random ones) instead of all 51. Bots now guess right about half the time, and guess VP rose from 1.1 to 5.0 per player in a Quick game, about a third of what missions are worth. Bigger lineups soften it: 8 missions gives 4.4 VP, and 10 gives 3.8. If guessing feels too strong at the table, the lineup size is one number in `content/rules.json` (`scoring.lineupSize`), or each correct guess could drop to 2 VP.
+
+## Class powers
+
+Every class's active, signature, and service now works, and computer players use them. Quick games, 2,000 bot games:
+
+| Class | Win rate before | Win rate with powers |
+| --- | --- | --- |
+| Rain-Barrel Tidecaller | 38% | 46% |
+| Moss-Footed Geomancer | 24% | 35% |
+| Bramblebeast Tamer | 34% | 31% |
+| Honeycake Cook | 24% | 28% |
+| Pillow-Prophet Dreamweaver | 31% | 28% |
+| Gargoyle-Carver Stonemason | 31% | 26% |
+| Lantern-Hour Thief | 25% | 26% |
+| Treehouse Carpenter | 34% | 26% |
+| Toadstool Witch | 25% | 20% |
+| Kite-Riding Windcaller | 16% | 20% |
+| Fox-Masked Trickster | 23% | 19% |
+| Ember-Hearted Blacksmith | 22% | 19% |
+| Cinder-Heart Pyromancer | 23% | 19% |
+| Lantern-Bound Ghost | 13% | 12% |
+
+Turning single powers off on the same seeds shows which ones move a class's win rate:
+
+- **The Great Flood** (+7 points for the Tidecaller), **Mountain Heart** (+6), **Tremor** (+5), and **The Feast** (+4) are the strongest. The first three take items or add a permanent stat. The Feast is worth about 3 VP.
+- **Haunt, Possession, Switcheroo, Gust, Build a Wall, and Burn the Path** barely move anything. Denial and misdirection powers depend on reading the table, which bots don't do, so a human playtest is the real test for these.
+- The Lantern-Bound Ghost is still last (12%). Its powers don't make up for carrying only 3 items.
+
+Every number here is in `POWERS` in `tools/authored.py` (Sic 'Em damage, Smithing price, VP per Feast guest, and so on), so tuning is a one-line change.

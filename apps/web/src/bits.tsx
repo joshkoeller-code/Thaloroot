@@ -70,7 +70,8 @@ export function DiceRow({ dice, trouble = [], animate = true }: { dice: number[]
  * This is the one moment the screen gets loud.
  */
 export function SceneTray({ game, beat, roll }: { game: GameState; beat: Extract<GameState["story"][number], { kind: "scene" }>; roll: LastRoll | null }) {
-  const p = game.players[beat.player];
+  // Mistaken Identity: the table sees another name
+  const p = game.players[beat.as ?? beat.player];
   const card = Content.card[beat.card];
   const opt = card.options.find((o) => o.name === beat.option);
   const lines = sceneText(game, beat);
@@ -130,7 +131,7 @@ type Beat = GameState["story"][number];
 
 /** The prose for a scene beat: the outcome line, plus the Spark or Mishap line when they happened. */
 export function sceneText(game: GameState, beat: Extract<Beat, { kind: "scene" }>): string[] {
-  const name = game.players[beat.player].name;
+  const name = game.players[beat.as ?? beat.player].name;
   const loc = Content.story.locations[beat.card];
   const t = loc?.options[beat.option];
   if (!t) return [];

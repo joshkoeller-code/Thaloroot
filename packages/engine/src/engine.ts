@@ -11,7 +11,7 @@
  * sent over the network, or replayed from its seed and action list.
  */
 import { BUILT_CLASSES, Content } from "./content.js";
-import { allowedStats, countSuccesses, dicePool, isMishap, needFor, sparkTriggered, staminaFor } from "./dice.js";
+import { allowedStats, countSuccesses, dicePool, dreaming, isMishap, needFor, sparkTriggered, staminaFor } from "./dice.js";
 import {
   addLessons,
   apply,
@@ -34,6 +34,7 @@ import {
   useItem,
 } from "./effects.js";
 import { endCheck } from "./missions.js";
+import { availablePowers, exploredLocations, forage, hasPower, heirloomId, powerDef, springWards, usePower, walledFor } from "./powers.js";
 import {
   addItem,
   bump,
@@ -131,6 +132,16 @@ export function createGame(config: GameConfig): GameState {
     tradeOffers: [],
     takenUniques: [],
     sealed: [],
+    wards: [],
+    walls: [],
+    burned: [],
+    sharedDream: null,
+    disguise: null,
+    passed: {},
+    possess: {},
+    swaps: [],
+    schemeQueue: [],
+    whispered: [],
     classOptions: {},
     missionOptions: {},
     collect: {},
@@ -198,14 +209,21 @@ export function createGame(config: GameConfig): GameState {
       brawlDice: 0,
       quickActionLost: false,
       bet: false,
+      ingredients: 0,
+      boons: [],
+      decoys: [],
+      haunted: 0,
       log: {},
     };
     state.players.push(p);
     for (const h of Content.speciesById[p.species]?.hooks ?? []) {
       if (h.kind === "startItem") addItem(state, p, { uid: ++state.uid, id: h.item, foundTags: [], foundSkull: 0, origin: "start" });
     }
-    for (const id of sheet.heirlooms ?? []) {
-      addItem(state, p, { uid: ++state.uid, id, foundTags: [], foundSkull: 0, origin: "start", carriedOver: true });
+    for (const h of sheet.heirlooms ?? []) {
+      // a reforged Heirloom remembers its stat: "reforged-gear:brawn"
+      const [id, forged] = h.split(":");
+      if (!Content.item[id]) continue;
+      addItem(state, p, { uid: ++state.uid, id, foundTags: [], foundSkull: 0, origin: "start", carriedOver: true, ...(forged ? { forged: forged as Stat } : {}) });
     }
     recomputeMax(state, p);
     p.health = p.maxHealth;
@@ -334,12 +352,62 @@ export function step(state: GameState, action: Action): void {
     }
     case "pickTeaser": {
       const hand = state.hands[p.id] ?? [];
+      if (action.dreamPeek) {
+        // Dream Peek: pay, then choose again with the full cards showing
+        if (d.data.fullCards || !usePower(state, p, { id: "dream-peek" }, "pick")) throw new IllegalAction("you can't Dream Peek now");
+        log(state, `${p.name} dreams ahead and sees what waits behind their teasers.`);
+        state.pending.push({ ...d, data: { ...pickData(state, p, hand), fullCards: true } });
+        return;
+      }
+      if (action.bridge) {
+        if (!(d.data.bridge ?? []).includes(action.bridge) || !usePower(state, p, { id: "build-a-bridge" }, "pick")) throw new IllegalAction("you can't build a bridge there");
+        state.picks[p.id] = { uid: ++state.uid, card: action.bridge, virtual: true };
+        for (const h of hand) state.exploreDiscard.push(h);
+        state.passed[p.id] = [];
+        state.hands[p.id] = [];
+        log(state, `${p.name} builds a bridge back to a place they've been.`);
+        if (!picksPending(state)) startScheme(state);
+        return;
+      }
       const c = hand.find((h) => h.uid === action.card);
       if (!c) throw new IllegalAction("that card isn't in your hand");
-      state.picks[p.id] = c;
-      for (const h of hand) if (h !== c) state.exploreDiscard.push(h);
-      state.hands[p.id] = [];
-      if (!state.pending.some((x) => x.kind === "pickTeaser")) reveal(state);
+      choosePick(state, p.id, hand, c);
+      if (!picksPending(state)) startScheme(state);
+      return;
+    }
+    case "possess": {
+      const rid = d.data.rival as number;
+      const hand = state.hands[rid] ?? [];
+      const c = hand.find((h) => h.uid === action.card) ?? hand[0];
+      choosePick(state, rid, hand, c);
+      log(state, `You choose ${Content.card[c.card].name} for ${state.players[rid].name}.`, [p.id]);
+      if (!picksPending(state)) startScheme(state);
+      return;
+    }
+    case "whisper": {
+      const q = state.players[action.rival];
+      if (!q || q.id === p.id || !state.picks[q.id]) throw new IllegalAction("nobody to listen to there");
+      state.whispered.push(p.id);
+      const card = Content.card[state.picks[q.id]!.card];
+      log(state, `The wind whispers that ${q.name} is heading to ${card.name} (${card.region}, ${card.skull} skull${card.skull > 1 ? "s" : ""}).`, [p.id]);
+      record(state, p, { type: "seeHidden", what: "pick", rival: q.id });
+      nextScheme(state, p.id);
+      return;
+    }
+    case "scheme": {
+      if (action.power && !usePower(state, p, action.power, "scheme")) throw new IllegalAction(`can't use ${action.power.id} now`);
+      nextScheme(state);
+      return;
+    }
+    case "feast": {
+      const cook = state.players[d.data.cook];
+      if (action.accept) {
+        restoreStamina(p, "all");
+        cook.vpBonus += d.data.vp ?? 1;
+        record(state, cook, { type: "feastGuest", guest: p.id });
+        log(state, `${p.name} comes to ${cook.name}'s Feast.`);
+      } else log(state, `${p.name} stays away from ${cook.name}'s Feast.`);
+      if (!state.pending.some((x) => x.kind === "feast")) endTurn(state);
       return;
     }
     case "meetingChoice": {
@@ -388,6 +456,11 @@ export function step(state: GameState, action: Action): void {
       return;
     case "quickAction":
       quickAction(state, p, action);
+      // The Feast waits on the guests' answers
+      if (state.pending.some((x) => x.kind === "feast")) {
+        state.turn!.step = "feast";
+        return;
+      }
       endTurn(state);
       return;
     case "market": {
@@ -424,13 +497,40 @@ export function step(state: GameState, action: Action): void {
 // Rounds
 // ---------------------------------------------------------------------------
 
-function draw(state: GameState): CardInstance {
-  if (!state.exploreDeck.length) {
-    state.exploreDeck = shuffle(state, state.exploreDiscard);
-    state.exploreDiscard = [];
-    gstat(state, "reshuffles");
+function draw(state: GameState, ok: (c: CardInstance) => boolean = () => true): CardInstance {
+  // burned and walled-off locations go to the discard and you draw again
+  for (let tries = 0; tries < 200; tries++) {
+    if (!state.exploreDeck.length) {
+      state.exploreDeck = shuffle(state, state.exploreDiscard);
+      state.exploreDiscard = [];
+      gstat(state, "reshuffles");
+    }
+    const c = state.exploreDeck.pop()!;
+    if (!state.burned.includes(c.card) && ok(c)) return c;
+    state.exploreDiscard.push(c);
   }
   return state.exploreDeck.pop()!;
+}
+
+function picksPending(state: GameState): boolean {
+  return state.pending.some((x) => x.kind === "pickTeaser" || x.kind === "possess");
+}
+
+function choosePick(state: GameState, pid: number, hand: CardInstance[], c: CardInstance): void {
+  state.picks[pid] = c;
+  state.passed[pid] = hand.filter((h) => h !== c);
+  for (const h of hand) if (h !== c) state.exploreDiscard.push(h);
+  state.hands[pid] = [];
+}
+
+function pickData(state: GameState, p: PlayerState, hand: CardInstance[]) {
+  const pw = availablePowers(state, p, "pick");
+  return {
+    cards: hand.map((h) => ({ uid: h.uid, card: h.card })),
+    fullCards: false,
+    dreamPeek: pw.some((x) => x.id === "dream-peek"),
+    bridge: pw.find((x) => x.id === "build-a-bridge")?.locations ?? null,
+  };
 }
 
 export function teaserCount(state: GameState, p: PlayerState): number {
@@ -453,8 +553,12 @@ function startRound(state: GameState): void {
   state.meetingBonus = {};
   state.collect = {};
   state.pending = [];
+  state.passed = {};
+  state.whispered = [];
   for (const p of state.players) p.untargetable = false;
   log(state, `Round ${state.round}${state.finalRound ? " (the final turn)" : ""}.`);
+  if (state.sharedDream === state.round) log(state, "The Shared Dream settles over Thaloroot: this round, 1s count as successes and two 6s cause a Mishap.");
+  for (const w of state.walls) if (w.round === state.round) log(state, `${Content.card[w.location].name} is walled off this round.`);
   for (const pid of state.order) {
     const p = state.players[pid];
     if (p.skipExplore) {
@@ -463,17 +567,60 @@ function startRound(state: GameState): void {
     }
     const k = teaserCount(state, p);
     p.teasersNext = null;
-    const hand = Array.from({ length: k }, () => draw(state));
+    const hand = Array.from({ length: k }, () => draw(state, (c) => !walledFor(state, p, c.card)));
     state.hands[pid] = hand;
     const peek = p.peekTurns > 0;
     if (peek) p.peekTurns -= 1;
-    state.pending.push({
-      player: pid,
-      kind: "pickTeaser",
-      data: { cards: hand.map((h) => ({ uid: h.uid, card: h.card })), fullCards: peek },
-    });
+    const ghost = state.possess[pid];
+    if (ghost !== undefined) {
+      // Possession: the Ghost chooses this rival's card
+      delete state.possess[pid];
+      state.pending.push({ player: ghost, kind: "possess", data: { rival: pid, cards: hand.map((h) => ({ uid: h.uid, card: h.card })) } });
+      continue;
+    }
+    state.pending.push({ player: pid, kind: "pickTeaser", data: { ...pickData(state, p, hand), fullCards: peek } });
   }
-  if (!state.pending.length) reveal(state);
+  if (!state.pending.length) startScheme(state);
+}
+
+/**
+ * After everyone picks and before the reveal: Whispers on the Wind, Switcheroo,
+ * Gust, and Cyclone, one player at a time in turn order.
+ */
+function startScheme(state: GameState): void {
+  state.phase = "scheme";
+  state.schemeQueue = state.order.filter((pid) => {
+    const p = state.players[pid];
+    return hasPower(p, "whispers") || availablePowers(state, p, "scheme").length > 0;
+  });
+  nextScheme(state);
+}
+
+/** Ask the next schemer, or reveal. `again` re-asks a player who just used Whispers. */
+function nextScheme(state: GameState, again?: number): void {
+  state.pending = [];
+  if (again !== undefined) {
+    const p = state.players[again];
+    const pw = availablePowers(state, p, "scheme");
+    if (pw.length) {
+      state.pending.push({ player: p.id, kind: "scheme", data: { powers: pw } });
+      return;
+    }
+  }
+  while (state.schemeQueue.length) {
+    const p = state.players[state.schemeQueue.shift()!];
+    const listeners = state.players.filter((q) => q.id !== p.id && state.picks[q.id]).map((q) => q.id);
+    if (hasPower(p, "whispers") && !state.whispered.includes(p.id) && listeners.length) {
+      state.pending.push({ player: p.id, kind: "whisper", data: { rivals: listeners } });
+      return;
+    }
+    const pw = availablePowers(state, p, "scheme");
+    if (pw.length) {
+      state.pending.push({ player: p.id, kind: "scheme", data: { powers: pw } });
+      return;
+    }
+  }
+  reveal(state);
 }
 
 function meetingKey(card: ExploreCard): string {
@@ -556,8 +703,8 @@ function resolveMeetings(state: GameState): void {
       const ambB = cb === "brawl" && ca === "ally";
       if (ambA) b.log.ambushedRound = state.round;
       if (ambB) a.log.ambushedRound = state.round;
-      const ra = roll(state, brawlDice(state, a, ambA, cb === "brawl")).filter((x) => x >= 5).length;
-      const rb = roll(state, brawlDice(state, b, ambB, ca === "brawl")).filter((x) => x >= 5).length;
+      const ra = countSuccesses(roll(state, brawlDice(state, a, ambA, cb === "brawl")), false, dreaming(state));
+      const rb = countSuccesses(roll(state, brawlDice(state, b, ambB, ca === "brawl")), false, dreaming(state));
       let winner: PlayerState | null = null;
       let loser: PlayerState | null = null;
       if (ra === rb) {
@@ -684,6 +831,7 @@ function advanceTurn(state: GameState): void {
           break;
         }
         springTraps(state, p, t.card.card);
+        springWards(state, p, t.card.card);
         const drops = state.dropped[t.card.card];
         if (drops?.length) {
           for (const it of drops) addItem(state, p, it);
@@ -704,6 +852,8 @@ function advanceTurn(state: GameState): void {
       case "push":
         return;
       case "reward":
+        return;
+      case "feast":
         return;
       case "quick":
         if (p.quickActionLost) {
@@ -744,7 +894,7 @@ function faceMonster(state: GameState, p: PlayerState, id: string, idx: number):
     const n = monsterDice(state, p, o.stat) + (p.nextRollDice || 0);
     p.nextRollDice = 0;
     const dice = roll(state, n);
-    const ok = countSuccesses(dice, false) >= need;
+    const ok = countSuccesses(dice, false, dreaming(state)) >= need;
     gstat(state, "monsterFights");
     if (ok) {
       if (o.onSuccess) apply(state, p, o.onSuccess, { origin: "monster" });
@@ -867,6 +1017,8 @@ function optionData(state: GameState, p: PlayerState) {
     }),
     canRations: !p.rationsUsed && p.coin >= Content.rules.rations.coin,
     finaleCost: finaleCost(p),
+    powers: availablePowers(state, p, "roll").map((x) => ({ ...x, dice: x.id === "stampede" ? p.companions.length * (x.params?.perCompanion ?? 1) : 0 })),
+    boosts: p.items.filter((i) => (Content.item[i.id].use ?? []).some((e) => e.type === "nextRollDice")).map((i) => i.uid),
   };
 }
 
@@ -897,6 +1049,12 @@ function chooseOption(state: GameState, p: PlayerState, a: Extract<Action, { kin
     if (useItem(state, p, uid, { lessonStat: a.lessonStat })) t.usedItem = true;
   }
   const { card, options } = turnOptions(state, p);
+  if (a.power === "the-walking-cottage" && usePower(state, p, { id: "the-walking-cottage" }, "roll")) {
+    walkingCottage(state, p, card);
+    t.step = "quick";
+    return;
+  }
+  t.powerDice = 0;
   let o = options[a.option];
   if (!o || !optionAllowed(state, p, card, o)) {
     // fall back to the first legal option (a rest option always exists or nothing happens)
@@ -926,6 +1084,10 @@ function chooseOption(state: GameState, p: PlayerState, a: Extract<Action, { kin
     resolveRest(state, p, card, o);
     t.step = "quick";
     return;
+  }
+  if (a.power === "stampede" && usePower(state, p, { id: "stampede" }, "roll")) {
+    t.powerDice = p.companions.length * (powerDef("stampede")?.params?.perCompanion ?? 1);
+    log(state, `${p.name}'s companions stampede: +${t.powerDice} dice!`);
   }
   const stats = allowedStats(state, p, o);
   const stat = a.stat && stats.includes(a.stat) ? a.stat : o.stats.reduce((x, y) => (p.stats[y] > p.stats[x] ? y : x));
@@ -992,6 +1154,15 @@ function payFinaleCost(state: GameState, p: PlayerState, cost: Record<string, an
   return true;
 }
 
+/** The Walking Cottage: rest anywhere for full stamina, and nothing you carry can be stolen. */
+function walkingCottage(state: GameState, p: PlayerState, card: ExploreCard): void {
+  restoreStamina(p, "all");
+  for (const it of p.items) it.protected = true;
+  bump(p, "rests");
+  log(state, `${p.name}'s Walking Cottage strolls up to ${card.name}. They rest to full stamina and stash everything they carry where no one can steal it.`);
+  record(state, p, { type: "rest", tags: card.tags, skull: card.skull, location: card.id, cottage: true });
+}
+
 function resolveRest(state: GameState, p: PlayerState, card: ExploreCard, o: ExploreOption): void {
   const ctx = { foundTags: card.tags, foundSkull: card.skull, location: card.id, lessonStat: state.turn!.lessonStat, bet: p.bet };
   apply(state, p, o.success, ctx);
@@ -1011,7 +1182,7 @@ function resolveRest(state: GameState, p: PlayerState, card: ExploreCard, o: Exp
 
 function doRoll(state: GameState, p: PlayerState): void {
   const t = state.turn!;
-  let n = (t.baseDice ?? 0) + (t.meetingBonus ?? 0) + (t.assistDice ?? 0);
+  let n = (t.baseDice ?? 0) + (t.meetingBonus ?? 0) + (t.assistDice ?? 0) + (t.powerDice ?? 0);
   if (t.usedToken) n += worldMods(state).some((m) => m.kind === "sparkTokenDouble") ? 2 : 1;
   p.nextRollDice = 0;
   t.dice = roll(state, Math.max(0, n));
@@ -1051,8 +1222,8 @@ function doRoll(state: GameState, p: PlayerState): void {
 function successesOf(state: GameState, p: PlayerState): number {
   const t = state.turn!;
   const surge = p.surgeTurns > 0;
-  const cancel = (t.troubleDice ?? []).filter((d) => d >= 5).length;
-  return Math.max(0, countSuccesses(t.dice!, surge) - cancel);
+  const cancel = countSuccesses(t.troubleDice ?? [], false, dreaming(state));
+  return Math.max(0, countSuccesses(t.dice!, surge, dreaming(state)) - cancel);
 }
 
 function doPush(state: GameState, p: PlayerState): void {
@@ -1077,14 +1248,15 @@ function finishRoll(state: GameState, p: PlayerState): void {
     p.heatReady = false;
     p.heat = 0;
   }
-  if (has(state, p, "heat")) addHeat(p, sixes);
+  // Fire's Heat is snuffed out at Swamp locations
+  if (has(state, p, "heat") && !card.tags.includes("swamp")) addHeat(p, sixes);
   log(
     state,
     `${p.name} at ${card.name} tries ${o.name} (${t.stat}, ${dice.length} dice${t.pushed ? ", pushed" : ""}): ${[...dice].sort((a, b) => b - a).join(" ")}${t.troubleDice?.length ? ` with Trouble ${t.troubleDice.join(" ")}` : ""}. ${ok ? "Success!" : "Fail."}`,
   );
   record(state, p, { type: "roll", sixes, location: card.id });
   // mishap
-  let mishap = isMishap(dice);
+  let mishap = isMishap(dice, dreaming(state));
   if (mishap && useOnce(state, p, "ignoreMishapOnce")) mishap = false;
   t.successes = t.successes ?? 0;
   (t as any).ok = ok;
@@ -1109,6 +1281,10 @@ function finishRoll(state: GameState, p: PlayerState): void {
     bump(p, "mishaps");
     gstat(state, "mishaps");
     record(state, p, { type: "mishap", location: card.id });
+    if (p.ingredients > 0 && hasPower(p, "forager")) {
+      p.ingredients -= 1;
+      log(state, `The Mishap eats one of ${p.name}'s ingredients.`);
+    }
     if (has(state, p, "mishapToLesson")) addLessons(state, p, t.stat!, 1);
     else {
       const times = has(state, p, "mishapDouble") ? 2 : 1;
@@ -1189,6 +1365,7 @@ function takeReward(state: GameState, p: PlayerState, lessonInstead: boolean, le
     record(state, p, { type: "spark", location: card.id });
   }
   for (const m of worldMods(state)) if (m.kind === "successCoin") p.coin += m.amount;
+  forage(state, p, card.tags);
   const sky = finaleHas(state, "successItem");
   if (sky && state.finalRound) gainItem(state, p, sky.item, { foundTags: card.tags, foundSkull: card.skull, origin: "world" });
   recordSuccess(state, p, card, o, lessonInstead);
@@ -1243,12 +1420,17 @@ function quickData(state: GameState, p: PlayerState) {
     canRations: !p.rationsUsed && p.coin >= Content.rules.rations.coin,
     usable: p.items.filter((i) => Content.item[i.id].power === "oneUse" || i.id === "taproot-fragment").map((i) => i.uid),
     cashable: treasures(p).filter((i) => !Content.item[i.id].cannotCash).map((i) => i.uid),
+    powers: availablePowers(state, p, "quick"),
   };
 }
 
 function quickAction(state: GameState, p: PlayerState, a: Extract<Action, { kind: "quickAction" }>): void {
   for (const uid of a.cash ?? []) cashIn(state, p, uid);
-  for (const uid of a.useItems ?? []) useItem(state, p, uid, { lessonStat: state.turn?.lessonStat });
+  for (const uid of a.useItems ?? []) useItem(state, p, uid, { lessonStat: state.turn?.lessonStat, target: a.itemTargets?.[uid] ?? a.target });
+  if (a.action === "power" && a.power) {
+    if (!usePower(state, p, a.power, "quick")) log(state, `${p.name} can't use that power right now.`, [p.id]);
+    return;
+  }
   if (a.action === "rations" && !p.rationsUsed && p.coin >= Content.rules.rations.coin) {
     p.coin -= Content.rules.rations.coin;
     restoreStamina(p, Content.rules.rations.stamina);
@@ -1293,6 +1475,7 @@ function endTurn(state: GameState): void {
   if (p.frog && !p.log.frogOwn) p.frog = false;
   p.log.frogOwn = p.frog ? 1 : 0;
   p.stink = false;
+  p.haunted = 0;
   p.bet = false;
   if (p.surgeTurns > 0) p.surgeTurns -= 1;
   for (const c of [...p.companions]) {
@@ -1304,7 +1487,7 @@ function endTurn(state: GameState): void {
       }
     }
   }
-  if (t.card) state.exploreDiscard.push(t.card);
+  if (t.card && !t.card.virtual) state.exploreDiscard.push(t.card);
   state.turn = null;
   state.turnIndex += 1;
   startTurn(state);
@@ -1312,6 +1495,12 @@ function endTurn(state: GameState): void {
 
 function endRound(state: GameState): void {
   state.turn = null;
+  // The Swap: victims learn who did it
+  for (const s of state.swaps) log(state, `It was ${state.players[s.thief].name} who swapped one of your items.`, [s.victim]);
+  state.swaps = [];
+  state.walls = state.walls.filter((w) => w.round > state.round);
+  if (state.disguise && state.disguise.round <= state.round) state.disguise = null;
+  if (state.sharedDream !== null && state.sharedDream <= state.round) state.sharedDream = null;
   endRoundMonsters(state);
   state.firstPlayer = (state.firstPlayer + 1) % state.players.length;
   if (state.finalRound) {
@@ -1494,6 +1683,6 @@ export function exportCharacter(state: GameState, player: number): import("./typ
     stats: { ...p.baseStats },
     lessons: { ...p.lessons },
     quirks: p.quirks.map((q) => ({ ...q })),
-    heirlooms: p.items.filter((i) => i.carriedOver).map((i) => i.id),
+    heirlooms: p.items.filter((i) => i.carriedOver).map(heirloomId),
   };
 }

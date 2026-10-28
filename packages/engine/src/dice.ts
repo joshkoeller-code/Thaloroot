@@ -25,6 +25,7 @@ export function dicePool(state: GameState, p: PlayerState, card: ExploreCard, op
   if (p.heatReady) parts.push({ source: "heat", dice: 3 });
   if (p.nextRollDice) parts.push({ source: "item", dice: p.nextRollDice });
   if (p.stink) parts.push({ source: "stinkbomb", dice: -2 });
+  if (p.haunted) parts.push({ source: "haunt", dice: -p.haunted });
   const total = Math.max(0, parts.reduce((s, x) => s + x.dice, 0));
   return { total, parts };
 }
@@ -62,8 +63,13 @@ export function allowedStats(state: GameState, p: PlayerState, opt: ExploreOptio
   return opt.stats;
 }
 
-export function countSuccesses(dice: number[], surge: boolean): number {
-  return dice.reduce((s, d) => s + (d >= 5 ? (surge ? 2 : 1) : 0), 0);
+/** The Shared Dream: this round, 1s succeed and two 6s cause a Mishap. */
+export function dreaming(state: GameState): boolean {
+  return state.sharedDream === state.round;
+}
+
+export function countSuccesses(dice: number[], surge: boolean, dream = false): number {
+  return dice.reduce((s, d) => s + (d >= 5 || (dream && d === 1) ? (surge ? 2 : 1) : 0), 0);
 }
 
 export function sparkTriggered(state: GameState, dice: number[], card: ExploreCard, needs: number): boolean {
@@ -72,6 +78,6 @@ export function sparkTriggered(state: GameState, dice: number[], card: ExploreCa
   return sparks >= needs;
 }
 
-export function isMishap(dice: number[]): boolean {
-  return dice.filter((d) => d === 1).length >= Content.rules.dice.mishapOnes;
+export function isMishap(dice: number[], dream = false): boolean {
+  return dice.filter((d) => d === (dream ? 6 : 1)).length >= Content.rules.dice.mishapOnes;
 }

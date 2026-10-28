@@ -66,6 +66,8 @@ export interface ItemDef {
   cannotTrade?: boolean;
   cannotSteal?: boolean;
   cannotCash?: boolean;
+  /** Made by a class power; never found, drawn, or sold. */
+  crafted?: boolean;
 }
 
 export interface CompanionDef {
@@ -89,6 +91,37 @@ export interface ClassDef {
   signature?: string;
   weakness?: string;
   hooks?: Hook[];
+  powers?: PowerDef[];
+}
+
+/** A class's active, signature, service, or automated passive, from tools/authored.py. */
+export interface PowerDef {
+  id: string;
+  name: string;
+  slot: "active" | "signature" | "service" | "passive";
+  /** quick: your quick action. pick: while choosing a teaser. scheme: after everyone picks. roll: when choosing an option. auto: automatic. */
+  when: "quick" | "pick" | "scheme" | "roll" | "auto";
+  target: "location" | "rival" | "treasure" | "item" | "rivalItem" | "none";
+  cost: { stamina?: number; dream?: number; coin?: number; ingredients?: number };
+  text: string;
+  choices?: { id: string; name: string; text: string }[];
+  params?: Record<string, any>;
+}
+
+/** How a player uses a power. Only the fields the power needs are read. */
+export interface PowerUse {
+  id: string;
+  /** A rival (or, for Smithing for Hire, the Blacksmith). */
+  target?: number;
+  location?: string;
+  /** One of your items (uid). */
+  item?: number;
+  /** One of the target's items (uid), for The Swap. */
+  targetItem?: number;
+  stat?: Stat;
+  choice?: string;
+  /** Cleanse: clear your own Trouble dice instead of a location. */
+  self?: boolean;
 }
 
 export interface SpeciesDef {
@@ -196,7 +229,9 @@ export interface ItemInstance {
   /** Where it was found (for "treasure found at a Swamp location"). */
   foundTags: Tag[];
   foundSkull: number;
-  origin: "explore" | "bought" | "world" | "start" | "monster" | "rumor" | "dropped";
+  origin: "explore" | "bought" | "world" | "start" | "monster" | "rumor" | "dropped" | "crafted";
+  /** Reforged gear: the stat it adds a die to. */
+  forged?: Stat;
   stolen?: boolean;
   carriedOver?: boolean;
   /** Taproot Fragment's hidden power, drawn when found. */
@@ -213,6 +248,13 @@ export interface CompanionInstance {
   id: string;
   turnsLeft?: number;
   usedOnce?: boolean;
+}
+
+/** A class power placed on a location name; it hits the next rival who picks it. */
+export interface Ward {
+  owner: number;
+  location: string;
+  kind: "sic-em" | "haunt" | "hex-the-path" | "living-gargoyle";
 }
 
 export interface Trap {
@@ -288,6 +330,14 @@ export interface PlayerState {
   brawlDice: number;
   quickActionLost: boolean;
   bet: boolean;
+  /** Honeycake Cook's ingredients. */
+  ingredients: number;
+  /** This-game bonuses from powers (Mountain Heart), read like quirks. */
+  boons: Hook[];
+  /** Fox-Masked Trickster's planted fake mission tags. */
+  decoys: Tag[];
+  /** Dice lost to a Haunt this turn. */
+  haunted: number;
   // stats for the simulator
   log: Record<string, number>;
 }
@@ -297,6 +347,8 @@ export type BotPersona = "friendly" | "aggressive" | "cautious" | "balanced";
 export interface CardInstance {
   uid: number;
   card: string; // explore card id
+  /** A revisit (Build a Bridge): not part of the deck, so it isn't discarded. */
+  virtual?: boolean;
 }
 
 export interface ActiveMonster {
@@ -338,6 +390,7 @@ export type Phase =
   | "missionDraft"
   | "pick"
   | "meeting"
+  | "scheme"
   | "turn"
   | "market"
   | "trade"
@@ -364,7 +417,11 @@ export type DecisionKind =
   | "quickAction"
   | "market"
   | "respondTrade"
-  | "finalGuess";
+  | "finalGuess"
+  | "whisper"
+  | "scheme"
+  | "possess"
+  | "feast";
 
 export interface TurnContext {
   player: number;
@@ -379,6 +436,7 @@ export interface TurnContext {
     | "push"
     | "reward"
     | "quick"
+    | "feast"
     | "done";
   monsterQueue: string[];
   option?: number;
@@ -404,6 +462,8 @@ export interface TurnContext {
   teamUp?: boolean;
   successes?: number;
   altExplore?: string | null;
+  /** Extra dice from a power (Stampede). */
+  powerDice?: number;
 }
 
 export interface GameConfig {
@@ -462,6 +522,26 @@ export interface GameState {
   tradeOffers: TradeOffer[];
   takenUniques: string[];
   sealed: string[];
+  /** Class powers waiting on locations (Sic 'Em, Haunt, Hex the Path, Living Gargoyle). Secret to their owner. */
+  wards: Ward[];
+  /** Build a Wall: locations nobody but the owner can be dealt in that round. */
+  walls: { owner: number; location: string; round: number }[];
+  /** Burn the Path: location names out of the deck for the rest of the game. */
+  burned: string[];
+  /** The Shared Dream: the round when 1s succeed and 6s cause Mishaps. */
+  sharedDream: number | null;
+  /** Mistaken Identity: whose name a player's actions show under, and in which round. */
+  disguise: { player: number; as: number; round: number } | null;
+  /** The teasers each player didn't pick this round (for Gust). */
+  passed: Record<number, CardInstance[]>;
+  /** Possession: rival id -> the Ghost who picks their next teaser. */
+  possess: Record<number, number>;
+  /** The Swap: told to the victim at the end of the round. */
+  swaps: { thief: number; victim: number }[];
+  /** Players still to act in this round's scheme window, in turn order. */
+  schemeQueue: number[];
+  /** Players who have used Whispers on the Wind this round. */
+  whispered: number[];
   // drafts
   classOptions: Record<number, string[]>;
   missionOptions: Record<number, string[]>;
@@ -498,7 +578,7 @@ export interface LastRoll {
 
 /** Something that happened that the story should tell. Text lives in content/story.json. */
 export type StoryBeat =
-  | { seq: number; round: number; kind: "scene"; player: number; card: string; option: string; outcome: "success" | "fail" | "rest"; spark: boolean; mishap: boolean }
+  | { seq: number; round: number; kind: "scene"; player: number; card: string; option: string; outcome: "success" | "fail" | "rest"; spark: boolean; mishap: boolean; as?: number }
   | { seq: number; round: number; kind: "mission"; player: number; mission: string; part: "opening" | "finale" | 0 | 1 | 2; private: number[] }
   | { seq: number; round: number; kind: "world"; card: string };
 
@@ -543,7 +623,15 @@ export interface ScoreLine {
 export type Action =
   | { player: number; kind: "chooseClass"; cls: string }
   | { player: number; kind: "chooseMission"; mission: string }
-  | { player: number; kind: "pickTeaser"; card: number }
+  | {
+      player: number;
+      kind: "pickTeaser";
+      card: number;
+      /** Dream Peek: spend 1 Dream to see the full cards first (card is ignored). */
+      dreamPeek?: boolean;
+      /** Build a Bridge: revisit this explored location instead (card is ignored). */
+      bridge?: string;
+    }
   | { player: number; kind: "meetingChoice"; choice: "ally" | "brawl" | "pass" }
   | { player: number; kind: "monsterChoice"; option: number }
   | {
@@ -559,6 +647,8 @@ export type Action =
       lessonStat?: Stat;
       /** Take an optional bet on a rest option (The Kite Cliffs). */
       bet?: boolean;
+      /** A roll-time power: Stampede, or The Walking Cottage (rest instead of the option). */
+      power?: string;
     }
   | { player: number; kind: "assistOffer"; dice: number }
   | { player: number; kind: "push"; push: boolean }
@@ -566,7 +656,10 @@ export type Action =
   | {
       player: number;
       kind: "quickAction";
-      action: "none" | "trap" | "rations";
+      action: "none" | "trap" | "rations" | "power";
+      power?: PowerUse;
+      /** Which rival a one-use item targets (Potion of Ribbit, Storm-Glass). */
+      itemTargets?: Record<number, number>;
       location?: string;
       trapType?: "snare" | "pickpocket" | "stinkbomb";
       useItems?: number[];
@@ -584,4 +677,8 @@ export type Action =
       offers?: Omit<TradeOffer, "from">[];
     }
   | { player: number; kind: "respondTrade"; accept: boolean }
-  | { player: number; kind: "finalGuess"; guesses: Record<number, string> };
+  | { player: number; kind: "finalGuess"; guesses: Record<number, string> }
+  | { player: number; kind: "whisper"; rival: number }
+  | { player: number; kind: "scheme"; power: PowerUse | null }
+  | { player: number; kind: "possess"; card: number }
+  | { player: number; kind: "feast"; accept: boolean };

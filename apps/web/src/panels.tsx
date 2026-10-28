@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
   Content,
+  itemLabel,
+  type PowerUse,
   hasLight,
   itemCoin,
   itemVp,
@@ -16,6 +18,7 @@ import {
   type Stat,
 } from "@thaloroot/engine";
 import { DiceRow, SKULL_WORD, Skulls, Tags, cap, itemName, missionBeatText, plural, taleOf } from "./bits";
+import { Feast, Possess, PowerPicker, Scheme, Whisper } from "./powers";
 
 export interface PanelProps {
   game: GameState;
@@ -125,7 +128,7 @@ function Pack({ p }: { p: PlayerState }) {
   if (!p.items.length && !p.companions.length) return <p className="small quiet">Your pack is empty.</p>;
   return (
     <p className="small">
-      Pack: {p.items.map((i) => itemName(i.id) + (itemVp(i) ? ` (${itemCoin(i)} / ${itemVp(i)})` : "")).join(", ") || "no items"}
+      Pack: {p.items.map((i) => itemLabel(i) + (itemVp(i) ? ` (${itemCoin(i)} / ${itemVp(i)})` : "")).join(", ") || "no items"}
       {p.companions.length ? `. Companions: ${p.companions.map((c) => Content.companion[c.id].name).join(", ")}` : ""}.
     </p>
   );
@@ -193,9 +196,17 @@ function PickTeaser({ game, d, submit, seen }: PanelProps) {
   const mods = game.mods.flatMap((m) => m.mods);
   const fog = mods.some((m) => m.kind === "teaserNameOnly") && !hasLight(game, p);
   const moon = mods.some((m) => m.kind === "hideOneSkullMystery");
+  const [bridge, setBridge] = useState("");
+  const bridges = (d.data.bridge ?? null) as string[] | null;
   return (
     <div className="stack">
       <p>Choose where to explore. Everyone reveals at once; picking the same region and skull rating as a rival means a Meeting.</p>
+      {d.data.dreamPeek && !d.data.fullCards && (
+        <div className="row small">
+          <button onClick={() => submit({ player: p.id, kind: "pickTeaser", card: 0, dreamPeek: true })}>Dream Peek (1 Dream token, {p.dream} left)</button>
+          <span className="quiet">See every option behind these teasers first.</span>
+        </div>
+      )}
       <div className="choices">
         {(d.data.cards as { uid: number; card: string }[]).map((h) => {
           const c = Content.card[h.card];
@@ -224,6 +235,24 @@ function PickTeaser({ game, d, submit, seen }: PanelProps) {
           );
         })}
       </div>
+      {bridges && (
+        <div className="row small">
+          <label className="row">
+            Or Build a Bridge (2 stamina, 1 coin) back to
+            <select id="bridge-loc" value={bridge} onChange={(e) => setBridge(e.target.value)}>
+              <option value="">a place you've explored</option>
+              {bridges.map((id) => (
+                <option key={id} value={id}>
+                  {Content.card[id].name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button disabled={!bridge} onClick={() => submit({ player: p.id, kind: "pickTeaser", card: 0, bridge })}>
+            Cross the bridge
+          </button>
+        </div>
+      )}
       <MissionSheet game={game} p={p} seen={seen} />
     </div>
   );
@@ -294,6 +323,8 @@ function ChooseOption({ game, d, submit }: PanelProps) {
   const [assist, setAssist] = useState(false);
   const [finale, setFinale] = useState(false);
   const [bet, setBet] = useState(false);
+  const [stampede, setStampede] = useState(false);
+  const [boosts, setBoosts] = useState<number[]>([]);
   useEffect(() => {
     setSel(null);
     setStat(null);
@@ -301,7 +332,14 @@ function ChooseOption({ game, d, submit }: PanelProps) {
     setRations(false);
     setAssist(false);
     setFinale(false);
+    setStampede(false);
+    setBoosts([]);
   }, [d]);
+  const powers = (d.data.powers ?? []) as any[];
+  const stampedeP = powers.find((x) => x.id === "stampede");
+  const cottage = powers.find((x) => x.id === "the-walking-cottage");
+  const boostItems = ((d.data.boosts ?? []) as number[]).map((uid) => p.items.find((i) => i.uid === uid)!).filter(Boolean);
+  const boostDice = boostItems.filter((i) => boosts.includes(i.uid)).reduce((n, i) => n + ((Content.item[i.id].use ?? []).find((e) => e.type === "nextRollDice")?.amount ?? 0), 0);
   const R = Content.rules.rations;
   const staminaWith = p.stamina + (rations ? R.stamina : 0);
   const usable = (o: any) => o.allowed || (d.data.canRations && !o.rest && o.stamina <= p.stamina + R.stamina && o.stamina > p.stamina);
@@ -321,6 +359,8 @@ function ChooseOption({ game, d, submit }: PanelProps) {
       askAssist: assist,
       attemptFinale: finale,
       bet,
+      useItems: boosts,
+      power: stampede && !chosen.rest ? "stampede" : undefined,
     });
   return (
     <div className="stack">
@@ -342,7 +382,7 @@ function ChooseOption({ game, d, submit }: PanelProps) {
           const co = cardOpt(o);
           const ok = usable(o);
           const best = o.rest ? null : (o.stats as Stat[]).reduce((a, b) => (o.dice[b] > o.dice[a] ? b : a));
-          const dice = best ? o.dice[best] + (token && sel === o.index ? 1 : 0) : 0;
+          const dice = best ? o.dice[best] + (sel === o.index ? (token ? 1 : 0) + (stampede && stampedeP ? stampedeP.dice : 0) + boostDice : 0) : 0;
           return (
             <div
               key={o.index}
@@ -415,6 +455,18 @@ function ChooseOption({ game, d, submit }: PanelProps) {
             Attempt my finale (pays its cost now)
           </label>
         )}
+        {stampedeP && (
+          <label className="check">
+            <input type="checkbox" checked={stampede} disabled={!chosen || chosen.rest} onChange={(e) => setStampede(e.target.checked)} />
+            Stampede (signature, once per game): +{stampedeP.dice} dice, one per companion
+          </label>
+        )}
+        {boostItems.map((it) => (
+          <label key={it.uid} className="check">
+            <input type="checkbox" checked={boosts.includes(it.uid)} disabled={!chosen || chosen.rest} onChange={() => setBoosts(boosts.includes(it.uid) ? boosts.filter((x) => x !== it.uid) : [...boosts, it.uid])} />
+            Use the {itemLabel(it)}: {Content.item[it.id].text}
+          </label>
+        ))}
         {chosen?.rest && cardOpt(chosen)?.success.some((e: any) => e.type === "bet") && (
           <label className="check">
             <input type="checkbox" checked={bet} onChange={(e) => setBet(e.target.checked)} />
@@ -426,9 +478,16 @@ function ChooseOption({ game, d, submit }: PanelProps) {
         <span className="small quiet num">
           Stamina {staminaWith} / {p.maxStamina}, coin {p.coin}
         </span>
-        <button className="primary" disabled={!chosen} onClick={go}>
-          {chosen ? (chosen.rest ? `Take it easy: ${chosen.name}` : `Roll for ${chosen.name}`) : "Choose an option"}
-        </button>
+        <span className="row">
+          {cottage && (
+            <button title={cottage.text} onClick={() => submit({ player: p.id, kind: "chooseOption", option: 0, power: "the-walking-cottage" })}>
+              The Walking Cottage instead (1 coin)
+            </button>
+          )}
+          <button className="primary" disabled={!chosen} onClick={go}>
+            {chosen ? (chosen.rest ? `Take it easy: ${chosen.name}` : `Roll for ${chosen.name}`) : "Choose an option"}
+          </button>
+        </span>
       </div>
       <Pack p={p} />
       <HoldToPeek game={game} p={p} />
@@ -515,16 +574,20 @@ function QuickAction({ game, d, submit, seen }: PanelProps) {
   const [use, setUse] = useState<number[]>([]);
   const [cash, setCash] = useState<number[]>([]);
   const [rations, setRations] = useState(false);
+  const [power, setPower] = useState<PowerUse | null>(null);
+  const [targets, setTargets] = useState<Record<number, number>>({});
   const toggle = (xs: number[], set: (v: number[]) => void, v: number) => set(xs.includes(v) ? xs.filter((x) => x !== v) : [...xs, v]);
   const taken = new Set(game.traps.map((t) => t.location));
   const mine = game.traps.filter((t) => t.owner === p.id);
+  const rivalsOf = game.players.filter((q) => q.id !== p.id);
   return (
     <div className="stack">
-      <p>One quick action before the next player goes. Only {p.name} should be looking.</p>
+      <p>One quick action before the next player goes: set a trap, use a power, or buy trail rations. Only {p.name} should be looking.</p>
+      <PowerPicker game={game} p={p} powers={d.data.powers ?? []} onChange={(u) => { setPower(u); if (u) setTrap(false); }} legend="Use a power" />
       {d.data.canTrap ? (
         <div className="stack">
           <label className="check">
-            <input type="checkbox" checked={trap} onChange={(e) => setTrap(e.target.checked)} />
+            <input type="checkbox" checked={trap} disabled={!!power} onChange={(e) => setTrap(e.target.checked)} />
             Set a trap {d.data.trapCost ? `(${d.data.trapCost} stamina)` : "(free)"}: the next rival to pick that location springs it
           </label>
           {trap && (
@@ -549,7 +612,7 @@ function QuickAction({ game, d, submit, seen }: PanelProps) {
       )}
       {d.data.canRations && (
         <label className="check">
-          <input type="checkbox" checked={rations} disabled={trap} onChange={(e) => setRations(e.target.checked)} />
+          <input type="checkbox" checked={rations} disabled={trap || !!power} onChange={(e) => setRations(e.target.checked)} />
           Trail rations instead: pay 2 coin for 2 stamina
         </label>
       )}
@@ -559,11 +622,23 @@ function QuickAction({ game, d, submit, seen }: PanelProps) {
           {(d.data.usable as number[]).map((uid) => {
             const it = p.items.find((i) => i.uid === uid)!;
             const def = Content.item[it.id];
+            const aimed = (def.use ?? []).some((e) => e.type === "frogRival" || e.type === "troubleRival");
             return (
-              <label key={uid} className="check small">
-                <input type="checkbox" checked={use.includes(uid)} onChange={() => toggle(use, setUse, uid)} />
-                {it.id === "taproot-fragment" ? `Taproot Fragment: ${Content.fragment[it.fragment!]?.name}. ${Content.fragment[it.fragment!]?.text}` : `${def.name}: ${def.text}`}
-              </label>
+              <div key={uid} className="row">
+                <label className="check small">
+                  <input type="checkbox" checked={use.includes(uid)} onChange={() => toggle(use, setUse, uid)} />
+                  {it.id === "taproot-fragment" ? `Taproot Fragment: ${Content.fragment[it.fragment!]?.name}. ${Content.fragment[it.fragment!]?.text}` : `${def.name}: ${def.text}`}
+                </label>
+                {aimed && use.includes(uid) && (
+                  <select aria-label="Which rival" value={targets[uid] ?? rivalsOf[0]?.id} onChange={(e) => setTargets({ ...targets, [uid]: Number(e.target.value) })}>
+                    {rivalsOf.map((q) => (
+                      <option key={q.id} value={q.id}>
+                        on {q.name}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
             );
           })}
         </fieldset>
@@ -576,7 +651,7 @@ function QuickAction({ game, d, submit, seen }: PanelProps) {
             return (
               <label key={uid} className="check small">
                 <input type="checkbox" checked={cash.includes(uid)} onChange={() => toggle(cash, setCash, uid)} />
-                {itemName(it.id)}: {itemCoin(it)} coin, or {itemVp(it)} VP if kept
+                {itemLabel(it)}: {itemCoin(it)} coin, or {itemVp(it)} VP if kept
               </label>
             );
           })}
@@ -589,15 +664,17 @@ function QuickAction({ game, d, submit, seen }: PanelProps) {
             submit({
               player: p.id,
               kind: "quickAction",
-              action: trap ? "trap" : rations ? "rations" : "none",
+              action: power ? "power" : trap ? "trap" : rations ? "rations" : "none",
+              power: power ?? undefined,
               location: trap ? loc : undefined,
               trapType: trap ? type : undefined,
               useItems: use,
+              itemTargets: Object.fromEntries(use.map((u) => [u, targets[u] ?? rivalsOf[0]?.id])),
               cash,
             })
           }
         >
-          {trap ? "Set the trap and end my turn" : "End my turn"}
+          {power ? "Use the power and end my turn" : trap ? "Set the trap and end my turn" : "End my turn"}
         </button>
       </div>
       <MissionSheet game={game} p={p} seen={seen} />
@@ -814,6 +891,10 @@ const PANELS: Record<Decision["kind"], (p: PanelProps) => React.ReactElement> = 
   market: Market,
   respondTrade: RespondTrade,
   finalGuess: FinalGuess,
+  whisper: Whisper,
+  scheme: Scheme,
+  possess: Possess,
+  feast: Feast,
 };
 
 export const HEADINGS: Record<Decision["kind"], (name: string) => string> = {
@@ -830,6 +911,10 @@ export const HEADINGS: Record<Decision["kind"], (name: string) => string> = {
   market: (n) => `${n} at the market`,
   respondTrade: (n) => `An offer for ${n}`,
   finalGuess: (n) => `${n}'s final guesses`,
+  whisper: (n) => `The wind whispers to ${n}`,
+  scheme: (n) => `${n} has a trick up their sleeve`,
+  possess: (n) => `${n} possesses a rival's choice`,
+  feast: (n) => `${n} is invited to a Feast`,
 };
 
 export function DecisionPanel(props: PanelProps) {

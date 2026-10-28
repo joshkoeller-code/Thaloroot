@@ -8,7 +8,8 @@ import { allowedStats, dicePool, needFor, staminaFor } from "./dice.js";
 import { itemValue, itemVp } from "./effects.js";
 import { turnOptions } from "./engine.js";
 import { missionGain, missionNever, missionTags, missionWants } from "./missions.js";
-import { has, hooks, isTreasure, treasures } from "./player.js";
+import { bestStat, has, hooks, isTreasure, rivals, treasures } from "./player.js";
+import { exploredLocations, type AvailablePower } from "./powers.js";
 import { publicRecord } from "./record.js";
 import { pAtLeast } from "./rng.js";
 import type {
@@ -46,7 +47,15 @@ export function botAction(state: GameState, d: Decision): Action {
     case "chooseMission":
       return { player: p.id, kind: "chooseMission", mission: chooseMission(state, p, d.data.options) };
     case "pickTeaser":
-      return { player: p.id, kind: "pickTeaser", card: pickTeaser(state, p, d.data.cards) };
+      return pickAction(state, p, d);
+    case "possess":
+      return { player: p.id, kind: "possess", card: possessPick(state, state.players[d.data.rival], d.data.cards) };
+    case "whisper":
+      return { player: p.id, kind: "whisper", rival: whisperTarget(state, p, d.data.rivals) };
+    case "scheme":
+      return { player: p.id, kind: "scheme", power: schemePower(state, p, d.data.powers) };
+    case "feast":
+      return { player: p.id, kind: "feast", accept: feastAccept(state, p, d) };
     case "meetingChoice":
       return { player: p.id, kind: "meetingChoice", choice: meetingChoice(state, p) };
     case "monsterChoice":
@@ -246,6 +255,152 @@ function pickTeaser(state: GameState, p: PlayerState, cards: { uid: number; card
   return best;
 }
 
+// --- class powers ----------------------------------------------------------
+
+function late(state: GameState): boolean {
+  return state.worldDeck.length <= 5;
+}
+
+/** A location a rival is likely to draw: weighted by copies, never one of ours. */
+function likelyLocation(state: GameState, p: PlayerState, salt: number, avoid: string[] = []): string {
+  const taken = new Set([...state.traps.map((t) => t.location), ...state.wards.map((w) => w.location), ...avoid]);
+  const pool = Content.cards.filter((c) => !taken.has(c.id) && !state.burned.includes(c.id));
+  const weights = pool.map((c) => c.copies);
+  let r = noise(state, p, salt) * weights.reduce((s, w) => s + w, 0);
+  for (let i = 0; i < pool.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return pool[i].id;
+  }
+  return pool[0]?.id ?? Content.cards[0].id;
+}
+
+/** The rival who looks furthest ahead: most treasure VP plus coin. */
+function leader(state: GameState, p: PlayerState, among?: number[]): PlayerState | undefined {
+  const qs = rivals(state, p).filter((q) => !among || among.includes(q.id));
+  return qs.sort((a, b) => treasures(b).reduce((s, i) => s + itemVp(i), 0) + b.coin * 0.2 - (treasures(a).reduce((s, i) => s + itemVp(i), 0) + a.coin * 0.2))[0];
+}
+
+function pickAction(state: GameState, p: PlayerState, d: Decision): Action {
+  const cards = d.data.cards as { uid: number; card: string }[];
+  const m = p.mission ? Content.mission[p.mission] : null;
+  const fits = (id: string) => !!m && Content.card[id].tags.some((t) => m.path.includes(t));
+  // Build a Bridge back to a mission location when nothing in hand fits
+  if (d.data.bridge?.length && !cards.some((c) => fits(c.card)) && p.stamina >= 4 && p.coin >= 2) {
+    const back = (d.data.bridge as string[]).filter(fits).sort((a, b) => Content.card[b].skull - Content.card[a].skull)[0];
+    if (back) return { player: p.id, kind: "pickTeaser", card: 0, bridge: back };
+  }
+  if (d.data.dreamPeek && !d.data.fullCards && p.dream >= 2 && cards.length > 1) return { player: p.id, kind: "pickTeaser", card: 0, dreamPeek: true };
+  return { player: p.id, kind: "pickTeaser", card: pickTeaser(state, p, cards) };
+}
+
+/** Possession: give the rival the card that looks worst for them. */
+function possessPick(state: GameState, q: PlayerState, cards: { uid: number; card: string }[]): number {
+  const best = pickTeaser(state, q, cards);
+  return cards.find((c) => c.uid !== best)?.uid ?? best;
+}
+
+function whisperTarget(state: GameState, p: PlayerState, ids: number[]): number {
+  return leader(state, p, ids)?.id ?? ids[0];
+}
+
+function schemePower(state: GameState, p: PlayerState, powers: AvailablePower[]): { id: string; target?: number } | null {
+  const has = (id: string) => powers.find((x) => x.id === id);
+  const m = p.mission ? Content.mission[p.mission] : null;
+  const mine = state.picks[p.id];
+  const fits = (id?: string) => !!m && !!id && Content.card[id].tags.some((t) => m.path.includes(t));
+  const sw = has("switcheroo");
+  // a blind swap is a gamble: only take it to escape a card that could hurt
+  if (sw && mine && !fits(mine.card) && Content.card[mine.card].skull >= 2 && p.health <= 3) {
+    const rs = sw.rivals!;
+    return { id: "switcheroo", target: rs[Math.floor(noise(state, p, 81) * rs.length)] };
+  }
+  const g = has("gust");
+  if (g && p.stamina >= 3) {
+    // the rival we whispered about, if their pick fits what we know of their mission
+    const heard = p.history.filter((e) => e.type === "seeHidden" && e.what === "pick" && e.round === state.round).at(-1)?.rival as number | undefined;
+    if (heard !== undefined && g.rivals!.includes(heard)) {
+      const tags = p.intel[heard] ?? [];
+      const card = Content.card[state.picks[heard]!.card];
+      if ((tags.length && card.tags.some((t) => tags.includes(t as any))) || noise(state, p, 82) < 0.3) return { id: "gust", target: heard };
+    }
+  }
+  if (has("cyclone") && state.round >= 5 && mine && !fits(mine.card) && noise(state, p, 83) < 0.4) return { id: "cyclone" };
+  return null;
+}
+
+function feastAccept(state: GameState, p: PlayerState, d: Decision): boolean {
+  const cook = state.players[d.data.cook];
+  const ahead = leader(state, p)?.id === cook.id;
+  return p.stamina <= p.maxStamina - 2 && !(ahead && late(state));
+}
+
+/** A quick-action power worth using now, or null. */
+function quickPower(state: GameState, p: PlayerState, powers: AvailablePower[]): import("./types.js").PowerUse | null {
+  const pw = (id: string) => powers.find((x) => x.id === id);
+  const r = (salt: number) => noise(state, p, 90 + salt);
+  const cheapest = () => treasures(p).sort((a, b) => itemValue(a) - itemValue(b))[0];
+  const spare = (n: number) => p.stamina >= n + 2;
+  let x: AvailablePower | undefined;
+  if ((x = pw("mountain-heart")) && state.round >= 2) return { id: x.id };
+  if ((x = pw("the-feast")) && state.round >= 6 && rivals(state, p).filter((q) => q.stamina <= q.maxStamina - 2).length >= 2) return { id: x.id };
+  if ((x = pw("cook")) && p.ingredients > 0) {
+    if (p.stamina <= 2) return { id: x.id, choice: "stew" };
+    const l = leader(state, p, x.rivals);
+    if (l && late(state) && r(1) < 0.4) return { id: x.id, choice: "scones", target: l.id };
+    if (spare(1)) return { id: x.id, choice: "pie" };
+  }
+  if ((x = pw("brew"))) {
+    const t = cheapest();
+    if (t && (itemVp(t) <= 1 || p.health <= 2) && spare(1))
+      return { id: x.id, item: t.uid, choice: p.health <= 3 ? "potion-of-mending" : r(2) < 0.25 ? "potion-of-ribbit" : "potion-of-swiftness" };
+  }
+  if ((x = pw("reforge"))) {
+    const t = cheapest();
+    if (t && itemVp(t) <= 1) return { id: x.id, item: t.uid, stat: bestStat(p) };
+  }
+  if ((x = pw("smithing-for-hire")) && p.coin >= 5 && r(3) < 0.3) {
+    const t = cheapest();
+    if (t && itemVp(t) <= 1) return { id: x.id, target: x.owner, item: t.uid, stat: bestStat(p) };
+  }
+  if ((x = pw("masterwork")) && state.worldDeck.length <= 2) {
+    const it = [...p.items].filter((i) => x!.items!.includes(i.uid)).sort((a, b) => itemValue(b) - itemValue(a))[0];
+    if (it) return { id: x.id, item: it.uid };
+  }
+  if ((x = pw("the-swap")) && state.round >= 5) {
+    let best: { target: number; mine: number; theirs: number; gain: number } | null = null;
+    const low = p.items.filter((i) => x!.items!.includes(i.uid)).sort((a, b) => itemValue(a) - itemValue(b))[0];
+    for (const qid of x.rivals!) {
+      const q = state.players[qid];
+      const hi = [...q.items].filter((i) => !Content.item[i.id].cannotSteal && !Content.item[i.id].cannotTrade && Content.item[i.id].type !== "relic" && !i.protected).sort((a, b) => itemValue(b) - itemValue(a))[0];
+      if (low && hi && itemValue(hi) - itemValue(low) >= 2 && (!best || itemValue(hi) - itemValue(low) > best.gain))
+        best = { target: qid, mine: low.uid, theirs: hi.uid, gain: itemValue(hi) - itemValue(low) };
+    }
+    if (best) return { id: x.id, target: best.target, item: best.mine, targetItem: best.theirs };
+  }
+  if ((x = pw("the-great-flood")) && state.round >= 5 && rivals(state, p).filter((q) => q.items.length).length >= 2) return { id: x.id };
+  if ((x = pw("tremor")) && spare(2)) return { id: x.id };
+  if ((x = pw("possession")) && state.round >= 3) return { id: x.id, target: leader(state, p, x.rivals)!.id };
+  if ((x = pw("mistaken-identity")) && state.round >= 4 && r(4) < 0.35) return { id: x.id, target: x.rivals![Math.floor(r(5) * x.rivals!.length)] };
+  if ((x = pw("the-shared-dream")) && state.round >= 5 && r(6) < 0.25) return { id: x.id };
+  if ((x = pw("hex-the-path")) && state.round >= 3) return { id: x.id, location: likelyLocation(state, p, 100) };
+  if ((x = pw("living-gargoyle")) && state.round >= 3) return { id: x.id, location: likelyLocation(state, p, 101) };
+  if ((x = pw("dream-walk")) && p.dream >= 1 && spare(1)) {
+    const q = [...x.rivals!].map((id) => state.players[id]).sort((a, b) => (p.intel[a.id]?.length ?? 0) - (p.intel[b.id]?.length ?? 0))[0];
+    return { id: x.id, target: q.id, choice: (p.intel[q.id]?.length ?? 0) < 2 ? "learn" : "trouble" };
+  }
+  if ((x = pw("cleanse")) && p.trouble.amount > 0 && p.trouble.rolls > 0) return { id: x.id, self: true };
+  if ((x = pw("haunt")) && spare(1) && r(7) < 0.6) return { id: x.id, location: likelyLocation(state, p, 102) };
+  if ((x = pw("sic-em")) && spare(2) && r(8) < 0.4) return { id: x.id, location: likelyLocation(state, p, 103) };
+  if ((x = pw("build-a-wall")) && spare(2) && r(9) < 0.25) return { id: x.id, location: likelyLocation(state, p, 104) };
+  if ((x = pw("burn-the-path")) && spare(2) && r(10) < 0.15) {
+    // burn a location that doesn't fit our own mission
+    const m = p.mission ? Content.mission[p.mission] : null;
+    const loc = likelyLocation(state, p, 105, Content.cards.filter((c) => m && c.tags.some((t) => m.path.includes(t))).map((c) => c.id));
+    return { id: x.id, location: loc };
+  }
+  return null;
+}
+
 function meetingChoice(state: GameState, p: PlayerState): "ally" | "brawl" | "pass" {
   if (missionWants(p, "meetingChoice", { choice: "ally" }) || missionWants(p, "success", { teamUp: true } as any)) return "ally";
   if (missionWants(p, "meetingChoice", { choice: "brawl" }) || (missionWants(p, "winBrawl") && p.stats.brawn >= 3)) return "brawl";
@@ -304,8 +459,13 @@ function chooseOption(state: GameState, p: PlayerState, d: Decision): Action {
     }
   });
   const b = best as { idx: number; stat?: Stat; ev: number; ps: number; token: boolean; finale: boolean } | null;
+  const powers = (d.data.powers ?? []) as AvailablePower[];
+  if (powers.some((x) => x.id === "the-walking-cottage") && (!b || b.ev < 0.5) && p.stamina <= 1 && p.coin >= 1)
+    return { player: p.id, kind: "chooseOption", option: 0, power: "the-walking-cottage" };
   if (!b) return { player: p.id, kind: "chooseOption", option: 0, rations };
   const o = options[b.idx];
+  const stampede =
+    !o.rest && powers.some((x) => x.id === "stampede") && p.companions.length >= 1 && ((b.ps < 0.6 && b.ev > 2) || (late(state) && b.ps < 0.85)) ? "stampede" : undefined;
   const askAssist = !o.rest && b.ps < 0.5 && b.ev > 2 && !has(state, p, "noAssistReceive") && !missionNever(p, "receiveAssist");
   const useItems: number[] = [];
   // one-use dice boosts on big rolls
@@ -325,6 +485,7 @@ function chooseOption(state: GameState, p: PlayerState, d: Decision): Action {
     attemptFinale: b.finale,
     lessonStat: growthFocus(p),
     bet: p.coin >= 6,
+    power: stampede,
   };
 }
 
@@ -412,6 +573,21 @@ function quickAction(state: GameState, p: PlayerState, d: Decision): Action {
       if (!cash.includes(t.uid)) cash.push(t.uid);
     }
   }
+  const power = quickPower(state, p, (d.data.powers ?? []) as AvailablePower[]);
+  const itemTargets: Record<number, number> = {};
+  for (const uid of useItems) {
+    const it = p.items.find((i) => i.uid === uid)!;
+    if ((Content.item[it.id].use ?? []).some((e) => e.type === "frogRival" || e.type === "troubleRival")) itemTargets[uid] = leader(state, p)?.id ?? 0;
+  }
+  // Ribbit potions go to the leader
+  for (const it of p.items) {
+    if (it.id === "potion-of-ribbit" && !useItems.includes(it.uid) && state.round >= 3) {
+      useItems.push(it.uid);
+      itemTargets[it.uid] = leader(state, p)?.id ?? 0;
+    }
+  }
+  if (power && !(has(state, p, "freeTraps") && d.data.canTrap && !["the-swap"].includes(power.id)))
+    return { player: p.id, kind: "quickAction", action: "power", power, useItems, cash, itemTargets };
   const wantsTrap =
     !missionNever(p, "setTrap") &&
     (has(state, p, "freeTraps") ||
@@ -436,10 +612,10 @@ function quickAction(state: GameState, p: PlayerState, d: Decision): Action {
     const trapType = missionWants(p, "setTrap", { trapType: "pickpocket" }) || missionWants(p, "trapSprungByRival", { trapType: "pickpocket" }) || missionWants(p, "steal")
       ? "pickpocket"
       : (["snare", "pickpocket", "stinkbomb"] as const)[Math.floor(noise(state, p, 62) * 3)];
-    return { player: p.id, kind: "quickAction", action: "trap", location: card.id, trapType, useItems, cash };
+    return { player: p.id, kind: "quickAction", action: "trap", location: card.id, trapType, useItems, cash, itemTargets };
   }
-  if (d.data.canRations && p.stamina <= 1 && p.coin >= 4) return { player: p.id, kind: "quickAction", action: "rations", useItems, cash };
-  return { player: p.id, kind: "quickAction", action: "none", useItems, cash };
+  if (d.data.canRations && p.stamina <= 1 && p.coin >= 4) return { player: p.id, kind: "quickAction", action: "rations", useItems, cash, itemTargets };
+  return { player: p.id, kind: "quickAction", action: "none", useItems, cash, itemTargets };
 }
 
 function coinTarget(p: PlayerState): number {

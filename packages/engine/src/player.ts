@@ -14,14 +14,16 @@ export function hooksOf(state: GameState, p: PlayerState): SourcedHook[] {
   const gearOff = worldMods(state).some((m) => m.kind === "gearOff");
   for (const it of p.items) {
     const def = Content.item[it.id];
+    if (gearOff && def?.type === "gear") continue;
+    if (it.forged) out.push({ kind: "dice", stat: it.forged, amount: 1, source: `item:${it.uid}` });
     if (!def?.passive) continue;
-    if (gearOff && def.type === "gear") continue;
     for (const h of def.passive) out.push({ ...h, source: `item:${it.uid}` });
   }
   for (const c of p.companions) {
     for (const h of Content.companion[c.id]?.passive ?? []) out.push({ ...h, source: `companion:${c.id}` });
   }
   for (const q of p.quirks) for (const h of q.quirk) out.push({ ...h, source: `quirk:${q.name}` });
+  for (const h of p.boons ?? []) out.push({ ...h, source: "power" });
   return out;
 }
 

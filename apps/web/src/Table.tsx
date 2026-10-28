@@ -1,7 +1,8 @@
 import React from "react";
-import { Content, FINALE, STATS, itemCoin, itemVp, type GameState, type PlayerState, type Stat } from "@thaloroot/engine";
+import { Content, FINALE, STATS, itemCoin, itemLabel, itemVp, type GameState, type PlayerState, type Stat } from "@thaloroot/engine";
 import { Meter, SceneTray, cap, className, itemName, plural, worldName } from "./bits";
 import { DecisionPanel, HEADINGS } from "./panels";
+import { PowerList } from "./powers";
 import { SPEED_MS, type Controller, type Speed } from "./session";
 
 function World({ game }: { game: GameState }) {
@@ -53,6 +54,13 @@ function World({ game }: { game: GameState }) {
           </span>
         ))}
         {game.finale && <span className="chip status">Finale: {worldName(game.finale)}</span>}
+        {game.sharedDream === game.round && <span className="chip night">The Shared Dream: 1s succeed, two 6s cause a Mishap</span>}
+        {game.walls.filter((w) => w.round === game.round).map((w) => (
+          <span key={w.location} className="chip status">Walled off: {Content.card[w.location].name}</span>
+        ))}
+        {game.burned.map((id) => (
+          <span key={id} className="chip peril">Burned: {Content.card[id].name}</span>
+        ))}
       </div>
     </header>
   );
@@ -133,7 +141,7 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
             const def = Content.item[it.id];
             return (
               <li key={it.uid}>
-                {it.id === "taproot-fragment" ? "Taproot Fragment (hidden power)" : itemName(it.id)}
+                {it.id === "taproot-fragment" ? "Taproot Fragment (hidden power)" : itemLabel(it)}{it.carriedOver ? " (Heirloom)" : ""}
                 {itemVp(it) ? <span className="quiet num"> {itemCoin(it)} coin / {itemVp(it)} VP</span> : null}
                 {def.text && it.id !== "taproot-fragment" ? <span className="quiet">. {def.text}</span> : null}
               </li>
@@ -152,6 +160,7 @@ function Plot({ game, p, active, human }: { game: GameState; p: PlayerState; act
           {!p.items.length && !p.companions.length && !p.quirks.length && <li className="quiet">Nothing yet.</li>}
         </ul>
       </details>
+      <PowerList p={p} />
     </article>
   );
 }

@@ -1247,5 +1247,66 @@
     "power": "none",
     "text": "Only from The Sky Falls finale",
     "id": "fallen-star"
+  },
+  {
+    "name": "Potion of Swiftness",
+    "rarity": "common",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "+2 dice on your next roll",
+    "use": [
+      {
+        "type": "nextRollDice",
+        "amount": 2
+      }
+    ],
+    "crafted": true,
+    "id": "potion-of-swiftness"
+  },
+  {
+    "name": "Potion of Mending",
+    "rarity": "common",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "Restore 3 health",
+    "use": [
+      {
+        "type": "heal",
+        "amount": 3
+      }
+    ],
+    "crafted": true,
+    "id": "potion-of-mending"
+  },
+  {
+    "name": "Potion of Ribbit",
+    "rarity": "common",
+    "type": "food",
+    "coin": 0,
+    "vp": 0,
+    "power": "oneUse",
+    "text": "A rival becomes a frog for a round",
+    "use": [
+      {
+        "type": "frogRival"
+      }
+    ],
+    "crafted": true,
+    "id": "potion-of-ribbit"
+  },
+  {
+    "name": "Reforged Gear",
+    "rarity": "common",
+    "type": "gear",
+    "coin": 0,
+    "vp": 0,
+    "power": "reusable",
+    "text": "+1 die to one stat for the rest of the game",
+    "crafted": true,
+    "id": "reforged-gear"
   }
 ]
